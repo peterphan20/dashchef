@@ -9,37 +9,37 @@ import Cart from "../pages/Cart";
 export const routes = [
 	{
 		path: "/",
-		exact: "true",
+		exact: true,
 		component: Home,
 	},
 	{
-		path: "/",
-		exact: "true",
+		path: "/sign-up",
+		exact: true,
 		component: Signup,
 	},
 	{
-		path: "/",
-		exact: "true",
+		path: "/login",
+		exact: true,
 		component: Login,
 	},
 	{
-		path: "/",
-		exact: "true",
+		path: "/profile",
+		exact: true,
 		component: Profile,
 	},
 	{
-		path: "/",
-		exact: "true",
+		path: "/kitchen",
+		exact: true,
 		component: Kitchen,
 	},
 	{
-		path: "/",
-		exact: "true",
+		path: "/driver",
+		exact: true,
 		component: Driver,
 	},
 	{
-		path: "/",
-		exact: "true",
+		path: "/cart",
+		exact: true,
 		component: Cart,
 	},
 ];

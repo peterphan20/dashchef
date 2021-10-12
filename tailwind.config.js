@@ -8,6 +8,9 @@ module.exports = {
 				accents: ["Cormorant", "sans-serif"],
 				body: ["Maitree", "sans-serif"],
 			},
+			backgroundImage: {
+				"mobile-hero": "url('./assets/mobile-header-image.jpg')",
+			},
 		},
 	},
 	variants: {
