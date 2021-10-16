@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
+// import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  return (
-    <div>
-      Login
-    </div>
-  )
-}
+	// const modal = useSelector((state) => state.modalReducer);
+	// const dispatch = useDispatch();
 
-export default Login
+	return <div>Login</div>;
+};
+
+export default Login;

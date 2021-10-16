@@ -10,6 +10,7 @@ module.exports = {
 			},
 			backgroundImage: {
 				"mobile-hero": "url('./assets/mobile-header-image.jpg')",
+				"driver-hero": "url('./assets/driver-image.jpg')",
 			},
 		},
 	},

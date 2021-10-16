@@ -2,12 +2,12 @@ import React from "react";
 import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
 
 const MenuMobile = ({ setOpen, isOpen }) => {
-	const handleClick = (id) => {
-		setOpen(false);
-		setTimeout(() => {
-			document.getElementById(id).scrollIntoView();
-		}, 300);
-	};
+	// const handleClick = (id) => {
+	// 	setOpen(false);
+	// 	setTimeout(() => {
+	// 		document.getElementById(id).scrollIntoView();
+	// 	}, 300);
+	// };
 
 	const handlePageChangeClick = () => {
 		setOpen(false);
@@ -26,12 +26,6 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 				isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
 			}`}
 		>
-			<MenuAnchorMobile
-				text="Search"
-				link="/"
-				icon="search"
-				clickHandler={() => handleClick("home")}
-			/>
 			<MenuAnchorMobile
 				text="Profile"
 				link="/login"
