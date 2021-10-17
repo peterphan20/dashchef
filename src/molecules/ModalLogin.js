@@ -1,21 +1,45 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { loginUser } from "../actions/userCRUD";
+import { loginUser } from "../api/usersAPI";
 import { toggleHideLoginModal } from "../actions/modalAction";
+import { LOGIN_USER } from "../constants/userActionTypes";
 
 const ModalLogin = () => {
+	const [authResponse, setAuthResponse] = useState(null);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const dispatch = useDispatch();
 
-	const handleUserLogin = () => {
-		const userObj = JSON.stringify({
+	const handleUserLogin = async () => {
+		const userObj = {
 			email,
 			password,
-		});
-		dispatch(loginUser(userObj));
+		};
+		const res = await loginUser(userObj);
+
+		if (res.code === 200) {
+			const payload = {
+				userID: res.id,
+				firstName: res.firstname,
+				lastName: res.lastname,
+				signedIn: true,
+			};
+			dispatch({ type: LOGIN_USER, payload });
+			setAuthResponse(true);
+		} else {
+			const payload = {
+				userID: null,
+				firstName: null,
+				lastName: null,
+				signedIn: false,
+			};
+			dispatch({ type: LOGIN_USER, payload });
+			setAuthResponse(false);
+		}
 	};
+
+	const response = <div>{authResponse ? null : <p>Invalid user credentials</p>}</div>;
 
 	return (
 		<div
@@ -71,7 +95,7 @@ const ModalLogin = () => {
 				</div>
 				<button
 					className="bg-red-600 text-gray-100 text-base rounded-lg py-1 px-3 mb-5 w-full h-full"
-					onClick={dispatch(handleUserLogin)}
+					onClick={() => dispatch(handleUserLogin)}
 				>
 					Sign in
 				</button>
@@ -82,6 +106,7 @@ const ModalLogin = () => {
 					</Link>
 				</h1>
 			</div>
+			{response}
 		</div>
 	);
 };

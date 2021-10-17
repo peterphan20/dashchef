@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const Login = () => {
 	const modal = useSelector((state) => state.modalReducer);
 
-	return <form>{modal.showLoginModal ? <ModalLogin /> : null}</form>;
+	return <div>{modal.showLoginModal ? <ModalLogin /> : null}</div>;
 };
 
 export default Login;

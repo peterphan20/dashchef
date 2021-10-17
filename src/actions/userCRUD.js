@@ -36,15 +36,6 @@ export const createUser = (userObj) => async (dispatch) => {
 	}
 };
 
-export const loginUser = (userObj) => async (dispatch) => {
-	try {
-		const { data } = await api.loginUser(userObj);
-		dispatch({ type: LOGIN_USER, payload: data });
-	} catch (err) {
-		console.log(err.message);
-	}
-};
-
 export const updateUser = (id, userObj) => async (dispatch) => {
 	try {
 		const { data } = await api.updateUser(id, userObj);
