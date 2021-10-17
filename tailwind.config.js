@@ -3,14 +3,14 @@ module.exports = {
 	darkMode: false, // or 'media' or 'class'
 	theme: {
 		extend: {
+			backgroundColor: (theme) => ({
+				backdrop: "rgba(0, 0, 0, 0.3)",
+				modal_shadow: "rgba(0, 0, 0, 0.2)",
+			}),
 			fontFamily: {
 				headers: ["Montserrat", "sans-serif"],
 				accents: ["Cormorant", "sans-serif"],
 				body: ["Maitree", "sans-serif"],
-			},
-			backgroundImage: {
-				"mobile-hero": "url('./assets/mobile-header-image.jpg')",
-				"driver-hero": "url('./assets/driver-image.jpg')",
 			},
 		},
 	},

@@ -1,11 +1,11 @@
 import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import ModalLogin from "../molecules/ModalLogin";
+import { useSelector } from "react-redux";
 
 const Login = () => {
-	// const modal = useSelector((state) => state.modalReducer);
-	// const dispatch = useDispatch();
+	const modal = useSelector((state) => state.modalReducer);
 
-	return <div>Login</div>;
+	return <form>{modal.showLoginModal ? <ModalLogin /> : null}</form>;
 };
 
 export default Login;

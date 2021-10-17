@@ -1,7 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleShowLoginModal } from "../actions/modalAction";
 import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
 
 const MenuMobile = ({ setOpen, isOpen }) => {
+	const dispatch = useDispatch();
+
 	// const handleClick = (id) => {
 	// 	setOpen(false);
 	// 	setTimeout(() => {
@@ -12,13 +16,14 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 	const handlePageChangeClick = () => {
 		setOpen(false);
 		window.scrollTo(0, 0);
+		dispatch(toggleShowLoginModal());
 	};
 
-	const handleLogout = () => {
-		localStorage.removeItem("authToken");
-		setOpen(false);
-		window.scrollTo(0, 0);
-	};
+	// const handleLogout = () => {
+	// 	localStorage.removeItem("authToken");
+	// 	setOpen(false);
+	// 	window.scrollTo(0, 0);
+	// };
 
 	return (
 		<nav
@@ -26,12 +31,13 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 				isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
 			}`}
 		>
-			<MenuAnchorMobile
-				text="Profile"
-				link="/login"
-				icon="sign-in-alt"
-				clickHandler={handleLogout}
-			/>
+			<button
+				className="flex justify-start items-center gap-3 text-gray-900 border-b border-gray-300 px-2 mb-4 w-full"
+				onClick={handlePageChangeClick}
+			>
+				Login
+				<i className="fas fa-sign-in-alt"></i>
+			</button>
 			<MenuAnchorMobile
 				text="Profile"
 				link="/sign-up"

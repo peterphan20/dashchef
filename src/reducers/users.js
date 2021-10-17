@@ -7,7 +7,7 @@ import {
 	DELETE_USER,
 } from "../constants/userActionTypes";
 
-export default (users = [], action) => {
+export const usersReducer = (users = [], action) => {
 	switch (action.type) {
 		case GET_ALL_USERS:
 		case GET_USER:
@@ -18,7 +18,7 @@ export default (users = [], action) => {
 		case UPDATE_USER:
 			return users.map((user) => (user.id === action.payload.id ? action.payload : user));
 		case DELETE_USER:
-			return user.filter((user) => user.id !== action.payload);
+			return users.filter((user) => user.id !== action.payload);
 		default:
 			return users;
 	}

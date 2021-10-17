@@ -1,6 +1,4 @@
 import Home from "../pages/Home";
-import Signup from "../pages/Signup";
-import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Kitchen from "../pages/Kitchen";
 import Driver from "../pages/Driver";
@@ -11,16 +9,6 @@ export const routes = [
 		path: "/",
 		exact: true,
 		component: Home,
-	},
-	{
-		path: "/sign-up",
-		exact: true,
-		component: Signup,
-	},
-	{
-		path: "/login",
-		exact: true,
-		component: Login,
 	},
 	{
 		path: "/profile",
