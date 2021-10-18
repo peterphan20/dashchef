@@ -1,22 +1,29 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleShowLoginModal } from "../actions/modalAction";
+import { toggleShowSignUpModal } from "../actions/modalAction";
 import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
+import MenuButtonMobile from "../atoms/MenuButtonMobile";
 
 const MenuMobile = ({ setOpen, isOpen }) => {
 	const dispatch = useDispatch();
 
-	// const handleClick = (id) => {
+	const handleClick = (id) => {
+		setOpen(false);
+		setTimeout(() => {
+			document.getElementById(id).scrollIntoView();
+		}, 300);
+	};
+
+	// const handleLoginClick = () => {
 	// 	setOpen(false);
-	// 	setTimeout(() => {
-	// 		document.getElementById(id).scrollIntoView();
-	// 	}, 300);
+	// 	window.scrollTo(0, 0);
+	// 	dispatch(toggleShowLoginModal());
 	// };
 
-	const handlePageChangeClick = () => {
+	const handleSignupClick = () => {
 		setOpen(false);
 		window.scrollTo(0, 0);
-		dispatch(toggleShowLoginModal());
+		dispatch(toggleShowSignUpModal());
 	};
 
 	// const handleLogout = () => {
@@ -31,25 +38,9 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 				isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
 			}`}
 		>
-			<button
-				className="flex justify-start items-center gap-3 text-gray-900 border-b border-gray-300 px-2 mb-4 w-full"
-				onClick={handlePageChangeClick}
-			>
-				Login
-				<i className="fas fa-sign-in-alt"></i>
-			</button>
-			<MenuAnchorMobile
-				text="Profile"
-				link="/sign-up"
-				icon="user-plus"
-				clickHandler={handlePageChangeClick}
-			/>
-			<MenuAnchorMobile
-				text="Cart"
-				link="/cart"
-				icon="shopping-cart"
-				clickHandler={handlePageChangeClick}
-			/>
+			{/* <MenuButtonMobile clickHandler={handleLoginClick} text="Login" icon="sign-in-alt" /> */}
+			<MenuButtonMobile clickHandler={handleSignupClick} text="Sign up" icon="user-plus" />
+			<MenuAnchorMobile text="Cart" link="/cart" icon="shopping-cart" clickHandler={handleClick} />
 		</nav>
 	);
 };
