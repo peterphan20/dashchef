@@ -5,22 +5,17 @@ import WizardModalSecondary from "../molecules/WizardModalSecondary";
 import WizardModalTertiary from "../molecules/WizardModalTertiary";
 
 const Signup = () => {
-	const [wizardPrimaryModal, setWizardPrimaryModal] = useState(false);
+	const [wizardPrimaryModal, setWizardPrimaryModal] = useState(null);
 	const [wizardSecondaryModal, setWizardSecondaryModal] = useState(false);
 	const [wizardTertiaryModal, setWizardTertiaryModal] = useState(false);
-
 	const modal = useSelector((state) => state.modalReducer);
 
-	const renderWizardModal = wizardPrimaryModal ? (
-		<WizardModalPrimary
-			value={wizardPrimaryModal}
-			setWizardPrimaryModal={setWizardPrimaryModal}
-			setWizardSecondaryModal={setWizardSecondaryModal}
-		/>
+	const renderWizardModal = modal.showSignupModal ? (
+		<WizardModalPrimary setWizardSecondaryModal={setWizardSecondaryModal} />
 	) : wizardSecondaryModal ? (
 		<WizardModalSecondary
 			value={wizardSecondaryModal}
-			setWizardSecondaryModal={setWizardSecondaryModal}
+			setWizardTertiaryModal={setWizardTertiaryModal}
 		/>
 	) : wizardTertiaryModal ? (
 		<WizardModalTertiary
@@ -29,7 +24,7 @@ const Signup = () => {
 		/>
 	) : null;
 
-	return <div>{modal.showSignupModal ? renderWizardModal : null}</div>;
+	return <div>{renderWizardModal}</div>;
 };
 
 export default Signup;

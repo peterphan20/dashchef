@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleShowSignUpModal } from "../actions/modalAction";
+import { toggleShowLoginModal, toggleShowSignUpModal } from "../actions/modalAction";
 import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
 import MenuButtonMobile from "../atoms/MenuButtonMobile";
 
@@ -14,11 +14,11 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 		}, 300);
 	};
 
-	// const handleLoginClick = () => {
-	// 	setOpen(false);
-	// 	window.scrollTo(0, 0);
-	// 	dispatch(toggleShowLoginModal());
-	// };
+	const handleLoginClick = () => {
+		setOpen(false);
+		window.scrollTo(0, 0);
+		dispatch(toggleShowLoginModal());
+	};
 
 	const handleSignupClick = () => {
 		setOpen(false);
@@ -38,7 +38,7 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 				isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
 			}`}
 		>
-			{/* <MenuButtonMobile clickHandler={handleLoginClick} text="Login" icon="sign-in-alt" /> */}
+			<MenuButtonMobile clickHandler={handleLoginClick} text="Login" icon="sign-in-alt" />
 			<MenuButtonMobile clickHandler={handleSignupClick} text="Sign up" icon="user-plus" />
 			<MenuAnchorMobile text="Cart" link="/cart" icon="shopping-cart" clickHandler={handleClick} />
 		</nav>
