@@ -9,7 +9,7 @@ export const modalReducer = (modal = {}, action) => {
 	switch (action.type) {
 		case DISPLAY_SIGN_UP_MODAL:
 		case HIDE_SIGN_UP_MODAL:
-			return { ...modal, showSignupModal: action.payload };
+			return { ...modal, showSignUpModal: action.payload };
 		case DISPLAY_LOGIN_MODAL:
 		case HIDE_LOGIN_MODAL:
 			return { ...modal, showLoginModal: action.payload };

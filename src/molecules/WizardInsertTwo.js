@@ -1,17 +1,11 @@
-import { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleHideSignUpModal } from "../actions/modalAction";
-import ButtonSignup from "../atoms/ButtonSignup";
+import Dropdown from "../atoms/Dropdown";
 import InputFieldSignup from "../atoms/InputFieldSignup";
 
-const WizardModalPrimary = ({ setWizardSecondaryModal }) => {
-	const [signupemail, setSignupEmail] = useState("");
-	const [signupPassword, setSignupPassword] = useState("");
+const WizardInsertTwo = ({ firstname, setFirstname, lastname, setLastname, chef, setChef }) => {
 	const dispatch = useDispatch();
-
-	const nextModal = () => {
-		setWizardSecondaryModal(true);
-	};
 
 	return (
 		<div
@@ -38,8 +32,8 @@ const WizardModalPrimary = ({ setWizardSecondaryModal }) => {
 						type="email"
 						placeholder="Email Address"
 						className="mb-3"
-						value={signupemail}
-						changeHandler={(e) => setSignupEmail(e.target.value)}
+						value={firstname}
+						changeHandler={(e) => setFirstname(e.target.value)}
 					/>
 					<InputFieldSignup
 						htmlFor="sign-up-password"
@@ -47,20 +41,14 @@ const WizardModalPrimary = ({ setWizardSecondaryModal }) => {
 						type="password"
 						placeholder="Password"
 						className=""
-						value={signupPassword}
-						changeHandler={(e) => setSignupPassword(e.target.value)}
+						value={lastname}
+						changeHandler={(e) => setLastname(e.target.value)}
 					/>
+					<Dropdown selected={chef} options onSelectedChange label />
 				</div>
-				<hr className="mt-5 pb-3" />
-				<ButtonSignup
-					text="Next"
-					icon="fas fa-chevron-right"
-					className="flex self-end bg-blue-500"
-					toggleModalHandler={nextModal}
-				/>
 			</div>
 		</div>
 	);
 };
 
-export default WizardModalPrimary;
+export default WizardInsertTwo;

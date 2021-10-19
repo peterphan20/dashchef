@@ -1,19 +1,10 @@
-import { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleHideSignUpModal } from "../actions/modalAction";
-import ButtonSignup from "../atoms/ButtonSignup";
 import InputFieldSignup from "../atoms/InputFieldSignup";
 
-const WizardModalSecondary = () => {
-	const [signupemail, setSignupEmail] = useState("");
-	const [signupPassword, setSignupPassword] = useState("");
+const WizardInsertOne = ({ email, setEmail, password, setPassword }) => {
 	const dispatch = useDispatch();
-
-	const nextModal = ({ setWizardTertiaryModal }) => {
-		setWizardTertiaryModal(true);
-	};
-
-	const previousModal = () => {};
 
 	return (
 		<div
@@ -35,40 +26,27 @@ const WizardModalSecondary = () => {
 				</h1>
 				<div className="rounded-md shadow-sm -space-y-px mb-5">
 					<InputFieldSignup
-						htmlFor="sign-up-email-address"
+						htmlFor="email-address"
 						text="email"
 						type="email"
 						placeholder="Email Address"
 						className="mb-3"
-						value={signupemail}
-						changeHandler={(e) => setSignupEmail(e.target.value)}
+						value={email}
+						changeHandler={(e) => setEmail(e.target.value)}
 					/>
 					<InputFieldSignup
-						htmlFor="sign-up-password"
+						htmlFor="password"
 						text="password"
 						type="password"
 						placeholder="Password"
 						className=""
-						value={signupPassword}
-						changeHandler={(e) => setSignupPassword(e.target.value)}
+						value={password}
+						changeHandler={(e) => setPassword(e.target.value)}
 					/>
-				</div>
-				<hr className="mt-5 pb-3" />
-				<div>
-					<div>
-						<ButtonSignup
-							text="Next"
-							icon="fas fa-chevron-right"
-							className="bg-blue-600"
-							toggleModalHandler={nextModal}
-						/>
-            <ButtonSignup text="Previous" icon="fas fa-chevron-left" className="" />
-					</div>
-					<ButtonSignup />
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default WizardModalSecondary;
+export default WizardInsertOne;
