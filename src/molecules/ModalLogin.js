@@ -11,7 +11,7 @@ const ModalLogin = () => {
 	const [password, setPassword] = useState("");
 	const dispatch = useDispatch();
 
-	const handleUserLogin = async () => {
+	const handleLogin = async () => {
 		const userObj = {
 			email,
 			password,
@@ -85,7 +85,7 @@ const ModalLogin = () => {
 				</div>
 				<button
 					className="bg-red-600 text-gray-100 text-base rounded-lg py-1 px-3 mb-5 w-full h-full"
-					onClick={() => dispatch(handleUserLogin)}
+					onClick={() => dispatch(handleLogin)}
 				>
 					Sign in
 				</button>

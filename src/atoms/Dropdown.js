@@ -1,10 +1,10 @@
 import React from "react";
 
-const Dropdown = ({ options, label, selected, onSelectedChange, className = "" }) => {
-	const renderedOptions = options.map((option) => {
+const Dropdown = ({ id, options, onSelectedChange, className = "" }) => {
+	const renderedOptions = options.map((option, idx) => {
 		return (
 			<>
-				<option key={option.value} value={option.value} selected>
+				<option key={idx} value={option.value}>
 					{option.title}
 				</option>
 			</>
@@ -13,11 +13,10 @@ const Dropdown = ({ options, label, selected, onSelectedChange, className = "" }
 
 	return (
 		<>
-			<label htmlFor={selected}>{label}</label>
 			<select
 				key={options.value}
-				className={`appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md ${className} focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
-				value={selected}
+				className={`rounded-none relative block w-full pl-2 py-2 border border-gray-300 text-gray-500 rounded-md ${className} focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
+				defaultValue={options[0]}
 				onChange={onSelectedChange}
 			>
 				{renderedOptions}

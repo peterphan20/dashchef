@@ -1,4 +1,8 @@
-export const geoState = [
+export const USStates = [
+	{
+		title: "State/Province",
+		value: "null",
+	},
 	{
 		title: "AL",
 		value: "ALABAMA",

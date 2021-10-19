@@ -21,28 +21,27 @@ const WizardInsertTwo = ({ firstname, setFirstname, lastname, setLastname, chef,
 			</h1>
 			<div className="rounded-md -space-y-px mb-5">
 				<InputFieldSignup
-					htmlFor="sign-up-email-address"
-					text="email"
-					type="email"
-					placeholder="Email Address"
+					htmlFor="firstname"
+					text="firstname"
+					type="text"
+					placeholder="First Name"
 					className="mb-3"
 					value={firstname}
 					changeHandler={(e) => setFirstname(e.target.value)}
 				/>
 				<InputFieldSignup
-					htmlFor="sign-up-password"
-					text="password"
-					type="password"
-					placeholder="Password"
+					htmlFor="lastname"
+					text="lastname"
+					type="text"
+					placeholder="Last Name"
 					className="mb-3"
 					value={lastname}
 					changeHandler={(e) => setLastname(e.target.value)}
 				/>
 				<Dropdown
-					selected={chef}
+					select={chef}
 					options={isChef}
 					onSelectedChange={(e) => setChef(e.target.value)}
-					label="Are you a chef?"
 				/>
 			</div>
 		</>

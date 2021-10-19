@@ -5,9 +5,12 @@ import RenderWizardButton from "../molecules/RenderWizardButton";
 import WizardInsertOne from "../molecules/WizardInsertOne";
 import WizardInsertTwo from "../molecules/WizardInsertTwo";
 import WizardInsertThree from "../molecules/WizardInsertThree";
+import { createUser } from "../api/usersAPI";
+import { CREATE_USER } from "../constants/userActionTypes";
 
 const ModalSignUp = () => {
 	const [stepNumber, setStepNumber] = useState(1);
+	const [authResponse, setAuthResponse] = useState(null);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [firstname, setFirstname] = useState("");
@@ -21,6 +24,45 @@ const ModalSignUp = () => {
 	const [zipcode, setZipCode] = useState("");
 
 	const dispatch = useDispatch;
+	let addressStr = address + " " + city + " " + geoState + " " + zipcode + " " + aptNumber;
+	console.log(addressStr.toUpperCase());
+
+	const handleSignup = async () => {
+		let addressStr = address + " " + city + " " + geoState + " " + zipcode + " " + aptNumber;
+		const userObj = JSON.stringify({
+			firstname,
+			lastname,
+			email,
+			password,
+			address: addressStr.toUpperCase(),
+			phone,
+		});
+
+		const res = await createUser(userObj);
+
+		if (res.code === 201) {
+			setAuthResponse(true);
+			if (chef) {
+
+			}
+			const payload = {
+				userID: res.id,
+				firstName: res.firstname,
+				lastName: res.lastname,
+				created: true,
+			};
+			dispatch({ type: CREATE_USER, payload });
+		} else {
+			const payload = {
+				userID: null,
+				firstName: null,
+				lastName: null,
+				created: false,
+			};
+			dispatch({ type: CREATE_USER, payload });
+			setAuthResponse(false);
+		}
+	};
 
 	const renderWizardInserts = () => {
 		switch (true) {
@@ -50,6 +92,7 @@ const ModalSignUp = () => {
 						setGeoState={setGeoState}
 						zipcode={zipcode}
 						setZipCode={setZipCode}
+						authResponse={authResponse}
 					/>
 				);
 			default:
@@ -74,9 +117,13 @@ const ModalSignUp = () => {
 				className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow px-8 pt-8 pb-2 mb-20 z-20"
 			>
 				{renderWizardInserts()}
-				<RenderWizardButton stepNumber={stepNumber} setStepNumber={setStepNumber} />
+				<RenderWizardButton
+					stepNumber={stepNumber}
+					setStepNumber={setStepNumber}
+					handleSignup={handleSignup}
+				/>
 			</div>
-		</div> 
+		</div>
 	);
 };
 
