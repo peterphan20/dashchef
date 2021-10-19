@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toggleHideSignUpModal } from "../actions/modalAction";
 import RenderWizardButton from "../molecules/RenderWizardButton";
 import WizardInsertOne from "../molecules/WizardInsertOne";
 import WizardInsertTwo from "../molecules/WizardInsertTwo";
 import WizardInsertThree from "../molecules/WizardInsertThree";
 
 const ModalSignUp = () => {
-	const [stepNumber, setStepNumber] = useState(0);
+	const [stepNumber, setStepNumber] = useState(1);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [firstname, setFirstname] = useState("");
@@ -18,7 +20,9 @@ const ModalSignUp = () => {
 	const [geoState, setGeoState] = useState("Select State");
 	const [zipcode, setZipCode] = useState("");
 
-	const renderWizardModal = () => {
+	const dispatch = useDispatch;
+
+	const renderWizardInserts = () => {
 		switch (true) {
 			case stepNumber === 2:
 				return (
@@ -61,11 +65,18 @@ const ModalSignUp = () => {
 	};
 
 	return (
-		<div>
-			{renderWizardModal}
-			<hr className="mt-5 pb-3" />
-			<RenderWizardButton stepNumber={stepNumber} setStepNumber={setStepNumber} />
-		</div>
+		<div
+			className="grid place-items-center fixed bg-backdrop top-0 left-0 w-full h-screen z-20"
+			onClick={() => dispatch(toggleHideSignUpModal())}
+		>
+			<div
+				onClick={(e) => e.stopPropagation()}
+				className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow px-8 pt-8 pb-2 mb-20 z-20"
+			>
+				{renderWizardInserts()}
+				<RenderWizardButton stepNumber={stepNumber} setStepNumber={setStepNumber} />
+			</div>
+		</div> 
 	);
 };
 
