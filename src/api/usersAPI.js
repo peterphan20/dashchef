@@ -2,30 +2,30 @@ import config from "../config";
 
 export const getAllUsers = async () => {
 	const res = await fetch(`${config.API_URL}/users`);
-	const data = res.json();
+	const data = await res.json();
 	return data;
 };
 
 export const getUser = async (id) => {
 	const res = await fetch(`${config.API_URL}/user/${id}`);
-	const data = res.json();
+	const data = await res.json();
 	return data;
 };
 
 export const createUser = async (userObj) => {
-	const res = await fetch(`${config.API_URL}/auth/user-create`, {
+	const res = await fetch(`${config.API_URL}/auth/user`, {
 		method: "POST",
 		body: JSON.stringify(userObj),
 		headers: {
 			"Content-Type": "application/json; charset=UTF-8",
 		},
 	});
-	const data = res.json();
+	const data = await res.json();
 	return data;
 };
 
 export const loginUser = async (userObj) => {
-	const res = await fetch(`${config.API_URL}/auth/user-login`, {
+	const res = await fetch(`${config.API_URL}/auth/user/login`, {
 		method: "POST",
 		body: JSON.stringify(userObj),
 		headers: {
@@ -44,7 +44,7 @@ export const updateUser = async (id, userObj) => {
 			"Content-Type": "application/json; charset=UTF-8",
 		},
 	});
-	const data = res.json();
+	const data = await res.json();
 	return data;
 };
 
@@ -52,6 +52,6 @@ export const deleteUser = async (id) => {
 	const res = await fetch(`${config.API_URL}/users/user-delete/${id}`, {
 		method: "DELETE",
 	});
-	const data = res.json();
+	const data = await res.json();
 	return data;
 };

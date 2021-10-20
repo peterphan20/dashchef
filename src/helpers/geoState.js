@@ -1,7 +1,7 @@
 export const USStates = [
 	{
 		title: "State/Province",
-		value: "null",
+		value: null,
 	},
 	{
 		title: "AL",

@@ -1,11 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleHideSignUpModal } from "../actions/modalAction";
-import Dropdown from "../atoms/Dropdown";
 import InputFieldSignup from "../atoms/InputFieldSignup";
-import { isChef } from "../helpers/isChef";
 
-const WizardInsertTwo = ({ firstname, setFirstname, lastname, setLastname, chef, setChef }) => {
+const WizardInsertTwo = ({ firstname, setFirstname, lastname, setLastname, isChef, setIsChef }) => {
 	const dispatch = useDispatch();
 
 	return (
@@ -37,11 +35,6 @@ const WizardInsertTwo = ({ firstname, setFirstname, lastname, setLastname, chef,
 					className="mb-3"
 					value={lastname}
 					changeHandler={(e) => setLastname(e.target.value)}
-				/>
-				<Dropdown
-					select={chef}
-					options={isChef}
-					onSelectedChange={(e) => setChef(e.target.value)}
 				/>
 			</div>
 		</>

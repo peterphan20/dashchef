@@ -69,7 +69,7 @@ const WizardInsertThree = ({
 					className="mb-3"
 					placeholder="Apt, suite, etc."
 					value={aptNumber}
-					changeHandler={(e) => setAptNumber(e.target.vlaue)}
+					changeHandler={(e) => setAptNumber(e.target.value)}
 				/>
 				<InputFieldSignup
 					type="text"
