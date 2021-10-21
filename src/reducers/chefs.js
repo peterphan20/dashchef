@@ -1,24 +1,18 @@
-import {
-	GET_ALL_CHEFS,
-	GET_CHEF,
-	CREATE_CHEF,
-	LOGIN_CHEF,
-	UPDATE_CHEF,
-	DELETE_CHEF,
-} from "../constants/chefActionTypes";
+import { LOAD_CHEFS, CHEF_CREATE, CHEF_UPDATE, CHEF_DELETE } from "../constants";
 
 export const chefsReducer = (chefs = [], action) => {
 	switch (action.type) {
-		case GET_ALL_CHEFS:
-		case GET_CHEF:
+		// Query ALL the chefs and place them in the store
+		case LOAD_CHEFS:
+			// action.payload is the array of all chefs
 			return action.payload;
-		case CREATE_CHEF:
-		case LOGIN_CHEF:
-			return { ...chefs, data: action.payload };
-		case UPDATE_CHEF:
+		case CHEF_CREATE:
+			// action.payload is the new chef
+			return [...chefs, action.payload];
+		case CHEF_UPDATE:
 			return chefs.map((chef) => (chef.id === action.payload.id ? action.payload : chef));
-		case DELETE_CHEF:
-			return chefs.filter((chef) => chef.id !== action.payload);
+		case CHEF_DELETE:
+			return chefs.filter((chef) => chef.id !== action.payload.id);
 		default:
 			return chefs;
 	}

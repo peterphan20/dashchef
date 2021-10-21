@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import RenderWizardButton from "../molecules/RenderWizardButton";
+
 import WizardInsertOne from "../molecules/WizardInsertOne";
 import WizardInsertTwo from "../molecules/WizardInsertTwo";
 import WizardInsertThree from "../molecules/WizardInsertThree";
+import RenderWizardButton from "../molecules/RenderWizardButton";
 import { createUser } from "../api/usersAPI";
-import { CREATE_USER } from "../constants/userActionTypes";
-import { CREATE_CHEF } from "../constants/chefActionTypes";
 import { createChef } from "../api/chefsAPI";
-import { useHistory } from "react-router";
+import { CHEF_CREATE, USER_LOGIN, HIDE_SIGN_UP_MODAL } from "../constants";
 
 const ModalSignUp = () => {
 	const [stepNumber, setStepNumber] = useState(1);
@@ -18,7 +17,7 @@ const ModalSignUp = () => {
 	const [firstname, setFirstname] = useState("");
 	const [lastname, setLastname] = useState("");
 	const [phone, setPhone] = useState("");
-	const [isChef, setIsChef] = useState(null);
+	const [isChef, setIsChef] = useState("");
 	const [address, setAddress] = useState("");
 	const [aptNumber, setAptNumber] = useState("");
 	const [city, setCity] = useState("");
@@ -26,7 +25,6 @@ const ModalSignUp = () => {
 	const [zipcode, setZipCode] = useState("");
 
 	const dispatch = useDispatch();
-	const history = useHistory();
 
 	const handleUserSignup = async (userObject) => {
 		const apiResponse = await createUser(userObject);
@@ -38,20 +36,6 @@ const ModalSignUp = () => {
 		console.log("HERE IS THE API RESPONSE: ", apiResponse);
 		setAuthResponse(true);
 
-		// 	{
-		// 		"id": 19,
-		// 		"first_name": "rewrwe",
-		// 		"last_name": "rewrwe",
-		// 		"email": "rewrwerwe",
-		// 		"password": "$2b$10$lNX62ifwXIM1muR0LrKpaeOIcERv21hTf/QIDF1uDO8iq1iQofzq6",
-		// 		"address": "12927 DEER SAGE COURT, HOUSTON, ALABAMA 77041",
-		// 		"phone": "7134981648",
-		// 		"signup_date": "2021-10-20T04:24:24.359Z",
-		// 		"last_seen_date": "2021-10-20T04:24:24.359Z",
-		// 		"avatar_url": null
-		// }
-
-		// TODO: CREATE AND DISPATCH PAYLOAD
 		const payload = {
 			userID: apiResponse.data.id,
 			firstName: apiResponse.data.firstname,
@@ -59,15 +43,14 @@ const ModalSignUp = () => {
 			created: true,
 		};
 		console.log("user's payload ", payload);
-		dispatch({ type: CREATE_USER, payload });
-		history.push("/");
+		dispatch({ type: USER_LOGIN, payload });
 	};
 
 	const handleChefSignup = async (chefObject) => {
 		const apiResponse = await createChef(chefObject);
 		if (apiResponse.code !== 201) {
 			setAuthResponse(false);
-			console.log("Bad request");
+			console.log("chef's block, Bad request");
 		}
 		setAuthResponse(true);
 		const payload = {
@@ -76,7 +59,9 @@ const ModalSignUp = () => {
 			lastName: apiResponse.data.lastName,
 			create: true,
 		};
-		dispatch({ type: CREATE_CHEF, payload });
+		console.log("chef's payload", payload);
+		dispatch({ type: CHEF_CREATE, payload });
+		dispatch({ type: HIDE_SIGN_UP_MODAL });
 	};
 
 	const handleSignup = () => {
@@ -84,7 +69,7 @@ const ModalSignUp = () => {
 			aptNumber ? ", " + aptNumber : ""
 		}, ${city}, ${geoState} ${zipcode}`;
 
-		const userObj = {
+		const userObject = {
 			firstname,
 			lastname,
 			email,
@@ -93,12 +78,12 @@ const ModalSignUp = () => {
 			phone,
 		};
 
-		if (isChef) {
-			// TODO
-			handleChefSignup(userObj);
-		} else if (isChef === false) {
-			console.log("is not chef ===>")
-			handleUserSignup(userObj);
+		if (isChef === "yes") {
+			console.log("is chef", isChef);
+			handleChefSignup(userObject);
+		} else if (isChef === "no") {
+			console.log("is not chef", isChef);
+			handleUserSignup(userObject);
 		}
 	};
 

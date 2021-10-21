@@ -1,7 +1,7 @@
 import React from "react";
 import ButtonSignup from "../atoms/ButtonSignup";
-import { toggleHideLoginModal, toggleHideSignUpModal } from "../actions/modalAction";
 import { useDispatch } from "react-redux";
+import { HIDE_SIGN_UP_MODAL } from "../constants";
 
 const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 	const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<ButtonSignup
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
-							clickHandler={() => dispatch(toggleHideSignUpModal())}
+							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 						/>
 						<div className="flex justify-center items-center gap-2">
 							<ButtonSignup
@@ -49,7 +49,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<ButtonSignup
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
-							clickHandler={() => dispatch(toggleHideLoginModal())}
+							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 						/>
 						<div className="flex justify-center items-center gap-2">
 							<ButtonSignup
@@ -62,7 +62,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 					</div>
 				);
 			default:
-				return <div>It's fucked</div>;
+				return <div></div>;
 		}
 	};
 

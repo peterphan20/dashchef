@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleShowLoginModal, toggleShowSignUpModal } from "../actions/modalAction";
 import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
 import MenuButtonMobile from "../atoms/MenuButtonMobile";
+import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL } from "../constants";
 
 const MenuMobile = ({ setOpen, isOpen }) => {
 	const dispatch = useDispatch();
@@ -17,13 +17,13 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 	const handleLoginClick = () => {
 		setOpen(false);
 		window.scrollTo(0, 0);
-		dispatch(toggleShowLoginModal());
+		dispatch({ type: DISPLAY_LOGIN_MODAL });
 	};
 
 	const handleSignupClick = () => {
 		setOpen(false);
 		window.scrollTo(0, 0);
-		dispatch(toggleShowSignUpModal());
+		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
 	};
 
 	// const handleLogout = () => {

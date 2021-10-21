@@ -1,54 +1,68 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../api/usersAPI";
-import { toggleHideLoginModal, toggleShowSignUpModal } from "../actions/modalAction";
-import { LOGIN_USER } from "../constants/userActionTypes";
 import InputFieldLogin from "../atoms/InputFieldLogin";
+import { USER_LOGIN, DISPLAY_SIGN_UP_MODAL, HIDE_LOGIN_MODAL } from "../constants";
+import { loginChef } from "../api/chefsAPI";
 
 const ModalLogin = () => {
-	const [authResponse, setAuthResponse] = useState(null);
+	const [authResponse, setAuthResponse] = useState(true);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [isChef, setIsChef] = useState("");
 	const dispatch = useDispatch();
 
-	const handleLogin = async () => {
-		const userObj = {
+	const handleUserLogin = async (userObject) => {
+		const apiResponse = await loginUser(userObject);
+		if (apiResponse !== 200) {
+			setAuthResponse(false);
+		} else {
+			const payload = {
+				userID: apiResponse.data.id,
+				firstName: apiResponse.data.firstname,
+				lastName: apiResponse.data.lastname,
+				signedIn: true,
+			};
+			dispatch({ type: USER_LOGIN, payload });
+		}
+	};
+
+	const handleChefLogin = async (chefObject) => {
+		const apiResponse = await loginChef(chefObject);
+		if (apiResponse !== 200) {
+			setAuthResponse(false);
+		} else {
+			const payload = {
+				chefID: apiResponse.data.id,
+				firstName: apiResponse.data.firstname,
+				lastName: apiResponse.data.lastname,
+				signedIn: true,
+			};
+			dispatch({ type: USER_LOGIN, payload });
+		}
+	};
+
+	const handleLogin = () => {
+		const userObject = {
 			email,
 			password,
 		};
-		const res = await loginUser(userObj);
-
-		if (res.code === 200) {
-			const payload = {
-				userID: res.id,
-				firstName: res.firstname,
-				lastName: res.lastname,
-				signedIn: true,
-			};
-			dispatch({ type: LOGIN_USER, payload });
-			setAuthResponse(true);
-		} else {
-			const payload = {
-				userID: null,
-				firstName: null,
-				lastName: null,
-				signedIn: false,
-			};
-			dispatch({ type: LOGIN_USER, payload });
-			setAuthResponse(false);
+		if (isChef === "yes") {
+			handleChefLogin(userObject);
+		} else if (isChef === "no") {
+			handleUserLogin(userObject);
 		}
 	};
 
 	const handleShowSignUpModal = () => {
-		dispatch(toggleShowSignUpModal());
+		dispatch({ type: HIDE_LOGIN_MODAL });
+		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
 	};
-
-	const response = <div>{authResponse ? null : <p>Invalid user credentials</p>}</div>;
 
 	return (
 		<div
 			className="grid place-items-center fixed bg-backdrop top-0 left-0 w-full h-screen z-20"
-			onClick={() => dispatch(toggleHideLoginModal())}
+			onClick={() => dispatch({ type: HIDE_LOGIN_MODAL })}
 		>
 			<div
 				onClick={(e) => e.stopPropagation()}
@@ -56,7 +70,7 @@ const ModalLogin = () => {
 			>
 				<button
 					className="flex self-end text-sm text-gray-400"
-					onClick={() => dispatch(toggleHideLoginModal())}
+					onClick={() => dispatch({ type: HIDE_LOGIN_MODAL })}
 				>
 					<i className="fas fa-times"></i>
 				</button>
@@ -67,7 +81,7 @@ const ModalLogin = () => {
 					<InputFieldLogin
 						htmlFor="login-email-address"
 						text="email"
-						className="rounded-t-md"
+						className=""
 						placeholder="Email Address"
 						autoComplete="email"
 						value={email}
@@ -76,12 +90,22 @@ const ModalLogin = () => {
 					<InputFieldLogin
 						htmlFor="login-password"
 						text="password"
-						className="rounded-b-md"
+						className=""
 						placeholder="Password"
 						autoComplete="current-password"
 						value={password}
 						changeHandler={(e) => setPassword(e.target.value)}
 					/>
+					<select
+						className="rounded-none relative block w-full pl-2 py-2 border border-gray-300 text-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+						name="isChef"
+						defaultValue=""
+						onChange={(e) => setIsChef(e.target.value)}
+					>
+						<option value="">Are you a chef?</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
 				</div>
 				<button
 					className="bg-red-600 text-gray-100 text-base rounded-lg py-1 px-3 mb-5 w-full h-full"
@@ -89,7 +113,7 @@ const ModalLogin = () => {
 				>
 					Sign in
 				</button>
-				{response}
+				{authResponse ? null : <p>Invalid user credentials</p>}
 				<h1 className="text-sm font-medium">
 					Don't have an account?{" "}
 					<button className="text-blue-700" onClick={handleShowSignUpModal}>

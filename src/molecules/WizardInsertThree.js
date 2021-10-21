@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import InputFieldSignup from "../atoms/InputFieldSignup";
+import FormInputField from "../atoms/FormInputField";
 import Dropdown from "../atoms/Dropdown";
-import { toggleHideSignUpModal } from "../actions/modalAction";
 import { USStates } from "../helpers/geoState";
+import { HIDE_SIGN_UP_MODAL } from "../constants";
 
 const WizardInsertThree = ({
 	phone,
@@ -36,7 +36,7 @@ const WizardInsertThree = ({
 		<>
 			<button
 				className="flex self-end text-sm text-gray-400"
-				onClick={() => dispatch(toggleHideSignUpModal())}
+				onClick={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 			>
 				<i className="fas fa-times"></i>
 			</button>
@@ -44,7 +44,7 @@ const WizardInsertThree = ({
 				Sign up for Dashchef
 			</h1>
 			<div className="rounded-md -space-y-px mb-5">
-				<InputFieldSignup
+				<FormInputField
 					type="text"
 					htmlFor="phone"
 					text="phone"
@@ -53,7 +53,7 @@ const WizardInsertThree = ({
 					value={phone}
 					changeHandler={(e) => setPhone(e.target.value)}
 				/>
-				<InputFieldSignup
+				<FormInputField
 					type="text"
 					htmlFor="address"
 					text="address"
@@ -62,7 +62,7 @@ const WizardInsertThree = ({
 					value={address}
 					changeHandler={(e) => setAddress(e.target.value)}
 				/>
-				<InputFieldSignup
+				<FormInputField
 					type="text"
 					htmlFor="aptNumber"
 					text="aptNumber"
@@ -71,7 +71,7 @@ const WizardInsertThree = ({
 					value={aptNumber}
 					changeHandler={(e) => setAptNumber(e.target.value)}
 				/>
-				<InputFieldSignup
+				<FormInputField
 					type="text"
 					htmlFor="city"
 					text="city"
@@ -85,7 +85,7 @@ const WizardInsertThree = ({
 					select={geoState}
 					onSelectedChange={(e) => setGeoState(e.target.value)}
 				/>
-				<InputFieldSignup
+				<FormInputField
 					type="text"
 					htmlFor="zipCode"
 					text="zipCode"

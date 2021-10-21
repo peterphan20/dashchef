@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleHideSignUpModal } from "../actions/modalAction";
-import InputFieldSignup from "../atoms/InputFieldSignup";
+import FormInputField from "../atoms/FormInputField";
+import { HIDE_SIGN_UP_MODAL } from "../constants";
 
 const WizardInsertOne = ({ email, setEmail, password, setPassword }) => {
 	const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const WizardInsertOne = ({ email, setEmail, password, setPassword }) => {
 		<>
 			<button
 				className="flex self-end text-sm text-gray-400"
-				onClick={() => dispatch(toggleHideSignUpModal())}
+				onClick={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 			>
 				<i className="fas fa-times"></i>
 			</button>
@@ -18,7 +18,7 @@ const WizardInsertOne = ({ email, setEmail, password, setPassword }) => {
 				Sign up for Dashchef
 			</h1>
 			<div className="rounded-md -space-y-px mb-5">
-				<InputFieldSignup
+				<FormInputField
 					htmlFor="email-address"
 					text="email"
 					type="email"
@@ -27,7 +27,7 @@ const WizardInsertOne = ({ email, setEmail, password, setPassword }) => {
 					value={email}
 					changeHandler={(e) => setEmail(e.target.value)}
 				/>
-				<InputFieldSignup
+				<FormInputField
 					htmlFor="password"
 					text="password"
 					type="password"

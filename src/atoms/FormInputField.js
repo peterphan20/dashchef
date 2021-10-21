@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputFieldSignup = ({
+const FormInputField = ({
 	htmlFor,
 	placeholder,
 	text,
@@ -28,4 +28,4 @@ const InputFieldSignup = ({
 	);
 };
 
-export default InputFieldSignup;
+export default FormInputField;
