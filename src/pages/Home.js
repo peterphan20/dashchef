@@ -1,6 +1,6 @@
 import React from "react";
 import DriverHero from "../organisms/DriverHero";
-import ModalLogin from "../molecules/ModalLogin.js";
+import ModalLogin from "../organisms/ModalLogin.js";
 import ModalSignUp from "../organisms/ModalSignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { HIDE_SIGN_UP_MODAL } from "../constants";

@@ -14,30 +14,39 @@ const ModalLogin = () => {
 
 	const handleUserLogin = async (userObject) => {
 		const apiResponse = await loginUser(userObject);
-		if (apiResponse !== 200) {
+		console.log("api response", apiResponse.code);
+		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 		} else {
+			localStorage.setItem("authToken", apiResponse.token);
 			const payload = {
+				isChef: false,
 				userID: apiResponse.data.id,
 				firstName: apiResponse.data.firstname,
 				lastName: apiResponse.data.lastname,
-				signedIn: true,
+				avatar: apiResponse.data.avatarURL,
+				loggedIn: true,
 			};
+			console.log("users's payload", payload);
 			dispatch({ type: USER_LOGIN, payload });
 		}
 	};
 
 	const handleChefLogin = async (chefObject) => {
 		const apiResponse = await loginChef(chefObject);
-		if (apiResponse !== 200) {
+		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 		} else {
+			localStorage.setItem("authToken", apiResponse.token);
 			const payload = {
+				isChef: true,
 				chefID: apiResponse.data.id,
 				firstName: apiResponse.data.firstname,
 				lastName: apiResponse.data.lastname,
-				signedIn: true,
+				avatar: apiResponse.data.avatarURL,
+				loggedIn: true,
 			};
+			console.log("chef's payload", payload);
 			dispatch({ type: USER_LOGIN, payload });
 		}
 	};
@@ -47,9 +56,12 @@ const ModalLogin = () => {
 			email,
 			password,
 		};
+		console.log("login credentials", userObject);
 		if (isChef === "yes") {
+			console.log("chef login");
 			handleChefLogin(userObject);
 		} else if (isChef === "no") {
+			console.log("user login");
 			handleUserLogin(userObject);
 		}
 	};
@@ -77,7 +89,7 @@ const ModalLogin = () => {
 				<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 py-5">
 					Sign in to get home cooked meals!
 				</h1>
-				<div className="rounded-md shadow-sm -space-y-px mb-5">
+				<div className="rounded-md -space-y-px mb-5">
 					<InputFieldLogin
 						htmlFor="login-email-address"
 						text="email"

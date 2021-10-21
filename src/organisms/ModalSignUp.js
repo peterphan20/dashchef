@@ -37,10 +37,12 @@ const ModalSignUp = () => {
 		setAuthResponse(true);
 
 		const payload = {
+			isChef: false,
 			userID: apiResponse.data.id,
 			firstName: apiResponse.data.firstname,
 			lastName: apiResponse.data.lastname,
-			created: true,
+			avatar: apiResponse.data.avatarURL,
+			loggedIn: false,
 		};
 		console.log("user's payload ", payload);
 		dispatch({ type: USER_LOGIN, payload });
@@ -54,10 +56,12 @@ const ModalSignUp = () => {
 		}
 		setAuthResponse(true);
 		const payload = {
+			isChef: true,
 			chefID: apiResponse.data.id,
-			firstName: apiResponse.data.firstName,
-			lastName: apiResponse.data.lastName,
-			create: true,
+			firstName: apiResponse.data.firstname,
+			lastName: apiResponse.data.lastname,
+			avatar: apiResponse.data.avatarURL,
+			loggedIn: false,
 		};
 		console.log("chef's payload", payload);
 		dispatch({ type: CHEF_CREATE, payload });

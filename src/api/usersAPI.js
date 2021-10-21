@@ -12,10 +12,10 @@ export const getUser = async (id) => {
 	return data;
 };
 
-export const createUser = async (userObj) => {
+export const createUser = async (userObject) => {
 	const res = await fetch(`${config.API_URL}/auth/user`, {
 		method: "POST",
-		body: JSON.stringify(userObj),
+		body: JSON.stringify(userObject),
 		headers: {
 			"Content-Type": "application/json; charset=UTF-8",
 		},
@@ -24,10 +24,10 @@ export const createUser = async (userObj) => {
 	return data;
 };
 
-export const loginUser = async (userObj) => {
+export const loginUser = async (userObject) => {
 	const res = await fetch(`${config.API_URL}/auth/user/login`, {
 		method: "POST",
-		body: JSON.stringify(userObj),
+		body: JSON.stringify(userObject),
 		headers: {
 			"Content-Type": "application/json; charset=UTF-8",
 		},
@@ -36,10 +36,10 @@ export const loginUser = async (userObj) => {
 	return data;
 };
 
-export const updateUser = async (id, userObj) => {
+export const updateUser = async (id, userObject) => {
 	const res = await fetch(`${config.API_URL}/users/user-update/${id}`, {
 		method: "PUT",
-		body: JSON.stringify(userObj),
+		body: JSON.stringify(userObject),
 		headers: {
 			"Content-Type": "application/json; charset=UTF-8",
 		},
