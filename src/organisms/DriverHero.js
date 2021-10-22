@@ -3,7 +3,7 @@ import driverHeroImg from "../assets/driver-hero-image.jpg";
 
 const DriverHero = () => {
 	return (
-		<div className="mt-10 mx-auto max-w-7xl px-4 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+		<div className="mt-10 mx-auto max-w-7xl px-2 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
 			<div className="lg:text-left">
 				<h1 className="text-4xl tracking-tight font-extrabold text-gray-900 md:text-6xl">
 					<span className="font-body block xl:inline">Want to drive for Dashchef?</span>

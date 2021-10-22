@@ -1,26 +1,27 @@
 import { USER_LOGIN, USER_UPDATE, USER_LOGOUT } from "../constants";
 
-export const userReducer = (users = [], action) => {
+export const userReducer = (user = {}, action) => {
 	switch (action.type) {
 		case USER_LOGIN:
-			return [...users, action.payload];
+			return action.payload;
 		case USER_UPDATE:
-			return users.map((user) => (user.id === action.payload.id ? action.payload : user));
+			// Because we spread action.payload, make sure that action.payload IS an object
+			return {...user, ...action.payload}
 		case USER_LOGOUT:
-			return users.filter((user) => user.id !== action.payload.id);
+			return {};
 		default:
-			return users;
+			return user;
 	}
 };
 
-// For login reducer:
 /**
- * isChef?
- * username
- * firstname
- * lastname
- * userid
- * avatar
- * loggedIn?
- *
+ * For login reducer:
+ * user = {
+ * 	isChef: Boolean
+ * 	firstName: String
+ * 	lastName: String
+ * 	userID: String
+ * 	avatar: String
+ * 	loggedIn: Boolean
+ * }
  */

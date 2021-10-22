@@ -7,7 +7,7 @@ import WizardInsertThree from "../molecules/WizardInsertThree";
 import RenderWizardButton from "../molecules/RenderWizardButton";
 import { createUser } from "../api/usersAPI";
 import { createChef } from "../api/chefsAPI";
-import { CHEF_CREATE, USER_LOGIN, HIDE_SIGN_UP_MODAL } from "../constants";
+import { HIDE_SIGN_UP_MODAL } from "../constants";
 
 const ModalSignUp = () => {
 	const [stepNumber, setStepNumber] = useState(1);
@@ -35,17 +35,6 @@ const ModalSignUp = () => {
 		}
 		console.log("HERE IS THE API RESPONSE: ", apiResponse);
 		setAuthResponse(true);
-
-		const payload = {
-			isChef: false,
-			userID: apiResponse.data.id,
-			firstName: apiResponse.data.firstname,
-			lastName: apiResponse.data.lastname,
-			avatar: apiResponse.data.avatarURL,
-			loggedIn: false,
-		};
-		console.log("user's payload ", payload);
-		dispatch({ type: USER_LOGIN, payload });
 	};
 
 	const handleChefSignup = async (chefObject) => {
@@ -55,16 +44,6 @@ const ModalSignUp = () => {
 			console.log("chef's block, Bad request");
 		}
 		setAuthResponse(true);
-		const payload = {
-			isChef: true,
-			chefID: apiResponse.data.id,
-			firstName: apiResponse.data.firstname,
-			lastName: apiResponse.data.lastname,
-			avatar: apiResponse.data.avatarURL,
-			loggedIn: false,
-		};
-		console.log("chef's payload", payload);
-		dispatch({ type: CHEF_CREATE, payload });
 		dispatch({ type: HIDE_SIGN_UP_MODAL });
 	};
 
