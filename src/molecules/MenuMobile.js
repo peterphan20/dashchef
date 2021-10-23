@@ -1,10 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
 import MenuButtonMobile from "../atoms/MenuButtonMobile";
-import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL } from "../constants";
+import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
 
 const MenuMobile = ({ setOpen, isOpen }) => {
+	const user = useSelector((state) => state.userReducer);
 	const dispatch = useDispatch();
 
 	const handleClick = (id) => {
@@ -38,8 +39,17 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 				isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
 			}`}
 		>
-			<MenuButtonMobile clickHandler={handleLoginClick} text="Login" icon="sign-in-alt" />
-			<MenuButtonMobile clickHandler={handleSignupClick} text="Sign up" icon="user-plus" />
+			{!user.loggedIn ? (
+				<>
+					<MenuButtonMobile clickHandler={handleLoginClick} text="Login" icon="sign-in-alt" />
+					<MenuButtonMobile clickHandler={handleSignupClick} text="Sign up" icon="user-plus" />
+				</>
+			) : (
+				<>
+					<MenuAnchorMobile to={`/profile/${user.firstName}/${user.lastName}`} />
+					<MenuButtonMobile clickHandler={dispatch({ type: USER_LOGOUT })} />
+				</>
+			)}
 			<MenuAnchorMobile text="Cart" link="/cart" icon="shopping-cart" clickHandler={handleClick} />
 		</nav>
 	);

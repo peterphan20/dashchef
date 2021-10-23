@@ -14,21 +14,22 @@ const ModalLogin = () => {
 
 	const handleUserLogin = async (userObject) => {
 		const apiResponse = await loginUser(userObject);
-		console.log("api response", apiResponse.code);
+		console.log("api response", apiResponse);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 		} else {
 			localStorage.setItem("authToken", apiResponse.token);
 			const payload = {
 				isChef: false,
-				userID: apiResponse.data.id,
-				firstName: apiResponse.data.firstname,
-				lastName: apiResponse.data.lastname,
-				avatar: apiResponse.data.avatarURL,
+				userID: apiResponse.id,
+				firstName: apiResponse.firstName,
+				lastName: apiResponse.lastName,
+				avatar: apiResponse.avatarURL,
 				loggedIn: true,
 			};
 			console.log("users's payload", payload);
 			dispatch({ type: USER_LOGIN, payload });
+			dispatch({ type: HIDE_LOGIN_MODAL });
 		}
 	};
 
@@ -41,8 +42,8 @@ const ModalLogin = () => {
 			const payload = {
 				isChef: true,
 				chefID: apiResponse.data.id,
-				firstName: apiResponse.data.firstname,
-				lastName: apiResponse.data.lastname,
+				firstName: apiResponse.data.firstName,
+				lastName: apiResponse.data.lastName,
 				avatar: apiResponse.data.avatarURL,
 				loggedIn: true,
 			};

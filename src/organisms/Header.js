@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Squash as Hamburger } from "hamburger-react";
+import { Cross as Hamburger } from "hamburger-react";
 
 import MenuMobile from "../molecules/MenuMobile";
 import MenuDesktop from "../molecules/MenuDesktop";

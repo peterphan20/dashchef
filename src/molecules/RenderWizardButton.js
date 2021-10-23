@@ -15,7 +15,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 							text="Next"
 							buttonIcon="fas fa-chevron-right"
 							className="bg-blue-400"
-							clickHandler={() => setStepNumber(stepNumber + 1)}
+							clickHandler={setStepNumber(stepNumber + 1)}
 						/>
 					</div>
 				);
@@ -25,20 +25,20 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<ButtonSignup
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
-							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+							clickHandler={dispatch({ type: HIDE_SIGN_UP_MODAL })}
 						/>
 						<div className="flex justify-center items-center gap-2">
 							<ButtonSignup
 								text="Previous"
 								buttonIcon="fas fa-chevron-left"
 								className="flex-row-reverse bg-gray-400"
-								clickHandler={() => setStepNumber(stepNumber - 1)}
+								clickHandler={setStepNumber(stepNumber - 1)}
 							/>
 							<ButtonSignup
 								text="Next"
 								buttonIcon="fas fa-chevron-right"
 								className="bg-blue-400"
-								clickHandler={() => setStepNumber(stepNumber + 1)}
+								clickHandler={setStepNumber(stepNumber + 1)}
 							/>
 						</div>
 					</div>
@@ -49,13 +49,13 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<ButtonSignup
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
-							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+							clickHandler={dispatch({ type: HIDE_SIGN_UP_MODAL })}
 						/>
 						<div className="flex justify-center items-center gap-2">
 							<ButtonSignup
 								text="Previous"
 								className="flex flex-row-reverse bg-gray-400"
-								clickHandler={() => setStepNumber(stepNumber - 1)}
+								clickHandler={setStepNumber(stepNumber - 1)}
 							/>
 							<ButtonSignup text="Submit" className="bg-green-400" clickHandler={handleSignup} />
 						</div>

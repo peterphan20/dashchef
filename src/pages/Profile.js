@@ -3,6 +3,8 @@ import { useHistory } from "react-router";
 import FormInputField from "../atoms/FormInputField";
 import defaultAvatar from "../assets/default-avatar.jpg";
 import { updateUser } from "../api/usersAPI";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
 	const [firstname, setFirstname] = useState("");
@@ -13,6 +15,8 @@ const Profile = () => {
 	const [authResponse, setAuthResponse] = useState("");
 
 	const history = useHistory();
+	const user = useSelector((state) => state.userReducer);
+	console.log(user);
 
 	const handleSignOut = async () => {
 		localStorage.removeItem("authToken");
@@ -45,9 +49,10 @@ const Profile = () => {
 				<img src={defaultAvatar} alt="default avatar" className="rounded-full" />
 			</div>
 			<div className="pt-5">
+				<button>Add a photo</button>
 				<h1 className="text-2xl font-body font-semibold">Peter P.</h1>
 			</div>
-			<div className="-space-y-px px-5 pt-5 pb-5 my-10 border border-gray-300 rounded-md w-full h-full">
+			<div className="-space-y-px px-5 pt-5 pb-5 my-8 border border-gray-300 rounded-md w-full h-full">
 				<h1 className="text-center text-xl text-gray-900 font-headers pb-5">Edit Account</h1>
 				<FormInputField
 					htmlFor="firstname"
@@ -101,12 +106,20 @@ const Profile = () => {
 					Submit
 				</button>
 			</div>
-			<button
-				className="bg-red-600 text-lg text-gray-100 font-body rounded-md py-2 w-full h-full"
-				onClick={handleSignOut}
-			>
-				Logout
-			</button>
+			<div className="flex flex-col justify-center items-center text-gray-100 font-body w-full h-full">
+				<Link
+					to="/create-kitchen"
+					className="flex justify-center items-center bg-green-400 text-lg rounded-md py-2 mb-2 w-full h-full"
+				>
+					Add a kitchen
+				</Link>
+				<button
+					className="bg-red-600 text-lg rounded-md py-2 w-full h-full"
+					onClick={handleSignOut}
+				>
+					Logout
+				</button>
+			</div>
 		</div>
 	);
 };
