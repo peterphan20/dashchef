@@ -21,7 +21,7 @@ const Profile = () => {
 	const [zipcode, setZipCode] = useState("");
 	const [openEditForm, setOpenEditForm] = useState(false);
 	const [openEditAddress, setOpenEditAddress] = useState(false);
-	const [authResponse, setAuthResponse] = useState("");
+	const [authResponse, setAuthResponse] = useState(null);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -33,8 +33,18 @@ const Profile = () => {
 		setLastName(user.lastName);
 		setEmail(user.email);
 		setPhone(user.phone);
-		setAddress(user.address);
-	}, [user, firstName, lastName]);
+
+		const splitAddress = user.address.split(",");
+		if (splitAddress[0]) setAddress(splitAddress[0]);
+		if (splitAddress[1]) setCity(splitAddress[1]);
+		if (splitAddress[2]) setGeoState(splitAddress[2]);
+		if (splitAddress[3]) setZipCode(splitAddress[3]);
+		if (!splitAddress[4]) {
+			setAptNumber("");
+		} else {
+			setAptNumber(splitAddress[4]);
+		}
+	}, [user]);
 
 	const handleSignOut = async () => {
 		localStorage.removeItem("authToken");
@@ -47,19 +57,27 @@ const Profile = () => {
 		const token = localStorage.getItem("authToken");
 		if (!token) return;
 
+		const addressStr = `${address}, ${city}, ${geoState} ${zipcode}, ${
+			aptNumber ? ", " + aptNumber : ""
+		}`;
+
 		const userObject = {
 			firstName,
 			lastName,
 			email,
-			address,
+			address: addressStr,
 			phone,
 		};
+		console.log(userObject);
 
-		const apiResponse = await updateUser(userObject);
+		const apiResponse = await updateUser(user.id, userObject, token);
+		console.log(apiResponse);
 		if (apiResponse.code !== 200) {
+			console.log("api response failed");
 			setAuthResponse(false);
 		} else {
-			history.push("/");
+			console.log("api response passed, user updated");
+			setAuthResponse(true);
 		}
 	};
 
@@ -108,6 +126,7 @@ const Profile = () => {
 					zipcode={zipcode}
 					setZipCode={setZipCode}
 					handleUpdateUser={handleUpdateUser}
+					setOpenEditAddress={setOpenEditAddress}
 					authResponse={authResponse}
 				/>
 			) : (

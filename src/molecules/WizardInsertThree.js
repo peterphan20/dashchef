@@ -45,36 +45,36 @@ const WizardInsertThree = ({
 			</h1>
 			<div className="rounded-md -space-y-px mb-5">
 				<FormInputField
-					type="text"
 					htmlFor="phone"
 					text="phone"
+					type="text"
 					className="mb-3"
 					placeholder="Phone"
 					value={phone}
 					changeHandler={(e) => setPhone(e.target.value)}
 				/>
 				<FormInputField
-					type="text"
 					htmlFor="address"
 					text="address"
+					type="text"
 					className="mb-3"
-					placeholder="Address"
+					placeholder="Street Address"
 					value={address}
 					changeHandler={(e) => setAddress(e.target.value)}
 				/>
 				<FormInputField
-					type="text"
-					htmlFor="aptNumber"
+					htmlFor="apartment-number"
 					text="aptNumber"
+					type="text"
 					className="mb-3"
 					placeholder="Apt, suite, etc."
 					value={aptNumber}
 					changeHandler={(e) => setAptNumber(e.target.value)}
 				/>
 				<FormInputField
-					type="text"
 					htmlFor="city"
 					text="city"
+					type="text"
 					className="mb-3"
 					placeholder="City"
 					value={city}
@@ -83,12 +83,13 @@ const WizardInsertThree = ({
 				<Dropdown
 					options={USStates}
 					select={geoState}
+					placeholder="City/District"
 					onSelectedChange={(e) => setGeoState(e.target.value)}
 				/>
 				<FormInputField
-					type="text"
 					htmlFor="zipCode"
 					text="zipCode"
+					type="text"
 					className="my-3"
 					placeholder="Zip/Postal Code"
 					value={zipcode}

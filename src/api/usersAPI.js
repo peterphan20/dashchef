@@ -36,21 +36,26 @@ export const loginUser = async (userObject) => {
 	return data;
 };
 
-export const updateUser = async (id, userObject) => {
+export const updateUser = async (id, userObject, token) => {
 	const res = await fetch(`${config.API_URL}/users/user-update/${id}`, {
 		method: "PUT",
 		body: JSON.stringify(userObject),
 		headers: {
 			"Content-Type": "application/json; charset=UTF-8",
+			auth: token,
 		},
 	});
 	const data = await res.json();
 	return data;
 };
 
-export const deleteUser = async (id) => {
+export const deleteUser = async (id, token) => {
 	const res = await fetch(`${config.API_URL}/users/user-delete/${id}`, {
 		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json; charset=UTF-8",
+			auth: token,
+		},
 	});
 	const data = await res.json();
 	return data;

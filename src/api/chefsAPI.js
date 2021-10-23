@@ -36,21 +36,26 @@ export const loginChef = async (chefObj) => {
 	return data;
 };
 
-export const updateChef = async (id, chefObj) => {
+export const updateChef = async (id, chefObj, token) => {
 	const res = await fetch(`${config.API_URL}/chefs/chef-update/${id}`, {
 		method: "PUT",
 		body: JSON.stringify(chefObj),
 		headers: {
 			"Content-Type": "application/json; charset=UTF-8",
+			auth: token,
 		},
 	});
 	const data = await res.json();
 	return data;
 };
 
-export const deleteChef = async (id) => {
+export const deleteChef = async (id, token) => {
 	const res = await fetch(`${config.API_URL}/chefs/chef-delete/${id}`, {
 		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json; charset=UTF-8",
+			auth: token,
+		},
 	});
 	const data = await res.json();
 	return data;

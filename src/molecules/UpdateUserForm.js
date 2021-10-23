@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonFormSmall from "../atoms/ButtonFormSmall";
 import FormInputField from "../atoms/FormInputField";
 
 const UpdateUserForm = ({
@@ -14,14 +15,13 @@ const UpdateUserForm = ({
 	setOpenEditForm,
 }) => {
 	return (
-		<div className="-space-y-px px-5 pt-5 pb-5 my-8 border-t border-b border-gray-300 w-full h-full">
-			<h1 className="text-center text-xl text-gray-900 font-headers pb-10">Edit Account</h1>
+		<div className="-space-y-px px-5 pt-10 pb-5 mt-8 border-t border-b border-gray-300 w-full h-full">
+			<h1 className="text-center text-3xl text-gray-900 font-headers pb-10">Edit Account</h1>
 			<FormInputField
 				htmlFor="firstname"
 				text="firstname"
 				type="text"
 				placeholder="First Name"
-				className="mb-3"
 				value={firstName}
 				changeHandler={(e) => setFirstName(e.target.value)}
 			/>
@@ -30,7 +30,6 @@ const UpdateUserForm = ({
 				text="lastname"
 				type="text"
 				placeholder="Last Name"
-				className="mb-3"
 				value={lastName}
 				changeHandler={(e) => setLastName(e.target.value)}
 			/>
@@ -39,7 +38,6 @@ const UpdateUserForm = ({
 				text="phone"
 				type="text"
 				placeholder="Phone Number"
-				className="mb-3"
 				value={phone}
 				changeHandler={(e) => setPhone(e.target.value)}
 			/>
@@ -53,18 +51,16 @@ const UpdateUserForm = ({
 				changeHandler={(e) => setEmail(e.target.value)}
 			/>
 			<div className="flex justify-between items-center">
-				<button
-					className="flex items-end bg-gray-400 text-gray-100 text-base rounded-md py-1 px-6"
-					onClick={() => setOpenEditForm(false)}
-				>
-					Cancel
-				</button>
-				<button
-					className="flex items-end bg-green-400 text-gray-100 text-base rounded-md py-1 px-6"
-					onClick={handleUpdateUser}
-				>
-					Submit
-				</button>
+				<ButtonFormSmall
+					className="bg-gray-400"
+					placeholder="Cancel"
+					clickHandler={() => setOpenEditForm(false)}
+				/>
+				<ButtonFormSmall
+					className="bg-green-400"
+					placeholder="Submit"
+					clickHandler={handleUpdateUser}
+				/>
 			</div>
 		</div>
 	);

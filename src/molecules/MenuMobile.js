@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
 import MenuButtonMobile from "../atoms/MenuButtonMobile";
 import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
@@ -7,6 +8,7 @@ import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../cons
 const MenuMobile = ({ setOpen, isOpen }) => {
 	const user = useSelector((state) => state.userReducer);
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const handleClick = (id) => {
 		setOpen(false);
@@ -32,11 +34,13 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 		window.scrollTo(0, 0);
 	};
 
-	// const handleLogout = () => {
-	// 	localStorage.removeItem("authToken");
-	// 	setOpen(false);
-	// 	window.scrollTo(0, 0);
-	// };
+	const handleLogout = () => {
+		localStorage.removeItem("authToken");
+		setOpen(false);
+		setTimeout(() => window.scrollTo(0, 0), 250);
+		history.push("/");
+		dispatch({ type: USER_LOGOUT });
+	};
 
 	return (
 		<nav
@@ -52,7 +56,7 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 			) : (
 				<>
 					<MenuAnchorMobile link="/profile" text="Profile" clickHandler={handleProfileClick} />
-					<MenuButtonMobile text="Sign out" clickHandler={() => dispatch({ type: USER_LOGOUT })} />
+					<MenuButtonMobile text="Sign out" clickHandler={handleLogout} />
 				</>
 			)}
 			<MenuAnchorMobile text="Cart" link="/cart" icon="shopping-cart" clickHandler={handleClick} />

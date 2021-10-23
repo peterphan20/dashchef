@@ -23,7 +23,7 @@ const LoginInsert = ({
 		<>
 			<div
 				onClick={(e) => e.stopPropagation()}
-				className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow p-8 mb-40 z-20"
+				className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow p-8 z-20"
 			>
 				<button
 					className="flex self-end text-sm text-gray-400"
@@ -53,19 +53,22 @@ const LoginInsert = ({
 						value={password}
 						changeHandler={(e) => setPassword(e.target.value)}
 					/>
-					<select
-						className="rounded-none relative block w-full pl-2 py-2 border border-gray-300 text-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-						name="isChef"
-						defaultValue=""
-						onChange={(e) => setIsChef(e.target.value)}
-					>
-						<option value="">Are you a chef?</option>
-						<option value="yes">Yes</option>
-						<option value="no">No</option>
-					</select>
+					<div>
+						<label className="block text-sm font-medium text-gray-700">Are you a chef?</label>
+						<select
+							className="relative block rounded-none w-full pl-2 py-2 mb-3 border border-gray-300 text-gray-500 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+							name="isChef"
+							defaultValue=""
+							onChange={(e) => setIsChef(e.target.value)}
+						>
+							<option value="">Are you a chef?</option>
+							<option value="yes">Yes</option>
+							<option value="no">No</option>
+						</select>
+					</div>
 				</div>
 				<button
-					className="bg-red-600 text-gray-100 text-base rounded-lg py-1 px-3 mb-5 w-full h-full"
+					className="bg-red-600 text-gray-100 text-base rounded-md py-2 px-3 mb-5 w-full h-full"
 					onClick={handleLogin}
 				>
 					Sign in
@@ -83,4 +86,3 @@ const LoginInsert = ({
 };
 
 export default LoginInsert;
-// TODO: FIX 76

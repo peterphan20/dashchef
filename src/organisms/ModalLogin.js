@@ -21,7 +21,7 @@ const ModalLogin = () => {
 			localStorage.setItem("authToken", apiResponse.token);
 			const payload = {
 				isChef: false,
-				userID: apiResponse.id,
+				id: apiResponse.id,
 				firstName: apiResponse.firstName,
 				lastName: apiResponse.lastName,
 				email: apiResponse.email,
@@ -44,13 +44,13 @@ const ModalLogin = () => {
 			localStorage.setItem("authToken", apiResponse.token);
 			const payload = {
 				isChef: true,
-				chefID: apiResponse.data.id,
-				firstName: apiResponse.data.firstName,
-				lastName: apiResponse.data.lastName,
-				email: apiResponse.data.email,
-				address: apiResponse.data.address,
-				phone: apiResponse.data.phone,
-				avatarURL: apiResponse.data.avatarURL,
+				id: apiResponse.data.id,
+				firstName: apiResponse.firstName,
+				lastName: apiResponse.lastName,
+				email: apiResponse.email,
+				address: apiResponse.address,
+				phone: apiResponse.phone,
+				avatarURL: apiResponse.avatarURL,
 				loggedIn: true,
 			};
 			console.log("chef's payload", payload);

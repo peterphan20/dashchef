@@ -48,9 +48,9 @@ const ModalSignUp = () => {
 	};
 
 	const handleSignup = () => {
-		const addressStr = `${address}${
+		const addressStr = `${address}, ${city}, ${geoState} ${zipcode}, ${
 			aptNumber ? ", " + aptNumber : ""
-		}, ${city}, ${geoState} ${zipcode}`;
+		}`;
 
 		const userObject = {
 			firstname,

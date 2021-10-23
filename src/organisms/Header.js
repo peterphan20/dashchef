@@ -11,7 +11,6 @@ const Header = () => {
 	const [isOpen, setOpen] = useState(false);
 
 	const handleClick = () => {
-		console.log("click click click");
 		setTimeout(() => window.scrollTo(0, 0), 250);
 		setOpen(false);
 	};
