@@ -25,7 +25,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<ButtonSignup
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
-							clickHandler={dispatch({ type: HIDE_SIGN_UP_MODAL })}
+							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 						/>
 						<div className="flex justify-center items-center gap-2">
 							<ButtonSignup
@@ -49,7 +49,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<ButtonSignup
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
-							clickHandler={dispatch({ type: HIDE_SIGN_UP_MODAL })}
+							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 						/>
 						<div className="flex justify-center items-center gap-2">
 							<ButtonSignup

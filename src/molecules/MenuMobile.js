@@ -27,6 +27,11 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
 	};
 
+	const handleProfileClick = () => {
+		setOpen(false);
+		window.scrollTo(0, 0);
+	};
+
 	// const handleLogout = () => {
 	// 	localStorage.removeItem("authToken");
 	// 	setOpen(false);
@@ -35,8 +40,8 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 
 	return (
 		<nav
-			className={`fixed top-20 left-0 flex flex-col justify-start items-start bg-gray-100 px-2 py-5 transition-all duration-500 ease-out w-full h-screen z-10 transform ${
-				isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+			className={`fixed left-0 flex flex-col justify-start items-start bg-gray-100 px-2 py-5 transition-all duration-500 ease-out w-full h-screen z-10 transform ${
+				isOpen ? "opacity-100 translate-y-0 top-20" : "opacity-0 -translate-y-full top-0"
 			}`}
 		>
 			{!user.loggedIn ? (
@@ -46,8 +51,8 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 				</>
 			) : (
 				<>
-					<MenuAnchorMobile to={`/profile/${user.firstName}/${user.lastName}`} />
-					<MenuButtonMobile clickHandler={dispatch({ type: USER_LOGOUT })} />
+					<MenuAnchorMobile link="/profile" text="Profile" clickHandler={handleProfileClick} />
+					<MenuButtonMobile text="Sign out" clickHandler={() => dispatch({ type: USER_LOGOUT })} />
 				</>
 			)}
 			<MenuAnchorMobile text="Cart" link="/cart" icon="shopping-cart" clickHandler={handleClick} />

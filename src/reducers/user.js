@@ -6,7 +6,7 @@ export const userReducer = (user = {}, action) => {
 			return action.payload;
 		case USER_UPDATE:
 			// Because we spread action.payload, make sure that action.payload IS an object
-			return {...user, ...action.payload}
+			return { ...user, ...action.payload };
 		case USER_LOGOUT:
 			return {};
 		default:

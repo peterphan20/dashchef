@@ -24,7 +24,10 @@ const ModalLogin = () => {
 				userID: apiResponse.id,
 				firstName: apiResponse.firstName,
 				lastName: apiResponse.lastName,
-				avatar: apiResponse.avatarURL,
+				email: apiResponse.email,
+				address: apiResponse.address,
+				phone: apiResponse.phone,
+				avatarURL: apiResponse.avatarURL,
 				loggedIn: true,
 			};
 			console.log("users's payload", payload);
@@ -44,7 +47,10 @@ const ModalLogin = () => {
 				chefID: apiResponse.data.id,
 				firstName: apiResponse.data.firstName,
 				lastName: apiResponse.data.lastName,
-				avatar: apiResponse.data.avatarURL,
+				email: apiResponse.data.email,
+				address: apiResponse.data.address,
+				phone: apiResponse.data.phone,
+				avatarURL: apiResponse.data.avatarURL,
 				loggedIn: true,
 			};
 			console.log("chef's payload", payload);

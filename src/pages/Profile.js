@@ -1,25 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import FormInputField from "../atoms/FormInputField";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import defaultAvatar from "../assets/default-avatar.jpg";
 import { updateUser } from "../api/usersAPI";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import UpdateUserForm from "../molecules/UpdateUserForm";
+import UpdateAddressForm from "../molecules/UpdateAddressForm";
+import ButtonProfile from "../atoms/ButtonProfile";
+import { USER_LOGOUT } from "../constants";
 
 const Profile = () => {
-	const [firstname, setFirstname] = useState("");
-	const [lastname, setLastname] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [address, setAddress] = useState("");
+	const [aptNumber, setAptNumber] = useState("");
+	const [city, setCity] = useState("");
+	const [geoState, setGeoState] = useState(null);
+	const [zipcode, setZipCode] = useState("");
+	const [openEditForm, setOpenEditForm] = useState(false);
+	const [openEditAddress, setOpenEditAddress] = useState(false);
 	const [authResponse, setAuthResponse] = useState("");
 
+	const dispatch = useDispatch();
 	const history = useHistory();
 	const user = useSelector((state) => state.userReducer);
-	console.log(user);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+		setFirstName(user.firstName);
+		setLastName(user.lastName);
+		setEmail(user.email);
+		setPhone(user.phone);
+		setAddress(user.address);
+	}, [user, firstName, lastName]);
 
 	const handleSignOut = async () => {
 		localStorage.removeItem("authToken");
+		// TODO: Dispatch USER_LOGOUT
+		dispatch({ type: USER_LOGOUT });
 		history.push("/");
 	};
 
@@ -28,10 +48,10 @@ const Profile = () => {
 		if (!token) return;
 
 		const userObject = {
-			firstname,
-			lastname,
+			firstName,
+			lastName,
 			email,
-			password,
+			address,
 			phone,
 		};
 
@@ -44,81 +64,64 @@ const Profile = () => {
 	};
 
 	return (
-		<div className="flex flex-col justify-start items-center bg-gray-100 py-5 px-2 w-full h-full min-h-screen">
+		<div className="flex flex-col justify-start items-center bg-gray-100 py-5 w-full h-full min-h-screen">
 			<div className="w-32 h-32">
 				<img src={defaultAvatar} alt="default avatar" className="rounded-full" />
 			</div>
-			<div className="pt-5">
-				<button>Add a photo</button>
-				<h1 className="text-2xl font-body font-semibold">Peter P.</h1>
+			<div className="flex flex-col justify-center items-center pt-3">
+				<button className="text-sm text-blue-400 mb-1">Add a photo</button>
+				<h1 className="text-2xl font-body font-semibold">
+					{user.firstName} {user.lastName}
+				</h1>
 			</div>
-			<div className="-space-y-px px-5 pt-5 pb-5 my-8 border border-gray-300 rounded-md w-full h-full">
-				<h1 className="text-center text-xl text-gray-900 font-headers pb-5">Edit Account</h1>
-				<FormInputField
-					htmlFor="firstname"
-					text="firstname"
-					type="text"
-					placeholder="First Name"
-					className="mb-1"
-					value={firstname}
-					changeHandler={(e) => setFirstname(e.target.value)}
+			{openEditForm ? (
+				<UpdateUserForm
+					firstName={firstName}
+					setFirstName={setFirstName}
+					lastName={lastName}
+					setLastName={setLastName}
+					phone={phone}
+					setPhone={setPhone}
+					email={email}
+					setEmail={setEmail}
+					handleUpdateUser={handleUpdateUser}
+					setOpenEditForm={setOpenEditForm}
+					authResponse={authResponse}
 				/>
-				<FormInputField
-					htmlFor="lastname"
-					text="lastname"
-					type="text"
-					placeholder="Last Name"
-					className="mb-1"
-					value={lastname}
-					changeHandler={(e) => setLastname(e.target.value)}
+			) : (
+				<ButtonProfile
+					placeholder="Edit profile"
+					className="border-t mt-10"
+					modalHandler={() => setOpenEditForm(true)}
 				/>
-				<FormInputField
-					htmlFor="phone"
-					text="phone"
-					type="text"
-					placeholder="Phone Number"
-					className="mb-1"
-					value={phone}
-					changeHandler={(e) => setPhone(e.target.value)}
+			)}
+			{openEditAddress ? (
+				<UpdateAddressForm
+					address={address}
+					setAddress={setAddress}
+					aptNumber={aptNumber}
+					setAptNumber={setAptNumber}
+					city={city}
+					setCity={setCity}
+					geoState={geoState}
+					setGeoState={setGeoState}
+					zipcode={zipcode}
+					setZipCode={setZipCode}
+					handleUpdateUser={handleUpdateUser}
+					authResponse={authResponse}
 				/>
-				<FormInputField
-					htmlFor="email-address"
-					text="email"
-					type="email"
-					placeholder="Email Address"
-					className="mb-1"
-					value={email}
-					changeHandler={(e) => setEmail(e.target.value)}
-				/>
-				<FormInputField
-					htmlFor="password"
-					text="password"
-					type="text"
-					placeholder="Password"
-					className="mb-3"
-					value={password}
-					changeHandler={(e) => setPassword(e.target.value)}
-				/>
-				<button
-					className="flex items-end bg-green-400 text-gray-100 text-base rounded-md py-1 px-6"
-					onClick={handleUpdateUser}
-				>
-					Submit
-				</button>
-			</div>
-			<div className="flex flex-col justify-center items-center text-gray-100 font-body w-full h-full">
+			) : (
+				<ButtonProfile placeholder="Edit Address" modalHandler={() => setOpenEditAddress(true)} />
+			)}
+			<div className="flex flex-col justify-center items-center text-gray-900 font-body w-full h-full">
 				<Link
 					to="/create-kitchen"
-					className="flex justify-center items-center bg-green-400 text-lg rounded-md py-2 mb-2 w-full h-full"
+					className="flex justify-between items-center bg-gray-50 text-gray-900 text-lg border-b border-gray-300 py-4 px-3 w-full h-full"
 				>
 					Add a kitchen
+					<i className="fas fa-chevron-right text-gray-400"></i>
 				</Link>
-				<button
-					className="bg-red-600 text-lg rounded-md py-2 w-full h-full"
-					onClick={handleSignOut}
-				>
-					Logout
-				</button>
+				<ButtonProfile placeholder="Logout" modalHandler={handleSignOut} />
 			</div>
 		</div>
 	);

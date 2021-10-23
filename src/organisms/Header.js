@@ -10,6 +10,12 @@ const Header = () => {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 	const [isOpen, setOpen] = useState(false);
 
+	const handleClick = () => {
+		console.log("click click click");
+		setTimeout(() => window.scrollTo(0, 0), 250);
+		setOpen(false);
+	};
+
 	const trackWindowChanges = () => {
 		setWindowWidth(window.innerWidth);
 	};
@@ -41,7 +47,7 @@ const Header = () => {
 				<Link
 					to="/"
 					className="font-headers font-bold text-4xl"
-					onClick={() => setTimeout(() => window.scrollTo(0, 0), 250)}
+					onClick={handleClick}
 					aria-label="Click here to take you to the top of the application"
 				>
 					Dashchef

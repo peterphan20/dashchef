@@ -12,7 +12,7 @@ export const routes = [
 		component: Home,
 	},
 	{
-		path: "/profile/:firstname:lastname",
+		path: "/profile",
 		exact: true,
 		component: Profile,
 	},

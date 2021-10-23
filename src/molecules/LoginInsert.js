@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import InputFieldLogin from "../atoms/InputFieldLogin";
+import FormInputField from "../atoms/FormInputField";
 import { DISPLAY_SIGN_UP_MODAL, HIDE_LOGIN_MODAL } from "../constants";
 
 const LoginInsert = ({
@@ -35,7 +35,7 @@ const LoginInsert = ({
 					Sign in to get home cooked meals!
 				</h1>
 				<div className="rounded-md -space-y-px mb-5">
-					<InputFieldLogin
+					<FormInputField
 						htmlFor="login-email-address"
 						text="email"
 						className=""
@@ -44,7 +44,7 @@ const LoginInsert = ({
 						value={email}
 						changeHandler={(e) => setEmail(e.target.value)}
 					/>
-					<InputFieldLogin
+					<FormInputField
 						htmlFor="login-password"
 						text="password"
 						className=""
@@ -66,7 +66,7 @@ const LoginInsert = ({
 				</div>
 				<button
 					className="bg-red-600 text-gray-100 text-base rounded-lg py-1 px-3 mb-5 w-full h-full"
-					onClick={() => dispatch(handleLogin)}
+					onClick={handleLogin}
 				>
 					Sign in
 				</button>
