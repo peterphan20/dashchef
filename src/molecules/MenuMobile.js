@@ -44,7 +44,7 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 
 	return (
 		<nav
-			className={`fixed left-0 flex flex-col justify-start items-start bg-gray-100 px-2 py-5 transition-all duration-500 ease-out w-full h-screen z-10 transform ${
+			className={`fixed left-0 flex flex-col justify-start items-start bg-gray-100 px-4 py-5 transition-all duration-500 ease-out w-full h-screen z-10 transform ${
 				isOpen ? "opacity-100 translate-y-0 top-20" : "opacity-0 -translate-y-full top-0"
 			}`}
 		>

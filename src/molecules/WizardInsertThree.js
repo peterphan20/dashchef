@@ -22,8 +22,6 @@ const WizardInsertThree = ({
 }) => {
 	const dispatch = useDispatch();
 
-	const response = authResponse ? "Account successfully created!" : "You messed up";
-
 	return (
 		<>
 			<button
@@ -35,6 +33,9 @@ const WizardInsertThree = ({
 			<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 pt-5 pb-8">
 				Sign up for Dashchef
 			</h1>
+			{authResponse ? null : (
+				<p className="text-center text-lg text-red-600 font-body">Invalid user credentials</p>
+			)}
 			<div className="rounded-md -space-y-px mb-5">
 				<FormInputField
 					htmlFor="phone"
@@ -82,9 +83,7 @@ const WizardInsertThree = ({
 					value={zipcode}
 					changeHandler={(e) => setZipCode(e.target.value)}
 				/>
-				<div>
-					<p>{authResponse === null ? "" : response}</p>
-				</div>
+				<div></div>
 			</div>
 		</>
 	);

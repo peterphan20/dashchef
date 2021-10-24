@@ -34,6 +34,9 @@ const LoginInsert = ({
 				<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 py-5">
 					Sign in to get home cooked meals!
 				</h1>
+				{authResponse ? null : (
+					<p className="text-center text-lg text-red-600 font-body">Invalid user credentials</p>
+				)}
 				<div className="rounded-md -space-y-px mb-5">
 					<FormInputField
 						htmlFor="login-email-address"
@@ -54,7 +57,7 @@ const LoginInsert = ({
 						changeHandler={(e) => setPassword(e.target.value)}
 					/>
 					<div>
-						<label className="block text-sm font-medium text-gray-700">Are you a chef?</label>
+						<label className="block text-sm font-medium text-gray-700 mb-2">Are you a chef?</label>
 						<select
 							className="relative block rounded-none w-full pl-2 py-2 mb-3 border border-gray-300 text-gray-500 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
 							name="isChef"
@@ -73,7 +76,6 @@ const LoginInsert = ({
 				>
 					Sign in
 				</button>
-				{authResponse ? null : <p>Invalid user credentials</p>}
 				<h1 className="text-sm font-medium">
 					Don't have an account?{" "}
 					<button className="text-blue-700" onClick={handleShowSignUpModal}>

@@ -11,7 +11,7 @@ const Dropdown = ({ options, placeholder, htmlFor, select, onSelectedChange, cla
 
 	return (
 		<div>
-			<label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700">
+			<label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700 mb-2">
 				{placeholder}
 			</label>
 			<select
