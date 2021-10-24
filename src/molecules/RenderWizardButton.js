@@ -10,12 +10,17 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 		switch (true) {
 			case stepNumber === 1:
 				return (
-					<div className="flex self-end mt-4">
+					<div className="flex justify-between items-center mt-4">
+						<ButtonSignup
+							text="Cancel"
+							className="text-gray-900 bg-gray-200"
+							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+						/>
 						<ButtonSignup
 							text="Next"
 							buttonIcon="fas fa-chevron-right"
 							className="bg-blue-400"
-							clickHandler={setStepNumber(stepNumber + 1)}
+							clickHandler={() => setStepNumber(stepNumber + 1)}
 						/>
 					</div>
 				);
@@ -32,13 +37,13 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 								text="Previous"
 								buttonIcon="fas fa-chevron-left"
 								className="flex-row-reverse bg-gray-400"
-								clickHandler={setStepNumber(stepNumber - 1)}
+								clickHandler={() => setStepNumber(stepNumber - 1)}
 							/>
 							<ButtonSignup
 								text="Next"
 								buttonIcon="fas fa-chevron-right"
 								className="bg-blue-400"
-								clickHandler={setStepNumber(stepNumber + 1)}
+								clickHandler={() => setStepNumber(stepNumber + 1)}
 							/>
 						</div>
 					</div>
@@ -55,7 +60,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 							<ButtonSignup
 								text="Previous"
 								className="flex flex-row-reverse bg-gray-400"
-								clickHandler={setStepNumber(stepNumber - 1)}
+								clickHandler={() => setStepNumber(stepNumber - 1)}
 							/>
 							<ButtonSignup text="Submit" className="bg-green-400" clickHandler={handleSignup} />
 						</div>

@@ -1,8 +1,16 @@
 import { combineReducers } from "redux";
-import { modalReducer } from "./modal";
 import { userReducer } from "./user";
-import { chefsReducer } from "./chefs";
+import { kitchensReducer } from "./kitchens";
+import { selectedKitchenReducer } from "./selectedKitchen";
+import { cartReducer } from "./cart";
+import { modalReducer } from "./modal";
 
-const reducers = combineReducers({ modalReducer, userReducer, chefsReducer });
+const reducers = combineReducers({
+	userReducer,
+	modalReducer,
+	kitchensReducer,
+	selectedKitchenReducer,
+	cartReducer,
+});
 
 export default reducers;

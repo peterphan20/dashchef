@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
 
 const Home = () => {
-	// TODO: set up demo user for demo
+	// TODO: Set up a box that shows demo user information
 	const modal = useSelector((state) => state.modalReducer);
 	const dispatch = useDispatch();
 

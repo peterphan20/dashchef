@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import FormInputField from "../atoms/FormInputField";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
 
-const WizardInsertTwo = ({ firstname, setFirstname, lastname, setLastname, isChef, setIsChef }) => {
+const WizardInsertTwo = ({ firstName, setFirstName, lastName, setLastName, setIsChef }) => {
 	const dispatch = useDispatch();
 
 	return (
@@ -23,32 +23,36 @@ const WizardInsertTwo = ({ firstname, setFirstname, lastname, setLastname, isChe
 					text="firstname"
 					type="text"
 					placeholder="First Name"
-					className="mb-3"
-					value={firstname}
-					changeHandler={(e) => setFirstname(e.target.value)}
+					value={firstName}
+					changeHandler={(e) => setFirstName(e.target.value)}
 				/>
 				<FormInputField
 					htmlFor="lastname"
 					text="lastname"
 					type="text"
 					placeholder="Last Name"
-					className="mb-3"
-					value={lastname}
-					changeHandler={(e) => setLastname(e.target.value)}
+					value={lastName}
+					changeHandler={(e) => setLastName(e.target.value)}
 				/>
-				<select
-					className="rounded-none relative block w-full pl-2 py-2 border border-gray-300 text-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-					name="isChef"
-					defaultValue=""
-					onChange={(e) => setIsChef(e.target.value)}
-				>
-					<option value="">Are you a chef?</option>
-					<option value="yes">Yes</option>
-					<option value="no">No</option>
-				</select>
+				<div>
+					<label className="block text-sm font-medium text-gray-700">Are you a chef?</label>
+					<select
+						className="relative block rounded-none w-full pl-2 py-2 mb-3 border border-gray-300 text-gray-500 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+						name="isChef"
+						defaultValue=""
+						onChange={(e) => setIsChef(e.target.value)}
+					>
+						<option value="">Are you a chef?</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+				</div>
 			</div>
 		</>
 	);
 };
 
 export default WizardInsertTwo;
+
+// TODO: Does the select on line 39 work? setIsChef is setting the value for isChef, but
+// the value prop for the select component is not being set.

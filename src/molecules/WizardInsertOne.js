@@ -17,13 +17,12 @@ const WizardInsertOne = ({ email, setEmail, password, setPassword }) => {
 			<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 pt-5 pb-8">
 				Sign up for Dashchef
 			</h1>
-			<div className="rounded-md -space-y-px mb-5">
+			<div className="rounded-md -space-y-px">
 				<FormInputField
 					htmlFor="email-address"
 					text="email"
 					type="email"
 					placeholder="Email Address"
-					className="mb-3"
 					value={email}
 					changeHandler={(e) => setEmail(e.target.value)}
 				/>

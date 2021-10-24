@@ -17,6 +17,11 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 		}, 300);
 	};
 
+	const handlePageChangeClick = () => {
+		setOpen(false);
+		window.scrollTo(0, 0);
+	};
+
 	const handleLoginClick = () => {
 		setOpen(false);
 		window.scrollTo(0, 0);
@@ -27,11 +32,6 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 		setOpen(false);
 		window.scrollTo(0, 0);
 		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
-	};
-
-	const handleProfileClick = () => {
-		setOpen(false);
-		window.scrollTo(0, 0);
 	};
 
 	const handleLogout = () => {
@@ -55,11 +55,33 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 				</>
 			) : (
 				<>
-					<MenuAnchorMobile link="/profile" text="Profile" clickHandler={handleProfileClick} />
+					<MenuAnchorMobile
+						link="/profile"
+						placeholder="Profile"
+						clickHandler={handlePageChangeClick}
+					/>
 					<MenuButtonMobile text="Sign out" clickHandler={handleLogout} />
 				</>
 			)}
-			<MenuAnchorMobile text="Cart" link="/cart" icon="shopping-cart" clickHandler={handleClick} />
+			{user.isChef && user.kitchenID ? (
+				<MenuAnchorMobile
+					link={`/kitchen/${user.kitchenID}`}
+					placeholder="My Kitchen"
+					clickHandler={handlePageChangeClick}
+				/>
+			) : (
+				<MenuAnchorMobile
+					link="/kitchen/create"
+					placeholder="Create a kitchen"
+					clickHandler={handlePageChangeClick}
+				/>
+			)}
+			<MenuAnchorMobile
+				placeholder="Cart"
+				link="/cart"
+				icon="shopping-cart"
+				clickHandler={handleClick}
+			/>
 		</nav>
 	);
 };

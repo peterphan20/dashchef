@@ -22,15 +22,7 @@ const WizardInsertThree = ({
 }) => {
 	const dispatch = useDispatch();
 
-	const response = authResponse ? (
-		<div>
-			<p>Account successfully created!</p>
-		</div>
-	) : (
-		<div>
-			<p>You messed up</p>
-		</div>
-	);
+	const response = authResponse ? "Account successfully created!" : "You messed up";
 
 	return (
 		<>
@@ -48,7 +40,6 @@ const WizardInsertThree = ({
 					htmlFor="phone"
 					text="phone"
 					type="text"
-					className="mb-3"
 					placeholder="Phone"
 					value={phone}
 					changeHandler={(e) => setPhone(e.target.value)}
@@ -57,7 +48,6 @@ const WizardInsertThree = ({
 					htmlFor="address"
 					text="address"
 					type="text"
-					className="mb-3"
 					placeholder="Street Address"
 					value={address}
 					changeHandler={(e) => setAddress(e.target.value)}
@@ -66,7 +56,6 @@ const WizardInsertThree = ({
 					htmlFor="apartment-number"
 					text="aptNumber"
 					type="text"
-					className="mb-3"
 					placeholder="Apt, suite, etc."
 					value={aptNumber}
 					changeHandler={(e) => setAptNumber(e.target.value)}
@@ -75,7 +64,6 @@ const WizardInsertThree = ({
 					htmlFor="city"
 					text="city"
 					type="text"
-					className="mb-3"
 					placeholder="City"
 					value={city}
 					changeHandler={(e) => setCity(e.target.value)}
@@ -90,12 +78,13 @@ const WizardInsertThree = ({
 					htmlFor="zipCode"
 					text="zipCode"
 					type="text"
-					className="my-3"
 					placeholder="Zip/Postal Code"
 					value={zipcode}
 					changeHandler={(e) => setZipCode(e.target.value)}
 				/>
-				{authResponse === null ? "" : response}
+				<div>
+					<p>{authResponse === null ? "" : response}</p>
+				</div>
 			</div>
 		</>
 	);

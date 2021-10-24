@@ -3,7 +3,7 @@ import Dropdown from "../atoms/Dropdown";
 import FormInputField from "../atoms/FormInputField";
 import { USStates } from "../helpers/geoState";
 
-const KitchenForm = () => {
+const KitchenCreate = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
@@ -22,8 +22,7 @@ const KitchenForm = () => {
 					text="name"
 					type="text"
 					placeholder="Name of the kitchen"
-					className="mb-5"
-          value={name}
+					value={name}
 					changeHandler={(e) => setName(e.target.value)}
 				/>
 				<FormInputField
@@ -31,8 +30,7 @@ const KitchenForm = () => {
 					text="address"
 					type="email"
 					placeholder="Email Address"
-					className="mb-5"
-          autoComplete="email"
+					autoComplete="email"
 					value={email}
 					changeHandler={(e) => setEmail(e.target.value)}
 				/>
@@ -41,8 +39,7 @@ const KitchenForm = () => {
 					text="phone"
 					type="text"
 					placeholder="Phone Number"
-					className="mb-5"
-          autoComplete="tel-national"
+					autoComplete="tel-national"
 					value={phone}
 					changeHandler={(e) => setPhone(e.target.value)}
 				/>
@@ -51,8 +48,7 @@ const KitchenForm = () => {
 					text="address"
 					type="text"
 					placeholder="Street Address"
-					className="mb-5"
-          autoComplete="street-address"
+					autoComplete="street-address"
 					value={address}
 					changeHandler={(e) => setAddress(e.target.value)}
 				/>
@@ -61,8 +57,7 @@ const KitchenForm = () => {
 					text="aptNumber"
 					type="text"
 					placeholder="Apt, suite, etc."
-					className="mb-5"
-          value={aptNumber}
+					value={aptNumber}
 					changeHandler={(e) => setAptNumber(e.target.value)}
 				/>
 				<FormInputField
@@ -70,8 +65,7 @@ const KitchenForm = () => {
 					text="city"
 					type="text"
 					placeholder="City"
-					className="mb-5"
-          autoComplete="address-level2"
+					autoComplete="address-level2"
 					value={city}
 					changeHandler={(e) => setCity(e.target.value)}
 				/>
@@ -87,8 +81,7 @@ const KitchenForm = () => {
 					text="zipcode"
 					type="text"
 					placeholder="Zip/Postal code"
-					className="mb-5"
-          autoComplete="postal-code"
+					autoComplete="postal-code"
 					value={zipcode}
 					changeHandler={(e) => setZipCode(e.target.value)}
 				/>
@@ -100,4 +93,4 @@ const KitchenForm = () => {
 	);
 };
 
-export default KitchenForm;
+export default KitchenCreate;

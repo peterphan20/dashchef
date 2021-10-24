@@ -38,13 +38,16 @@ const ModalLogin = () => {
 
 	const handleChefLogin = async (chefObject) => {
 		const apiResponse = await loginChef(chefObject);
+		console.log(apiResponse);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
+			console.log("api failed");
 		} else {
 			localStorage.setItem("authToken", apiResponse.token);
 			const payload = {
 				isChef: true,
-				id: apiResponse.data.id,
+				id: apiResponse.id,
+				kitchenID: apiResponse.kitchenID,
 				firstName: apiResponse.firstName,
 				lastName: apiResponse.lastName,
 				email: apiResponse.email,
@@ -55,6 +58,7 @@ const ModalLogin = () => {
 			};
 			console.log("chef's payload", payload);
 			dispatch({ type: USER_LOGIN, payload });
+			dispatch({ type: HIDE_LOGIN_MODAL });
 		}
 	};
 

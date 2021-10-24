@@ -11,11 +11,11 @@ import { HIDE_SIGN_UP_MODAL } from "../constants";
 
 const ModalSignUp = () => {
 	const [stepNumber, setStepNumber] = useState(1);
-	const [authResponse, setAuthResponse] = useState(null);
+	const [authResponse, setAuthResponse] = useState(true);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [firstname, setFirstname] = useState("");
-	const [lastname, setLastname] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [isChef, setIsChef] = useState("");
 	const [address, setAddress] = useState("");
@@ -32,29 +32,31 @@ const ModalSignUp = () => {
 			setAuthResponse(false);
 			console.log("There was an error while creating the user", apiResponse);
 			return;
+		} else {
+			dispatch({ type: HIDE_SIGN_UP_MODAL });
 		}
-		console.log("HERE IS THE API RESPONSE: ", apiResponse);
-		setAuthResponse(true);
 	};
 
 	const handleChefSignup = async (chefObject) => {
 		const apiResponse = await createChef(chefObject);
+		console.log("chef's object", chefObject);
+		console.log("api response", apiResponse);
 		if (apiResponse.code !== 201) {
 			setAuthResponse(false);
 			console.log("chef's block, Bad request");
+		} else {
+			dispatch({ type: HIDE_SIGN_UP_MODAL });
 		}
-		setAuthResponse(true);
-		dispatch({ type: HIDE_SIGN_UP_MODAL });
 	};
 
 	const handleSignup = () => {
-		const addressStr = `${address}, ${city}, ${geoState} ${zipcode}, ${
+		const addressStr = `${address}, ${city}, ${geoState}, ${zipcode}${
 			aptNumber ? ", " + aptNumber : ""
 		}`;
 
 		const userObject = {
-			firstname,
-			lastname,
+			firstName,
+			lastName,
 			email,
 			password,
 			address: addressStr.toUpperCase(),
@@ -75,11 +77,10 @@ const ModalSignUp = () => {
 			case stepNumber === 2:
 				return (
 					<WizardInsertTwo
-						firstname={firstname}
-						setFirstname={setFirstname}
-						lastname={lastname}
-						setLastname={setLastname}
-						isChef={isChef}
+						firstName={firstName}
+						setFirstName={setFirstName}
+						lastName={lastName}
+						setLastName={setLastName}
 						setIsChef={setIsChef}
 					/>
 				);

@@ -1,7 +1,7 @@
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Kitchen from "../pages/Kitchen";
-import KitchenForm from "../organisms/KitchenForm";
+import KitchenCreate from "../organisms/KitchenCreate";
 import Driver from "../pages/Driver";
 import Cart from "../pages/Cart";
 
@@ -17,14 +17,16 @@ export const routes = [
 		component: Profile,
 	},
 	{
-		path: "/kitchen/:name",
+		path: "/kitchen/:kitchenID",
 		exact: true,
 		component: Kitchen,
 	},
+	// TODO: The route should match the file name, make it so that KitchenForm is actually
+	// KitchenCreate and the path is /kitchen/create
 	{
-		path: "/create-kitchen",
+		path: "/kitchen/create",
 		exact: true,
-		component: KitchenForm,
+		component: KitchenCreate,
 	},
 	{
 		path: "/driver",

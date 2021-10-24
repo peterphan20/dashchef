@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MenuAnchorMobile = ({ link, clickHandler, icon, text }) => {
+const MenuAnchorMobile = ({ link, clickHandler, icon, placeholder }) => {
 	return (
 		<>
 			<Link
@@ -9,7 +9,7 @@ const MenuAnchorMobile = ({ link, clickHandler, icon, text }) => {
 				className="flex justify-start items-center gap-3 text-gray-900 border-b border-gray-300 px-2 mb-4 w-full"
 				onClick={clickHandler}
 			>
-				{text}
+				{placeholder}
 				<i className={`fas fa-${icon}`}></i>
 			</Link>
 		</>
