@@ -4,25 +4,26 @@ import { useHistory, useParams } from "react-router";
 import { getKitchen } from "../api/kitchensAPI";
 import Avatar from "../molecules/Avatar";
 import defaultAvatar from "../assets/default-avatar.jpg";
-import { SELECTED_KITCHEN_LOAD } from "../constants";
+import { MENU_ITEMS_LOAD, SELECTED_KITCHEN_LOAD } from "../constants";
 
 const Kitchen = () => {
 	const history = useHistory();
 	const { kitchenID } = useParams();
 	const dispatch = useDispatch();
 	const kitchen = useSelector((state) => state.selectedKitchenReducer);
-	console.log(kitchen);
 
 	useEffect(() => {
 		async function fetchKitchen() {
 			const data = await getKitchen(kitchenID);
+			console.log(data.rows[0].menuitems[0]);
 			if (!data || !data.rows) {
 				history.push("/");
 			} else {
 				const kitchenData = data.rows[0];
-				console.log("api response", kitchenData);
-				const menuItem = data.rows.menuitems;
-				console.log("menu items array in response", menuItem);
+				// console.log("api response", kitchenData);
+				const menuItemData = data.rows[0].menuitems[0];
+				// console.log("menu items array in response", menuItem);
+
 				const payload = {
 					id: kitchenData.id,
 					address: kitchenData.address,
@@ -34,6 +35,19 @@ const Kitchen = () => {
 					name: kitchenData.name,
 					phone: kitchenData.phone,
 				};
+
+				// const menuItemPayload = {
+				// 	menuItemID: menuItemData.menuItemID,
+				// 	menuItemName: menuItemData.menuItemName,
+				// 	menuItemDescription: menuItemData.menuItemDescription,
+				// 	menuItemPrice: menuItemData.menuItemPrice,
+				// 	menuItemPhotoPrimaryURL: menuItemData.menuItemPhotoPrimaryURL,
+				// 	menuItemGalleryPhotoURL: menuItemData.menuItemGalleryPhotoURL,
+				// 	menuItemTags: menuItemData.menuItemTags,
+				// };
+				// console.log("menu item payload", menuItemPayload);
+
+				dispatch({ type: MENU_ITEMS_LOAD, payload: menuItemData });
 				dispatch({ type: SELECTED_KITCHEN_LOAD, payload });
 			}
 		}
@@ -48,7 +62,6 @@ const Kitchen = () => {
 				<h1 className="text-3xl font-bold pt-5">{kitchen.name}</h1>
 				<h1 className="text-sm pt-1">{kitchen.address}</h1>
 			</div>
-
 			<div className="border border-gray-300 font-body rounded-md p-4">
 				<h1 className="text-md">Contact the chef:</h1>
 				<h1 className="text-sm">Email for inquiries: {kitchen.email}</h1>
