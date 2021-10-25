@@ -38,6 +38,7 @@ const KitchenCreate = () => {
 			phone,
 			id: user.id,
 		};
+		console.log(kitchenObject);
 
 		const apiResponse = await createKitchen(kitchenObject, token);
 		console.log("api response", apiResponse);
@@ -56,9 +57,18 @@ const KitchenCreate = () => {
 			console.log("api response passed, payload", payload);
 
 			const updatedChefPayload = {
+				isChef: true,
+				id: user.id,
 				kitchenID: apiResponse.data.id,
+				firstName: user.firstName,
+				lastName: user.LastName,
+				email: user.email,
+				address: user.address,
+				phone: user.phone,
+				avatarURL: user.avatarURL,
+				loggedIn: true,
 			};
-
+			console.log("updated chef's payload", updatedChefPayload);
 			dispatch({ type: SELECTED_KITCHEN_CREATE, payload });
 			dispatch({ type: USER_LOGIN, payload: updatedChefPayload });
 			setAuthResponse(true);

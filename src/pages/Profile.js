@@ -26,7 +26,6 @@ const Profile = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const user = useSelector((state) => state.userReducer);
-	console.log(user);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -133,7 +132,7 @@ const Profile = () => {
 				<ButtonProfile placeholder="Edit Address" modalHandler={() => setOpenEditAddress(true)} />
 			)}
 			<div className="flex flex-col justify-center items-center text-gray-900 font-body w-full h-full">
-				{user.isChef && user.kitchenID ? null : (
+				{user.isChef && !user.kitchenID ? (
 					<Link
 						to="/create-kitchen"
 						className="flex justify-between items-center bg-gray-50 text-gray-900 text-lg border-b border-gray-300 py-4 px-3 w-full h-full"
@@ -141,7 +140,7 @@ const Profile = () => {
 						Add a kitchen
 						<i className="fas fa-chevron-right text-gray-400"></i>
 					</Link>
-				)}
+				) : null}
 
 				<ButtonProfile placeholder="Logout" modalHandler={handleSignOut} />
 			</div>
