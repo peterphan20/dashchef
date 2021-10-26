@@ -1,14 +1,14 @@
-import { MENU_ITEM_LOAD, MENU_ITEM_CREATE, MENU_ITEM_UPDATE, MENU_ITEM_DELETE } from "../constants";
+import { SELECTED_MENU_ITEM_LOAD, SELECTED_MENU_ITEM_CREATE, SELECTED_MENU_ITEM_UPDATE, SELECTED_MENU_ITEM_DELETE } from "../constants";
 
 export const selectedMenuItemReducer = (menuItem = {}, action) => {
 	switch (action.type) {
-		case MENU_ITEM_LOAD:
+		case SELECTED_MENU_ITEM_LOAD:
 			return action.payload;
-		case MENU_ITEM_CREATE:
+		case SELECTED_MENU_ITEM_CREATE:
 			return action.payload;
-		case MENU_ITEM_UPDATE:
+		case SELECTED_MENU_ITEM_UPDATE:
 			return { ...menuItem, ...action.payload };
-		case MENU_ITEM_DELETE:
+		case SELECTED_MENU_ITEM_DELETE:
 			return {};
 		default:
 			return menuItem;

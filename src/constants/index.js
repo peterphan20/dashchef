@@ -37,7 +37,11 @@ export const CART_UPDATE = "CART_UPDATE";
  * menuItemsReducer constants
  */
 export const MENU_ITEMS_LOAD = "MENU_ITEMS_LOAD";
-export const MENU_ITEM_LOAD = "MENU_ITEM_LOAD";
-export const MENU_ITEM_CREATE = "MENU_ITEM_CREATE";
-export const MENU_ITEM_UPDATE = "MENU_ITEM_UPDATE";
-export const MENU_ITEM_DELETE = "MENU_ITEM_DELETE";
+
+/**
+ * menuItemReducer constants
+ */
+export const SELECTED_MENU_ITEM_LOAD = "MENU_ITEM_LOAD";
+export const SELECTED_MENU_ITEM_CREATE = "MENU_ITEM_CREATE";
+export const SELECTED_MENU_ITEM_UPDATE = "MENU_ITEM_UPDATE";
+export const SELECTED_MENU_ITEM_DELETE = "MENU_ITEM_DELETE";
