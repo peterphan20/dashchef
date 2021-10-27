@@ -63,7 +63,7 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 					<MenuButtonMobile text="Sign out" clickHandler={handleLogout} />
 				</>
 			)}
-			{user.isChef && user.kitchenID ? (
+			{!user.isChef ? null : user.isChef && user.kitchenID ? (
 				<MenuAnchorMobile
 					link={`/kitchen/${user.kitchenID}`}
 					placeholder="My Kitchen"

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import defaultAvatar from "../assets/default-avatar.jpg";
-import { updateUser } from "../api/usersAPI";
 import UpdateUserForm from "../molecules/UpdateUserForm";
 import UpdateAddressForm from "../molecules/UpdateAddressForm";
 import ButtonProfile from "../atoms/ButtonProfile";
+import LinkMobileProfile from "../atoms/LinkMobileProfile";
+import defaultAvatar from "../assets/default-avatar.jpg";
+import { updateUser } from "../api/usersAPI";
 import { USER_LOGOUT } from "../constants";
 
 const Profile = () => {
@@ -131,17 +131,16 @@ const Profile = () => {
 			) : (
 				<ButtonProfile placeholder="Edit Address" modalHandler={() => setOpenEditAddress(true)} />
 			)}
-			<div className="flex flex-col justify-center items-center text-gray-900 font-body w-full h-full">
+			<div className="flex flex-col justify-center items-center font-body w-full h-full">
 				{user.isChef && !user.kitchenID ? (
-					<Link
-						to="/create-kitchen"
-						className="flex justify-between items-center bg-gray-50 text-gray-900 text-lg border-b border-gray-300 py-4 px-3 w-full h-full"
-					>
-						Add a kitchen
-						<i className="fas fa-chevron-right text-gray-400"></i>
-					</Link>
+					<LinkMobileProfile link="/create/kitchen" placeholder="Create a kitchen" />
 				) : null}
-
+				{user.kitchenID ? (
+					<LinkMobileProfile
+						link={`/edit/kitchen/${user.kitchenID}`}
+						placeholder="Edit your kitchen"
+					/>
+				) : null}
 				<ButtonProfile placeholder="Logout" modalHandler={handleSignOut} />
 			</div>
 		</div>

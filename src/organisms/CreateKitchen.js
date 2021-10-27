@@ -7,7 +7,7 @@ import FormInputField from "../atoms/FormInputField";
 import { SELECTED_KITCHEN_CREATE, USER_LOGIN } from "../constants";
 import { USStates } from "../helpers/geoState";
 
-const KitchenCreate = () => {
+const CreateKitchen = () => {
 	const [authResponse, setAuthResponse] = useState(true);
 	const [authResponseDuplicate, setAuthResponseDuplicate] = useState(true);
 	const [name, setName] = useState("");
@@ -173,4 +173,4 @@ const KitchenCreate = () => {
 	);
 };
 
-export default KitchenCreate;
+export default CreateKitchen;

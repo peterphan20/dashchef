@@ -58,25 +58,27 @@ const Kitchen = () => {
 	}, [kitchenID, dispatch, history]);
 
 	return (
-		<div className="bg-gray-100 pb-10 px-4 w-full h-full min-h-screen">
-			<div className="px-0 transform skew-y-3">
-				<img src={mobileHeaderImg} />
+		<div className="bg-gray-100 pb-10 w-full h-full min-h-screen">
+			<div className="bg-cover">
+				<img src={mobileHeaderImg} alt="banner" />
 			</div>
-			<Avatar src={defaultAvatar} />
-			<div className=" font-body">
-				<h1 className="text-3xl font-bold pt-5">{kitchen.name}</h1>
-				<h1 className="text-sm pt-1">{kitchen.address}</h1>
-			</div>
-			<div>
-				<h1 className="font-headers text-lg font-bold border-b border-gray-300 pb-3 mb-5">
-					Full Menu
-				</h1>
-				<MenuItems />
-			</div>
-			<div className="border border-gray-300 font-body rounded-md p-4 mt-10">
-				<h1 className="text-md">Contact the chef:</h1>
-				<h1 className="text-sm">Email for inquiries: {kitchen.email}</h1>
-				<h1 className="text-sm">tel: {kitchen.phone}</h1>
+			<div className="px-4">
+				<Avatar src={defaultAvatar} />
+				<div className="font-body pb-10 transform -translate-y-5">
+					<h1 className="text-3xl font-bold">{kitchen.name}</h1>
+					<h1 className="text-sm pt-1">{kitchen.address}</h1>
+				</div>
+				<div>
+					<h1 className="font-headers text-lg font-bold border-b border-gray-300 pb-3 mb-5">
+						Full Menu
+					</h1>
+					<MenuItems />
+				</div>
+				<div className="border border-gray-300 font-body rounded-md p-4 mt-10">
+					<h1 className="text-md">Contact the chef:</h1>
+					<h1 className="text-sm">Email for inquiries: {kitchen.email}</h1>
+					<h1 className="text-sm">tel: {kitchen.phone}</h1>
+				</div>
 			</div>
 		</div>
 	);
