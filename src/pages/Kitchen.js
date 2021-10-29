@@ -7,6 +7,7 @@ import defaultAvatar from "../assets/default-avatar.jpg";
 import mobileHeaderImg from "../assets/mobile-header-image.jpg";
 import { MENU_ITEMS_LOAD, SELECTED_KITCHEN_LOAD } from "../constants";
 import MenuItems from "../molecules/MenuItems";
+import Carousel from "../organisms/Carousel";
 
 const Kitchen = () => {
 	const history = useHistory();
@@ -68,6 +69,7 @@ const Kitchen = () => {
 					<h1 className="text-3xl font-bold">{kitchen.name}</h1>
 					<h1 className="text-sm pt-1">{kitchen.address}</h1>
 				</div>
+				<Carousel />
 				<div>
 					<h1 className="font-headers text-lg font-bold border-b border-gray-300 pb-3 mb-5">
 						Full Menu
