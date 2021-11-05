@@ -52,7 +52,7 @@ const Profile = () => {
 		history.push("/");
 	};
 
-	const handleUpdateUser = async () => {
+	const handleUpdate = async () => {
 		const token = localStorage.getItem("authToken");
 		if (!token) return;
 
@@ -101,7 +101,7 @@ const Profile = () => {
 					setPhone={setPhone}
 					email={email}
 					setEmail={setEmail}
-					handleUpdateUser={handleUpdateUser}
+					handleUpdate={handleUpdate}
 					setOpenEditForm={setOpenEditForm}
 					authResponse={authResponse}
 				/>
@@ -124,7 +124,7 @@ const Profile = () => {
 					setGeoState={setGeoState}
 					zipcode={zipcode}
 					setZipCode={setZipCode}
-					handleUpdateUser={handleUpdateUser}
+					handleUpdate={handleUpdate}
 					setOpenEditAddress={setOpenEditAddress}
 					authResponse={authResponse}
 				/>

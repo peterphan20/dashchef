@@ -11,7 +11,7 @@ const UpdateUserForm = ({
 	setPhone,
 	email,
 	setEmail,
-	handleUpdateUser,
+	handleUpdate,
 	setOpenEditForm,
 }) => {
 	return (
@@ -59,7 +59,7 @@ const UpdateUserForm = ({
 				<ButtonFormSmall
 					className="bg-green-400"
 					placeholder="Submit"
-					clickHandler={handleUpdateUser}
+					clickHandler={handleUpdate}
 				/>
 			</div>
 		</div>
