@@ -41,7 +41,7 @@ const Header = () => {
 	};
 
 	return (
-		<div className="sticky top-0 bg-red-600 z-10 w-full">
+		<div className="sticky top-0 bg-red-600 z-20 w-full">
 			<header className="flex justify-between items-center text-gray-100 px-4 pt-4 pb-12">
 				<Link
 					to="/"

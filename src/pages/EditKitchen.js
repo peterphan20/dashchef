@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import ButtonProfile from "../atoms/ButtonProfile";
 import UpdateKitchenForm from "../molecules/UpdateKitchenForm";
-import { deleteKitchen } from "../api/kitchensAPI";
+import { getKitchen, deleteKitchen, updateKitchen } from "../api/kitchensAPI";
 import ModalDelete from "../molecules/ModalDelete";
 
 const EditKitchen = () => {
@@ -16,12 +16,62 @@ const EditKitchen = () => {
 	const [openEditKitchenForm, setOpenEditKitchenForm] = useState(false);
 	const [openDeleteKitchenModal, setOpenDeleteKitchenModal] = useState(false);
 	// const [stepNumber, setStepNumber] = useState(1);
-	const [authResponse, setAuthResponse] = useState(null);
+	const [authResponse, setAuthResponse] = useState(true);
 
 	const { kitchenID } = useParams();
 	const history = useHistory();
 
-	const handleUpdate = () => {};
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
+	useEffect(() => {
+		async function fetchKitchen() {
+			const data = await getKitchen(kitchenID);
+			if (!data || !data.rows) {
+				history.push("/");
+			} else {
+				const kitchenData = data.rows[0];
+				setEmail(kitchenData.email);
+				setPhone(kitchenData.phone);
+				const splitAddress = kitchenData.address.split(",");
+				if (splitAddress[0]) setAddress(splitAddress[0]);
+				if (splitAddress[1]) setCity(splitAddress[1]);
+				if (splitAddress[2]) setGeoState(splitAddress[2]);
+				if (splitAddress[3]) setZipCode(splitAddress[3]);
+				if (!splitAddress[4]) {
+					setAptNumber("");
+				} else {
+					setAptNumber(splitAddress[4]);
+				}
+			}
+		}
+		fetchKitchen();
+	});
+
+	const handleUpdateKitchen = async () => {
+		const token = localStorage.getItem("authToken");
+		if (!token) return;
+
+		const addressStr = `${address}, ${city}, ${geoState} ${zipcode}, ${
+			aptNumber ? ", " + aptNumber : ""
+		}`;
+
+		const updatedKitchenObject = {
+			email,
+			address: addressStr,
+			phone,
+		};
+
+		const apiResponse = await updateKitchen(kitchenID, updatedKitchenObject, token);
+		if (apiResponse.code !== 200) {
+			console.log("update failed");
+			setAuthResponse(false);
+		} else {
+			console.log("update passed");
+			setOpenEditKitchenForm(false);
+		}
+	};
 
 	const handleDeleteKitchen = async () => {
 		const token = localStorage.getItem("authToken");
@@ -29,8 +79,10 @@ const EditKitchen = () => {
 
 		const apiResponse = await deleteKitchen(kitchenID, token);
 		if (apiResponse.code !== 200) {
+			console.log("delete failed");
 			setAuthResponse(false);
 		} else {
+			console.log("delete passed");
 			history.push("/");
 		}
 	};
@@ -54,14 +106,14 @@ const EditKitchen = () => {
 					setGeoState={setGeoState}
 					zipcode={zipcode}
 					setZipCode={setZipCode}
-					handleUpdate={handleUpdate}
+					handleUpdateKitchen={handleUpdateKitchen}
 					setOpenEditKitchenForm={setOpenEditKitchenForm}
 					authResponse={authResponse}
 				/>
 			) : (
 				<ButtonProfile
 					placeholder="Edit kitchen information"
-					className="border-t mt-8"
+					className="border-t mt-5"
 					modalHandler={() => setOpenEditKitchenForm(true)}
 				/>
 			)}

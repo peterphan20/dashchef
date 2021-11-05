@@ -17,7 +17,7 @@ const Dropdown = ({ options, placeholder, htmlFor, select, onSelectedChange, cla
 			<select
 				key={options.value}
 				id={htmlFor}
-				className={`relative block rounded-none w-full pl-2 py-2 mb-5 border border-gray-300 text-gray-500 rounded-md ${className} focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
+				className={`relative block rounded-none w-full pl-2 py-2 mb-5 border border-gray-300 text-gray-500 rounded-md z-0 ${className} focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
 				defaultValue={select}
 				onChange={onSelectedChange}
 			>

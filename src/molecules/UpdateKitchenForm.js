@@ -19,12 +19,12 @@ const UpdateKitchenForm = ({
 	setGeoState,
 	zipcode,
 	setZipCode,
-	handleUpdate,
+	handleUpdateKitchen,
 	setOpenEditKitchenForm,
 	authResponse,
 }) => {
 	return (
-		<div className="-space-y-px px-5 pt-10 pb-5 mt-8 border-t border-b border-gray-300 w-full h-full">
+		<div className="-space-y-px px-5 pt-10 pb-5 mt-5 border-t border-b border-gray-300 w-full h-full">
 			<FormInputField
 				htmlFor="address"
 				text="address"
@@ -92,7 +92,7 @@ const UpdateKitchenForm = ({
 				<ButtonFormSmall
 					className="bg-green-400"
 					placeholder="Submit"
-					clickHandler={handleUpdate}
+					clickHandler={handleUpdateKitchen}
 				/>
 			</div>
 		</div>
