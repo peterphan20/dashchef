@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LinkMobileProfile = ({ link, placeholder }) => {
+const LinkProfile = ({ link, placeholder }) => {
 	return (
 		<>
 			<Link
@@ -15,4 +15,4 @@ const LinkMobileProfile = ({ link, placeholder }) => {
 	);
 };
 
-export default LinkMobileProfile;
+export default LinkProfile;

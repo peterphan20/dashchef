@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import ButtonProfile from "../atoms/ButtonProfile";
 import UpdateKitchenForm from "../molecules/UpdateKitchenForm";
+import ButtonProfile from "../atoms/ButtonProfile";
+import LinkProfile from "../atoms/LinkProfile";
 import { getKitchen, deleteKitchen, updateKitchen } from "../api/kitchensAPI";
 import ModalDelete from "../molecules/ModalDelete";
 
@@ -15,7 +16,6 @@ const EditKitchen = () => {
 	const [zipcode, setZipCode] = useState("");
 	const [openEditKitchenForm, setOpenEditKitchenForm] = useState(false);
 	const [openDeleteKitchenModal, setOpenDeleteKitchenModal] = useState(false);
-	// const [stepNumber, setStepNumber] = useState(1);
 	const [authResponse, setAuthResponse] = useState(true);
 
 	const { kitchenID } = useParams();
@@ -34,7 +34,7 @@ const EditKitchen = () => {
 				const kitchenData = data.rows[0];
 				setEmail(kitchenData.email);
 				setPhone(kitchenData.phone);
-				const splitAddress = kitchenData.address.split(",");
+				const splitAddress = kitchenData.address.split(", ");
 				if (splitAddress[0]) setAddress(splitAddress[0]);
 				if (splitAddress[1]) setCity(splitAddress[1]);
 				if (splitAddress[2]) setGeoState(splitAddress[2]);
@@ -47,15 +47,17 @@ const EditKitchen = () => {
 			}
 		}
 		fetchKitchen();
-	});
+	}, [kitchenID, history]);
 
 	const handleUpdateKitchen = async () => {
 		const token = localStorage.getItem("authToken");
 		if (!token) return;
 
-		const addressStr = `${address}, ${city}, ${geoState} ${zipcode}, ${
+		const addressStr = `${address}, ${city}, ${geoState}, ${zipcode}${
 			aptNumber ? ", " + aptNumber : ""
 		}`;
+
+		console.log("address string", addressStr);
 
 		const updatedKitchenObject = {
 			email,
@@ -64,6 +66,7 @@ const EditKitchen = () => {
 		};
 
 		const apiResponse = await updateKitchen(kitchenID, updatedKitchenObject, token);
+		console.log("api response here", apiResponse);
 		if (apiResponse.code !== 200) {
 			console.log("update failed");
 			setAuthResponse(false);
@@ -89,7 +92,7 @@ const EditKitchen = () => {
 
 	return (
 		<div className="bg-gray-100 w-full h-full min-h-screen">
-			<h1 className="text-2xl font-headers text-center pt-5">Edit your kitchen</h1>
+			<h1 className="text-2xl font-headers text-center pt-5">Update your kitchen</h1>
 			{openEditKitchenForm ? (
 				<UpdateKitchenForm
 					phone={phone}
@@ -117,11 +120,11 @@ const EditKitchen = () => {
 					modalHandler={() => setOpenEditKitchenForm(true)}
 				/>
 			)}
-			<ButtonProfile placeholder="Add menu item" />
+			<LinkProfile placeholder="Add menu item" link="create/menu-item" />
 			{openDeleteKitchenModal ? (
 				<ModalDelete
 					modalHandler={setOpenDeleteKitchenModal}
-					text="kitchen"
+					placeholder="kitchen"
 					clickHandler={() => handleDeleteKitchen(kitchenID)}
 				/>
 			) : (

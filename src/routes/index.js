@@ -5,6 +5,7 @@ import CreateKitchen from "../organisms/CreateKitchen";
 import Driver from "../pages/Driver";
 import Cart from "../pages/Cart";
 import EditKitchen from "../pages/EditKitchen";
+import CreateMenuItem from "../organisms/CreateMenuItem";
 
 export const routes = [
 	{
@@ -22,8 +23,6 @@ export const routes = [
 		exact: true,
 		component: Kitchen,
 	},
-	// TODO: The route should match the file name, make it so that KitchenForm is actually
-	// KitchenCreate and the path is /kitchen/create
 	{
 		path: "/create/kitchen",
 		exact: true,
@@ -33,6 +32,11 @@ export const routes = [
 		path: "/edit/kitchen/:kitchenID",
 		exact: true,
 		component: EditKitchen,
+	},
+	{
+		path: "/create/menu-item",
+		exact: true,
+		component: CreateMenuItem,
 	},
 	{
 		path: "/driver",

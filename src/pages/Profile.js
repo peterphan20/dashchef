@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UpdateUserForm from "../molecules/UpdateUserForm";
 import UpdateAddressForm from "../molecules/UpdateAddressForm";
 import ButtonProfile from "../atoms/ButtonProfile";
-import LinkMobileProfile from "../atoms/LinkMobileProfile";
+import LinkProfile from "../atoms/LinkProfile";
 import defaultAvatar from "../assets/default-avatar.jpg";
 import { updateUser } from "../api/usersAPI";
 import { USER_LOGOUT } from "../constants";
@@ -34,7 +34,7 @@ const Profile = () => {
 		setEmail(user.email);
 		setPhone(user.phone);
 
-		const splitAddress = user.address.split(",");
+		const splitAddress = user.address.split(", ");
 		if (splitAddress[0]) setAddress(splitAddress[0]);
 		if (splitAddress[1]) setCity(splitAddress[1]);
 		if (splitAddress[2]) setGeoState(splitAddress[2]);
@@ -133,13 +133,10 @@ const Profile = () => {
 			)}
 			<div className="flex flex-col justify-center items-center font-body w-full h-full">
 				{user.isChef && !user.kitchenID ? (
-					<LinkMobileProfile link="/create/kitchen" placeholder="Create a kitchen" />
+					<LinkProfile link="/create/kitchen" placeholder="Create a kitchen" />
 				) : null}
 				{user.kitchenID ? (
-					<LinkMobileProfile
-						link={`/edit/kitchen/${user.kitchenID}`}
-						placeholder="Edit your kitchen"
-					/>
+					<LinkProfile link={`/edit/kitchen/${user.kitchenID}`} placeholder="Edit your kitchen" />
 				) : null}
 				<ButtonProfile placeholder="Logout" modalHandler={handleSignOut} />
 			</div>

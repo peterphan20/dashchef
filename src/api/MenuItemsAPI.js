@@ -11,7 +11,7 @@ export const createMenuItem = (menuItemObject, token) => {
 		method: "POST",
 		body: JSON.stringify(menuItemObject),
 		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
+			"Content-Type": "multipart/form-data",
 			auth: token,
 		},
 	});

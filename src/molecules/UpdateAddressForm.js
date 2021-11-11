@@ -1,8 +1,8 @@
 import React from "react";
 import FormInputField from "../atoms/FormInputField";
 import Dropdown from "../atoms/Dropdown";
-import { USStates } from "../helpers/geoState";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
+import { USStates } from "../helpers/geoState";
 
 const UpdateAddressForm = ({
 	address,
