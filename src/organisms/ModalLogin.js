@@ -14,7 +14,6 @@ const ModalLogin = () => {
 
 	const handleUserLogin = async (userObject) => {
 		const apiResponse = await loginUser(userObject);
-		console.log("api response", apiResponse);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 		} else {
@@ -30,7 +29,6 @@ const ModalLogin = () => {
 				avatarURL: apiResponse.avatarURL,
 				loggedIn: true,
 			};
-			console.log("users's payload", payload);
 			dispatch({ type: USER_LOGIN, payload });
 			dispatch({ type: HIDE_LOGIN_MODAL });
 		}
@@ -38,7 +36,6 @@ const ModalLogin = () => {
 
 	const handleChefLogin = async (chefObject) => {
 		const apiResponse = await loginChef(chefObject);
-		console.log(apiResponse);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 			console.log("api failed");
@@ -56,7 +53,6 @@ const ModalLogin = () => {
 				avatarURL: apiResponse.avatarURL,
 				loggedIn: true,
 			};
-			console.log("chef's payload", payload);
 			dispatch({ type: USER_LOGIN, payload });
 			dispatch({ type: HIDE_LOGIN_MODAL });
 		}
@@ -67,12 +63,9 @@ const ModalLogin = () => {
 			email,
 			password,
 		};
-		console.log("login credentials", userObject);
 		if (isChef === "yes") {
-			console.log("chef login");
 			handleChefLogin(userObject);
 		} else if (isChef === "no") {
-			console.log("user login");
 			handleUserLogin(userObject);
 		}
 	};

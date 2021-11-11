@@ -25,7 +25,9 @@ const CreateMenuItem = () => {
 			tags,
 		};
 
-		const apiResponse = await createMenuItem(menuItemObject, token);
+		console.log("menu item object sent to api", menuItemObject);
+
+		// const apiResponse = await createMenuItem(menuItemObject, token);
 	};
 
 	return (

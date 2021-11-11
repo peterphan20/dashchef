@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
 import FormInputField from "../atoms/FormInputField";
+import ImageUploadSingle from "./ImageUploadSingle";
 
 const MenuItemCreateForm = ({
 	name,
@@ -17,6 +18,7 @@ const MenuItemCreateForm = ({
 }) => {
 	return (
 		<div>
+			<h1 className="text-2xl font-headers text-center py-5">Add a menu item</h1>
 			<FormInputField
 				htmlFor="name"
 				text="name"
@@ -41,23 +43,14 @@ const MenuItemCreateForm = ({
 				value={price}
 				changeHandler={(e) => setPrice(e.target.value)}
 			/>
-			<label
-				htmlFor="file-upload"
-				className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-			>
-				<span>Upload a file</span>
-				<input
-					id="file-upload"
-					name="file-upload"
-					type="file"
-					className="sr-only"
-					value={photoURL}
-					onChange={(e) => setPhotoURL(e.target.value)}
-				/>
-			</label>
+			<ImageUploadSingle
+				value={photoURL}
+				changeHandler={(e) => setPhotoURL(e.target.value)}
+				clickhandler={setPhotoURL}
+			/>
 			<ButtonFormSmall
 				placeholder="Create Item"
-				className="bg-green-600"
+				className="bg-green-500 mt-5"
 				clickHandler={handleCreateMenuItem}
 			/>
 		</div>
