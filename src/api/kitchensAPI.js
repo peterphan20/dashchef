@@ -7,7 +7,7 @@ export const getAllKitchen = async (callback) => {
 };
 
 export const getKitchen = async (id) => {
-	const res = await fetch(`${config.API_URL}/kitchens/${id}`);
+	const res = await fetch(`${config.API_URL}/kitchen/${id}`);
 	const data = await res.json();
 	return data;
 };

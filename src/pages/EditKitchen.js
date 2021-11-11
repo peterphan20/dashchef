@@ -120,7 +120,7 @@ const EditKitchen = () => {
 					modalHandler={() => setOpenEditKitchenForm(true)}
 				/>
 			)}
-			<LinkProfile placeholder="Add menu item" link="create/menu-item" />
+			<LinkProfile placeholder="Add menu item" link="/create/menu-item" />
 			{openDeleteKitchenModal ? (
 				<ModalDelete
 					modalHandler={setOpenDeleteKitchenModal}

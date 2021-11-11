@@ -1,12 +1,12 @@
 import config from "../config";
 
-export const getMenuItem = (id) => {
+export const getMenuItem = async (id) => {
 	const res = await fetch(`${config.API_URL}/kitchen/menu-item/${id}`);
 	const data = await res.json();
 	return data;
 };
 
-export const createMenuItem = (menuItemObject, token) => {
+export const createMenuItem = async (menuItemObject, token) => {
 	const res = await fetch(`${config.API_URL}/kitchen/item-create`, {
 		method: "POST",
 		body: JSON.stringify(menuItemObject),
@@ -19,12 +19,12 @@ export const createMenuItem = (menuItemObject, token) => {
 	return data;
 };
 
-export const updateMenuItem = (id, menuItemObject, token) => {
+export const updateMenuItem = async (id, menuItemObject, token) => {
 	const res = await fetch(`${config.API_URL}/kitchen/item-update/${id}`, {
 		method: "PUT",
 		body: JSON.stringify(menuItemObject),
 		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
+			"Content-Type": "multipart/form-data",
 			auth: token,
 		},
 	});
@@ -32,7 +32,7 @@ export const updateMenuItem = (id, menuItemObject, token) => {
 	return data;
 };
 
-export const deleteMenuItem = (id, token) => {
+export const deleteMenuItem = async (id, token) => {
 	const res = await fetch(`${config.API_URL}/kitchen/item-delete/${id}`, {
 		method: "DELETE",
 		headers: {
