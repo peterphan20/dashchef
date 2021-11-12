@@ -6,7 +6,7 @@ import Avatar from "../molecules/Avatar";
 import defaultAvatar from "../assets/default-avatar.jpg";
 import mobileHeaderImg from "../assets/mobile-header-image.jpg";
 import { MENU_ITEMS_LOAD, SELECTED_KITCHEN_LOAD } from "../constants";
-import MenuItems from "../molecules/MenuItems";
+import RenderMenuItems from "../molecules/RenderMenuItems";
 import Carousel from "../organisms/Carousel";
 
 const Kitchen = () => {
@@ -74,7 +74,7 @@ const Kitchen = () => {
 					<h1 className="font-headers text-lg font-bold border-b border-gray-300 pb-3 mb-5">
 						Full Menu
 					</h1>
-					<MenuItems />
+					<RenderMenuItems />
 				</div>
 				<div className="border border-gray-300 font-body rounded-md p-4 mt-10">
 					<h1 className="text-md">Contact the chef:</h1>

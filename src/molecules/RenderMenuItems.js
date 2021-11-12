@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const MenuItems = ({ className }) => {
+const RenderMenuItems = ({ className }) => {
 	const menuItems = useSelector((state) => state.menuItemsReducer);
 
 	const renderedMenuItems = menuItems.map((menuItem) => {
@@ -20,4 +20,4 @@ const MenuItems = ({ className }) => {
 	return <div className="flex flex-col justify-center items-start">{renderedMenuItems}</div>;
 };
 
-export default MenuItems;
+export default RenderMenuItems;
