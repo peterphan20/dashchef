@@ -10,7 +10,6 @@ const MenuItemCreateForm = ({
 	setPrice,
 	description,
 	setDescription,
-	selectedFile,
 	fileInputHandler,
 	handleCreateMenuItem,
 	listOfItems,
@@ -71,15 +70,15 @@ const MenuItemCreateForm = ({
 				<h1 className="block text-base font-medium text-gray-900 mb-2">Dietary Restrictions :</h1>
 				{renderedListOfItems}
 			</div>
-			<ImageUploadSingle selectedFile={selectedFile} fileInputHandler={fileInputHandler} />
+			<ImageUploadSingle fileInputHandler={fileInputHandler} />
 			{authResponse ? null : (
 				<p className="text-red-600 text-base font-body text-center pt-5">
 					Something has gone wrong, please try again
 				</p>
 			)}
 			<ButtonFormSmall
-				placeholder="Create Item"
-				className="bg-green-500 mt-5"
+				placeholder="Create item"
+				className="bg-green-400 mt-5"
 				clickHandler={handleCreateMenuItem}
 			/>
 		</div>

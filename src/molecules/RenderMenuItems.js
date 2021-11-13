@@ -1,19 +1,51 @@
-import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const RenderMenuItems = ({ className }) => {
+	const [quantity, setQuantity] = useState(0);
 	const menuItems = useSelector((state) => state.menuItemsReducer);
 
 	const renderedMenuItems = menuItems.map((menuItem) => {
 		return (
 			<div
-				className={`flex flex-col justify-center items-start text-sm font-body border-b border-gray-300 py-3 w-full h-full ${className}`}
+				className={`flex flex-col text-sm font-body border-b border-gray-300 py-1 w-full h-full ${className}`}
 				key={menuItem.itemID}
 			>
-				<p className="text-base font-bold">{menuItem.itemName}</p>
-				<p className="overflow-clip">{menuItem.itemDescription}</p>
-				<p>{menuItem.itemPrice}</p>
-				<img src={menuItem.photoURL} alt="soup" />
+				<div className="flex justify-between items-center pb-3">
+					<div className="flex flex-col">
+						<p className="text-base font-bold pb-1">{menuItem.itemName}</p>
+						<p className="text-sm text-gray-700 overflow-clip pb-1">{menuItem.itemDescription}</p>
+						<p className="text-sm">${menuItem.itemPrice}</p>
+					</div>
+					<div className="flex items-center w-28 h-28">
+						<img src={menuItem.itemPhotoPrimaryURL} alt={menuItem.itemName} />
+					</div>
+				</div>
+				<div className="flex justify-between items-center pb-2">
+					<div className="flex justify-center items-center gap-2">
+						<button
+							className="flex justify-center items-center bg-gray-200 text-gray-500 rounded-full w-7 h-7"
+							onClick={() => setQuantity(quantity - 1)}
+						>
+							<i className="fas fa-minus"></i>
+						</button>
+						<input
+							type="number"
+							className="bg-gray-50 p-1 w-7 h-6"
+							value={quantity}
+							onChange={(e) => setQuantity(e.target.value)}
+						/>
+						<button
+							className="flex justify-center items-center bg-gray-400 text-gray-300 rounded-full w-7 h-7"
+							onClick={() => setQuantity(quantity + 1)}
+						>
+							<i className="fas fa-plus"></i>
+						</button>
+					</div>
+					<button className="flex items-end bg-red-600 text-gray-100 text-sm rounded-md py-2 px-4">
+						Add to Cart
+					</button>
+				</div>
 			</div>
 		);
 	});

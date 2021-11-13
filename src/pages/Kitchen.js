@@ -60,12 +60,12 @@ const Kitchen = () => {
 				</div>
 				<Carousel />
 				<div>
-					<h1 className="font-headers text-lg font-bold border-b border-gray-300 pb-3 mb-5">
+					<h1 className="font-headers text-lg font-bold border-b border-gray-300 pb-3 mb-1">
 						Full Menu
 					</h1>
 					<RenderMenuItems />
 				</div>
-				<div className="border border-gray-300 font-body rounded-md p-4 mt-10">
+				<div className="border border-gray-300 font-body rounded-md p-4 mt-8">
 					<h1 className="text-md">Contact the chef:</h1>
 					<h1 className="text-sm">Email for inquiries: {kitchen.email}</h1>
 					<h1 className="text-sm">tel: {kitchen.phone}</h1>

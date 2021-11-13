@@ -9,6 +9,7 @@ const CreateMenuItem = () => {
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState(0);
 	const [selectedFile, setSelectedFile] = useState();
+	// const [fileIsSelected, setFileIsSelected] = useState(false);
 	// const [showAnotherItemModal, setShowAnotherItemModal] = useState(false);
 	const [authResponse, setAuthResponse] = useState(true);
 	const [listOfItems, setListOfItems] = useState([
@@ -43,10 +44,10 @@ const CreateMenuItem = () => {
 
 		const formData = new FormData();
 		formData.append("name", name);
-		formData.append("kitchenID", user.kitchenID);
+		formData.append("id", user.kitchenID);
 		formData.append("description", description);
 		formData.append("price", price);
-		// formData.append("tags", listOfItems);
+		formData.append("tags", listOfItems);
 		formData.append("file", selectedFile);
 
 		const apiResponse = await createMenuItem(formData, token);
@@ -62,7 +63,13 @@ const CreateMenuItem = () => {
 
 	const fileInputHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
+		// setFileIsSelected(true);
 	};
+
+	// const clearSelectedFile = () => {
+	// 	setSelectedFile();
+	// 	setFileIsSelected(false);
+	// };
 
 	return (
 		<div className="flex flex-col justify-start bg-gray-100 py-2 px-4 w-full h-full min-h-screen">
