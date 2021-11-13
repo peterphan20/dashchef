@@ -18,14 +18,14 @@ const Kitchen = () => {
 	useEffect(() => {
 		async function fetchKitchen() {
 			const data = await getKitchen(kitchenID);
-			console.log(data.rows[0].menuitems);
+			// console.log(data.rows[0].menuitems);
 			if (!data || !data.rows) {
 				history.push("/");
 			} else {
 				const kitchenData = data.rows[0];
 				// console.log("api response", kitchenData);
 				const menuItemData = data.rows[0].menuitems;
-				// console.log("menu items array in response", menuItem);
+				// console.log("menu items array in response", menuItemData);
 
 				const payload = {
 					id: kitchenData.id,
@@ -38,17 +38,6 @@ const Kitchen = () => {
 					name: kitchenData.name,
 					phone: kitchenData.phone,
 				};
-
-				// const menuItemPayload = {
-				// 	menuItemID: menuItemData.menuItemID,
-				// 	menuItemName: menuItemData.menuItemName,
-				// 	menuItemDescription: menuItemData.menuItemDescription,
-				// 	menuItemPrice: menuItemData.menuItemPrice,
-				// 	menuItemPhotoPrimaryURL: menuItemData.menuItemPhotoPrimaryURL,
-				// 	menuItemGalleryPhotoURL: menuItemData.menuItemGalleryPhotoURL,
-				// 	menuItemTags: menuItemData.menuItemTags,
-				// };
-				// console.log("menu item payload", menuItemPayload);
 
 				dispatch({ type: MENU_ITEMS_LOAD, payload: menuItemData });
 				dispatch({ type: SELECTED_KITCHEN_LOAD, payload });

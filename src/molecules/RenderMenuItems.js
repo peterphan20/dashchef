@@ -13,6 +13,7 @@ const RenderMenuItems = ({ className }) => {
 				<p className="text-base font-bold">{menuItem.itemName}</p>
 				<p className="overflow-clip">{menuItem.itemDescription}</p>
 				<p>{menuItem.itemPrice}</p>
+				<img src={menuItem.photoURL} alt="soup" />
 			</div>
 		);
 	});

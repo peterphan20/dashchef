@@ -10,8 +10,8 @@ const MenuItemCreateForm = ({
 	setPrice,
 	description,
 	setDescription,
-	photoURL,
-	setPhotoURL,
+	selectedFile,
+	fileInputHandler,
 	handleCreateMenuItem,
 	listOfItems,
 	setListOfItems,
@@ -24,9 +24,8 @@ const MenuItemCreateForm = ({
 	};
 
 	const renderedListOfItems = listOfItems.map((item, index) => (
-		<div className="flex justify-start items-center gap-2 mb-1">
+		<div key={index} className="flex justify-start items-center gap-2 mb-1">
 			<input
-				key={index}
 				id={item.tag}
 				type="checkbox"
 				checked={item.isChecked}
@@ -72,11 +71,7 @@ const MenuItemCreateForm = ({
 				<h1 className="block text-base font-medium text-gray-900 mb-2">Dietary Restrictions :</h1>
 				{renderedListOfItems}
 			</div>
-			<ImageUploadSingle
-				value={photoURL}
-				changeHandler={(e) => setPhotoURL(e.target.value)}
-				clickhandler={setPhotoURL}
-			/>
+			<ImageUploadSingle selectedFile={selectedFile} fileInputHandler={fileInputHandler} />
 			{authResponse ? null : (
 				<p className="text-red-600 text-base font-body text-center pt-5">
 					Something has gone wrong, please try again

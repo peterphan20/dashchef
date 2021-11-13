@@ -8,7 +8,7 @@ const CreateMenuItem = () => {
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState(0);
-	const [photoURL, setPhotoURL] = useState("");
+	const [selectedFile, setSelectedFile] = useState();
 	// const [showAnotherItemModal, setShowAnotherItemModal] = useState(false);
 	const [authResponse, setAuthResponse] = useState(true);
 	const [listOfItems, setListOfItems] = useState([
@@ -41,18 +41,16 @@ const CreateMenuItem = () => {
 		const token = localStorage.getItem("authToken");
 		if (!token) return;
 
-		const menuItemObject = {
-			name,
-			id: user.kitchenID,
-			description,
-			price,
-			photoURL,
-			tags: listOfItems,
-		};
+		const formData = new FormData();
+		formData.append("name", name);
+		formData.append("kitchenID", user.kitchenID);
+		formData.append("description", description);
+		formData.append("price", price);
+		// formData.append("tags", listOfItems);
+		formData.append("file", selectedFile);
 
-		console.log("menu item object sent to api", menuItemObject);
-
-		const apiResponse = await createMenuItem(menuItemObject, token);
+		const apiResponse = await createMenuItem(formData, token);
+		console.log("api reponse", apiResponse);
 		if (apiResponse.code === 201) {
 			console.log("menu item created");
 			history.push(`/kitchen/${user.kitchenID}`);
@@ -60,6 +58,10 @@ const CreateMenuItem = () => {
 			setAuthResponse(false);
 			console.log("something went wrong here");
 		}
+	};
+
+	const fileInputHandler = (event) => {
+		setSelectedFile(event.target.files[0]);
 	};
 
 	return (
@@ -71,8 +73,8 @@ const CreateMenuItem = () => {
 				setDescription={setDescription}
 				price={price}
 				setPrice={setPrice}
-				photoURL={photoURL}
-				setPhotoURL={setPhotoURL}
+				selectedFile={selectedFile}
+				fileInputHandler={fileInputHandler}
 				listOfItems={listOfItems}
 				setListOfItems={setListOfItems}
 				handleCreateMenuItem={handleCreateMenuItem}

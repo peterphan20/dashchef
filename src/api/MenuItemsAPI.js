@@ -6,12 +6,11 @@ export const getMenuItem = async (id) => {
 	return data;
 };
 
-export const createMenuItem = async (menuItemObject, token) => {
+export const createMenuItem = async (formData, token) => {
 	const res = await fetch(`${config.API_URL}/kitchen/item-create`, {
 		method: "POST",
-		body: JSON.stringify(menuItemObject),
+		body: formData,
 		headers: {
-			"Content-Type": "multipart/form-data",
 			auth: token,
 		},
 	});
