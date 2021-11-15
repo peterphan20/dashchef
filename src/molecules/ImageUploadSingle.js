@@ -1,8 +1,22 @@
 import React from "react";
 
-const ImageUploadSingle = ({ fileInputHandler }) => {
+const ImageUploadSingle = ({
+	fileInputHandler,
+	fileIsSelected,
+	selectedFile,
+	clearSelectedFile,
+}) => {
 	return (
-		<div className="flex justify-center bg-gray-50 text-gray-900 border-2 border-gray-300 border-dashed rounded-md mt-1 px-6 pt-5 pb-6">
+		<div
+			className={`flex flex-col justify-center bg-gray-50 text-gray-900 rounded-md mt-1 px-6 pb-6 border-2 border-dashed ${
+				!fileIsSelected ? "border-gray-300 pt-5" : "border-green-400 pt-3"
+			}`}
+		>
+			{selectedFile ? (
+				<button className="flex self-end text-gray-400 pb-2" onClick={clearSelectedFile}>
+					<i className="fas fa-times"></i>
+				</button>
+			) : null}
 			<div className="space-y-1 text-center">
 				<i className="far fa-image text-4xl text-gray-400"></i>
 				<div className="text-sm text-gray-600">

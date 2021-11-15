@@ -9,7 +9,7 @@ const CreateMenuItem = () => {
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState(0);
 	const [selectedFile, setSelectedFile] = useState();
-	// const [fileIsSelected, setFileIsSelected] = useState(false);
+	const [fileIsSelected, setFileIsSelected] = useState(false);
 	// const [showAnotherItemModal, setShowAnotherItemModal] = useState(false);
 	const [authResponse, setAuthResponse] = useState(true);
 	const [listOfItems, setListOfItems] = useState([
@@ -63,13 +63,13 @@ const CreateMenuItem = () => {
 
 	const fileInputHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
-		// setFileIsSelected(true);
+		setFileIsSelected(true);
 	};
 
-	// const clearSelectedFile = () => {
-	// 	setSelectedFile();
-	// 	setFileIsSelected(false);
-	// };
+	const clearSelectedFile = () => {
+		setSelectedFile();
+		setFileIsSelected(false);
+	};
 
 	return (
 		<div className="flex flex-col justify-start bg-gray-100 py-2 px-4 w-full h-full min-h-screen">
@@ -81,7 +81,9 @@ const CreateMenuItem = () => {
 				price={price}
 				setPrice={setPrice}
 				selectedFile={selectedFile}
+				fileIsSelected={fileIsSelected}
 				fileInputHandler={fileInputHandler}
+				clearSelectedFile={clearSelectedFile}
 				listOfItems={listOfItems}
 				setListOfItems={setListOfItems}
 				handleCreateMenuItem={handleCreateMenuItem}
