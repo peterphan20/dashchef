@@ -45,19 +45,16 @@ const MenuDesktop = () => {
 					<MenuButtonDesktop clickHandler={handleSignupClick} placeholder="Sign up" />
 				</>
 			) : (
-				<>
-					<MenuAnchorDesktop
-						link="/profile"
-						placeholder="Profile"
-						clickHandler={handlePageChangeClick}
-					/>
-					<MenuButtonDesktop placeholder="Sign out" clickHandler={handleLogout} />
-				</>
+				<MenuAnchorDesktop
+					link="/profile"
+					placeholder="Profile"
+					clickHandler={handlePageChangeClick}
+				/>
 			)}
 			{!user.isChef ? null : user.isChef && user.kitchenID ? (
 				<MenuAnchorDesktop
 					link={`/kitchen/${user.kitchenID}`}
-					placeholder="My Kitchen"
+					placeholder="Kitchen"
 					clickHandler={handlePageChangeClick}
 				/>
 			) : (
@@ -67,6 +64,9 @@ const MenuDesktop = () => {
 					clickHandler={handlePageChangeClick}
 				/>
 			)}
+			{user.loggedIn ? (
+				<MenuButtonDesktop placeholder="Sign out" clickHandler={handleLogout} />
+			) : null}
 			<MenuAnchorDesktop link="/cart" icon="fas fa-shopping-cart" clickHandler={handleClick} />
 		</nav>
 	);

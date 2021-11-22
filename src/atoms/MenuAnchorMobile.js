@@ -6,7 +6,7 @@ const MenuAnchorMobile = ({ link, clickHandler, placeholder, icon }) => {
 		<>
 			<Link
 				to={link}
-				className="flex justify-start items-end gap-3 text-gray-900 text-base border-b border-gray-300 px-2 mb-4 w-full"
+				className="flex flex-row justify-center items-start gap-2 text-base font-headers font-semibold hover:text-blue-600"
 				onClick={clickHandler}
 			>
 				{placeholder}
