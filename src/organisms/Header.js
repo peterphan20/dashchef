@@ -9,6 +9,7 @@ import Searchbar from "../molecules/Searchbar";
 const Header = () => {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 	const [isOpen, setOpen] = useState(false);
+	const [isMobile, setIsMobile] = useState(true);
 
 	const handleClick = () => {
 		setTimeout(() => window.scrollTo(0, 0), 250);
@@ -23,8 +24,8 @@ const Header = () => {
 		window.addEventListener("resize", trackWindowChanges);
 		if (windowWidth > 864) {
 			setOpen(false);
+			setIsMobile(false);
 		}
-
 		return () => {
 			window.removeEventListener("resize", trackWindowChanges);
 		};
@@ -32,7 +33,10 @@ const Header = () => {
 
 	const showMenu = () => {
 		return windowWidth > 864 ? (
-			<MenuDesktop />
+			<div className="flex justify-center items-center gap-5">
+				<Searchbar />
+				<MenuDesktop />
+			</div>
 		) : (
 			<span className="z-30">
 				<Hamburger toggled={isOpen} toggle={setOpen} />
@@ -41,11 +45,11 @@ const Header = () => {
 	};
 
 	return (
-		<div className="sticky top-0 bg-red-600 z-20 w-full">
-			<header className="flex justify-between items-center text-gray-100 px-4 pt-4 pb-12">
+		<div className="sticky top-0 bg-red-600 z-20 w-full lg:px-44">
+			<header className="flex justify-between items-center text-gray-100 px-4 pt-4 pb-12 lg:pt-6 lg:pb-6 lg:container">
 				<Link
 					to="/"
-					className="font-headers font-bold text-4xl"
+					className="font-headers font-bold text-4xl lg:text-5xl"
 					onClick={handleClick}
 					aria-label="Click here to take you to the top of the application"
 				>
@@ -54,7 +58,7 @@ const Header = () => {
 				{showMenu()}
 				<MenuMobile setOpen={setOpen} isOpen={isOpen} />
 			</header>
-			<Searchbar />
+			{isMobile ? <Searchbar /> : null}
 		</div>
 	);
 };

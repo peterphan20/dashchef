@@ -50,8 +50,16 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 		>
 			{!user.loggedIn ? (
 				<>
-					<MenuButtonMobile clickHandler={handleLoginClick} text="Login" icon="sign-in-alt" />
-					<MenuButtonMobile clickHandler={handleSignupClick} text="Sign up" icon="user-plus" />
+					<MenuButtonMobile
+						clickHandler={handleLoginClick}
+						placeholder="Login"
+						icon="fas fa-sign-in-alt"
+					/>
+					<MenuButtonMobile
+						clickHandler={handleSignupClick}
+						placeholder="Sign up"
+						icon="fas fa-user-plus"
+					/>
 				</>
 			) : (
 				<>
@@ -60,7 +68,7 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 						placeholder="Profile"
 						clickHandler={handlePageChangeClick}
 					/>
-					<MenuButtonMobile text="Sign out" clickHandler={handleLogout} />
+					<MenuButtonMobile placeholder="Sign out" clickHandler={handleLogout} />
 				</>
 			)}
 			{!user.isChef ? null : user.isChef && user.kitchenID ? (
@@ -79,7 +87,7 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 			<MenuAnchorMobile
 				placeholder="Cart"
 				link="/cart"
-				icon="shopping-cart"
+				icon="fas fa-shopping-cart"
 				clickHandler={handleClick}
 			/>
 		</nav>

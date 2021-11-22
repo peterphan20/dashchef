@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
 import WizardInsertOne from "../molecules/WizardInsertOne";
 import WizardInsertTwo from "../molecules/WizardInsertTwo";
 import WizardInsertThree from "../molecules/WizardInsertThree";
 import RenderWizardButton from "../molecules/RenderWizardButton";
+import defaultAvatar from "../assets/default-avatar.jpg";
 import { createUser } from "../api/usersAPI";
 import { createChef } from "../api/chefsAPI";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
@@ -28,6 +28,7 @@ const ModalSignUp = () => {
 
 	const handleUserSignup = async (userObject) => {
 		const apiResponse = await createUser(userObject);
+		console.log("api response here ==>", apiResponse);
 		if (apiResponse.code !== 201) {
 			setAuthResponse(false);
 			console.log("There was an error while creating the user", apiResponse);
@@ -54,21 +55,31 @@ const ModalSignUp = () => {
 			aptNumber ? ", " + aptNumber : ""
 		}`;
 
-		const userObject = {
-			firstName,
-			lastName,
-			email,
-			password,
-			address: addressStr.toUpperCase(),
-			phone,
-		};
+		const formData = new FormData();
+		formData.append("firstName", firstName);
+		formData.append("lastName", lastName);
+		formData.append("email", email);
+		formData.append("password", password);
+		formData.append("address", addressStr.toUpperCase());
+		formData.append("phone", phone);
+		formData.append("file", defaultAvatar);
+
+		// const userObject = {
+		// 	firstName,
+		// 	lastName,
+		// 	email,
+		// 	password,
+		// 	address: addressStr.toUpperCase(),
+		// 	phone,
+		// };
+		// console.log("user object", userObject);
 
 		if (isChef === "yes") {
 			console.log("is chef", isChef);
-			handleChefSignup(userObject);
+			handleChefSignup(formData);
 		} else if (isChef === "no") {
 			console.log("is not chef", isChef);
-			handleUserSignup(userObject);
+			handleUserSignup(formData);
 		}
 	};
 

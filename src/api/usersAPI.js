@@ -12,13 +12,10 @@ export const getUser = async (id) => {
 	return data;
 };
 
-export const createUser = async (userObject) => {
+export const createUser = async (formData) => {
 	const res = await fetch(`${config.API_URL}/auth/user`, {
 		method: "POST",
-		body: JSON.stringify(userObject),
-		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
-		},
+		body: formData,
 	});
 	const data = await res.json();
 	return data;
