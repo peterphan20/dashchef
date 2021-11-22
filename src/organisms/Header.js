@@ -45,8 +45,8 @@ const Header = () => {
 	};
 
 	return (
-		<div className="sticky top-0 bg-red-600 z-20 w-full lg:px-44">
-			<header className="flex justify-between items-center text-gray-100 px-4 pt-4 pb-12 lg:pt-6 lg:pb-6 lg:container">
+		<div className=" sticky top-0 bg-red-600 z-20 w-full">
+			<header className="flex justify-between items-center text-gray-100 px-4 pt-4 pb-12 w-full lg:pt-6 lg:pb-6 lg:max-w-7xl lg:mx-auto">
 				<Link
 					to="/"
 					className="font-headers font-bold text-4xl lg:text-5xl"
