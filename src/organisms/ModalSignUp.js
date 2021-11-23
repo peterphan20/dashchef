@@ -55,31 +55,22 @@ const ModalSignUp = () => {
 			aptNumber ? ", " + aptNumber : ""
 		}`;
 
-		const formData = new FormData();
-		formData.append("firstName", firstName);
-		formData.append("lastName", lastName);
-		formData.append("email", email);
-		formData.append("password", password);
-		formData.append("address", addressStr.toUpperCase());
-		formData.append("phone", phone);
-		formData.append("file", defaultAvatar);
-
-		// const userObject = {
-		// 	firstName,
-		// 	lastName,
-		// 	email,
-		// 	password,
-		// 	address: addressStr.toUpperCase(),
-		// 	phone,
-		// };
-		// console.log("user object", userObject);
+		const userObject = {
+			firstName,
+			lastName,
+			email,
+			password,
+			address: addressStr.toUpperCase(),
+			phone,
+		};
+		console.log("user object", userObject);
 
 		if (isChef === "yes") {
 			console.log("is chef", isChef);
-			handleChefSignup(formData);
+			handleChefSignup(userObject);
 		} else if (isChef === "no") {
 			console.log("is not chef", isChef);
-			handleUserSignup(formData);
+			handleUserSignup(userObject);
 		}
 	};
 
@@ -128,7 +119,7 @@ const ModalSignUp = () => {
 	return (
 		<div
 			onClick={(e) => e.stopPropagation()}
-			className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow px-8 pt-8 pb-6 mb-20 z-20"
+			className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow px-8 pt-8 pb-6 mb-20 z-20 lg:w-96 lg:max-w-l"
 		>
 			{renderWizardInserts()}
 			<RenderWizardButton

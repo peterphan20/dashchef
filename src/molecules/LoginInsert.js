@@ -23,7 +23,7 @@ const LoginInsert = ({
 		<>
 			<div
 				onClick={(e) => e.stopPropagation()}
-				className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow p-8 z-20"
+				className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow p-8 z-20 lg:w-96 lg:max-w-l"
 			>
 				<button
 					className="flex self-end text-sm text-gray-400"
@@ -31,7 +31,7 @@ const LoginInsert = ({
 				>
 					<i className="fas fa-times"></i>
 				</button>
-				<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 py-5">
+				<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 py-5 lg:break-words">
 					Sign in to get home cooked meals!
 				</h1>
 				{authResponse ? null : (
