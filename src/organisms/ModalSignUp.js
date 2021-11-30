@@ -4,7 +4,6 @@ import WizardInsertOne from "../molecules/WizardInsertOne";
 import WizardInsertTwo from "../molecules/WizardInsertTwo";
 import WizardInsertThree from "../molecules/WizardInsertThree";
 import RenderWizardButton from "../molecules/RenderWizardButton";
-import defaultAvatar from "../assets/default-avatar.jpg";
 import { createUser } from "../api/usersAPI";
 import { createChef } from "../api/chefsAPI";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
