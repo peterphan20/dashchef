@@ -53,13 +53,13 @@ const MenuDesktop = () => {
 			)}
 			{!user.isChef ? null : user.isChef && user.kitchenID ? (
 				<MenuAnchorDesktop
-					link={`/kitchen/${user.kitchenID}`}
+					link={`/kitchen/id/${user.kitchenID}`}
 					placeholder="Kitchen"
 					clickHandler={handlePageChangeClick}
 				/>
 			) : (
 				<MenuAnchorDesktop
-					link="/kitchen/create"
+					link="/create/kitchen"
 					placeholder="Create a kitchen"
 					clickHandler={handlePageChangeClick}
 				/>

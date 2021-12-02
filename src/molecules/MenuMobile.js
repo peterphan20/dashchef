@@ -73,13 +73,13 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 			)}
 			{!user.isChef ? null : user.isChef && user.kitchenID ? (
 				<MenuAnchorMobile
-					link={`/kitchen/${user.kitchenID}`}
+					link={`/kitchen/id/${user.kitchenID}`}
 					placeholder="My Kitchen"
 					clickHandler={handlePageChangeClick}
 				/>
 			) : (
 				<MenuAnchorMobile
-					link="/kitchen/create"
+					link="/create/kitchen"
 					placeholder="Create a kitchen"
 					clickHandler={handlePageChangeClick}
 				/>

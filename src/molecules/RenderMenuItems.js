@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const RenderMenuItems = ({ className }) => {
 	const [quantity, setQuantity] = useState(0);
 	const menuItems = useSelector((state) => state.menuItemsReducer);
+	const user = useSelector((state) => state.userReducer);
+	const kitchen = useSelector((state) => state.selectedKitchenReducer);
 
 	const renderedMenuItems = menuItems.map((menuItem) => {
 		return (
@@ -50,7 +53,19 @@ const RenderMenuItems = ({ className }) => {
 		);
 	});
 
-	return <div className="flex flex-col justify-center items-start">{renderedMenuItems}</div>;
+	return (
+		<div className="flex flex-col justify-center items-start">
+			{menuItems.itemID ? (
+				renderedMenuItems
+			) : user.kitchenID === kitchen.id ? (
+				<Link to="/create/menu-item" className="text-blue-700 font-body text-sm pt-2 pb-8">
+					Create Menu Item
+				</Link>
+			) : (
+				<p className="font-body text-sm pt-2 pb-8">No menu item</p>
+			)}
+		</div>
+	);
 };
 
 export default RenderMenuItems;

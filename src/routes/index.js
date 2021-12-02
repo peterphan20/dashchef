@@ -19,7 +19,7 @@ export const routes = [
 		component: Profile,
 	},
 	{
-		path: "/kitchen/:kitchenID",
+		path: "/kitchen/id/:kitchenID",
 		exact: true,
 		component: Kitchen,
 	},

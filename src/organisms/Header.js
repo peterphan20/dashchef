@@ -9,7 +9,7 @@ import Searchbar from "../molecules/Searchbar";
 const Header = () => {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 	const [isOpen, setOpen] = useState(false);
-	const [isMobile, setIsMobile] = useState(true);
+	const [isMobile, setIsMobile] = useState(false);
 
 	const handleClick = () => {
 		setTimeout(() => window.scrollTo(0, 0), 250);
@@ -25,6 +25,8 @@ const Header = () => {
 		if (windowWidth > 864) {
 			setOpen(false);
 			setIsMobile(false);
+		} else {
+			setIsMobile(true);
 		}
 		return () => {
 			window.removeEventListener("resize", trackWindowChanges);
@@ -45,7 +47,7 @@ const Header = () => {
 	};
 
 	return (
-		<div className=" sticky top-0 bg-red-600 z-20 w-full">
+		<div className="sticky top-0 bg-red-600 z-20 w-full">
 			<header className="flex justify-between items-center text-gray-100 px-4 pt-4 pb-12 w-full lg:pt-6 lg:pb-6 lg:max-w-7xl lg:mx-auto">
 				<Link
 					to="/"

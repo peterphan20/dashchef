@@ -4,7 +4,7 @@ const MenuButtonDesktop = ({ clickHandler, placeholder, icon }) => {
 	return (
 		<>
 			<button
-				className="flex flex-row justify-center items-start gap-2 text-base font-headers font-semibold hover:text-blue-600"
+				className="flex flex-row justify-center items-start gap-2 text-base font-headers font-semibold hover:text-blue-500"
 				onClick={clickHandler}
 			>
 				{placeholder}
