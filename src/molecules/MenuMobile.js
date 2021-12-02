@@ -74,7 +74,7 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 			{!user.isChef ? null : user.isChef && user.kitchenID ? (
 				<MenuAnchorMobile
 					link={`/kitchen/id/${user.kitchenID}`}
-					placeholder="My Kitchen"
+					placeholder="Kitchen"
 					clickHandler={handlePageChangeClick}
 				/>
 			) : (

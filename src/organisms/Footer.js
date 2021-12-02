@@ -2,9 +2,9 @@ import React from "react";
 
 const Footer = () => {
 	return (
-		<div className="bg-gray-200 text-gray-900 px-4 w-full h-full min-w-screen">
+		<div className="flex flex-col justify-center items-center bg-gray-200 text-gray-900 px-4 w-full h-full min-w-screen lg:pt-8 lg:pb-5">
 			<div className="text-center py-5 border-b border-gray-300">
-				<h1 className="text-4xl font-body font-bold pb-3">Dashchef</h1>
+				<h1 className="text-4xl font-body font-bold pb-3 lg:text-5xl">Dashchef</h1>
 				<p className="font-body">
 					<a
 						href="https://github.com/peterphan20/dashchef.git"
@@ -12,7 +12,7 @@ const Footer = () => {
 						rel="noreferrer"
 						aria-label="Click here to open the Dashchef Page's github in a new tab."
 					>
-						<i className="fab fa-github-square text-gray-900 text-2xl"></i>
+						<i className="fab fa-github-square text-gray-900 text-2xl lg:text-3xl"></i>
 					</a>
 				</p>
 			</div>

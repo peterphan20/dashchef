@@ -72,7 +72,7 @@ const CreateMenuItem = () => {
 	};
 
 	return (
-		<div className="flex flex-col justify-start bg-gray-100 py-2 px-4 w-full h-full min-h-screen">
+		<div className="flex flex-col justify-start bg-gray-100 py-2 px-4 w-full h-full min-h-screen lg: justify-center lg:py-14">
 			<MenuItemCreateForm
 				name={name}
 				setName={setName}

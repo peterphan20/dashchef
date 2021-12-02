@@ -58,7 +58,7 @@ const RenderMenuItems = ({ className }) => {
 			{menuItems.itemID ? (
 				renderedMenuItems
 			) : user.kitchenID === kitchen.id ? (
-				<Link to="/create/menu-item" className="text-blue-700 font-body text-sm pt-2 pb-8">
+				<Link to="/create/menu-item" className="text-blue-700 font-body text-sm py-2 mt-2 mb-6">
 					Create Menu Item
 				</Link>
 			) : (
