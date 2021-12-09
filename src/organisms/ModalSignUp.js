@@ -118,7 +118,7 @@ const ModalSignUp = () => {
 	return (
 		<div
 			onClick={(e) => e.stopPropagation()}
-			className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow px-8 pt-8 pb-6 mb-20 z-20 lg:w-96 lg:max-w-l"
+			className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow px-5 pt-8 pb-6 mb-20 z-20 w-full lg:px-8 lg:w-96 lg:max-w-l"
 		>
 			{renderWizardInserts()}
 			<RenderWizardButton

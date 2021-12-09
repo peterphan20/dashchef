@@ -15,29 +15,27 @@ const MenuItemCreateForm = ({
 	selectedFile,
 	fileIsSelected,
 	handleCreateMenuItem,
-	listOfItems,
-	setListOfItems,
 	authResponse,
 }) => {
-	const updateListOfItems = (itemIndex, updatedCheck) => {
-		const updatedListOfItems = [...listOfItems];
-		updatedListOfItems[itemIndex].isChecked = updatedCheck;
-		setListOfItems(updatedListOfItems);
-	};
+	// const updateListOfItems = (itemIndex, updatedCheck) => {
+	// 	const updatedListOfItems = [...listOfItems];
+	// 	updatedListOfItems[itemIndex].isChecked = updatedCheck;
+	// 	setListOfItems(updatedListOfItems);
+	// };
 
-	const renderedListOfItems = listOfItems.map((item, index) => (
-		<div key={index} className="flex justify-start items-center gap-2 mb-1">
-			<input
-				id={item.tag}
-				type="checkbox"
-				checked={item.isChecked}
-				onChange={() => updateListOfItems(index, !item.isChecked)}
-			/>
-			<label htmlFor={item.tag} className="block text-sm font-medium text-gray-900">
-				{item.tag}
-			</label>
-		</div>
-	));
+	// const renderedListOfItems = listOfItems.map((item, index) => (
+	// 	<div key={index} className="flex justify-start items-center gap-2 mb-1">
+	// 		<input
+	// 			id={item.tag}
+	// 			type="checkbox"
+	// 			checked={item.isChecked}
+	// 			onChange={() => updateListOfItems(index, !item.isChecked)}
+	// 		/>
+	// 		<label htmlFor={item.tag} className="block text-sm font-medium text-gray-900">
+	// 			{item.tag}
+	// 		</label>
+	// 	</div>
+	// ));
 
 	return (
 		<div className="w-full h-full lg:bg-gray-200 lg:max-w-2xl lg:mx-auto lg:py-10 lg:px-16 lg:rounded-lg lg:border lg:border-gray-300">
@@ -72,10 +70,10 @@ const MenuItemCreateForm = ({
 					onChange={(e) => setDescription(e.target.value)}
 				/>
 			</div>
-			<div className="flex flex-col justify-center items-start mb-5">
+			{/* <div className="flex flex-col justify-center items-start mb-5">
 				<h1 className="block text-base font-medium text-gray-900 mb-2">Dietary Restrictions :</h1>
-				{renderedListOfItems}
-			</div>
+			</div> */}
+			<h1 className="block text-sm font-medium text-gray-700 mb-2">Upload an image</h1>
 			<ImageUploadSingle
 				fileInputHandler={fileInputHandler}
 				fileIsSelected={fileIsSelected}
@@ -89,7 +87,7 @@ const MenuItemCreateForm = ({
 			)}
 			<ButtonFormSmall
 				placeholder="Create item"
-				className="bg-green-400 mt-5 mb-10 lg:text-lg lg:py-2"
+				className="bg-green-400 mt-5 mb-10 lg:text-lg lg:py-2 lg:mt-8"
 				clickHandler={handleCreateMenuItem}
 			/>
 		</div>

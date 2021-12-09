@@ -30,11 +30,11 @@ const WizardInsertThree = ({
 			>
 				<i className="fas fa-times"></i>
 			</button>
-			<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 pt-5 pb-8">
+			<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 pt-5 pb-5">
 				Sign up for Dashchef
 			</h1>
 			{authResponse ? null : (
-				<p className="text-center text-lg text-red-600 font-body">Invalid user credentials</p>
+				<p className="text-center text-lg text-red-600 font-body pb-5">Invalid user credentials</p>
 			)}
 			<div className="rounded-md -space-y-px mb-5">
 				<FormInputField

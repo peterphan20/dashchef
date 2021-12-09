@@ -35,7 +35,9 @@ const LoginInsert = ({
 					Sign in to get home cooked meals!
 				</h1>
 				{authResponse ? null : (
-					<p className="text-center text-lg text-red-600 font-body">Invalid user credentials</p>
+					<p className="text-center text-lg text-red-600 font-body pb-5">
+						Incorrect username or password
+					</p>
 				)}
 				<div className="rounded-md -space-y-px mb-5">
 					<FormInputField
