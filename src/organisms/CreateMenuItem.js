@@ -70,9 +70,12 @@ const CreateMenuItem = () => {
 	};
 
 	return (
-		<div className="flex flex-col justify-start bg-gray-100 py-2 px-4 w-full h-full min-h-screen lg: justify-center lg:py-14">
+		<div className="flex flex-col justify-start items-center bg-gray-100 py-2 px-4 w-full h-full min-h-screen lg:justify-center lg:py-14">
 			{showCreateAnotherItemModal ? (
-				<ModalCreateAnotherItem setShowCreateAnotherItemModal={setShowCreateAnotherItemModal} />
+				<ModalCreateAnotherItem
+					modalHandler={setShowCreateAnotherItemModal}
+					setShowCreateAnotherItemModal={setShowCreateAnotherItemModal}
+				/>
 			) : null}
 			<MenuItemCreateForm
 				name={name}

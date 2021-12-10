@@ -21,6 +21,7 @@ const MenuItemCreateForm = ({
 	// 	const updatedListOfItems = [...listOfItems];
 	// 	updatedListOfItems[itemIndex].isChecked = updatedCheck;
 	// 	setListOfItems(updatedListOfItems);
+	// 	console.log(listOfItems);
 	// };
 
 	// const renderedListOfItems = listOfItems.map((item, index) => (
@@ -39,7 +40,7 @@ const MenuItemCreateForm = ({
 
 	return (
 		<div className="w-full h-full lg:bg-gray-200 lg:max-w-2xl lg:mx-auto lg:py-10 lg:px-16 lg:rounded-lg lg:border lg:border-gray-300">
-			<h1 className="text-2xl font-headers text-center py-5 lg:text-3xl lg:py-6">
+			<h1 className="text-2xl font-headers text-center py-6 lg:text-3xl">
 				Create a menu item
 			</h1>
 			<FormInputField
@@ -72,6 +73,7 @@ const MenuItemCreateForm = ({
 			</div>
 			{/* <div className="flex flex-col justify-center items-start mb-5">
 				<h1 className="block text-base font-medium text-gray-900 mb-2">Dietary Restrictions :</h1>
+				{renderedListOfItems}
 			</div> */}
 			<h1 className="block text-sm font-medium text-gray-700 mb-2">Upload an image</h1>
 			<ImageUploadSingle
