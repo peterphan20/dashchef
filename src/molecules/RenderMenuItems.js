@@ -1,20 +1,51 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { CART_ADD } from "../constants";
 
 const RenderMenuItems = ({ className }) => {
-	const [quantity, setQuantity] = useState(0);
+	const [itemQuantities, setItemQuantities] = useState({});
 	const menuItems = useSelector((state) => state.menuItemsReducer);
 	const user = useSelector((state) => state.userReducer);
 	const kitchen = useSelector((state) => state.selectedKitchenReducer);
+	const dispatch = useDispatch();
 
-	const renderedMenuItems = menuItems.map((menuItem) => {
+	const incrementQuantity = (itemID) => {
+		const newItemQuantities = { ...itemQuantities };
+		if (itemQuantities[itemID]) {
+			newItemQuantities[itemID]++;
+		} else {
+			newItemQuantities[itemID] = 1;
+		}
+		setItemQuantities(newItemQuantities);
+	};
+
+	const decrementQuantity = (itemID) => {
+		const newItemQuantities = { ...itemQuantities };
+		if (!itemQuantities[itemID] || itemQuantities[itemID] < 1) return;
+		newItemQuantities[itemID]--;
+		setItemQuantities(newItemQuantities);
+	};
+
+	const addToCart = (itemID) => {
+		if (itemQuantities[itemID] < 1 || !itemQuantities[itemID]) {
+			//TODO: post to user to change quantity
+			return;
+		}
+		const payload = {
+			itemID,
+			quantity: itemQuantities[itemID],
+		};
+		dispatch({ type: CART_ADD, payload });
+	};
+
+	const renderedMenuItems = menuItems.map((menuItem, idx) => {
 		return (
 			<div
 				className={`flex flex-col text-sm font-body border-b border-gray-300 py-1 w-full h-full ${className}`}
 				key={menuItem.itemID}
 			>
-				<div className="flex justify-between items-center pb-3">
+				<div className="flex justify-between items-centerp b-3">
 					<div className="flex flex-col">
 						<p className="text-base font-bold pb-1">{menuItem.itemName}</p>
 						<p className="text-sm text-gray-700 overflow-clip pb-1">{menuItem.itemDescription}</p>
@@ -28,24 +59,25 @@ const RenderMenuItems = ({ className }) => {
 					<div className="flex justify-center items-center gap-2">
 						<button
 							className="flex justify-center items-center bg-gray-200 text-gray-500 rounded-full w-7 h-7"
-							onClick={() => setQuantity(quantity - 1)}
+							onClick={() => decrementQuantity(menuItem.itemID)}
 						>
 							<i className="fas fa-minus"></i>
 						</button>
-						<input
-							type="number"
-							className="bg-gray-50 p-1 w-7 h-6"
-							value={quantity}
-							onChange={(e) => setQuantity(e.target.value)}
-						/>
+						<div>
+							{!itemQuantities[menuItem.itemID] ? <p>0</p> : itemQuantities[menuItem.itemID]}
+						</div>
 						<button
 							className="flex justify-center items-center bg-gray-400 text-gray-300 rounded-full w-7 h-7"
-							onClick={() => setQuantity(quantity + 1)}
+							onClick={() => incrementQuantity(menuItem.itemID)}
 						>
 							<i className="fas fa-plus"></i>
 						</button>
 					</div>
-					<button className="flex items-end bg-red-600 text-gray-100 text-sm rounded-md py-2 px-4">
+					<button
+						className="flex items-end bg-red-600 text-gray-100 text-sm rounded-md py-2 px-4 disabled:bg-gray-300"
+						onClick={() => addToCart(menuItem.itemID)}
+						disabled={!itemQuantities[menuItem.itemID] || itemQuantities[menuItem.itemID] < 1}
+					>
 						Add to Cart
 					</button>
 				</div>
@@ -55,7 +87,7 @@ const RenderMenuItems = ({ className }) => {
 
 	return (
 		<div className="flex flex-col justify-center items-start">
-			{menuItems.itemID ? (
+			{menuItems[0] ? (
 				renderedMenuItems
 			) : user.kitchenID === kitchen.id ? (
 				<Link to="/create/menu-item" className="text-blue-700 font-body text-sm py-2 mt-2 mb-6">

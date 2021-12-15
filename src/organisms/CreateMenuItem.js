@@ -50,12 +50,12 @@ const CreateMenuItem = () => {
 
 		const apiResponse = await createMenuItem(formData, token);
 		console.log("api reponse", apiResponse);
-		if (apiResponse.code === 201) {
+		if (apiResponse.code !== 201) {
+			console.log("something went wrong here");
+			setAuthResponse(false);
+		} else {
 			console.log("menu item created");
 			setShowCreateAnotherItemModal(true);
-		} else {
-			setAuthResponse(false);
-			console.log("something went wrong here");
 		}
 	};
 
