@@ -12,28 +12,28 @@ const CreateMenuItem = () => {
 	const [fileIsSelected, setFileIsSelected] = useState(false);
 	const [showCreateAnotherItemModal, setShowCreateAnotherItemModal] = useState(false);
 	const [authResponse, setAuthResponse] = useState(true);
-	// const [listOfItems, setListOfItems] = useState([
-	// 	{
-	// 		tag: "Lactose Free",
-	// 		isChecked: false,
-	// 	},
-	// 	{
-	// 		tag: "Gluten Free",
-	// 		isChecked: false,
-	// 	},
-	// 	{
-	// 		tag: "Vegetarian",
-	// 		isChecked: false,
-	// 	},
-	// 	{
-	// 		tag: "Vegan",
-	// 		isChecked: false,
-	// 	},
-	// 	{
-	// 		tag: "Food Allergy",
-	// 		isChecked: false,
-	// 	},
-	// ]);
+	const [listOfItems, setListOfItems] = useState([
+		{
+			tag: "Lactose Free",
+			isChecked: false,
+		},
+		{
+			tag: "Gluten Free",
+			isChecked: false,
+		},
+		{
+			tag: "Vegetarian",
+			isChecked: false,
+		},
+		{
+			tag: "Vegan",
+			isChecked: false,
+		},
+		{
+			tag: "Food Allergy",
+			isChecked: false,
+		},
+	]);
 
 	const user = useSelector((state) => state.userReducer);
 
@@ -47,6 +47,10 @@ const CreateMenuItem = () => {
 		formData.append("description", description);
 		formData.append("price", price);
 		formData.append("file", selectedFile);
+		// formData.append(
+		// 	"tags",
+		// 	listOfItems.map((item) => item.tag)
+		// );
 
 		const apiResponse = await createMenuItem(formData, token);
 		console.log("api reponse", apiResponse);
@@ -90,6 +94,8 @@ const CreateMenuItem = () => {
 				clearSelectedFile={clearSelectedFile}
 				handleCreateMenuItem={handleCreateMenuItem}
 				authResponse={authResponse}
+				listOfItems={listOfItems}
+				setListOfItems={setListOfItems}
 			/>
 		</div>
 	);

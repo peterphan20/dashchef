@@ -5,17 +5,17 @@ import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
 import MenuButtonMobile from "../atoms/MenuButtonMobile";
 import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
 
-const MenuMobile = ({ setOpen, isOpen }) => {
+const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 	const user = useSelector((state) => state.userReducer);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
-	const handleClick = (id) => {
-		setOpen(false);
-		setTimeout(() => {
-			document.getElementById(id).scrollIntoView();
-		}, 300);
-	};
+	// const handleClick = (id) => {
+	// 	setOpen(false);
+	// 	setTimeout(() => {
+	// 		document.getElementById(id).scrollIntoView();
+	// 	}, 300);
+	// };
 
 	const handlePageChangeClick = () => {
 		setOpen(false);
@@ -32,6 +32,11 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 		setOpen(false);
 		window.scrollTo(0, 0);
 		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
+	};
+
+	const handleCartClick = () => {
+		setOpen(false);
+		setIsCartOpen(true);
 	};
 
 	const handleLogout = () => {
@@ -84,11 +89,10 @@ const MenuMobile = ({ setOpen, isOpen }) => {
 					clickHandler={handlePageChangeClick}
 				/>
 			)}
-			<MenuAnchorMobile
+			<MenuButtonMobile
 				placeholder="Cart"
-				link="/cart"
 				icon="fas fa-shopping-cart"
-				clickHandler={handleClick}
+				clickHandler={handleCartClick}
 			/>
 		</nav>
 	);

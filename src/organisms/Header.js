@@ -6,7 +6,7 @@ import MenuMobile from "../molecules/MenuMobile";
 import MenuDesktop from "../molecules/MenuDesktop";
 import Searchbar from "../molecules/Searchbar";
 
-const Header = () => {
+const Header = ({ setIsCartOpen }) => {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 	const [isOpen, setOpen] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
@@ -58,7 +58,7 @@ const Header = () => {
 					Dashchef
 				</Link>
 				{showMenu()}
-				<MenuMobile setOpen={setOpen} isOpen={isOpen} />
+				<MenuMobile setOpen={setOpen} isOpen={isOpen} setIsCartOpen={setIsCartOpen} />
 			</header>
 			{isMobile ? <Searchbar /> : null}
 		</div>

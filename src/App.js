@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { routes } from "./routes";
@@ -7,8 +7,10 @@ import Footer from "./organisms/Footer";
 import ModalLogin from "./organisms/ModalLogin.js";
 import ModalSignUp from "./organisms/ModalSignUp";
 import { HIDE_SIGN_UP_MODAL } from "./constants";
+import ModalCart from "./organisms/ModalCart";
 
 const App = () => {
+	const [isCartOpen, setIsCartOpen] = useState(false);
 	// TODO: Set up a box that shows demo user information
 	const modal = useSelector((state) => state.modalReducer);
 	const dispatch = useDispatch();
@@ -26,9 +28,10 @@ const App = () => {
 
 	return (
 		<Router>
-			<Headers />
+			<Headers setIsCartOpen={setIsCartOpen} />
 			{modal.showLoginModal ? <ModalLogin /> : null}
 			{renderSignUp()}
+			<ModalCart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
 			<Switch>
 				{routes.map((route, idx) => {
 					return <Route {...route} key={idx} />;

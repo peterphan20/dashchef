@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import UpdateUserForm from "../molecules/UpdateUserForm";
-import UpdateAddressForm from "../molecules/UpdateAddressForm";
-import ButtonProfile from "../atoms/ButtonProfile";
-import LinkProfile from "../atoms/LinkProfile";
-import defaultAvatar from "../assets/default-avatar.jpg";
 import { updateUser } from "../api/usersAPI";
 import { USER_LOGOUT } from "../constants";
+import ProfileMobile from "../organisms/ProfileMobile";
+import ProfileDesktop from "../organisms/ProfileDesktop";
 
 const Profile = () => {
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+	const [isMobile, setIsMobile] = useState(false);
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [phone, setPhone] = useState("");
@@ -26,6 +25,22 @@ const Profile = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const user = useSelector((state) => state.userReducer);
+
+	const trackWindowChanges = () => {
+		setWindowWidth(window.innerWidth);
+	};
+
+	useEffect(() => {
+		window.addEventListener("resize", trackWindowChanges);
+		if (windowWidth < 864) {
+			setIsMobile(true);
+		} else {
+			setIsMobile(false);
+		}
+		return () => {
+			window.removeEventListener("resize", trackWindowChanges);
+		};
+	}, [windowWidth]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -81,18 +96,9 @@ const Profile = () => {
 	};
 
 	return (
-		<div className="flex flex-col justify-start items-center bg-gray-100 py-5 w-full h-full min-h-screen">
-			<div className="w-32 h-32">
-				<img src={defaultAvatar} alt="default avatar" className="rounded-full" />
-			</div>
-			<div className="flex flex-col justify-center items-center pt-3">
-				<button className="text-sm text-blue-400 mb-1">Add a photo</button>
-				<h1 className="text-2xl font-body font-semibold">
-					{user.firstName} {user.lastName}
-				</h1>
-			</div>
-			{openEditForm ? (
-				<UpdateUserForm
+		<div className="bg-gray-100 w-full h-full">
+			{isMobile ? (
+				<ProfileMobile
 					firstName={firstName}
 					setFirstName={setFirstName}
 					lastName={lastName}
@@ -101,19 +107,6 @@ const Profile = () => {
 					setPhone={setPhone}
 					email={email}
 					setEmail={setEmail}
-					handleUpdate={handleUpdate}
-					setOpenEditForm={setOpenEditForm}
-					authResponse={authResponse}
-				/>
-			) : (
-				<ButtonProfile
-					placeholder="Edit profile"
-					className="border-t mt-10"
-					modalHandler={() => setOpenEditForm(true)}
-				/>
-			)}
-			{openEditAddress ? (
-				<UpdateAddressForm
 					address={address}
 					setAddress={setAddress}
 					aptNumber={aptNumber}
@@ -125,21 +118,42 @@ const Profile = () => {
 					zipcode={zipcode}
 					setZipCode={setZipCode}
 					handleUpdate={handleUpdate}
+					handleSignOut={handleSignOut}
+					openEditForm={openEditForm}
+					setOpenEditForm={setOpenEditForm}
+					openEditAddress={openEditAddress}
 					setOpenEditAddress={setOpenEditAddress}
 					authResponse={authResponse}
 				/>
 			) : (
-				<ButtonProfile placeholder="Edit Address" modalHandler={() => setOpenEditAddress(true)} />
+				<ProfileDesktop
+					firstName={firstName}
+					setFirstName={setFirstName}
+					lastName={lastName}
+					setLastName={setLastName}
+					phone={phone}
+					setPhone={setPhone}
+					email={email}
+					setEmail={setEmail}
+					address={address}
+					setAddress={setAddress}
+					aptNumber={aptNumber}
+					setAptNumber={setAptNumber}
+					city={city}
+					setCity={setCity}
+					geoState={geoState}
+					setGeoState={setGeoState}
+					zipcode={zipcode}
+					setZipCode={setZipCode}
+					handleUpdate={handleUpdate}
+					handleSignOut={handleSignOut}
+					openEditForm={openEditForm}
+					setOpenEditForm={setOpenEditForm}
+					openEditAddress={openEditAddress}
+					setOpenEditAddress={setOpenEditAddress}
+					authResponse={authResponse}
+				/>
 			)}
-			<div className="flex flex-col justify-center items-center font-body w-full h-full">
-				{user.isChef && !user.kitchenID ? (
-					<LinkProfile link="/create/kitchen" placeholder="Create a kitchen" />
-				) : null}
-				{user.kitchenID ? (
-					<LinkProfile link={`/edit/kitchen/${user.kitchenID}`} placeholder="Edit your kitchen" />
-				) : null}
-				<ButtonProfile placeholder="Logout" modalHandler={handleSignOut} />
-			</div>
 		</div>
 	);
 };
