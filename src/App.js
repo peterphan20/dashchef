@@ -6,8 +6,8 @@ import Headers from "./organisms/Header";
 import Footer from "./organisms/Footer";
 import ModalLogin from "./organisms/ModalLogin.js";
 import ModalSignUp from "./organisms/ModalSignUp";
-import { loginUser } from "./api/usersAPI";
-import { loginChef } from "./api/chefsAPI";
+import { getUser, validateToken } from "./api/usersAPI";
+import { getChef } from "./api/chefsAPI";
 import { USER_LOGIN, HIDE_SIGN_UP_MODAL } from "./constants";
 import ModalCart from "./organisms/ModalCart";
 
@@ -18,47 +18,46 @@ const App = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		const token = localStorage.getItem("authToken");
-		const isChef = localStorage.getItem("isChef");
-		if (!token) return;
-		if (isChef === "0") {
-			async function getUserData() {
-				const apiResponse = await loginUser(token);
+		async function validateUser() {
+			const token = localStorage.getItem("authToken");
+			const isChef = localStorage.getItem("isChef");
+			if (!token) return;
+			const apiResponse = await validateToken(token);
+			if (!apiResponse.id) return;
+			if (isChef === "0") {
+				const userApiResponse = await getUser(apiResponse.id);
+				const userData = userApiResponse.rows[0];
 				const payload = {
 					isChef: false,
-					id: apiResponse.id,
-					firstName: apiResponse.firstName,
-					lastName: apiResponse.lastName,
-					email: apiResponse.email,
-					address: apiResponse.address,
-					phone: apiResponse.phone,
-					avatarURL: apiResponse.avatarURL,
+					id: userData.id,
+					firstName: userData.firstName,
+					lastName: userData.lastName,
+					email: userData.email,
+					address: userData.address,
+					phone: userData.phone,
+					avatarURL: userData.avatarURL,
 					loggedIn: true,
 				};
 				dispatch({ type: USER_LOGIN, payload });
-			}
-			getUserData();
-		} else {
-			async function getChefData() {
-				console.log(token);
-				const apiResponse = await loginChef(token);
-				console.log("chef data", apiResponse);
+			} else {
+				const chefApiResponse = await getChef(apiResponse.id);
+				const chefData = chefApiResponse.rows[0];
 				const payload = {
 					isChef: true,
-					id: apiResponse.id,
-					kitchenID: apiResponse.kitchenID,
-					firstName: apiResponse.firstName,
-					lastName: apiResponse.lastName,
-					email: apiResponse.email,
-					address: apiResponse.address,
-					phone: apiResponse.phone,
-					avatarURL: apiResponse.avatarURL,
+					id: chefData.id,
+					kitchenID: chefData.kitchenID,
+					firstName: chefData.firstName,
+					lastName: chefData.lastName,
+					email: chefData.email,
+					address: chefData.address,
+					phone: chefData.phone,
+					avatarURL: chefData.avatarURL,
 					loggedIn: true,
 				};
 				dispatch({ type: USER_LOGIN, payload });
 			}
-			getChefData();
 		}
+		validateUser();
 	}, [history, dispatch]);
 
 	const renderSignUp = () => {

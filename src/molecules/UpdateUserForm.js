@@ -56,11 +56,7 @@ const UpdateUserForm = ({
 					placeholder="Cancel"
 					clickHandler={() => setOpenEditForm(false)}
 				/>
-				<ButtonFormSmall
-					className="bg-green-400"
-					placeholder="Submit"
-					clickHandler={handleUpdate}
-				/>
+				<ButtonFormSmall className="bg-green-400" placeholder="Save" clickHandler={handleUpdate} />
 			</div>
 		</div>
 	);

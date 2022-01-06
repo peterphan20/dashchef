@@ -27,11 +27,15 @@ const Profile = () => {
 	const user = useSelector((state) => state.userReducer);
 
 	useEffect(() => {
-		const token = localStorage.getItem("authToken");
-		if (!token) {
-			history.push("/");
+		window.scrollTo(0, 0);
+		async function getUserData() {
+			const token = localStorage.getItem("authToken");
+			if (!token) {
+				history.push("/");
+			}
 		}
-	});
+		getUserData();
+	}, [history]);
 
 	const trackWindowChanges = () => {
 		setWindowWidth(window.innerWidth);
@@ -50,22 +54,21 @@ const Profile = () => {
 	}, [windowWidth]);
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
 		setFirstName(user.firstName);
 		setLastName(user.lastName);
 		setEmail(user.email);
 		setPhone(user.phone);
+		console.log("address", user.address);
 
-		const splitAddress = user.address.split(", ");
-		if (splitAddress[0]) setAddress(splitAddress[0]);
-		if (splitAddress[1]) setCity(splitAddress[1]);
-		if (splitAddress[2]) setGeoState(splitAddress[2]);
-		if (splitAddress[3]) setZipCode(splitAddress[3]);
-		if (!splitAddress[4]) {
-			setAptNumber("");
-		} else {
-			setAptNumber(splitAddress[4]);
-		}
+		// if (splitAddress[0]) setAddress(splitAddress[0]);
+		// if (splitAddress[1]) setCity(splitAddress[1]);
+		// if (splitAddress[2]) setGeoState(splitAddress[2]);
+		// if (splitAddress[3]) setZipCode(splitAddress[3]);
+		// if (!splitAddress[4]) {
+		// 	setAptNumber("");
+		// } else {
+		// 	setAptNumber(splitAddress[4]);
+		// }
 	}, [user]);
 
 	const handleSignOut = async () => {

@@ -72,7 +72,7 @@ const WizardInsertThree = ({
 				<Dropdown
 					options={USStates}
 					select={geoState}
-					placeholder="City/District"
+					placeholder="City/Province"
 					onSelectedChange={(e) => setGeoState(e.target.value)}
 				/>
 				<FormInputField

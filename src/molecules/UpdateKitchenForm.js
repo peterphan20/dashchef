@@ -46,7 +46,7 @@ const UpdateKitchenForm = ({
 				htmlFor="city"
 				text="city"
 				type="text"
-				placeholder="City/province"
+				placeholder="City"
 				autoComplete="address-level2"
 				value={city}
 				changeHandler={(e) => setCity(e.target.value)}
@@ -91,7 +91,7 @@ const UpdateKitchenForm = ({
 				/>
 				<ButtonFormSmall
 					className="bg-green-400"
-					placeholder="Submit"
+					placeholder="Save"
 					clickHandler={handleUpdateKitchen}
 				/>
 			</div>
