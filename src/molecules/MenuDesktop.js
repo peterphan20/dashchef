@@ -5,15 +5,14 @@ import MenuButtonDesktop from "../atoms/MenuButtonDesktop";
 import MenuAnchorDesktop from "../atoms/MenuAnchorDesktop";
 import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
 
-const MenuDesktop = () => {
+const MenuDesktop = ({ setIsCartOpen }) => {
 	const user = useSelector((state) => state.userReducer);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
-	const handleClick = (id) => {
-		setTimeout(() => {
-			document.getElementById(id).scrollIntoView();
-		}, 300);
+	const handleCartClick = () => {
+		console.log("open cart");
+		setIsCartOpen(true);
 	};
 
 	const handlePageChangeClick = () => {
@@ -67,7 +66,7 @@ const MenuDesktop = () => {
 			{user.loggedIn ? (
 				<MenuButtonDesktop placeholder="Sign out" clickHandler={handleLogout} />
 			) : null}
-			<MenuAnchorDesktop link="/cart" icon="fas fa-shopping-cart" clickHandler={handleClick} />
+			<MenuButtonDesktop icon="fas fa-shopping-cart" clickHandler={handleCartClick} />
 		</nav>
 	);
 };

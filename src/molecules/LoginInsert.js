@@ -19,6 +19,11 @@ const LoginInsert = ({
 		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
 	};
 
+	const handleTestUser = () => {
+		setEmail("kitchen@test.com");
+		setPassword("test");
+	};
+
 	return (
 		<>
 			<div
@@ -34,6 +39,12 @@ const LoginInsert = ({
 				<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 py-5 lg:break-words">
 					Sign in to get home cooked meals!
 				</h1>
+				<button
+					className="bg-green-400 text-gray-100 text-sm py-1 px-2 mb-5 w-32 h-full"
+					onClick={handleTestUser}
+				>
+					Test Chef
+				</button>
 				{authResponse ? null : (
 					<p className="text-center text-lg text-red-600 font-body pb-5">
 						Incorrect username or password

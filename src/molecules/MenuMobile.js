@@ -41,6 +41,7 @@ const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 
 	const handleLogout = () => {
 		localStorage.removeItem("authToken");
+		localStorage.removeItem("isChef");
 		setOpen(false);
 		setTimeout(() => window.scrollTo(0, 0), 250);
 		history.push("/");

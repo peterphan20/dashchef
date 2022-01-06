@@ -18,6 +18,7 @@ const ModalLogin = () => {
 			setAuthResponse(false);
 		} else {
 			localStorage.setItem("authToken", apiResponse.token);
+			localStorage.setItem("isChef", 0);
 			const payload = {
 				isChef: false,
 				id: apiResponse.id,
@@ -41,6 +42,7 @@ const ModalLogin = () => {
 			console.log("api failed");
 		} else {
 			localStorage.setItem("authToken", apiResponse.token);
+			localStorage.setItem("isChef", 1);
 			const payload = {
 				isChef: true,
 				id: apiResponse.id,

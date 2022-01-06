@@ -26,6 +26,13 @@ const Profile = () => {
 	const history = useHistory();
 	const user = useSelector((state) => state.userReducer);
 
+	useEffect(() => {
+		const token = localStorage.getItem("authToken");
+		if (!token) {
+			history.push("/");
+		}
+	});
+
 	const trackWindowChanges = () => {
 		setWindowWidth(window.innerWidth);
 	};

@@ -60,3 +60,7 @@ export const deleteChef = async (id, token) => {
 	const data = await res.json();
 	return data;
 };
+
+export const validateToken = async (token) => {
+	const res = await fetch(`${config.API_URL}/validateToken`, {});
+};

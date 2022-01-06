@@ -37,7 +37,7 @@ const Header = ({ setIsCartOpen }) => {
 		return windowWidth > 864 ? (
 			<div className="flex justify-center items-center gap-5">
 				<Searchbar />
-				<MenuDesktop />
+				<MenuDesktop setIsCartOpen={setIsCartOpen} />
 			</div>
 		) : (
 			<span className="z-30">
