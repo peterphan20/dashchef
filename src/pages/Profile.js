@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../api/usersAPI";
+import { getUser, updateUser, validateToken } from "../api/usersAPI";
+import { getChef } from "../api/chefsAPI";
 import { USER_LOGOUT } from "../constants";
 import ProfileMobile from "../organisms/ProfileMobile";
 import ProfileDesktop from "../organisms/ProfileDesktop";
@@ -30,8 +31,50 @@ const Profile = () => {
 		window.scrollTo(0, 0);
 		async function getUserData() {
 			const token = localStorage.getItem("authToken");
+			const isChef = localStorage.getItem("isChef");
 			if (!token) {
 				history.push("/");
+			} else {
+				const apiResponse = await validateToken(token);
+				if (!apiResponse.id) return;
+				if (isChef === "0") {
+					const userApiResponse = await getUser(apiResponse.id);
+					const userData = userApiResponse.rows[0];
+					console.log("address", userData.address);
+					setFirstName(userData.firstName);
+					setLastName(userData.lastName);
+					setEmail(userData.email);
+					setPhone(userData.phone);
+					const splitAddress = userData.address.split(", ");
+					if (splitAddress[0]) setAddress(splitAddress[0]);
+					if (splitAddress[1]) setCity(splitAddress[1]);
+					if (splitAddress[2]) setGeoState(splitAddress[2]);
+					if (splitAddress[3]) setZipCode(splitAddress[3]);
+					if (!splitAddress[4]) {
+						setAptNumber("");
+					} else {
+						setAptNumber(splitAddress[4]);
+					}
+				} else {
+					const chefApiResponse = await getChef(apiResponse.id);
+					const chefData = chefApiResponse.rows[0];
+					console.log("address", chefData.address);
+					setFirstName(chefData.firstName);
+					setLastName(chefData.lastName);
+					setEmail(chefData.email);
+					setPhone(chefData.phone);
+					const splitAddress = chefData.address.split(", ");
+					console.log("split address", splitAddress);
+					if (splitAddress[0]) setAddress(splitAddress[0]);
+					if (splitAddress[1]) setCity(splitAddress[1]);
+					if (splitAddress[2]) setGeoState(splitAddress[2]);
+					if (splitAddress[3]) setZipCode(splitAddress[3]);
+					if (!splitAddress[4]) {
+						setAptNumber("");
+					} else {
+						setAptNumber(splitAddress[4]);
+					}
+				}
 			}
 		}
 		getUserData();
@@ -52,24 +95,6 @@ const Profile = () => {
 			window.removeEventListener("resize", trackWindowChanges);
 		};
 	}, [windowWidth]);
-
-	useEffect(() => {
-		setFirstName(user.firstName);
-		setLastName(user.lastName);
-		setEmail(user.email);
-		setPhone(user.phone);
-		console.log("address", user.address);
-
-		// if (splitAddress[0]) setAddress(splitAddress[0]);
-		// if (splitAddress[1]) setCity(splitAddress[1]);
-		// if (splitAddress[2]) setGeoState(splitAddress[2]);
-		// if (splitAddress[3]) setZipCode(splitAddress[3]);
-		// if (!splitAddress[4]) {
-		// 	setAptNumber("");
-		// } else {
-		// 	setAptNumber(splitAddress[4]);
-		// }
-	}, [user]);
 
 	const handleSignOut = async () => {
 		localStorage.removeItem("authToken");
@@ -162,6 +187,7 @@ const Profile = () => {
 					openEditAddress={openEditAddress}
 					setOpenEditAddress={setOpenEditAddress}
 					authResponse={authResponse}
+					setAuthResponse={setAuthResponse}
 				/>
 			)}
 		</div>

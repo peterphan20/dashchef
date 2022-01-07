@@ -1,8 +1,13 @@
-import React from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import ModalDelete from "../molecules/ModalDelete";
 import FormInputField from "../atoms/FormInputField";
 import Dropdown from "../atoms/Dropdown";
+import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
+import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
+import { deleteKitchen } from "../api/kitchensAPI";
 import { USStates } from "../helpers/geoState";
-import ButtonFormSmall from "../atoms/ButtonFormSmall";
+import { useHistory } from "react-router-dom";
 
 const ProfileDesktop = ({
 	firstName,
@@ -24,13 +29,50 @@ const ProfileDesktop = ({
 	zipcode,
 	setZipCode,
 	handleUpdate,
-	authResponse,
 	handleSignOut,
+	authResponse,
+	setAuthResponse,
 }) => {
+	const [openDeleteKitchenModal, setOpenDeleteKitchenModal] = useState(false);
+	const user = useSelector((state) => state.userReducer);
+	const history = useHistory();
+
+	const handleDeleteKitchen = async () => {
+		const token = localStorage.getItem("authToken");
+		if (!token) return;
+		console.log("this is the kitchen id", user.kitchenID);
+		const apiResponse = await deleteKitchen(user.kitchenID, token);
+		if (apiResponse.code !== 200) {
+			console.log("delete failed");
+			setAuthResponse(false);
+		} else {
+			console.log("delete passed");
+			history.push("/");
+		}
+	};
+
 	return (
-		<div className="flex flex-col px-4 pt-10 w-full h-full min-h-screen lg:max-w-5xl lg:mx-auto">
-			<div className="border border-gray-300 px-16 py-12">
-				<h1 className="font-headers text-3xl mb-10">Profile</h1>
+		<div className="flex flex-col px-4 py-14 w-full h-full min-h-screen lg:max-w-4xl lg:mx-auto">
+			{openDeleteKitchenModal ? (
+				<ModalDelete
+					modalHandler={setOpenDeleteKitchenModal}
+					placeholder="kitchen"
+					clickHandler={() => handleDeleteKitchen(user.kitchenID)}
+				/>
+			) : null}
+			<div className="border border-gray-300 px-16 py-12 mb-8">
+				<div className="flex justify-between items-start">
+					<h1 className="font-headers font-bold text-3xl mb-10">Profile</h1>
+					{authResponse === null ? null : authResponse ? (
+						<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">
+							Your profile has been updated
+						</p>
+					) : (
+						<p className="bg-red-400 py-1 px-4 rounded-md transform translate-y-full transition duration-300 ease-in">
+							Something went wrong
+						</p>
+					)}
+				</div>
 				<div className="flex gap-5 mb-5 w-full h-full">
 					<FormInputField
 						htmlFor="firstname"
@@ -112,7 +154,39 @@ const ProfileDesktop = ({
 						changeHandler={(e) => setZipCode(e.target.value)}
 					/>
 				</div>
-				<ButtonFormSmall placeholder="Save" className="bg-green-400" />
+				<ButtonProfileDesktop
+					placeholder="Save changes"
+					className="bg-green-400 text-gray-100"
+					clickHandler={handleUpdate}
+				/>
+			</div>
+			{user.isChef && user.kitchenID ? (
+				<div className="border border-gray-300 px-16 py-12 text-gray-900 mb-10">
+					<h1 className="font-headers font-bold text-3xl mb-6">Kitchen</h1>
+					<div className="flex flex-col justify-center items-start mb-5">
+						<label className="block font-body text-lg mb-5">
+							Want to make changes to your kitchen?
+						</label>
+						<LinkProfileDesktop placeholder="Update kitchen" className="bg-gray-200 mb-5" />
+						<LinkProfileDesktop
+							link="/create/menu-item"
+							placeholder="Add menu item"
+							className="bg-gray-200 text-blue-600 mb-5"
+						/>
+						<ButtonProfileDesktop
+							placeholder="Delete Kitchen"
+							className="bg-red-600 text-gray-100"
+							clickHandler={() => setOpenDeleteKitchenModal(true)}
+						/>
+					</div>
+				</div>
+			) : null}
+			<div>
+				<ButtonProfileDesktop
+					className="bg-gray-200 text-red-600"
+					placeholder="Logout"
+					clickHandler={handleSignOut}
+				/>
 			</div>
 		</div>
 	);

@@ -91,7 +91,7 @@ const UpdateKitchenForm = ({
 				/>
 				<ButtonFormSmall
 					className="bg-green-400"
-					placeholder="Save"
+					placeholder="Save changes"
 					clickHandler={handleUpdateKitchen}
 				/>
 			</div>

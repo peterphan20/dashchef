@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import UpdateKitchenForm from "../molecules/UpdateKitchenForm";
 import ButtonProfile from "../atoms/ButtonProfile";
-import LinkProfile from "../atoms/LinkProfile";
+import LinkProfileMobile from "../atoms/LinkProfileMobile";
 import { getKitchen, deleteKitchen, updateKitchen } from "../api/kitchensAPI";
 import ModalDelete from "../molecules/ModalDelete";
 
@@ -117,10 +117,10 @@ const EditKitchen = () => {
 				<ButtonProfile
 					placeholder="Edit kitchen information"
 					className="border-t mt-5"
-					modalHandler={() => setOpenEditKitchenForm(true)}
+					clickHandler={() => setOpenEditKitchenForm(true)}
 				/>
 			)}
-			<LinkProfile placeholder="Add menu item" link="/create/menu-item" />
+			<LinkProfileMobile placeholder="Add menu item" link="/create/menu-item" />
 			{openDeleteKitchenModal ? (
 				<ModalDelete
 					modalHandler={setOpenDeleteKitchenModal}
@@ -131,7 +131,7 @@ const EditKitchen = () => {
 				<ButtonProfile
 					placeholder="Delete Kitchen"
 					className="text-red-600"
-					modalHandler={() => setOpenDeleteKitchenModal(true)}
+					clickHandler={() => setOpenDeleteKitchenModal(true)}
 				/>
 			)}
 		</div>

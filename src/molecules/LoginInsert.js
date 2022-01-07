@@ -40,7 +40,7 @@ const LoginInsert = ({
 					Sign in to get home cooked meals!
 				</h1>
 				<button
-					className="bg-green-400 text-gray-100 text-sm py-1 px-2 mb-5 w-32 h-full"
+					className="bg-green-400 text-gray-100 text-sm rounded-md py-1 px-2 mb-5 w-32 h-full"
 					onClick={handleTestUser}
 				>
 					Test Chef

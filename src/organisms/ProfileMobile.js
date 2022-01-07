@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import UpdateUserForm from "../molecules/UpdateUserForm";
 import UpdateAddressForm from "../molecules/UpdateAddressForm";
 import ButtonProfile from "../atoms/ButtonProfile";
-import LinkProfile from "../atoms/LinkProfile";
+import LinkProfileMobile from "../atoms/LinkProfileMobile";
 import defaultAvatar from "../assets/default-avatar.jpg";
 
 const ProfileMobile = ({
@@ -70,7 +70,7 @@ const ProfileMobile = ({
 				<ButtonProfile
 					placeholder="Edit profile"
 					className="border-t mt-10"
-					modalHandler={() => setOpenEditForm(true)}
+					clickHandler={() => setOpenEditForm(true)}
 				/>
 			)}
 			{openEditAddress ? (
@@ -90,16 +90,19 @@ const ProfileMobile = ({
 					authResponse={authResponse}
 				/>
 			) : (
-				<ButtonProfile placeholder="Edit Address" modalHandler={() => setOpenEditAddress(true)} />
+				<ButtonProfile placeholder="Edit Address" clickHandler={() => setOpenEditAddress(true)} />
 			)}
 			<div className="flex flex-col justify-center items-center font-body w-full h-full">
 				{user.isChef && !user.kitchenID ? (
-					<LinkProfile link="/create/kitchen" placeholder="Create a kitchen" />
+					<LinkProfileMobile link="/create/kitchen" placeholder="Create a kitchen" />
 				) : null}
 				{user.kitchenID ? (
-					<LinkProfile link={`/edit/kitchen/${user.kitchenID}`} placeholder="Edit your kitchen" />
+					<LinkProfileMobile
+						link={`/edit/kitchen/${user.kitchenID}`}
+						placeholder="Edit your kitchen"
+					/>
 				) : null}
-				<ButtonProfile placeholder="Logout" modalHandler={handleSignOut} />
+				<ButtonProfile placeholder="Logout" clickHandler={handleSignOut} />
 			</div>
 		</div>
 	);
