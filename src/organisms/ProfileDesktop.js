@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import ModalDelete from "../molecules/ModalDelete";
 import FormInputField from "../atoms/FormInputField";
 import Dropdown from "../atoms/Dropdown";
@@ -7,7 +8,7 @@ import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
 import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
 import { deleteKitchen } from "../api/kitchensAPI";
 import { USStates } from "../helpers/geoState";
-import { useHistory } from "react-router-dom";
+import defaultAvatar from "../assets/default-avatar.jpg";
 
 const ProfileDesktop = ({
 	firstName,
@@ -60,9 +61,9 @@ const ProfileDesktop = ({
 					clickHandler={() => handleDeleteKitchen(user.kitchenID)}
 				/>
 			) : null}
-			<div className="border border-gray-300 px-16 py-12 mb-8">
+			<div className="bg-gray-200 border border-gray-300 px-16 py-12 mb-8">
 				<div className="flex justify-between items-start">
-					<h1 className="font-headers font-bold text-3xl mb-10">Profile</h1>
+					<h1 className="font-headers font-bold text-3xl mb-5">Profile</h1>
 					{authResponse === null ? null : authResponse ? (
 						<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">
 							Your profile has been updated
@@ -72,6 +73,18 @@ const ProfileDesktop = ({
 							Something went wrong
 						</p>
 					)}
+				</div>
+				<div className="flex justify-start items-center gap-5 mb-10">
+					<div className="w-24 h-24">
+						<img
+							src={user.avatarURL ? user.avatarURL : defaultAvatar}
+							alt="user's avatar"
+							className="rounded-full"
+						/>
+					</div>
+					<Link to="/image-upload" className="bg-gray-100 text-xs rounded-md py-2 px-5">
+						Update picture
+					</Link>
 				</div>
 				<div className="flex gap-5 mb-5 w-full h-full">
 					<FormInputField
@@ -161,17 +174,20 @@ const ProfileDesktop = ({
 				/>
 			</div>
 			{user.isChef && user.kitchenID ? (
-				<div className="border border-gray-300 px-16 py-12 text-gray-900 mb-10">
+				<div className="bg-gray-200 border border-gray-300 px-16 py-12 text-gray-900 mb-10">
 					<h1 className="font-headers font-bold text-3xl mb-6">Kitchen</h1>
 					<div className="flex flex-col justify-center items-start mb-5">
 						<label className="block font-body text-lg mb-5">
 							Want to make changes to your kitchen?
 						</label>
-						<LinkProfileDesktop placeholder="Update kitchen" className="bg-gray-200 mb-5" />
+						<LinkProfileDesktop
+							placeholder="Update kitchen"
+							className="text-gray-900 bg-gray-100 mb-5"
+						/>
 						<LinkProfileDesktop
 							link="/create/menu-item"
 							placeholder="Add menu item"
-							className="bg-gray-200 text-blue-600 mb-5"
+							className="bg-gray-100 text-blue-600 mb-5"
 						/>
 						<ButtonProfileDesktop
 							placeholder="Delete Kitchen"
@@ -183,7 +199,7 @@ const ProfileDesktop = ({
 			) : null}
 			<div>
 				<ButtonProfileDesktop
-					className="bg-gray-200 text-red-600"
+					className="bg-gray-200 text-red-600 border border-gray-300"
 					placeholder="Logout"
 					clickHandler={handleSignOut}
 				/>

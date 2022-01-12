@@ -6,6 +6,7 @@ import Driver from "../pages/Driver";
 import Cart from "../pages/Cart";
 import EditKitchen from "../pages/EditKitchen";
 import CreateMenuItem from "../organisms/CreateMenuItem";
+import ImageUpload from "../pages/ImageUpload";
 
 export const routes = [
 	{
@@ -37,6 +38,11 @@ export const routes = [
 		path: "/create/menu-item",
 		exact: true,
 		component: CreateMenuItem,
+	},
+	{
+		path: "/image-upload",
+		exact: true,
+		component: ImageUpload,
 	},
 	{
 		path: "/driver",

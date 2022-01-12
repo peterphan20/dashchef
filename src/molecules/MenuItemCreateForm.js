@@ -41,7 +41,7 @@ const MenuItemCreateForm = ({
 	));
 
 	return (
-		<div className="w-full h-full lg:bg-gray-200 lg:max-w-2xl lg:mx-auto lg:py-10 lg:px-16 lg:rounded-lg lg:border lg:border-gray-300">
+		<div className="w-full h-full lg:bg-gray-200 lg:max-w-2xl lg:mx-auto lg:py-10 lg:px-16 lg:border lg:border-gray-300">
 			<h1 className="text-2xl font-headers text-center py-6 lg:text-3xl">Create a menu item</h1>
 			<FormInputField
 				htmlFor="name"
