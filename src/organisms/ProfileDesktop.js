@@ -62,7 +62,7 @@ const ProfileDesktop = ({
 				/>
 			) : null}
 			<div className="bg-gray-200 border border-gray-300 px-16 py-12 mb-8">
-				<div className="flex justify-between items-start">
+				<div className="flex justify-between items-center">
 					<h1 className="font-headers font-bold text-3xl mb-5">Profile</h1>
 					{authResponse === null ? null : authResponse ? (
 						<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">

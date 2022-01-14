@@ -106,7 +106,7 @@ const Profile = () => {
 	const handleUserUpdate = async (userObject, token) => {
 		const apiResponse = await updateUser(userID, userObject, token);
 		console.log("update user api response here", apiResponse);
-		if (apiResponse !== 201) {
+		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 			console.log("user update unsuccessfully");
 		} else {
@@ -120,7 +120,7 @@ const Profile = () => {
 	const handleChefUpdate = async (chefObject, token) => {
 		const apiResponse = await updateChef(userID, chefObject, token);
 		console.log("update chef api response", apiResponse);
-		if (apiResponse !== 201) {
+		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 			console.log("user update unsuccessfully");
 		} else {
