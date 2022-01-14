@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import UpdateKitchenForm from "../molecules/UpdateKitchenForm";
-import ButtonProfile from "../atoms/ButtonProfile";
-import LinkProfileMobile from "../atoms/LinkProfileMobile";
 import { getKitchen, deleteKitchen, updateKitchen } from "../api/kitchensAPI";
-import ModalDelete from "../molecules/ModalDelete";
+import EditKitchenMobile from "../organisms/EditKitchenMobile";
+import EditKitchenDesktop from "../organisms/EditKitchenDesktop";
 
 const EditKitchen = () => {
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+	const [isMobile, setIsMobile] = useState(false);
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [address, setAddress] = useState("");
@@ -15,7 +15,6 @@ const EditKitchen = () => {
 	const [geoState, setGeoState] = useState(null);
 	const [zipcode, setZipCode] = useState("");
 	const [openEditKitchenForm, setOpenEditKitchenForm] = useState(false);
-	const [openDeleteKitchenModal, setOpenDeleteKitchenModal] = useState(false);
 	const [authResponse, setAuthResponse] = useState(true);
 
 	const { kitchenID } = useParams();
@@ -24,6 +23,22 @@ const EditKitchen = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
+
+	const trackWindowChanges = () => {
+		setWindowWidth(window.innerWidth);
+	};
+
+	useEffect(() => {
+		window.addEventListener("resize", trackWindowChanges);
+		if (windowWidth < 864) {
+			setIsMobile(true);
+		} else {
+			setIsMobile(false);
+		}
+		return () => {
+			window.removeEventListener("resize", trackWindowChanges);
+		};
+	}, [windowWidth]);
 
 	useEffect(() => {
 		async function fetchKitchen() {
@@ -92,9 +107,8 @@ const EditKitchen = () => {
 
 	return (
 		<div className="bg-gray-100 w-full h-full min-h-screen">
-			<h1 className="text-2xl font-headers text-center pt-5">Update your kitchen</h1>
-			{openEditKitchenForm ? (
-				<UpdateKitchenForm
+			{isMobile ? (
+				<EditKitchenMobile
 					phone={phone}
 					setPhone={setPhone}
 					email={email}
@@ -109,30 +123,14 @@ const EditKitchen = () => {
 					setGeoState={setGeoState}
 					zipcode={zipcode}
 					setZipCode={setZipCode}
-					handleUpdateKitchen={handleUpdateKitchen}
-					setOpenEditKitchenForm={setOpenEditKitchenForm}
 					authResponse={authResponse}
+					openEditKitchenForm={openEditKitchenForm}
+					setOpenEditKitchenForm={setOpenEditKitchenForm}
+					handleUpdateKitchen={handleUpdateKitchen}
+					handleDeleteKitchen={handleDeleteKitchen}
 				/>
 			) : (
-				<ButtonProfile
-					placeholder="Edit kitchen information"
-					className="border-t mt-5"
-					clickHandler={() => setOpenEditKitchenForm(true)}
-				/>
-			)}
-			<LinkProfileMobile placeholder="Add menu item" link="/create/menu-item" />
-			{openDeleteKitchenModal ? (
-				<ModalDelete
-					modalHandler={setOpenDeleteKitchenModal}
-					placeholder="kitchen"
-					clickHandler={() => handleDeleteKitchen(kitchenID)}
-				/>
-			) : (
-				<ButtonProfile
-					placeholder="Delete Kitchen"
-					className="text-red-600"
-					clickHandler={() => setOpenDeleteKitchenModal(true)}
-				/>
+				<EditKitchenDesktop />
 			)}
 		</div>
 	);

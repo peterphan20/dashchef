@@ -87,8 +87,8 @@ const CreateKitchen = () => {
 
 	return (
 		<div className="bg-gray-100 w-full h-full min-h-screen lg:py-10">
-			<div className="px-4 pt-10 pb-14 w-full h-full lg:bg-gray-50 lg:border lg:border-gray-300 lg:rounded-lg lg:py-10 lg:px-20 lg:mx-auto lg:w-1/4 xl:w-1/3">
-				<h1 className="text-center text-4xl font-headers font-bold pb-5 lg:pb-2" >Dashchef</h1>
+			<div className="px-4 pt-10 pb-14 w-full h-full lg:bg-gray-200 lg:border lg:border-gray-300 lg:py-10 lg:px-20 lg:mx-auto lg:w-1/4 xl:w-1/3">
+				<h1 className="text-center text-4xl font-headers font-bold pb-5 lg:pb-2">Dashchef</h1>
 				<h1 className="text-center text-3xl font-headers pb-10 lg:text-2xl lg:pb-8">
 					Start your very own kitchen
 				</h1>

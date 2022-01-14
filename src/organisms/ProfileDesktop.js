@@ -82,8 +82,11 @@ const ProfileDesktop = ({
 							className="rounded-full"
 						/>
 					</div>
-					<Link to="/image-upload" className="bg-gray-100 text-xs rounded-md py-2 px-5">
-						Update picture
+					<Link
+						to="/image-upload"
+						className="bg-gray-100 text-xs rounded-md border border-gray-300 py-2 px-5"
+					>
+						{user.avatarURL ? <p>Update picture</p> : <p>Add picture</p>}
 					</Link>
 				</div>
 				<div className="flex gap-5 mb-5 w-full h-full">
@@ -196,7 +199,9 @@ const ProfileDesktop = ({
 						/>
 					</div>
 				</div>
-			) : null}
+			) : (
+				<LinkProfileDesktop link="/create/kitchen" placeholder="Create a kitchen" />
+			)}
 			<div>
 				<ButtonProfileDesktop
 					className="bg-gray-200 text-red-600 border border-gray-300"

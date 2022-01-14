@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import UpdateUserForm from "../molecules/UpdateUserForm";
 import UpdateAddressForm from "../molecules/UpdateAddressForm";
@@ -27,12 +27,10 @@ const ProfileMobile = ({
 	setGeoState,
 	zipcode,
 	setZipCode,
-	openEditForm,
-	setOpenEditForm,
-	openEditAddress,
-	setOpenEditAddress,
 	handleSignOut,
 }) => {
+	const [openEditForm, setOpenEditForm] = useState(false);
+	const [openEditAddress, setOpenEditAddress] = useState(false);
 	const user = useSelector((state) => state.userReducer);
 
 	return (

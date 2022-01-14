@@ -19,8 +19,6 @@ const Profile = () => {
 	const [city, setCity] = useState("");
 	const [geoState, setGeoState] = useState(null);
 	const [zipcode, setZipCode] = useState("");
-	const [openEditForm, setOpenEditForm] = useState(false);
-	const [openEditAddress, setOpenEditAddress] = useState(false);
 	const [authResponse, setAuthResponse] = useState(null);
 
 	const dispatch = useDispatch();
@@ -154,10 +152,6 @@ const Profile = () => {
 					setZipCode={setZipCode}
 					handleUpdate={handleUpdate}
 					handleSignOut={handleSignOut}
-					openEditForm={openEditForm}
-					setOpenEditForm={setOpenEditForm}
-					openEditAddress={openEditAddress}
-					setOpenEditAddress={setOpenEditAddress}
 					authResponse={authResponse}
 				/>
 			) : (
@@ -182,10 +176,6 @@ const Profile = () => {
 					setZipCode={setZipCode}
 					handleUpdate={handleUpdate}
 					handleSignOut={handleSignOut}
-					openEditForm={openEditForm}
-					setOpenEditForm={setOpenEditForm}
-					openEditAddress={openEditAddress}
-					setOpenEditAddress={setOpenEditAddress}
 					authResponse={authResponse}
 					setAuthResponse={setAuthResponse}
 				/>
