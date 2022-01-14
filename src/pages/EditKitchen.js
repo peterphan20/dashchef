@@ -86,8 +86,13 @@ const EditKitchen = () => {
 			console.log("update failed");
 			setAuthResponse(false);
 		} else {
-			console.log("update passed");
-			setOpenEditKitchenForm(false);
+			if (isMobile) {
+				console.log("update mobile passed");
+				setOpenEditKitchenForm(false);
+			} else {
+				history.push("/profile");
+				console.log("update desktop passed");
+			}
 		}
 	};
 
@@ -130,7 +135,27 @@ const EditKitchen = () => {
 					handleDeleteKitchen={handleDeleteKitchen}
 				/>
 			) : (
-				<EditKitchenDesktop />
+				<EditKitchenDesktop
+					phone={phone}
+					setPhone={setPhone}
+					email={email}
+					setEmail={setEmail}
+					address={address}
+					setAddress={setAddress}
+					aptNumber={aptNumber}
+					setAptNumber={setAptNumber}
+					city={city}
+					setCity={setCity}
+					geoState={geoState}
+					setGeoState={setGeoState}
+					zipcode={zipcode}
+					setZipCode={setZipCode}
+					authResponse={authResponse}
+					openEditKitchenForm={openEditKitchenForm}
+					setOpenEditKitchenForm={setOpenEditKitchenForm}
+					handleUpdateKitchen={handleUpdateKitchen}
+					handleDeleteKitchen={handleDeleteKitchen}
+				/>
 			)}
 		</div>
 	);

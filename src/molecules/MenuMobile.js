@@ -70,7 +70,7 @@ const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 			) : (
 				<>
 					<MenuAnchorMobile
-						link="/profile"
+						link={`/profile/${user.id}`}
 						placeholder="Profile"
 						clickHandler={handlePageChangeClick}
 					/>

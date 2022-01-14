@@ -15,7 +15,7 @@ export const routes = [
 		component: Home,
 	},
 	{
-		path: "/profile",
+		path: "/profile/:userID",
 		exact: true,
 		component: Profile,
 	},

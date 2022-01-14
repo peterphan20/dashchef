@@ -45,7 +45,7 @@ const MenuDesktop = ({ setIsCartOpen }) => {
 				</>
 			) : (
 				<MenuAnchorDesktop
-					link="/profile"
+					link={`/profile/${user.id}`}
 					placeholder="Profile"
 					clickHandler={handlePageChangeClick}
 				/>

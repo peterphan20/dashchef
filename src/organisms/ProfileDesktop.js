@@ -53,7 +53,7 @@ const ProfileDesktop = ({
 	};
 
 	return (
-		<div className="flex flex-col px-4 py-14 w-full h-full min-h-screen lg:max-w-4xl lg:mx-auto">
+		<div className="flex flex-col px-4 py-10 w-full h-full min-h-screen lg:max-w-4xl lg:mx-auto">
 			{openDeleteKitchenModal ? (
 				<ModalDelete
 					modalHandler={setOpenDeleteKitchenModal}
@@ -84,7 +84,7 @@ const ProfileDesktop = ({
 					</div>
 					<Link
 						to="/image-upload"
-						className="bg-gray-100 text-xs rounded-md border border-gray-300 py-2 px-5"
+						className="bg-gray-50 text-xs rounded-md border border-gray-300 py-2 px-5"
 					>
 						{user.avatarURL ? <p>Update picture</p> : <p>Add picture</p>}
 					</Link>
@@ -177,20 +177,21 @@ const ProfileDesktop = ({
 				/>
 			</div>
 			{user.isChef && user.kitchenID ? (
-				<div className="bg-gray-200 border border-gray-300 px-16 py-12 text-gray-900 mb-10">
+				<div className="bg-gray-200 border border-gray-300 px-16 py-12 text-gray-900 mb-5">
 					<h1 className="font-headers font-bold text-3xl mb-6">Kitchen</h1>
 					<div className="flex flex-col justify-center items-start mb-5">
 						<label className="block font-body text-lg mb-5">
 							Want to make changes to your kitchen?
 						</label>
 						<LinkProfileDesktop
+							link={`/edit/kitchen/${user.kitchenID}`}
 							placeholder="Update kitchen"
-							className="text-gray-900 bg-gray-100 mb-5"
+							className="text-gray-900 bg-gray-50 border border-gray-300 mb-5"
 						/>
 						<LinkProfileDesktop
 							link="/create/menu-item"
 							placeholder="Add menu item"
-							className="bg-gray-100 text-blue-600 mb-5"
+							className="bg-gray-50 text-blue-600 border border-gray-300 mb-5"
 						/>
 						<ButtonProfileDesktop
 							placeholder="Delete Kitchen"

@@ -21,7 +21,6 @@ const UpdateKitchenForm = ({
 	setZipCode,
 	handleUpdateKitchen,
 	setOpenEditKitchenForm,
-	authResponse,
 }) => {
 	return (
 		<div className="-space-y-px px-5 pt-10 pb-5 mt-5 border-t border-b border-gray-300 w-full h-full">

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser, validateToken } from "../api/usersAPI";
-import { getChef } from "../api/chefsAPI";
+import { getChef, updateChef } from "../api/chefsAPI";
 import { USER_LOGOUT } from "../constants";
 import ProfileMobile from "../organisms/ProfileMobile";
 import ProfileDesktop from "../organisms/ProfileDesktop";
@@ -19,11 +19,14 @@ const Profile = () => {
 	const [city, setCity] = useState("");
 	const [geoState, setGeoState] = useState(null);
 	const [zipcode, setZipCode] = useState("");
+	const [openEditForm, setOpenEditForm] = useState(false);
+	const [openEditAddress, setOpenEditAddress] = useState(false);
 	const [authResponse, setAuthResponse] = useState(null);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const user = useSelector((state) => state.userReducer);
+	const { userID } = useParams();
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -100,36 +103,62 @@ const Profile = () => {
 		history.push("/");
 	};
 
+	const handleUserUpdate = async (userObject, token) => {
+		const apiResponse = await updateUser(userID, userObject, token);
+		console.log("update user api response here", apiResponse);
+		if (apiResponse !== 201) {
+			setAuthResponse(false);
+			console.log("user update unsuccessfully");
+		} else {
+			console.log("api response passed, user updated");
+			setAuthResponse(true);
+			setOpenEditAddress(false);
+			setOpenEditForm(false);
+		}
+	};
+
+	const handleChefUpdate = async (chefObject, token) => {
+		const apiResponse = await updateChef(userID, chefObject, token);
+		console.log("update chef api response", apiResponse);
+		if (apiResponse !== 201) {
+			setAuthResponse(false);
+			console.log("user update unsuccessfully");
+		} else {
+			console.log("api response passed, user updated");
+			setAuthResponse(true);
+			setOpenEditAddress(false);
+			setOpenEditForm(false);
+		}
+	};
+
 	const handleUpdate = async () => {
 		const token = localStorage.getItem("authToken");
 		if (!token) return;
 
-		const addressStr = `${address}, ${city}, ${geoState} ${zipcode}, ${
-			aptNumber ? ", " + aptNumber : ""
+		const addressStr = `${address}, ${city}, ${geoState}, ${zipcode}, ${
+			aptNumber ? aptNumber : ""
 		}`;
 
 		const userObject = {
 			firstName,
 			lastName,
 			email,
-			address: addressStr,
+			address: addressStr.toUpperCase(),
 			phone,
 		};
 		console.log(userObject);
 
-		const apiResponse = await updateUser(user.id, userObject, token);
-		console.log(apiResponse);
-		if (apiResponse.code !== 200) {
-			console.log("api response failed");
-			setAuthResponse(false);
+		if (!user.isChef) {
+			handleUserUpdate(userObject, token);
+			console.log("update user");
 		} else {
-			console.log("api response passed, user updated");
-			setAuthResponse(true);
+			handleChefUpdate(userObject, token);
+			console.log("update chef");
 		}
 	};
 
 	return (
-		<div className="bg-gray-100 w-full h-full">
+		<div className="bg-gray-100 w-full h-full min-h-screen">
 			{isMobile ? (
 				<ProfileMobile
 					firstName={firstName}
@@ -152,6 +181,10 @@ const Profile = () => {
 					setZipCode={setZipCode}
 					handleUpdate={handleUpdate}
 					handleSignOut={handleSignOut}
+					openEditForm={openEditForm}
+					setOpenEditForm={setOpenEditForm}
+					openEditAddress={openEditAddress}
+					setOpenEditAddress={setOpenEditAddress}
 					authResponse={authResponse}
 				/>
 			) : (
