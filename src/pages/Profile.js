@@ -131,7 +131,7 @@ const Profile = () => {
 		}
 	};
 
-	const handleUpdate = async () => {
+	const handleUpdate = async (e) => {
 		const token = localStorage.getItem("authToken");
 		if (!token) return;
 

@@ -16,7 +16,7 @@ const UpdateAddressForm = ({
 	zipcode,
 	setZipCode,
 	setOpenEditAddress,
-	handleUpdateUser,
+	handleUpdate,
 }) => {
 	return (
 		<div className="-space-y-px px-5 pt-10 pb-5 border-t border-b border-gray-300 w-full h-full">
@@ -72,7 +72,7 @@ const UpdateAddressForm = ({
 				<ButtonFormSmall
 					className="bg-green-400"
 					placeholder="Save changes"
-					clickHandler={handleUpdateUser}
+					clickHandler={handleUpdate}
 				/>
 			</div>
 		</div>

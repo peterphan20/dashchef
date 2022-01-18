@@ -82,6 +82,7 @@ const ModalLogin = () => {
 				setEmail={setEmail}
 				password={password}
 				setPassword={setPassword}
+				isChef={isChef}
 				setIsChef={setIsChef}
 				authResponse={authResponse}
 				handleLogin={handleLogin}

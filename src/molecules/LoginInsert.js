@@ -8,6 +8,7 @@ const LoginInsert = ({
 	setEmail,
 	password,
 	setPassword,
+	isChef,
 	setIsChef,
 	authResponse,
 	handleLogin,
@@ -19,10 +20,16 @@ const LoginInsert = ({
 		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
 	};
 
-	const handleTestUser = () => {
+	const handleTestChef = () => {
 		setEmail("kitchen@test.com");
 		setPassword("test");
 		setIsChef("yes");
+	};
+
+	const handleTestUser = () => {
+		setEmail("test@test.com");
+		setPassword("test");
+		setIsChef("no");
 	};
 
 	return (
@@ -40,12 +47,20 @@ const LoginInsert = ({
 				<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 py-5 lg:break-words">
 					Sign in to get home cooked meals!
 				</h1>
-				<button
-					className="bg-green-400 text-gray-100 text-sm rounded-md py-1 px-2 mb-5 w-32 h-full"
-					onClick={handleTestUser}
-				>
-					Test Chef
-				</button>
+				<div className="flex justify-between items-center">
+					<button
+						className="bg-green-400 text-gray-100 text-sm rounded-md py-1 px-2 mb-5 w-32 h-full"
+						onClick={handleTestChef}
+					>
+						Test Chef
+					</button>
+					<button
+						className="bg-red-400 text-gray-100 text-sm rounded-md py-1 px-2 mb-5 w-32 h-full"
+						onClick={handleTestUser}
+					>
+						Test User
+					</button>
+				</div>
 				{authResponse ? null : (
 					<p className="text-center text-lg text-red-600 font-body pb-5">
 						Incorrect username or password
@@ -75,7 +90,7 @@ const LoginInsert = ({
 						<select
 							className="relative block rounded-none w-full pl-2 py-2 mb-3 border border-gray-300 text-gray-500 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
 							name="isChef"
-							defaultValue=""
+							value={isChef}
 							onChange={(e) => setIsChef(e.target.value)}
 						>
 							<option value="">Are you a chef?</option>
