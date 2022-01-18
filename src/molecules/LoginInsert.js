@@ -22,13 +22,13 @@ const LoginInsert = ({
 	const handleTestUser = () => {
 		setEmail("kitchen@test.com");
 		setPassword("test");
-		setIsChef("yes")
+		setIsChef("yes");
 	};
 
 	return (
 		<>
 			<div
-				onClick={(e) => e.stopPropagation()}
+				onMouseDown={(e) => e.stopPropagation()}
 				className="relative flex flex-col justify-center item-center bg-gray-100 text-gray-900 font-body rounded shadow p-8 z-20 lg:w-96 lg:max-w-l"
 			>
 				<button
@@ -54,8 +54,8 @@ const LoginInsert = ({
 				<div className="rounded-md -space-y-px mb-5">
 					<FormInputField
 						htmlFor="login-email-address"
+						type="text"
 						text="email"
-						className=""
 						placeholder="Email Address"
 						autoComplete="email"
 						value={email}
@@ -63,8 +63,8 @@ const LoginInsert = ({
 					/>
 					<FormInputField
 						htmlFor="login-password"
+						type="password"
 						text="password"
-						className=""
 						placeholder="Password"
 						autoComplete="current-password"
 						value={password}

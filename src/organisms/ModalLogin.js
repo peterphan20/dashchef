@@ -75,7 +75,7 @@ const ModalLogin = () => {
 	return (
 		<div
 			className="grid place-items-center fixed bg-backdrop top-0 left-0 w-full h-screen z-20"
-			onClick={() => dispatch({ type: HIDE_LOGIN_MODAL })}
+			onMouseDown={() => dispatch({ type: HIDE_LOGIN_MODAL })}
 		>
 			<LoginInsert
 				email={email}
