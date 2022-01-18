@@ -22,6 +22,7 @@ const LoginInsert = ({
 	const handleTestUser = () => {
 		setEmail("kitchen@test.com");
 		setPassword("test");
+		setIsChef("yes")
 	};
 
 	return (
