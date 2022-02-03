@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 	const cart = useSelector((state) => state.cartReducer);
 
-	const renderedCartItems = cart.map((cartItem) => {
-		return <div key={cartItem.itemID}></div>;
-	});
+	// const renderedCartItems = cart.map((cartItem) => {
+	// 	return <div key={cartItem.itemID}></div>;
+	// });
 
 	return (
 		<div
