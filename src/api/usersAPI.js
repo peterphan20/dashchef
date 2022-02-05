@@ -49,6 +49,18 @@ export const updateUser = async (id, userObject, token) => {
 	return data;
 };
 
+export const updateUserAvatar = async (id, formData, token) => {
+	const res = await fetch(`${config.API_URL}/users/avatar-update/${id}`, {
+		method: "POST",
+		body: formData,
+		headers: {
+			auth: token,
+		},
+	});
+	const data = await res.json();
+	return data;
+};
+
 export const deleteUser = async (id, token) => {
 	const res = await fetch(`${config.API_URL}/users/user-delete/${id}`, {
 		method: "DELETE",

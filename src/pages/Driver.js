@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Driver = () => {
-  return (
-    <div>
-      Driver
-    </div>
-  )
-}
+	return <div className="bg-gray-100 min-h-screen">Driver sign up form coming soon!</div>;
+};
 
-export default Driver
+export default Driver;

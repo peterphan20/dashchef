@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import ModalDelete from "../molecules/ModalDelete";
 import FormInputField from "../atoms/FormInputField";
 import Dropdown from "../atoms/Dropdown";
@@ -37,6 +37,7 @@ const ProfileDesktop = ({
 	const [openDeleteKitchenModal, setOpenDeleteKitchenModal] = useState(false);
 	const user = useSelector((state) => state.userReducer);
 	const history = useHistory();
+	const { userID } = useParams();
 
 	const handleDeleteKitchen = async () => {
 		const token = localStorage.getItem("authToken");
@@ -83,7 +84,7 @@ const ProfileDesktop = ({
 						/>
 					</div>
 					<Link
-						to="/image-upload"
+						to={`/image-upload/${userID}`}
 						className="bg-gray-50 text-xs rounded-md border border-gray-300 py-2 px-5"
 					>
 						{user.avatarURL ? <p>Update picture</p> : <p>Add picture</p>}
@@ -180,7 +181,7 @@ const ProfileDesktop = ({
 				<div className="bg-gray-200 border border-gray-300 px-16 py-12 text-gray-900 mb-5">
 					<h1 className="font-headers font-bold text-3xl mb-6">Kitchen</h1>
 					<div className="flex flex-col justify-center items-start mb-5">
-						<label className="block font-body text-lg mb-5">
+						<label className="block font-body font-bold text-lg mb-5">
 							Want to make changes to your kitchen?
 						</label>
 						<LinkProfileDesktop
@@ -201,7 +202,14 @@ const ProfileDesktop = ({
 					</div>
 				</div>
 			) : (
-				<LinkProfileDesktop link="/create/kitchen" placeholder="Create a kitchen" />
+				<div className="flex flex-col justify-center items-start bg-gray-200 border border-gray-300 px-16 py-12 text-gray-900 mb-5">
+					<p className="block font-body font-bold text-lg mb-5">Want to create a kitchen?</p>
+					<LinkProfileDesktop
+						className="bg-gray-100 text-blue-600 border border-gray-300"
+						link="/create/kitchen"
+						placeholder="Create a kitchen"
+					/>
+				</div>
 			)}
 			<div>
 				<ButtonProfileDesktop

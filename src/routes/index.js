@@ -40,7 +40,7 @@ export const routes = [
 		component: CreateMenuItem,
 	},
 	{
-		path: "/image-upload",
+		path: "/image-upload/:userID",
 		exact: true,
 		component: ImageUpload,
 	},

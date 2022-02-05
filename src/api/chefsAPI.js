@@ -49,6 +49,18 @@ export const updateChef = async (id, chefObj, token) => {
 	return data;
 };
 
+export const updateChefAvatar = async (id, formData, token) => {
+	const res = await fetch(`${config.API_URL}/chefs/avatar-update/${id}`, {
+		method: "POST",
+		body: formData,
+		headers: {
+			auth: token,
+		},
+	});
+	const data = await res.json();
+	return data;
+};
+
 export const deleteChef = async (id, token) => {
 	const res = await fetch(`${config.API_URL}/chefs/chef-delete/${id}`, {
 		method: "DELETE",
