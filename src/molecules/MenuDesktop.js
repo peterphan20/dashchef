@@ -38,6 +38,7 @@ const MenuDesktop = ({ setIsCartOpen }) => {
 
 	return (
 		<nav className="flex justify-center items-center gap-4">
+			<MenuAnchorDesktop link="/kitchens/all" placeholder="Browse kitchens" />
 			{!user.loggedIn ? (
 				<>
 					<MenuButtonDesktop clickHandler={handleLoginClick} placeholder="Login" />

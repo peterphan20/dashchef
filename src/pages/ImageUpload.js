@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ImageUploadSingle from "../molecules/ImageUploadSingle";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
 import { updateUserAvatar } from "../api/usersAPI";
 import { updateChefAvatar } from "../api/chefsAPI";
 
 const ImageUpload = () => {
-	const [authResponse, setAuthResponse] = useState(null);
 	const [selectedFile, setSelectedFile] = useState();
 	const [fileIsSelected, setFileIsSelected] = useState(false);
 	const user = useSelector((state) => state.userReducer);
 
 	const { userID } = useParams();
-	const history = useHistory();
+	// const history = useHistory();
 
 	const fileInputHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
@@ -30,9 +29,7 @@ const ImageUpload = () => {
 		console.log("update user api response here", apiResponse);
 		if (apiResponse.code !== 200) {
 			console.log("user update unsuccessfully");
-			setAuthResponse(false);
 		} else {
-			setAuthResponse(true);
 			console.log("user update successful");
 		}
 	};
@@ -42,9 +39,7 @@ const ImageUpload = () => {
 		console.log("update chef api response", apiResponse);
 		if (apiResponse.code !== 200) {
 			console.log("user update unsuccessfully");
-			setAuthResponse(false);
 		} else {
-			setAuthResponse(true);
 			// history.push(`/profile/${userID}`);
 			console.log("user update successful");
 		}

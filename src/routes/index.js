@@ -7,6 +7,7 @@ import Cart from "../pages/Cart";
 import EditKitchen from "../pages/EditKitchen";
 import CreateMenuItem from "../organisms/CreateMenuItem";
 import ImageUpload from "../pages/ImageUpload";
+import KitchensList from "../pages/KitchensList";
 
 export const routes = [
 	{
@@ -18,6 +19,11 @@ export const routes = [
 		path: "/profile/:userID",
 		exact: true,
 		component: Profile,
+	},
+	{
+		path: "/kitchens/all",
+		exact: true,
+		component: KitchensList,
 	},
 	{
 		path: "/kitchen/id/:kitchenID",

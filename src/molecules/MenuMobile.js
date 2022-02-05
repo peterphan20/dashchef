@@ -54,6 +54,7 @@ const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 				isOpen ? "opacity-100 translate-y-0 top-20" : "opacity-0 -translate-y-full top-0"
 			}`}
 		>
+			<MenuAnchorMobile link="/kitchens/all" placeholder="Browse kitchens" />
 			{!user.loggedIn ? (
 				<>
 					<MenuButtonMobile
