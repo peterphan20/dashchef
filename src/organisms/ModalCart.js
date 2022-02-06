@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
 
 const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 	const cart = useSelector((state) => state.cartReducer);
@@ -31,8 +32,14 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					<h1 className="text-2xl font-headers font-bold">Your order</h1>
 				) : (
 					<div className="flex flex-col justify-center items-center font-body">
-						<p className="text-lg font-bold">Your cart is empty</p>
-						<p className="text-sm">Add items to get started</p>
+						<p className="text-lg font-bold mb-1">Your cart is empty</p>
+						<p className="text-sm mb-5">Add items to get started</p>
+						<LinkProfileDesktop
+							className="bg-red-600 text-gray-100 text-sm"
+							link="/kitchens/all"
+							placeholder="Browse kitchens"
+							clickHandler={() => setIsCartOpen(false)}
+						/>
 					</div>
 				)}
 			</div>

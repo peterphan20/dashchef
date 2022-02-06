@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import LinkModal from "../atoms/LinkModal";
 
-const ModalCreateAnotherItem = ({ modalHandler, setShowCreateAnotherItemModal }) => {
+const ModalCreateAnotherItem = ({ modalHandler }) => {
 	const user = useSelector((state) => state.userReducer);
 
 	return (
@@ -22,13 +22,13 @@ const ModalCreateAnotherItem = ({ modalHandler, setShowCreateAnotherItemModal })
 						link={`/kitchen/id/${user.kitchenID}`}
 						className="bg-gray-300"
 						placeholder="No"
-						clickHandler={setShowCreateAnotherItemModal(false)}
+						clickHandler={modalHandler(false)}
 					/>
 					<LinkModal
 						link="/create/menu-item"
 						className="bg-green-400"
 						placeholder="Yes"
-						clickHandler={setShowCreateAnotherItemModal(false)}
+						clickHandler={modalHandler(false)}
 					/>
 				</div>
 			</div>

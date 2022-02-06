@@ -66,7 +66,7 @@ const Kitchen = () => {
 					</h1>
 					<RenderMenuItems />
 				</div>
-				<div className="border border-gray-300 font-body rounded-md p-4 mt-8 w-full lg:p-7 lg:mb-20 lg:w-96">
+				<div className="bg-gray-200 border border-gray-300 font-body rounded-md p-4 mt-8 w-full lg:p-7 lg:mb-20 lg:w-96">
 					<h1 className="text-md lg:text-xl">Contact the chef:</h1>
 					<h1 className="text-sm lg:text-base">Email for inquiries: {kitchen.email}</h1>
 					<h1 className="text-sm lg:text-base">tel: {kitchen.phone}</h1>

@@ -5,6 +5,7 @@ import ImageUploadSingle from "../molecules/ImageUploadSingle";
 import ModalCreateAnotherItem from "../molecules/ModalCreateAnotherItem";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
 import FormInputField from "../atoms/FormInputField";
+import { useHistory } from "react-router-dom";
 
 const CreateMenuItem = () => {
 	const [name, setName] = useState("");
@@ -37,6 +38,7 @@ const CreateMenuItem = () => {
 		},
 	]);
 	const user = useSelector((state) => state.userReducer);
+	const history = useHistory();
 
 	const handleCreateMenuItem = async () => {
 		const token = localStorage.getItem("authToken");
@@ -60,7 +62,7 @@ const CreateMenuItem = () => {
 			setAuthResponse(false);
 		} else {
 			console.log("menu item created");
-			setShowCreateAnotherItemModal(true);
+			history.push(`/profile/${user.id}`);
 		}
 	};
 
@@ -98,10 +100,7 @@ const CreateMenuItem = () => {
 	return (
 		<div className="flex flex-col justify-start items-center bg-gray-100 py-2 px-4 w-full h-full min-h-screen lg:justify-center lg:py-14">
 			{showCreateAnotherItemModal ? (
-				<ModalCreateAnotherItem
-					modalHandler={setShowCreateAnotherItemModal}
-					setShowCreateAnotherItemModal={setShowCreateAnotherItemModal}
-				/>
+				<ModalCreateAnotherItem modalHandler={setShowCreateAnotherItemModal} />
 			) : null}
 			<div className="w-full h-full lg:bg-gray-200 lg:border lg:border-gray-300 lg:py-10 lg:px-16 lg:max-w-2xl lg:w-1/4 xl:w-1/3 lg:mx-auto">
 				<h1 className="text-2xl font-headers text-center py-6 lg:text-3xl">Create a menu item</h1>
