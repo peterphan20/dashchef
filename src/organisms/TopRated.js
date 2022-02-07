@@ -4,7 +4,7 @@ import topKitchenImg from "../assets/top-kitchen-hero-img.jpg";
 
 const TopRated = () => {
 	return (
-		<div className="mt-10 mx-auto max-w-7xl px-4 md:mt-16 lg:flex lg:justify-center lg:items-center lg:gap-14 lg:mb-8 lg:mt-14 xl:mt-16">
+		<div className="mt-10 mx-auto max-w-7xl px-4 md:mt-16 lg:flex lg:justify-center lg:items-center lg:gap-14 lg:mb-8 lg:px-0 lg:mt-14 xl:mt-16">
 			<div className="lg:w-2/5">
 				<img
 					className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"

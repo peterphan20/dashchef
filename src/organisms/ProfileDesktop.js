@@ -54,7 +54,7 @@ const ProfileDesktop = ({
 	};
 
 	return (
-		<div className="flex flex-col px-4 py-10 w-full h-full min-h-screen lg:max-w-4xl lg:mx-auto">
+		<div className="flex flex-col py-10 w-full h-full min-h-screen lg:max-w-4xl lg:mx-auto">
 			{openDeleteKitchenModal ? (
 				<ModalDelete
 					modalHandler={setOpenDeleteKitchenModal}

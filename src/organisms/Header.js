@@ -42,7 +42,7 @@ const Header = ({ setIsCartOpen }) => {
 
 	return (
 		<div className="sticky top-0 left-0 bg-red-600 z-20 w-full">
-			<header className="flex justify-between items-center text-gray-100 p-5 w-full lg:py-6 lg:max-w-7xl lg:mx-auto">
+			<header className="flex justify-between items-center text-gray-100 p-5 w-full lg:p-0 lg:py-6 lg:max-w-7xl lg:mx-auto">
 				<Link
 					to="/"
 					className="font-headers font-bold text-4xl lg:text-5xl"

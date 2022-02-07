@@ -1,9 +1,9 @@
 import config from "../config";
 
-export const getAllKitchen = async (callback) => {
+export const getAllKitchen = async () => {
 	const res = await fetch(`${config.API_URL}/kitchens`);
 	const data = await res.json();
-	callback(data.rows);
+	return data
 };
 
 export const getKitchen = async (id) => {

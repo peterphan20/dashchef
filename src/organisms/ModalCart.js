@@ -5,10 +5,6 @@ import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
 const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 	const cart = useSelector((state) => state.cartReducer);
 
-	// const renderedCartItems = cart.map((cartItem) => {
-	// 	return <div key={cartItem.itemID}></div>;
-	// });
-
 	return (
 		<div
 			className={`fixed top-0 left-0 w-full h-full z-30 transform ${

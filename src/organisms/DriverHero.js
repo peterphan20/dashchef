@@ -4,7 +4,7 @@ import driverHeroImg from "../assets/driver-hero-image.jpg";
 
 const DriverHero = () => {
 	return (
-		<div className="mt-10 mx-auto max-w-7xl px-4 md:mt-16 lg:flex lg:justify-center lg:items-center lg:gap-14 lg:mt-14 xl:mt-16">
+		<div className="mt-10 mx-auto max-w-7xl px-4 md:mt-16 lg:flex lg:justify-center lg:items-center lg:gap-14 lg:mt-14 lg:px-0 xl:mt-16">
 			<div className="lg:flex lg:flex-col lg:justify-center lg:items-start lg:text-left">
 				<h1 className="text-2xl tracking-tight font-bold text-gray-900 md:text-4xl">
 					<span className="font-body block xl:inline">Want to drive for Dashchef?</span>
