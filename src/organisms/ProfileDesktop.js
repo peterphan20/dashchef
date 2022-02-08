@@ -203,7 +203,7 @@ const ProfileDesktop = ({
 				</div>
 			) : (
 				<div className="flex flex-col justify-center items-start bg-gray-200 border border-gray-300 px-16 py-12 text-gray-900 mb-5">
-					<p className="block font-body font-bold text-lg mb-5">Want to create a kitchen?</p>
+					<p className="block font-body font-bold text-lg mb-5">Want to start your own kitchen?</p>
 					<LinkProfileDesktop
 						className="bg-gray-100 text-blue-600 border border-gray-300"
 						link="/create/kitchen"
