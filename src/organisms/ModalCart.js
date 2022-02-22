@@ -28,6 +28,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					<h1 className="text-2xl font-headers font-bold">Your order</h1>
 				) : (
 					<div className="flex flex-col justify-center items-center font-body">
+						<i className="fas fa-shopping-cart text-2xl text-gray-400 mb-1"></i>
 						<p className="text-lg font-bold mb-1">Your cart is empty</p>
 						<p className="text-sm mb-5">Add items to get started</p>
 						<LinkProfileDesktop
