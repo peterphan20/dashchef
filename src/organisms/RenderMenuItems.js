@@ -45,7 +45,7 @@ const RenderMenuItems = ({ className }) => {
 				{menuItem.itemID ? (
 					<div
 						className={`flex flex-col text-sm font-body border-b border-gray-300 py-1 w-full h-full ${className}`}
-						key={menuItem.itemID}
+						key={idx}
 					>
 						<div className="flex justify-between items-centerp b-3">
 							<div className="flex flex-col">
