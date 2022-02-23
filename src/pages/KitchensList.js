@@ -49,7 +49,7 @@ const KitchensList = () => {
 			<div className="lg:py-10 lg:mx-auto lg:max-w-7xl">
 				<h1 className="font-headers font-bold lg:text-3xl lg:ml-24">Browse local kitchens: </h1>
 				<p className="font-body lg:mb-10 lg:text-base lg:ml-24">{kitchens.length} results</p>
-				<div className="flex justify-between items-center flex-wrap lg:mx-auto lg:w-5/6">
+				<div className="flex justify-between items-center flex-wrap gap-5 lg:mx-auto lg:w-5/6">
 					{renderedKitchenCards}
 				</div>
 			</div>

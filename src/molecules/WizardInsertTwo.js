@@ -10,7 +10,7 @@ const WizardInsertTwo = ({ firstName, setFirstName, lastName, setLastName, setIs
 		<>
 			<button
 				className="flex self-end text-sm text-gray-400"
-				onClick={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+				onMouseDown={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 			>
 				<i className="fas fa-times"></i>
 			</button>
@@ -53,6 +53,3 @@ const WizardInsertTwo = ({ firstName, setFirstName, lastName, setLastName, setIs
 };
 
 export default WizardInsertTwo;
-
-// TODO: Does the select on line 39 work? setIsChef is setting the value for isChef, but
-// the value prop for the select component is not being set.

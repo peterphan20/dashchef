@@ -64,7 +64,7 @@ const App = () => {
 		return modal.showSignUpModal ? (
 			<div
 				className="grid place-items-center fixed bg-backdrop top-0 left-0 w-full h-screen z-20"
-				onClick={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+				onMouseDown={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 			>
 				<ModalSignUp />
 			</div>

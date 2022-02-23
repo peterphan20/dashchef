@@ -26,7 +26,7 @@ const WizardInsertThree = ({
 		<>
 			<button
 				className="flex self-end text-sm text-gray-400"
-				onClick={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+				onMouseDown={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 			>
 				<i className="fas fa-times"></i>
 			</button>

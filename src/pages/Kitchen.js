@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import { getKitchen } from "../api/kitchensAPI";
 import Carousel from "../organisms/Carousel";
-import RenderMenuItems from "../molecules/RenderMenuItems";
+import RenderMenuItems from "../organisms/RenderMenuItems";
 import Avatar from "../molecules/Avatar";
 import defaultAvatar from "../assets/default-avatar.jpg";
 import mobileHeaderImg from "../assets/mobile-header-image.jpg";
