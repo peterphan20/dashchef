@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { getKitchen } from "../api/kitchensAPI";
 import Carousel from "../organisms/Carousel";
 import RenderMenuItems from "../organisms/RenderMenuItems";
@@ -10,7 +10,7 @@ import mobileHeaderImg from "../assets/mobile-header-image.jpg";
 import { MENU_ITEMS_LOAD, SELECTED_KITCHEN_LOAD } from "../constants";
 
 const Kitchen = () => {
-	const history = useHistory();
+	const navigateTo = useNavigate();
 	const { kitchenID } = useParams();
 	const dispatch = useDispatch();
 	const kitchen = useSelector((state) => state.selectedKitchenReducer);
@@ -19,7 +19,7 @@ const Kitchen = () => {
 		async function fetchKitchen() {
 			const data = await getKitchen(kitchenID);
 			if (!data || !data.rows) {
-				history.push("/");
+				navigateTo("/");
 			} else {
 				const kitchenData = data.rows[0];
 				const menuItemData = data.rows[0].menuitems;
@@ -42,7 +42,7 @@ const Kitchen = () => {
 		}
 		fetchKitchen();
 		return () => {};
-	}, [kitchenID, dispatch, history]);
+	}, [kitchenID, dispatch, navigateTo]);
 
 	return (
 		<div className="bg-gray-100 pb-10 w-full h-full min-h-screen">

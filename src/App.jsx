@@ -1,21 +1,32 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { routes } from "./routes";
 import Headers from "./organisms/Header";
 import Footer from "./organisms/Footer";
-import ModalLogin from "./organisms/ModalLogin.js";
+import ModalLogin from "./organisms/ModalLogin";
 import ModalSignUp from "./organisms/ModalSignUp";
 import { getUser, validateToken } from "./api/usersAPI";
 import { getChef } from "./api/chefsAPI";
 import { USER_LOGIN, HIDE_SIGN_UP_MODAL } from "./constants";
 import ModalCart from "./organisms/ModalCart";
 
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Kitchen from "./pages/Kitchen";
+import CreateKitchen from "./organisms/CreateKitchen";
+import Driver from "./pages/Driver";
+import Cart from "./pages/Cart";
+import EditKitchen from "./pages/EditKitchen";
+import CreateMenuItem from "./organisms/CreateMenuItem";
+import ImageUpload from "./pages/ImageUpload";
+import KitchensList from "./pages/KitchensList";
+
+
 const App = () => {
 	const [isCartOpen, setIsCartOpen] = useState(false);
 	const modal = useSelector((state) => state.modalReducer);
 	const dispatch = useDispatch();
-	const history = useHistory();
 
 	useEffect(() => {
 		async function validateUser() {
@@ -58,7 +69,7 @@ const App = () => {
 			}
 		}
 		validateUser();
-	}, [history, dispatch]);
+	}, [dispatch]);
 
 	const renderSignUp = () => {
 		return modal.showSignUpModal ? (
@@ -77,14 +88,25 @@ const App = () => {
 			{modal.showLoginModal ? <ModalLogin /> : null}
 			{renderSignUp()}
 			<ModalCart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
-			<Switch>
-				{routes.map((route, idx) => {
-					return <Route {...route} key={idx} />;
-				})}
-			</Switch>
+			<Routes>
+				<Route path="/" element={<Home />}></Route>
+				<Route path="/profile/:userID" element={<Profile />}></Route>
+				<Route path="/kitchens/all" element={<KitchensList />}></Route>
+				<Route path="/kitchen/id/:kitchenID" element={<Kitchen />}></Route>
+				<Route path="/create/kitchen" element={<CreateKitchen />}></Route>
+				<Route path="/edit/kitchen/:kitchenID" element={<EditKitchen />}></Route>
+				<Route path="/create/menu-item" element={<CreateMenuItem />}></Route>
+				<Route path="/image-upload/:userID" element={<ImageUpload />}></Route>
+				<Route path="/driver" element={<Driver />}></Route>
+				<Route path="/cart" element={<Cart />}></Route>
+			</Routes>
 			<Footer />
 		</Router>
 	);
 };
 
 export default App;
+
+// {routes.map((route, idx) => {
+// 	return <Route {...route} key={idx} />;
+// })}

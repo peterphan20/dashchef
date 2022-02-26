@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { getUser, updateUser, validateToken } from "../api/usersAPI";
 import { getChef, updateChef } from "../api/chefsAPI";
 import { USER_LOGOUT } from "../constants";
@@ -24,7 +24,7 @@ const Profile = () => {
 	const [authResponse, setAuthResponse] = useState(null);
 
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const navigateTo = useNavigate();
 	const user = useSelector((state) => state.userReducer);
 	const { userID } = useParams();
 
@@ -34,7 +34,7 @@ const Profile = () => {
 			const token = localStorage.getItem("authToken");
 			const isChef = localStorage.getItem("isChef");
 			if (!token) {
-				history.push("/");
+				navigateTo("/");
 			} else {
 				const apiResponse = await validateToken(token);
 				if (!apiResponse.id) return;
@@ -79,7 +79,7 @@ const Profile = () => {
 			}
 		}
 		getUserData();
-	}, [history]);
+	}, [navigateTo]);
 
 	const trackWindowChanges = () => {
 		setWindowWidth(window.innerWidth);

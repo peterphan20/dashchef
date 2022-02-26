@@ -39,14 +39,14 @@ const RenderMenuItems = ({ className }) => {
 		dispatch({ type: CART_ADD, payload });
 	};
 
-	const renderedMenuItems = menuItems.map((menuItem, idx) => {
+	const renderedMenuItems = menuItems.map((menuItem) => {
 		return (
-			<>
+			<div
+				key={menuItem.itemID}
+				className="flex flex-col text-sm font-body border-b border-gray-300 py-1 w-full h-full"
+			>
 				{menuItem.itemID ? (
-					<div
-						className={`flex flex-col text-sm font-body border-b border-gray-300 py-1 w-full h-full ${className}`}
-						key={idx}
-					>
+					<div>
 						<div className="flex justify-between items-centerp b-3">
 							<div className="flex flex-col">
 								<p className="text-base font-bold pb-1">{menuItem.itemName}</p>
@@ -93,7 +93,7 @@ const RenderMenuItems = ({ className }) => {
 				) : (
 					<p className="font-body text-sm pt-2 pb-8">No menu item</p>
 				)}
-			</>
+			</div>
 		);
 	});
 

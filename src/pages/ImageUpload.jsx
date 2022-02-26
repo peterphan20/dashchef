@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ImageUploadSingle from "../molecules/ImageUploadSingle";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
 import { updateUserAvatar } from "../api/usersAPI";
@@ -12,7 +12,7 @@ const ImageUpload = () => {
 	const user = useSelector((state) => state.userReducer);
 
 	const { userID } = useParams();
-	// const history = useHistory();
+	// const navigateTo = useNavigate();
 
 	const fileInputHandler = (event) => {
 		setSelectedFile(event.target.files[0]);

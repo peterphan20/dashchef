@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { getKitchen, deleteKitchen, updateKitchen } from "../api/kitchensAPI";
 import EditKitchenMobile from "../organisms/EditKitchenMobile";
 import EditKitchenDesktop from "../organisms/EditKitchenDesktop";
@@ -18,11 +18,7 @@ const EditKitchen = () => {
 	const [authResponse, setAuthResponse] = useState(true);
 
 	const { kitchenID } = useParams();
-	const history = useHistory();
-
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+	const navigateTo = useNavigate();
 
 	const trackWindowChanges = () => {
 		setWindowWidth(window.innerWidth);
@@ -44,7 +40,7 @@ const EditKitchen = () => {
 		async function fetchKitchen() {
 			const data = await getKitchen(kitchenID);
 			if (!data || !data.rows) {
-				history.push("/");
+				navigateTo("/");
 			} else {
 				const kitchenData = data.rows[0];
 				setEmail(kitchenData.email);
@@ -62,7 +58,7 @@ const EditKitchen = () => {
 			}
 		}
 		fetchKitchen();
-	}, [kitchenID, history]);
+	}, [kitchenID, navigateTo]);
 
 	const handleUpdateKitchen = async () => {
 		const token = localStorage.getItem("authToken");

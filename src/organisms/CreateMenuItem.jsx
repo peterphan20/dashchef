@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { createMenuItem } from "../api/MenuItemsAPI";
 import ImageUploadSingle from "../molecules/ImageUploadSingle";
 import ModalCreateAnotherItem from "../molecules/ModalCreateAnotherItem";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
 import FormInputField from "../atoms/FormInputField";
-import { useHistory } from "react-router-dom";
 
 const CreateMenuItem = () => {
 	const [name, setName] = useState("");
@@ -38,7 +38,7 @@ const CreateMenuItem = () => {
 		},
 	]);
 	const user = useSelector((state) => state.userReducer);
-	const history = useHistory();
+	const navigateTo = useNavigate();
 
 	const handleCreateMenuItem = async () => {
 		const token = localStorage.getItem("authToken");
@@ -62,7 +62,7 @@ const CreateMenuItem = () => {
 			setAuthResponse(false);
 		} else {
 			console.log("menu item created");
-			history.push(`/profile/${user.id}`);
+			navigateTo(`/profile/${user.id}`);
 		}
 	};
 

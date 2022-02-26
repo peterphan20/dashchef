@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { createKitchen } from "../api/kitchensAPI";
 import Dropdown from "../atoms/Dropdown";
 import FormInputField from "../atoms/FormInputField";
@@ -19,7 +19,7 @@ const CreateKitchen = () => {
 	const [geoState, setGeoState] = useState(null);
 	const [zipcode, setZipCode] = useState("");
 
-	const history = useHistory();
+	const navigateTo = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.userReducer);
 
@@ -72,7 +72,7 @@ const CreateKitchen = () => {
 			dispatch({ type: SELECTED_KITCHEN_CREATE, payload });
 			dispatch({ type: USER_LOGIN, payload: updatedChefPayload });
 			setAuthResponse(true);
-			history.push("/");
+			navigateTo("/");
 		}
 	};
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import ModalDelete from "../molecules/ModalDelete";
 import FormInputField from "../atoms/FormInputField";
 import Dropdown from "../atoms/Dropdown";
@@ -36,7 +36,7 @@ const ProfileDesktop = ({
 }) => {
 	const [openDeleteKitchenModal, setOpenDeleteKitchenModal] = useState(false);
 	const user = useSelector((state) => state.userReducer);
-	const history = useHistory();
+	const navigateTo = useNavigate()
 	const { userID } = useParams();
 
 	const handleDeleteKitchen = async () => {
@@ -49,7 +49,7 @@ const ProfileDesktop = ({
 			setAuthResponse(false);
 		} else {
 			console.log("delete passed");
-			history.push("/");
+			navigateTo("/");
 		}
 	};
 

@@ -1,27 +1,27 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllKitchen } from "../api/kitchensAPI";
 import { KITCHENS_LOAD } from "../constants";
 import defaultAvatar from "../assets/default-avatar.jpg";
 
 const KitchensList = () => {
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const navigateTo = useNavigate();
 	const kitchens = useSelector((state) => state.kitchensReducer);
 
 	useEffect(() => {
 		async function getKitchens() {
 			const data = await getAllKitchen();
 			if (!data || !data.rows) {
-				history("/");
+				navigateTo("/");
 			} else {
 				const kitchensData = data.rows;
 				dispatch({ type: KITCHENS_LOAD, payload: kitchensData });
 			}
 		}
 		getKitchens();
-	}, [dispatch, history]);
+	}, [dispatch, navigateTo]);
 
 	const renderedKitchenCards = kitchens.map((kitchen) => {
 		return (

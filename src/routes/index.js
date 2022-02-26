@@ -10,54 +10,54 @@ import ImageUpload from "../pages/ImageUpload";
 import KitchensList from "../pages/KitchensList";
 
 export const routes = [
-	{
-		path: "/",
-		exact: true,
-		component: Home,
-	},
-	{
-		path: "/profile/:userID",
-		exact: true,
-		component: Profile,
-	},
-	{
-		path: "/kitchens/all",
-		exact: true,
-		component: KitchensList,
-	},
-	{
-		path: "/kitchen/id/:kitchenID",
-		exact: true,
-		component: Kitchen,
-	},
-	{
-		path: "/create/kitchen",
-		exact: true,
-		component: CreateKitchen,
-	},
-	{
-		path: "/edit/kitchen/:kitchenID",
-		exact: true,
-		component: EditKitchen,
-	},
-	{
-		path: "/create/menu-item",
-		exact: true,
-		component: CreateMenuItem,
-	},
-	{
-		path: "/image-upload/:userID",
-		exact: true,
-		component: ImageUpload,
-	},
-	{
-		path: "/driver",
-		exact: true,
-		component: Driver,
-	},
-	{
-		path: "/cart",
-		exact: true,
-		component: Cart,
-	},
+	// {
+	// 	path: "/",
+	// 	exact: true,
+	// 	element: <Home />,
+	// },
+	// {
+	// 	path: "/profile/:userID",
+	// 	exact: true,
+	// 	element: <Profile />,
+	// },
+	// {
+	// 	path: "/kitchens/all",
+	// 	exact: true,
+	// 	element: <KitchensList />,
+	// },
+	// {
+	// 	path: "/kitchen/id/:kitchenID",
+	// 	exact: true,
+	// 	element: <Kitchen />,
+	// },
+	// {
+	// 	path: "/create/kitchen",
+	// 	exact: true,
+	// 	element: <CreateKitchen />,
+	// },
+	// {
+	// 	path: "/edit/kitchen/:kitchenID",
+	// 	exact: true,
+	// 	element: <EditKitchen />,
+	// },
+	// {
+	// 	path: "/create/menu-item",
+	// 	exact: true,
+	// 	element: <CreateMenuItem />,
+	// },
+	// {
+	// 	path: "/image-upload/:userID",
+	// 	exact: true,
+	// 	element: <ImageUpload />,
+	// },
+	// {
+	// 	path: "/driver",
+	// 	exact: true,
+	// 	element: <Driver />,
+	// },
+	// {
+	// 	path: "/cart",
+	// 	exact: true,
+	// 	element: <Cart />,
+	// },
 ];

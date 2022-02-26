@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import MenuButtonDesktop from "../atoms/MenuButtonDesktop";
 import MenuAnchorDesktop from "../atoms/MenuAnchorDesktop";
 import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
@@ -8,7 +8,7 @@ import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../cons
 const MenuDesktop = ({ setIsCartOpen }) => {
 	const user = useSelector((state) => state.userReducer);
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const navigateTo = useNavigate();
 
 	const handleCartClick = () => {
 		console.log("open cart");
@@ -32,7 +32,7 @@ const MenuDesktop = ({ setIsCartOpen }) => {
 	const handleLogout = () => {
 		localStorage.removeItem("authToken");
 		setTimeout(() => window.scrollTo(0, 0), 250);
-		history.push("/");
+		navigateTo("/");
 		dispatch({ type: USER_LOGOUT });
 	};
 
