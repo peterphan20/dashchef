@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CART_ADD } from "../constants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const RenderMenuItems = ({ className }) => {
+const RenderMenuItems = () => {
 	const [itemQuantities, setItemQuantities] = useState({});
 	const menuItems = useSelector((state) => state.menuItemsReducer);
 	const user = useSelector((state) => state.userReducer);
@@ -65,7 +67,7 @@ const RenderMenuItems = ({ className }) => {
 									className="flex justify-center items-center bg-gray-200 text-gray-500 rounded-full w-7 h-7"
 									onClick={() => decrementQuantity(menuItem.itemID)}
 								>
-									<i className="fas fa-minus"></i>
+									<FontAwesomeIcon icon={faMinus} />
 								</button>
 								<div>
 									{!itemQuantities[menuItem.itemID] ? <p>0</p> : itemQuantities[menuItem.itemID]}
@@ -74,7 +76,7 @@ const RenderMenuItems = ({ className }) => {
 									className="flex justify-center items-center bg-gray-400 text-gray-300 rounded-full w-7 h-7"
 									onClick={() => incrementQuantity(menuItem.itemID)}
 								>
-									<i className="fas fa-plus"></i>
+									<FontAwesomeIcon icon={faPlus} />
 								</button>
 							</div>
 							<button

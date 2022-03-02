@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MenuAnchorDesktop = ({ link, clickHandler, placeholder, icon }) => {
+const MenuAnchorDesktop = ({ link, clickHandler, placeholder }) => {
 	return (
 		<>
 			<Link
@@ -10,7 +10,6 @@ const MenuAnchorDesktop = ({ link, clickHandler, placeholder, icon }) => {
 				onClick={clickHandler}
 			>
 				{placeholder}
-				<i className={icon}></i>
 			</Link>
 		</>
 	);

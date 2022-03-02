@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UpdateKitchenForm from "../molecules/UpdateKitchenForm";
-import ButtonProfile from "../atoms/ButtonProfile";
+import ButtonProfileMobile from "../atoms/ButtonProfileMobile";
 import LinkProfileMobile from "../atoms/LinkProfileMobile";
 import ModalDelete from "../molecules/ModalDelete";
 import { useParams } from "react-router-dom";
@@ -29,6 +29,10 @@ const EditKitchenMobile = ({
 	const [openDeleteKitchenModal, setOpenDeleteKitchenModal] = useState(false);
 	const { kitchenID } = useParams();
 
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
+
 	return (
 		<div>
 			<h1 className="text-2xl font-headers text-center pt-5">Update your kitchen</h1>
@@ -53,7 +57,7 @@ const EditKitchenMobile = ({
 					authResponse={authResponse}
 				/>
 			) : (
-				<ButtonProfile
+				<ButtonProfileMobile
 					placeholder="Edit kitchen information"
 					className="border-t mt-5"
 					clickHandler={() => setOpenEditKitchenForm(true)}
@@ -67,7 +71,7 @@ const EditKitchenMobile = ({
 					clickHandler={() => handleDeleteKitchen(kitchenID)}
 				/>
 			) : (
-				<ButtonProfile
+				<ButtonProfileMobile
 					placeholder="Delete Kitchen"
 					className="text-red-600"
 					clickHandler={() => setOpenDeleteKitchenModal(true)}

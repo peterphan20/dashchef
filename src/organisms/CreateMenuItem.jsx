@@ -144,7 +144,7 @@ const CreateMenuItem = () => {
 					clearSelectedFile={clearSelectedFile}
 				/>
 				{authResponse ? null : (
-					<p className="text-red-600 text-base font-body text-center pt-5">
+					<p className="text-red-600 text-base font-body text-center mt-5">
 						Something has gone wrong, please try again
 					</p>
 				)}

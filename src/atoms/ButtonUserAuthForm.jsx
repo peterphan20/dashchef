@@ -1,6 +1,7 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ButtonSignup = ({ clickHandler, text, className = "", buttonIcon = "" }) => {
+const ButtonUserAuthForm = ({ clickHandler, text, className = "", icon }) => {
 	return (
 		<>
 			<button
@@ -8,10 +9,10 @@ const ButtonSignup = ({ clickHandler, text, className = "", buttonIcon = "" }) =
 				onClick={clickHandler}
 			>
 				{text}
-				<i className={`${buttonIcon} text-xs`}></i>
+				<FontAwesomeIcon icon={icon} className="text-xs" />
 			</button>
 		</>
 	);
 };
 
-export default ButtonSignup;
+export default ButtonUserAuthForm;

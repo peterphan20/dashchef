@@ -1,6 +1,6 @@
 import React from "react";
 
-const MenuButtonMobile = ({ clickHandler, placeholder, icon }) => {
+const MenuButtonMobile = ({ clickHandler, placeholder }) => {
 	return (
 		<>
 			<button
@@ -8,7 +8,6 @@ const MenuButtonMobile = ({ clickHandler, placeholder, icon }) => {
 				onClick={clickHandler}
 			>
 				{placeholder}
-				<i className={icon}></i>
 			</button>
 		</>
 	);

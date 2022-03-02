@@ -1,7 +1,8 @@
 import React from "react";
-import ButtonSignup from "../atoms/ButtonSignup";
+import ButtonUserAuthForm from "../atoms/ButtonUserAuthForm";
 import { useDispatch } from "react-redux";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 	const dispatch = useDispatch();
@@ -11,14 +12,14 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 			case stepNumber === 1:
 				return (
 					<div className="flex justify-between items-center mt-4">
-						<ButtonSignup
+						<ButtonUserAuthForm
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
 							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 						/>
-						<ButtonSignup
+						<ButtonUserAuthForm
 							text="Next"
-							buttonIcon="fas fa-chevron-right"
+							icon={faChevronRight}
 							className="bg-blue-400"
 							clickHandler={() => setStepNumber(stepNumber + 1)}
 						/>
@@ -27,21 +28,21 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 			case stepNumber === 2:
 				return (
 					<div className="flex justify-between items-center mt-4">
-						<ButtonSignup
+						<ButtonUserAuthForm
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
 							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 						/>
 						<div className="flex justify-center items-center gap-2">
-							<ButtonSignup
+							<ButtonUserAuthForm
 								text="Previous"
-								buttonIcon="fas fa-chevron-left"
+								icon={faChevronLeft}
 								className="flex-row-reverse bg-gray-400"
 								clickHandler={() => setStepNumber(stepNumber - 1)}
 							/>
-							<ButtonSignup
+							<ButtonUserAuthForm
 								text="Next"
-								buttonIcon="fas fa-chevron-right"
+								icon={faChevronRight}
 								className="bg-blue-400"
 								clickHandler={() => setStepNumber(stepNumber + 1)}
 							/>
@@ -51,18 +52,19 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 			case stepNumber === 3:
 				return (
 					<div className="flex justify-between items-center mt-4">
-						<ButtonSignup
+						<ButtonUserAuthForm
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
 							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 						/>
 						<div className="flex justify-center items-center gap-2">
-							<ButtonSignup
+							<ButtonUserAuthForm
 								text="Previous"
+								icon={faChevronLeft}
 								className="flex flex-row-reverse bg-gray-400"
 								clickHandler={() => setStepNumber(stepNumber - 1)}
 							/>
-							<ButtonSignup text="Submit" className="bg-green-400" clickHandler={handleSignup} />
+							<ButtonUserAuthForm text="Submit" className="bg-green-400" clickHandler={handleSignup} />
 						</div>
 					</div>
 				);

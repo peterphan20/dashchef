@@ -1,6 +1,6 @@
 import React from "react";
 
-const MenuButtonDesktop = ({ clickHandler, placeholder, icon }) => {
+const MenuButtonDesktop = ({ clickHandler, placeholder }) => {
 	return (
 		<>
 			<button
@@ -8,7 +8,6 @@ const MenuButtonDesktop = ({ clickHandler, placeholder, icon }) => {
 				onClick={clickHandler}
 			>
 				{placeholder}
-				<i className={icon}></i>
 			</button>
 		</>
 	);

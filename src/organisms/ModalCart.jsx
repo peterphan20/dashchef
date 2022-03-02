@@ -4,6 +4,8 @@ import { getMenuItem } from "../api/MenuItemsAPI";
 import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
 import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
 import { CART_REMOVE } from "../constants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 	const cart = useSelector((state) => state.cartReducer);
@@ -40,7 +42,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 			onClick={() => setIsCartOpen(false)}
 		>
 			<div
-				className={`flex flex-col fixed top-0 right-0 shadow-md p-5 w-1/4 h-full min-h-screen bg-gray-100 transition duration-300 ease-linear ${
+				className={`flex flex-col fixed top-0 right-0 shadow-md p-5 lg:w-1/5 xl:1/5 h-full min-h-screen bg-gray-100 transition duration-300 ease-linear ${
 					isCartOpen ? "" : "transform translate-x-full"
 				}`}
 				onClick={(e) => e.stopPropagation()}
@@ -49,7 +51,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					<div className="flex justify-between items-center mb-5">
 						<h1 className="text-2xl font-headers font-bold">Your order</h1>
 						<button className="text-lg text-gray-500" onClick={() => setIsCartOpen(false)}>
-							<i className="fas fa-times"></i>
+							<FontAwesomeIcon icon={faTimes} />
 						</button>
 					</div>
 				) : (
@@ -57,7 +59,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 						className="flex self-end text-lg text-gray-500 mb-5"
 						onClick={() => setIsCartOpen(false)}
 					>
-						<i className="fas fa-times"></i>
+						<FontAwesomeIcon icon={faTimes} />
 					</button>
 				)}
 				{cart[0] ? (
@@ -73,7 +75,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					</div>
 				) : (
 					<div className="flex flex-col justify-center items-center font-body">
-						<i className="fas fa-shopping-cart text-2xl text-gray-400 mb-1"></i>
+						<FontAwesomeIcon icon={faUtensils} className="text-3xl text-gray-400 mb-1" />
 						<p className="text-lg font-bold mb-1">Your cart is empty</p>
 						<p className="text-sm mb-5">Add items to get started</p>
 						<LinkProfileDesktop

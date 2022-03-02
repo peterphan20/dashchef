@@ -46,10 +46,10 @@ const KitchensList = () => {
 
 	return (
 		<div className="bg-gray-100 w-full h-full min-h-screen">
-			<div className="lg:py-10 lg:mx-auto lg:max-w-7xl">
-				<h1 className="font-headers font-bold lg:text-3xl lg:ml-24">Browse local kitchens: </h1>
-				<p className="font-body lg:mb-10 lg:text-base lg:ml-24">{kitchens.length} results</p>
-				<div className="flex justify-between items-center flex-wrap gap-5 lg:mx-auto lg:w-5/6">
+			<div className="lg:py-10 lg:mx-auto lg:max-w-6xl xl:max-w-5xl">
+				<h1 className="font-headers font-bold lg:text-3xl">Browse local kitchens: </h1>
+				<p className="font-body lg:mb-10 lg:text-base">{kitchens.length} results</p>
+				<div className="flex justify-between items-center flex-wrap gap-5 lg:mx-auto w-full">
 					{renderedKitchenCards}
 				</div>
 			</div>

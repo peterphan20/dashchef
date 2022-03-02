@@ -60,12 +60,10 @@ const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 					<MenuButtonMobile
 						clickHandler={handleLoginClick}
 						placeholder="Login"
-						icon="fas fa-sign-in-alt"
 					/>
 					<MenuButtonMobile
 						clickHandler={handleSignupClick}
 						placeholder="Sign up"
-						icon="fas fa-user-plus"
 					/>
 				</>
 			) : (
@@ -93,7 +91,6 @@ const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 			)}
 			<MenuButtonMobile
 				placeholder="Cart"
-				icon="fas fa-shopping-cart"
 				clickHandler={handleCartClick}
 			/>
 		</nav>

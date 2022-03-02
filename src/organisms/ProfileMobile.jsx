@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import UpdateUserForm from "../molecules/UpdateUserForm";
 import UpdateAddressForm from "../molecules/UpdateAddressForm";
-import ButtonProfile from "../atoms/ButtonProfile";
+import ButtonProfile from "../atoms/ButtonProfileMobile";
 import LinkProfileMobile from "../atoms/LinkProfileMobile";
 import defaultAvatar from "../assets/default-avatar.jpg";
 

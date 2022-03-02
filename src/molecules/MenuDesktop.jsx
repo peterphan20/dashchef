@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import MenuButtonDesktop from "../atoms/MenuButtonDesktop";
 import MenuAnchorDesktop from "../atoms/MenuAnchorDesktop";
 import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const MenuDesktop = ({ setIsCartOpen }) => {
 	const user = useSelector((state) => state.userReducer);
@@ -37,7 +39,7 @@ const MenuDesktop = ({ setIsCartOpen }) => {
 	};
 
 	return (
-		<nav className="flex justify-center items-center gap-4">
+		<nav className="flex justify-center items-center gap-10">
 			<MenuAnchorDesktop link="/kitchens/all" placeholder="Browse kitchens" />
 			{!user.loggedIn ? (
 				<>
@@ -67,7 +69,11 @@ const MenuDesktop = ({ setIsCartOpen }) => {
 			{user.loggedIn ? (
 				<MenuButtonDesktop placeholder="Sign out" clickHandler={handleLogout} />
 			) : null}
-			<MenuButtonDesktop icon="fas fa-shopping-cart" clickHandler={handleCartClick} />
+				<button 
+					className="flex flex-row justify-center items-start gap-2 text-base font-headers font-semibold hover:text-blue-500"
+					onClick={handleCartClick}>
+					<FontAwesomeIcon icon={faShoppingCart} />
+				</button>
 		</nav>
 	);
 };
