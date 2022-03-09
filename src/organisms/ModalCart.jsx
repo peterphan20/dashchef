@@ -1,35 +1,99 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMenuItem } from "../api/MenuItemsAPI";
 import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
 import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
-import { CART_REMOVE } from "../constants";
+import { CART_REMOVE, CART_UPDATE } from "../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faUtensils } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus, faTimes, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
+	const [cartItems, setCartItems] = useState([]);
 	const cart = useSelector((state) => state.cartReducer);
 	const dispatch = useDispatch();
 
-	// useEffect(() => {
-	// 	async function getCartItem() {
-	// 		const data = await getMenuItem(cart.itemID);
-	// 		console.log("cart data", data);
-	// 	}
-	// 	getCartItem();
-	// });
+	useEffect(() => {
+		async function getCartItem() {
+			const cartItemArray = [...cart];
+			for (let i = 0; i < cartItemArray.length; i++) {
+				const currentItem = cartItemArray[i];
+				const data = await getMenuItem(currentItem.id);
+				if (!data) return;
+				cartItemArray[i] = { ...data.rows[0], quantity: currentItem.quantity };
+			}
+			setCartItems(cartItemArray);
+		}
+		getCartItem();
+	}, [cart]);
 
-	const renderedCartItems = cart.map((cartItem) => {
+	const incrementQuantity = (itemID) => {
+		const newItemQuantities = [...cartItems];
+
+		for (let i = 0; i < newItemQuantities.length; i++) {
+			const currentItem = newItemQuantities[i];
+			if (currentItem.id !== itemID) return;
+			currentItem.quantity++;
+			setCartItems(newItemQuantities);
+			const payload = {
+				id: itemID,
+				quantity: currentItem.quantity,
+			};
+			dispatch({ type: CART_UPDATE, payload });
+		}
+	};
+
+	const decrementQuantity = (itemID) => {
+		const newItemQuantities = [...cartItems];
+
+		for (let i = 0; i < newItemQuantities.length; i++) {
+			const currentItem = newItemQuantities[i];
+			if (currentItem.id !== itemID || currentItem.quantity < 1) return;
+			currentItem.quantity--;
+			setCartItems(newItemQuantities);
+			const payload = {
+				id: itemID,
+				quantity: currentItem.quantity,
+			};
+			dispatch({ type: CART_UPDATE, payload });
+		}
+	};
+
+	const removeCartItem = (itemID) => {
+		// for (let i = 0; i < cart.length; i++) {
+		// 	const currentItem = cart[i];
+		// 	if (currentItem.id === itemID) {
+		// 		delete cart[i];
+		// 		dispatch({ type: CART_REMOVE, payload: itemID });
+		// 	} else {
+		// 		return;
+		// 	}
+		// }
+		return cartItems.filter((item) => item.id !== itemID);
+	};
+
+	const renderedCartItems = cartItems.map((cartItem) => {
 		return (
-			<div key={cartItem.itemID} className="flex justify-between items-center">
+			<div key={cartItem.id} className="flex justify-between items-center mb-5">
 				<div className="flex flex-col justify-center items-start">
-					<h1>Item name</h1>
-					<button onClick={() => dispatch({ payload: cartItem.itemID, type: CART_REMOVE })}>
-						Remove
+					<h1>{cartItem.name}</h1>
+					<button onClick={() => removeCartItem(cartItem.id)}>Remove</button>
+				</div>
+				<div className="flex justify-center items-center gap-2">
+					<button
+						className="flex justify-center items-center bg-gray-200 text-gray-500 w-7 h-7"
+						onClick={() => decrementQuantity(cartItem.itemID)}
+					>
+						<FontAwesomeIcon icon={faMinus} />
+					</button>
+					<div>{cartItem.quantity}</div>
+					<button
+						className="flex justify-center items-center bg-red-600 text-gray-100 w-7 h-7"
+						onClick={() => incrementQuantity(cartItem.id)}
+					>
+						<FontAwesomeIcon icon={faPlus} />
 					</button>
 				</div>
-				<p></p>
-				<p>Price of item</p>
+				<p>{`$${cartItem.price}`}</p>
 			</div>
 		);
 	});
@@ -42,7 +106,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 			onClick={() => setIsCartOpen(false)}
 		>
 			<div
-				className={`flex flex-col fixed top-0 right-0 shadow-md p-5 lg:w-1/5 xl:1/5 h-full min-h-screen bg-gray-100 transition duration-300 ease-linear ${
+				className={`flex flex-col fixed top-0 right-0 shadow-md py-7 px-12 lg:w-1/4 xl:1/5 h-full min-h-screen bg-gray-100 transition duration-300 ease-linear ${
 					isCartOpen ? "" : "transform translate-x-full"
 				}`}
 				onClick={(e) => e.stopPropagation()}
@@ -65,13 +129,10 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 				{cart[0] ? (
 					<div>
 						{renderedCartItems}
-						<div className="flex justify-between items-center gap-2">
-							<ButtonProfileDesktop
-								placeholder="Continue Shopping"
-								className="bg-gray-100 text-sm border border-gray-900"
-							/>
-							<ButtonProfileDesktop placeholder="Checkout" className="bg-red-600" />
-						</div>
+						<ButtonProfileDesktop
+							placeholder="Checkout"
+							className="text-gray-100 bg-red-600 py-3 w-full"
+						/>
 					</div>
 				) : (
 					<div className="flex flex-col justify-center items-center font-body">
