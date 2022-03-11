@@ -2,7 +2,7 @@ import React from "react";
 import ButtonUserAuthForm from "../atoms/ButtonUserAuthForm";
 import { useDispatch } from "react-redux";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+// import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 	const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						/>
 						<ButtonUserAuthForm
 							text="Next"
-							icon={faChevronRight}
+							// icon={faChevronRight}
 							className="bg-blue-400"
 							clickHandler={() => setStepNumber(stepNumber + 1)}
 						/>
@@ -36,13 +36,13 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<div className="flex justify-center items-center gap-2">
 							<ButtonUserAuthForm
 								text="Previous"
-								icon={faChevronLeft}
+								// icon={faChevronLeft}
 								className="flex-row-reverse bg-gray-400"
 								clickHandler={() => setStepNumber(stepNumber - 1)}
 							/>
 							<ButtonUserAuthForm
 								text="Next"
-								icon={faChevronRight}
+								// icon={faChevronRight}
 								className="bg-blue-400"
 								clickHandler={() => setStepNumber(stepNumber + 1)}
 							/>
@@ -60,7 +60,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<div className="flex justify-center items-center gap-2">
 							<ButtonUserAuthForm
 								text="Previous"
-								icon={faChevronLeft}
+								// icon={faChevronLeft}
 								className="flex flex-row-reverse bg-gray-400"
 								clickHandler={() => setStepNumber(stepNumber - 1)}
 							/>

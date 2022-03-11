@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import FormInputField from "../atoms/FormInputField";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const WizardInsertTwo = ({ firstName, setFirstName, lastName, setLastName, setIsChef }) => {
 	const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const WizardInsertTwo = ({ firstName, setFirstName, lastName, setLastName, setIs
 				className="flex self-end text-sm text-gray-400"
 				onMouseDown={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 			>
-				<FontAwesomeIcon icon={faTimes} />
+				{/* <FontAwesomeIcon icon={faTimes} /> */}
 			</button>
 			<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 mt-5 mb-8">
 				Sign up for Dashchef

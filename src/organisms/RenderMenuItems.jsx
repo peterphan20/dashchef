@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CART_ADD } from "../constants";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const RenderMenuItems = () => {
 	const [itemQuantities, setItemQuantities] = useState({});
@@ -67,7 +67,7 @@ const RenderMenuItems = () => {
 									className="flex justify-center items-center bg-gray-200 text-gray-500 w-7 h-7"
 									onClick={() => decrementQuantity(menuItem.itemID)}
 								>
-									<FontAwesomeIcon icon={faMinus} />
+									{/* <FontAwesomeIcon icon={faMinus} /> */}
 								</button>
 								<div>
 									{!itemQuantities[menuItem.itemID] ? <p>0</p> : itemQuantities[menuItem.itemID]}
@@ -76,7 +76,7 @@ const RenderMenuItems = () => {
 									className="flex justify-center items-center bg-gray-400 text-gray-300 w-7 h-7"
 									onClick={() => incrementQuantity(menuItem.itemID)}
 								>
-									<FontAwesomeIcon icon={faPlus} />
+									{/* <FontAwesomeIcon icon={faPlus} /> */}
 								</button>
 							</div>
 							<button

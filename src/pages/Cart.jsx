@@ -1,8 +1,8 @@
 import React from "react";
 import RadialInputCart from "../atoms/RadialInputCart";
 import defaultAvatar from "../assets/default-avatar.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faTrashCan, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 const Cart = () => {
 	return (
@@ -58,17 +58,17 @@ const Cart = () => {
 									className="flex justify-center items-center bg-gray-200 text-gray-500 w-5 h-5"
 									// onClick={() => decrementQuantity(cartItem.id)}
 								>
-									<FontAwesomeIcon icon={faMinus} />
+									{/* <FontAwesomeIcon icon={faMinus} /> */}
 								</button>
 								<span className="text-base">1</span>
 								<button
 									className="flex justify-center items-center bg-red-600 text-gray-100 w-5 h-5"
 									// onClick={() => incrementQuantity(cartItem.id)}
 								>
-									<FontAwesomeIcon icon={faPlus} />
+									{/* <FontAwesomeIcon icon={faPlus} /> */}
 								</button>
 							</div>
-							<FontAwesomeIcon className="text-gray-500 text-xl" icon={faTrashCan} />
+							{/* <FontAwesomeIcon className="text-gray-500 text-xl" icon={faTrashCan} /> */}
 						</div>
 					</div>
 				</div>

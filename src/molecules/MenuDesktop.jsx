@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import MenuButtonDesktop from "../atoms/MenuButtonDesktop";
 import MenuAnchorDesktop from "../atoms/MenuAnchorDesktop";
 import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const MenuDesktop = ({ setIsCartOpen }) => {
 	const user = useSelector((state) => state.userReducer);
@@ -73,8 +73,8 @@ const MenuDesktop = ({ setIsCartOpen }) => {
 				className="flex flex-row justify-center items-start gap-2 text-base font-headers font-semibold hover:text-blue-500"
 				onClick={handleCartClick}
 			>
-				<FontAwesomeIcon icon={faShoppingCart} />
-				{/* <i className="fa-solid fa-cart-shopping text-gray-100"></i> */}
+				{/* <FontAwesomeIcon icon={faShoppingCart} /> */}
+			<i className="far fa-solid fa-cart-shopping text-gray-100 text-4xl" />
 			</button>
 		</nav>
 	);

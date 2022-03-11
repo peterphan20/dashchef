@@ -1,6 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage, faTimes } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faImage, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ImageUploadSingle = ({
 	fileInputHandler,
@@ -16,11 +16,11 @@ const ImageUploadSingle = ({
 		>
 			{selectedFile ? (
 				<button className="flex self-end text-gray-400 pb-2" onClick={clearSelectedFile}>
-					<FontAwesomeIcon icon={faTimes} />
+					{/* <FontAwesomeIcon icon={faTimes} /> */}
 				</button>
 			) : null}
 			<div className="space-y-1 text-center">
-				<FontAwesomeIcon icon={faImage} className="text-4xl text-gray-400" />
+				{/* <FontAwesomeIcon icon={faImage} className="text-4xl text-gray-400" /> */}
 				<div className="text-sm text-gray-600">
 					<label
 						htmlFor="file-upload"

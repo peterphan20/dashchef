@@ -1,6 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const ButtonProfileMobile = ({ clickHandler, placeholder, className = "" }) => {
 	return (
@@ -9,7 +7,6 @@ const ButtonProfileMobile = ({ clickHandler, placeholder, className = "" }) => {
 			onClick={clickHandler}
 		>
 			{placeholder}
-			<FontAwesomeIcon icon={faChevronRight} />
 		</button>
 	);
 };

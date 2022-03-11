@@ -4,8 +4,8 @@ import FormInputField from "../atoms/FormInputField";
 import Dropdown from "../atoms/Dropdown";
 import { USStates } from "../helpers/geoState";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const WizardInsertThree = ({
 	phone,
@@ -30,7 +30,7 @@ const WizardInsertThree = ({
 				className="flex self-end text-sm text-gray-400"
 				onMouseDown={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
 			>
-				<FontAwesomeIcon icon={faTimes} />
+				{/* <FontAwesomeIcon icon={faTimes} /> */}
 			</button>
 			<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 pt-5 pb-5">
 				Sign up for Dashchef

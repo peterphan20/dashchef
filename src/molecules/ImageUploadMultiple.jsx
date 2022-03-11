@@ -1,12 +1,12 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faImage } from "@fortawesome/free-solid-svg-icons";
 
 const ImageUploadMultiple = ({ value, changeHandler }) => {
 	return (
 		<div className="flex justify-center text-gray-900 border-2 border-gray-300 border-dashed rounded-md mt-1 px-6 pt-5 pb-6">
 			<div className="space-y-1 text-center">
-				<FontAwesomeIcon icon={faImage} className="text-4xl text-gray-400" />
+				{/* <FontAwesomeIcon icon={faImage} className="text-4xl text-gray-400" /> */}
 				<div className="flex text-sm text-gray-600">
 					<label
 						htmlFor="file-upload"

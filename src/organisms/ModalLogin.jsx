@@ -4,8 +4,8 @@ import { loginUser } from "../api/usersAPI";
 import { USER_LOGIN, DISPLAY_SIGN_UP_MODAL, HIDE_LOGIN_MODAL } from "../constants";
 import { loginChef } from "../api/chefsAPI";
 import FormInputField from "../atoms/FormInputField";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ModalLogin = () => {
 	const [authResponse, setAuthResponse] = useState(true);
@@ -104,7 +104,7 @@ const ModalLogin = () => {
 					className="flex self-end text-sm text-gray-400 lg:text-base"
 					onClick={() => dispatch({ type: HIDE_LOGIN_MODAL })}
 				>
-					<FontAwesomeIcon icon={faTimes} />
+					{/* <FontAwesomeIcon icon={faTimes} /> */}
 				</button>
 				<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 py-5 lg:break-words">
 					Sign in to get home cooked meals!
