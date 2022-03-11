@@ -1,8 +1,6 @@
 import React from "react";
 import RadialInputCart from "../atoms/RadialInputCart";
 import defaultAvatar from "../assets/default-avatar.jpg";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faTrashCan, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 const Cart = () => {
 	return (
@@ -30,7 +28,7 @@ const Cart = () => {
 					<div className="flex flex-col justify-start items-start gap-1 border-b border-gray-400 mb-8 pb-5 w-full">
 						<div className="flex justify-center items-center gap-5">
 							<span className="font-headers font-bold text-xl">Payment :</span>
-							<span>Will not be implementing stripes payment system</span>
+							<span>Stripe payment</span>
 						</div>
 					</div>
 					<div className="flex flex-col justify-start items-start gap-1 border-b border-gray-400 mb-8 pb-5 w-full">
@@ -58,17 +56,17 @@ const Cart = () => {
 									className="flex justify-center items-center bg-gray-200 text-gray-500 w-5 h-5"
 									// onClick={() => decrementQuantity(cartItem.id)}
 								>
-									{/* <FontAwesomeIcon icon={faMinus} /> */}
+									<i className="fa-solid fa-minus" />
 								</button>
 								<span className="text-base">1</span>
 								<button
 									className="flex justify-center items-center bg-red-600 text-gray-100 w-5 h-5"
 									// onClick={() => incrementQuantity(cartItem.id)}
 								>
-									{/* <FontAwesomeIcon icon={faPlus} /> */}
+									<i className="fa-solid fa-plus" />
 								</button>
 							</div>
-							{/* <FontAwesomeIcon className="text-gray-500 text-xl" icon={faTrashCan} /> */}
+							<i className="fa-solid fa-trash text-gray-500" />
 						</div>
 					</div>
 				</div>

@@ -12,7 +12,7 @@ const Footer = () => {
 						rel="noreferrer"
 						aria-label="Click here to open the Dashchef Page's github in a new tab."
 					>
-						Dashchef's Github
+						<i className="fa-brands fa-github-square text-3xl" />
 					</a>
 				</p>
 			</div>

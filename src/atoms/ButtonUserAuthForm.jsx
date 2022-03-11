@@ -1,5 +1,4 @@
 import React from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ButtonUserAuthForm = ({ clickHandler, text, className = "", icon }) => {
 	return (
@@ -9,7 +8,7 @@ const ButtonUserAuthForm = ({ clickHandler, text, className = "", icon }) => {
 				onClick={clickHandler}
 			>
 				{text}
-				{/* <FontAwesomeIcon icon={icon} className="text-xs" /> */}
+				<i className={`${icon} text-xs`} />
 			</button>
 		</>
 	);

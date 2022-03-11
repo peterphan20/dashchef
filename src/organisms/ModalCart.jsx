@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMenuItem } from "../api/MenuItemsAPI";
-import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
-import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
 import LinkCartDesktop from "../atoms/LinkCartDesktop";
 import { CART_REMOVE, CART_UPDATE } from "../constants";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faMinus, faPlus, faTimes, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 	const [cartItems, setCartItems] = useState([]);
@@ -83,14 +79,14 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 						className="flex justify-center items-center bg-red-600 text-gray-100 w-5 h-5"
 						onClick={() => incrementQuantity(cartItem.id)}
 					>
-						{/* <FontAwesomeIcon icon={faPlus} /> */}
+						<i class="fa-solid fa-plus" />
 					</button>
 					<span className="text-base">{cartItem.quantity}</span>
 					<button
 						className="flex justify-center items-center bg-gray-200 text-gray-500 w-5 h-5"
 						onClick={() => decrementQuantity(cartItem.id)}
 					>
-						{/* <FontAwesomeIcon icon={faMinus} /> */}
+						<i className="fa-solid fa-minus" />
 					</button>
 				</div>
 				<div className="flex flex-col justify-start items-start font-body w-full">
@@ -99,7 +95,9 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					<span className="text-xs">{`$${cartItem.price}`}</span>
 				</div>
 				<div>
-					<button onClick={() => removeCartItem(cartItem.id)}>Remove</button>
+					<button onClick={() => removeCartItem(cartItem.id)}>
+						<i className="fa-solid fa-trash text-gray-500" />
+					</button>
 				</div>
 			</div>
 		);
@@ -122,7 +120,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					<div className="flex justify-between items-center border-b-2 border-gray-200 pb-5">
 						<h1 className="text-2xl font-headers font-bold">Your order</h1>
 						<button className="text-lg text-gray-500" onClick={() => setIsCartOpen(false)}>
-							{/* <FontAwesomeIcon icon={faTimes} /> */}
+							<i className="fa-solid fa-xmark" />
 						</button>
 					</div>
 				) : (
@@ -130,7 +128,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 						className="flex self-end text-lg text-gray-500 mb-5"
 						onClick={() => setIsCartOpen(false)}
 					>
-						{/* <FontAwesomeIcon icon={faTimes} /> */}
+						<i className="fa-solid fa-xmark" />
 					</button>
 				)}
 				{cart[0] ? (
@@ -147,7 +145,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					</div>
 				) : (
 					<div className="flex flex-col justify-center items-center font-body">
-						{/* <FontAwesomeIcon icon={faUtensils} className="text-3xl text-gray-300 mb-1" /> */}
+						<i className="fa-solid fa-burger-fries text-3xl text-gray-300 mb-1" />
 						<p className="text-lg font-bold mb-1">Your cart is empty</p>
 						<p className="text-sm mb-5">Add items to get started</p>
 						<div>
