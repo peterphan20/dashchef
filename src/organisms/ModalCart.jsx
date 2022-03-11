@@ -6,6 +6,7 @@ import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
 import { CART_REMOVE, CART_UPDATE } from "../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faTimes, faUtensils } from "@fortawesome/free-solid-svg-icons";
+import LinkCartDesktop from "../atoms/LinkCartDesktop";
 
 const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 	const [cartItems, setCartItems] = useState([]);
@@ -73,7 +74,10 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 
 	const renderedCartItems = cartItems.map((cartItem) => {
 		return (
-			<div key={cartItem.id} className="flex items-center gap-10 mb-8 w-full">
+			<div
+				key={cartItem.id}
+				className="flex items-center gap-10 py-5 border-b-2 border-gray-200 w-full"
+			>
 				<div className="flex flex-col justify-center items-center">
 					<button
 						className="flex justify-center items-center bg-red-600 text-gray-100 w-5 h-5"
@@ -115,7 +119,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 				onClick={(e) => e.stopPropagation()}
 			>
 				{cart[0] ? (
-					<div className="flex justify-between items-center mb-5">
+					<div className="flex justify-between items-center border-b-2 border-gray-200 pb-5">
 						<h1 className="text-2xl font-headers font-bold">Your order</h1>
 						<button className="text-lg text-gray-500" onClick={() => setIsCartOpen(false)}>
 							<FontAwesomeIcon icon={faTimes} />
@@ -130,24 +134,30 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					</button>
 				)}
 				{cart[0] ? (
-					<div>
+					<div className="">
 						{renderedCartItems}
-						<ButtonProfileDesktop
-							placeholder="Checkout"
-							className="text-gray-100 bg-red-600 py-3 w-full"
-						/>
+						<div className="mt-5 w-full">
+							<LinkCartDesktop
+								className="text-gray-100 bg-red-600 py-3"
+								link="/cart"
+								placeholder="Proceed to checkout"
+								clickHandler={() => setIsCartOpen(false)}
+							/>
+						</div>
 					</div>
 				) : (
 					<div className="flex flex-col justify-center items-center font-body">
-						<FontAwesomeIcon icon={faUtensils} className="text-3xl text-gray-400 mb-1" />
+						<FontAwesomeIcon icon={faUtensils} className="text-3xl text-gray-300 mb-1" />
 						<p className="text-lg font-bold mb-1">Your cart is empty</p>
 						<p className="text-sm mb-5">Add items to get started</p>
-						<LinkProfileDesktop
-							className="bg-red-600 text-gray-100 text-sm"
-							link="/kitchens/all"
-							placeholder="Browse kitchens"
-							clickHandler={() => setIsCartOpen(false)}
-						/>
+						<div>
+							<LinkCartDesktop
+								className="bg-red-600 text-gray-100"
+								link="/kitchens/all"
+								placeholder="Browse kitchens"
+								clickHandler={() => setIsCartOpen(false)}
+							/>
+						</div>
 					</div>
 				)}
 			</div>

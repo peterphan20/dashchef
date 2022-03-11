@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { routes } from "./routes";
 import Headers from "./organisms/Header";
 import Footer from "./organisms/Footer";
 import ModalLogin from "./organisms/ModalLogin";
@@ -21,7 +20,6 @@ import EditKitchen from "./pages/EditKitchen";
 import CreateMenuItem from "./organisms/CreateMenuItem";
 import ImageUpload from "./pages/ImageUpload";
 import KitchensList from "./pages/KitchensList";
-
 
 const App = () => {
 	const [isCartOpen, setIsCartOpen] = useState(false);

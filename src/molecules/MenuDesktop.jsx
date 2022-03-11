@@ -69,11 +69,13 @@ const MenuDesktop = ({ setIsCartOpen }) => {
 			{user.loggedIn ? (
 				<MenuButtonDesktop placeholder="Sign out" clickHandler={handleLogout} />
 			) : null}
-				<button 
-					className="flex flex-row justify-center items-start gap-2 text-base font-headers font-semibold hover:text-blue-500"
-					onClick={handleCartClick}>
-					<FontAwesomeIcon icon={faShoppingCart} />
-				</button>
+			<button
+				className="flex flex-row justify-center items-start gap-2 text-base font-headers font-semibold hover:text-blue-500"
+				onClick={handleCartClick}
+			>
+				<FontAwesomeIcon icon={faShoppingCart} />
+				{/* <i className="fa-solid fa-cart-shopping text-gray-100"></i> */}
+			</button>
 		</nav>
 	);
 };

@@ -62,7 +62,7 @@ const ImageUpload = () => {
 	};
 
 	return (
-		<div className="py-10 bg-gray-100 w-full h-full min-h-screen">
+		<div className="bg-gray-100 py-10 w-full h-full min-h-screen">
 			<div className="bg-gray-200 border border-gray-300 p-10 lg:max-w-2xl lg:mx-auto">
 				<div className="flex flex-col justify-center items-center mb-5">
 					<h1 className="font-headers font-bold mb-1 lg:text-2xl">UPLOAD FILES</h1>
