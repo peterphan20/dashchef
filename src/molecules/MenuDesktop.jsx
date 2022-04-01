@@ -5,16 +5,10 @@ import MenuButtonDesktop from "../atoms/MenuButtonDesktop";
 import MenuAnchorDesktop from "../atoms/MenuAnchorDesktop";
 import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
 
-
 const MenuDesktop = ({ setIsCartOpen }) => {
 	const user = useSelector((state) => state.userReducer);
 	const dispatch = useDispatch();
 	const navigateTo = useNavigate();
-
-	const handleCartClick = () => {
-		console.log("open cart");
-		setIsCartOpen(true);
-	};
 
 	const handlePageChangeClick = () => {
 		window.scrollTo(0, 0);
@@ -70,7 +64,7 @@ const MenuDesktop = ({ setIsCartOpen }) => {
 			) : null}
 			<button
 				className="flex flex-row justify-center items-start gap-2 text-base font-headers font-semibold hover:text-blue-500"
-				onClick={handleCartClick}
+				onClick={() => setIsCartOpen(true)}
 			>
 				<i className="far fa-solid fa-cart-shopping" />
 			</button>

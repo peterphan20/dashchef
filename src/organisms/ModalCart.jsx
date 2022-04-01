@@ -25,7 +25,6 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 
 	const incrementQuantity = (itemID) => {
 		const newItemQuantities = [...cartItems];
-
 		for (let i = 0; i < newItemQuantities.length; i++) {
 			const currentItem = newItemQuantities[i];
 			if (currentItem.id === itemID) {
@@ -42,11 +41,9 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 
 	const decrementQuantity = (itemID) => {
 		const newItemQuantities = [...cartItems];
-
 		for (let i = 0; i < newItemQuantities.length; i++) {
 			const currentItem = newItemQuantities[i];
 			if (currentItem.id === itemID && currentItem.quantity > 1) {
-				console.log("correct", currentItem.quantity);
 				currentItem.quantity--;
 				setCartItems(newItemQuantities);
 				const payload = {
@@ -79,7 +76,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 						className="flex justify-center items-center bg-red-600 text-gray-100 w-5 h-5"
 						onClick={() => incrementQuantity(cartItem.id)}
 					>
-						<i class="fa-solid fa-plus" />
+						<i className="fa-solid fa-plus" />
 					</button>
 					<span className="text-base">{cartItem.quantity}</span>
 					<button
@@ -132,7 +129,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					</button>
 				)}
 				{cart[0] ? (
-					<div className="">
+					<div>
 						{renderedCartItems}
 						<div className="mt-5 w-full">
 							<LinkCartDesktop
