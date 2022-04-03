@@ -41,7 +41,6 @@ const Profile = () => {
 				if (isChef === "0") {
 					const userApiResponse = await getUser(apiResponse.id);
 					const userData = userApiResponse.rows[0];
-					console.log("address", userData.address);
 					setFirstName(userData.firstName);
 					setLastName(userData.lastName);
 					setEmail(userData.email);
@@ -59,13 +58,11 @@ const Profile = () => {
 				} else {
 					const chefApiResponse = await getChef(apiResponse.id);
 					const chefData = chefApiResponse.rows[0];
-					console.log("address", chefData.address);
 					setFirstName(chefData.firstName);
 					setLastName(chefData.lastName);
 					setEmail(chefData.email);
 					setPhone(chefData.phone);
 					const splitAddress = chefData.address.split(", ");
-					console.log("split address", splitAddress);
 					if (splitAddress[0]) setAddress(splitAddress[0]);
 					if (splitAddress[1]) setCity(splitAddress[1]);
 					if (splitAddress[2]) setGeoState(splitAddress[2]);
@@ -105,12 +102,9 @@ const Profile = () => {
 
 	const handleUserUpdate = async (userObject, token) => {
 		const apiResponse = await updateUser(userID, userObject, token);
-		console.log("update user api response here", apiResponse);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
-			console.log("user update unsuccessfully");
 		} else {
-			console.log("api response passed, user updated");
 			setAuthResponse(true);
 			setOpenEditAddress(false);
 			setOpenEditForm(false);
@@ -119,12 +113,9 @@ const Profile = () => {
 
 	const handleChefUpdate = async (chefObject, token) => {
 		const apiResponse = await updateChef(userID, chefObject, token);
-		console.log("update chef api response", apiResponse);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
-			console.log("user update unsuccessfully");
 		} else {
-			console.log("api response passed, user updated");
 			setAuthResponse(true);
 			setOpenEditAddress(false);
 			setOpenEditForm(false);
@@ -146,14 +137,11 @@ const Profile = () => {
 			address: addressStr.toUpperCase(),
 			phone,
 		};
-		console.log(userObject);
 
 		if (!user.isChef) {
 			handleUserUpdate(userObject, token);
-			console.log("update user");
 		} else {
 			handleChefUpdate(userObject, token);
-			console.log("update chef");
 		}
 	};
 

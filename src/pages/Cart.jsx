@@ -1,20 +1,33 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getMenuItem } from "../api/MenuItemsAPI";
+import { getUser, updateUser, validateToken } from "../api/usersAPI";
+import { getChef, updateChef } from "../api/chefsAPI";
 import { CART_UPDATE, CART_REMOVE } from "../constants";
 import RadialInputCart from "../atoms/RadialInputCart";
 import LinkCartDesktop from "../atoms/LinkCartDesktop";
-import defaultAvatar from "../assets/default-avatar.jpg";
 import ModalEditNumber from "../molecules/ModalEditNumber";
+import defaultAvatar from "../assets/default-avatar.jpg";
 
 const Cart = () => {
 	const [method, setMethod] = useState("");
 	const [delivery, setDelivery] = useState("");
 	const [cartItems, setCartItems] = useState([]);
 	const [editNumberModal, setEditNumberModal] = useState(false);
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [phone, setPhone] = useState("");
+	const [email, setEmail] = useState("");
+	const [address, setAddress] = useState("");
+	const [aptNumber, setAptNumber] = useState("");
+	const [city, setCity] = useState("");
+	const [geoState, setGeoState] = useState(null);
+	const [zipcode, setZipCode] = useState("");
 	const user = useSelector((state) => state.userReducer);
 	const cart = useSelector((state) => state.cartReducer);
 	const dispatch = useDispatch();
+	const navigateTo = useNavigate();
 
 	useEffect(() => {
 		async function getCartItem() {
@@ -30,8 +43,57 @@ const Cart = () => {
 		getCartItem();
 	}, [cart]);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+		async function getUserData() {
+			const token = localStorage.getItem("authToken");
+			const isChef = localStorage.getItem("isChef");
+			if (!token) {
+				navigateTo("/");
+			} else {
+				const apiResponse = await validateToken(token);
+				if (!apiResponse.id) return;
+				if (isChef === "0") {
+					const userApiResponse = await getUser(apiResponse.id);
+					const userData = userApiResponse.rows[0];
+					setFirstName(userData.firstName);
+					setLastName(userData.lastName);
+					setEmail(userData.email);
+					setPhone(userData.phone);
+					const splitAddress = userData.address.split(", ");
+					if (splitAddress[0]) setAddress(splitAddress[0]);
+					if (splitAddress[1]) setCity(splitAddress[1]);
+					if (splitAddress[2]) setGeoState(splitAddress[2]);
+					if (splitAddress[3]) setZipCode(splitAddress[3]);
+					if (!splitAddress[4]) {
+						setAptNumber("");
+					} else {
+						setAptNumber(splitAddress[4]);
+					}
+				} else {
+					const chefApiResponse = await getChef(apiResponse.id);
+					const chefData = chefApiResponse.rows[0];
+					setFirstName(chefData.firstName);
+					setLastName(chefData.lastName);
+					setEmail(chefData.email);
+					setPhone(chefData.phone);
+					const splitAddress = chefData.address.split(", ");
+					if (splitAddress[0]) setAddress(splitAddress[0]);
+					if (splitAddress[1]) setCity(splitAddress[1]);
+					if (splitAddress[2]) setGeoState(splitAddress[2]);
+					if (splitAddress[3]) setZipCode(splitAddress[3]);
+					if (!splitAddress[4]) {
+						setAptNumber("");
+					} else {
+						setAptNumber(splitAddress[4]);
+					}
+				}
+			}
+		}
+		getUserData();
+	}, [navigateTo]);
+
 	const incrementQuantity = (itemID) => {
-		console.log(cartItems);
 		const newItemQuantities = [...cartItems];
 		for (let i = 0; i < newItemQuantities.length; i++) {
 			const currentItem = newItemQuantities[i];
@@ -48,7 +110,6 @@ const Cart = () => {
 	};
 
 	const decrementQuantity = (itemID) => {
-		console.log(cartItems);
 		const newItemQuantities = [...cartItems];
 		for (let i = 0; i < newItemQuantities.length; i++) {
 			const currentItem = newItemQuantities[i];
@@ -71,6 +132,49 @@ const Cart = () => {
 				delete cart[i];
 				dispatch({ type: CART_REMOVE, payload: itemID });
 			}
+		}
+	};
+
+	const handleUserUpdate = async (userObject, token) => {
+		const apiResponse = await updateUser(userID, userObject, token);
+		if (apiResponse.code !== 200) {
+			setAuthResponse(false);
+		} else {
+			setAuthResponse(true);
+			setEditNumberModal(false);
+		}
+	};
+
+	const handleChefUpdate = async (chefObject, token) => {
+		const apiResponse = await updateChef(userID, chefObject, token);
+		if (apiResponse.code !== 200) {
+			setAuthResponse(false);
+		} else {
+			setAuthResponse(true);
+			setEditNumberModal(false);
+		}
+	};
+
+	const updatePhoneNumber = async () => {
+		const token = localStorage.getItem("authToken");
+		if (!token) return;
+
+		const addressStr = `${address}, ${city}, ${geoState}, ${zipcode}, ${
+			aptNumber ? aptNumber : ""
+		}`;
+
+		const userObject = {
+			firstName,
+			lastName,
+			email,
+			address: addressStr.toUpperCase(),
+			phone,
+		};
+
+		if (!user.isChef) {
+			handleUserUpdate(userObject, token);
+		} else {
+			handleChefUpdate(userObject, token);
 		}
 	};
 
@@ -107,7 +211,14 @@ const Cart = () => {
 	});
 	return (
 		<div className="bg-gray-100 w-full h-full min-h-screen">
-			{editNumberModal ? <ModalEditNumber setEditNumberModal={setEditNumberModal} /> : null}
+			{editNumberModal ? (
+				<ModalEditNumber
+					setEditNumberModal={setEditNumberModal}
+					phone={phone}
+					setPhone={setPhone}
+					updatePhoneNumber={updatePhoneNumber}
+				/>
+			) : null}
 			<div className="flex justify-between items-start mx-auto">
 				<div className="flex flex-col justify-center items-start w-full lg:p-10 lg:mx-auto lg:max-w-3xl">
 					<span className="font-headers font-bold lg:text-3xl mb-5">Checkout:</span>
