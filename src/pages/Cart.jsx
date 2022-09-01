@@ -8,7 +8,7 @@ import { CART_UPDATE, CART_REMOVE } from "../constants";
 import RadialInputCart from "../atoms/RadialInputCart";
 import LinkCartDesktop from "../atoms/LinkCartDesktop";
 import ModalEditNumber from "../molecules/ModalEditNumber";
-import defaultAvatar from "../assets/default-avatar.jpg";
+import CheckoutPanel from "../organisms/CheckoutPanel";
 
 const Cart = () => {
 	const [method, setMethod] = useState("");
@@ -181,9 +181,6 @@ const Cart = () => {
 	const renderedCartItems = cartItems.map((cartItem) => {
 		return (
 			<div key={cartItem.id} className="flex justify-start items-center gap-10 font-body">
-				<div className="flex items-center w-16 h-16">
-					<img src={defaultAvatar} alt="default" className="rounded" />
-				</div>
 				<div className="flex flex-col gap-1">
 					<span>{cartItem.name}</span>
 					<span>{`$${cartItem.price}`}</span>
@@ -209,6 +206,7 @@ const Cart = () => {
 			</div>
 		);
 	});
+
 	return (
 		<div className="bg-gray-100 w-full h-full min-h-screen">
 			{editNumberModal ? (
@@ -220,9 +218,9 @@ const Cart = () => {
 				/>
 			) : null}
 			<div className="flex justify-between items-start mx-auto">
-				<div className="flex flex-col justify-center items-start w-full lg:p-10 lg:mx-auto lg:max-w-3xl">
-					<span className="font-headers font-bold lg:text-3xl mb-5">Checkout:</span>
-					<div className="flex flex-col justify-start items-start gap-4 border-b border-gray-400 mb-8 pb-5 w-full">
+				<div className="flex flex-col justify-center items-start border border-gray-300 rounded mt-10 w-full lg:mx-auto lg:max-w-3xl">
+					<span className="font-headers font-bold pt-10 px-10 lg:text-3xl">Checkout:</span>
+					<div className="flex flex-col justify-start items-start gap-4 border-b border-gray-300 p-10 w-full">
 						<span className="font-headers font-bold text-xl">Method :</span>
 						<div className="flex flex-col gap-2">
 							<RadialInputCart
@@ -241,7 +239,7 @@ const Cart = () => {
 							/>
 						</div>
 					</div>
-					<div className="flex flex-col justify-start items-start gap-4 border-b border-gray-400 mb-8 pb-5 w-full">
+					<div className="flex flex-col justify-start items-start gap-4 border-b border-gray-300 p-10 w-full ">
 						<div className="flex justify-center items-center gap-5">
 							<span className="font-headers font-bold text-xl">Delivery :</span>
 							<span className="font-headers font-bold text-base">45-60 min</span>
@@ -263,13 +261,13 @@ const Cart = () => {
 							/>
 						</div>
 					</div>
-					<div className="flex flex-col justify-start items-start gap-1 border-b border-gray-400 mb-8 pb-5 w-full">
+					<div className="flex flex-col justify-start items-start gap-1 border-b border-gray-300 p-10 w-full">
 						<div className="flex justify-center items-center gap-5">
 							<span className="font-headers font-bold text-xl">Payment :</span>
 							<span>Stripe payment</span>
 						</div>
 					</div>
-					<div className="flex flex-col justify-start items-start gap-1 border-b border-gray-400 mb-8 pb-5 w-full">
+					<div className="flex flex-col justify-start items-start gap-1 border-b border-gray-300 p-10 w-full">
 						<div className="flex justify-center items-center gap-5">
 							<span className="font-headers font-bold text-xl">Phone number :</span>
 							<span className="font-headers font-bold text-base">{user.phone}</span>
@@ -281,7 +279,7 @@ const Cart = () => {
 							Change
 						</button>
 					</div>
-					<div className="flex flex-col justify-start items-start gap-4 mb-8 pb-5 w-full">
+					<div className="flex flex-col justify-start items-start gap-4 p-10 w-full">
 						{cartItems[0] ? (
 							<div className="flex flex-col gap-5">
 								<span className="font-headers font-bold text-xl">Your items : </span>
@@ -302,8 +300,8 @@ const Cart = () => {
 						)}
 					</div>
 				</div>
-				<div className="flex flex-col justify-start items-start bg-gray-200 border-l-1 border-gray-300 h-screen lg:w-96 xl:w-1/4">
-					Checkout panel coming soon
+				<div className="flex border-l border-gray-300 h-screen lg:w-80 xl:w-96">
+					<CheckoutPanel />
 				</div>
 			</div>
 		</div>

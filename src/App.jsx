@@ -20,6 +20,7 @@ import EditKitchen from "./pages/EditKitchen";
 import CreateMenuItem from "./organisms/CreateMenuItem";
 import ImageUpload from "./pages/ImageUpload";
 import KitchensList from "./pages/KitchensList";
+import OrderConfirmation from "./pages/OrderConfirmation";
 
 const App = () => {
 	const [isCartOpen, setIsCartOpen] = useState(false);
@@ -97,6 +98,7 @@ const App = () => {
 				<Route path="/image-upload/:userID" element={<ImageUpload />}></Route>
 				<Route path="/driver" element={<Driver />}></Route>
 				<Route path="/cart" element={<Cart />}></Route>
+				<Route path="/order-confirmation" element={<OrderConfirmation />}></Route>
 			</Routes>
 			<Footer />
 		</Router>
@@ -104,7 +106,3 @@ const App = () => {
 };
 
 export default App;
-
-// {routes.map((route, idx) => {
-// 	return <Route {...route} key={idx} />;
-// })}

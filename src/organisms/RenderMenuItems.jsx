@@ -34,6 +34,7 @@ const RenderMenuItems = () => {
 		}
 		const payload = {
 			id: itemID,
+			kitchenID: kitchen.id,
 			quantity: itemQuantities[itemID],
 		};
 		dispatch({ type: CART_ADD, payload });

@@ -142,7 +142,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					</div>
 				) : (
 					<div className="flex flex-col justify-center items-center font-body">
-						<i className="fa-solid fa-burger-fries text-3xl text-gray-300 mb-1" />
+						<i className="fa-solid fa-burger text-3xl text-gray-300 mb-1" />
 						<p className="text-lg font-bold mb-1">Your cart is empty</p>
 						<p className="text-sm mb-5">Add items to get started</p>
 						<div>

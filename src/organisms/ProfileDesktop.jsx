@@ -36,7 +36,7 @@ const ProfileDesktop = ({
 }) => {
 	const [openDeleteKitchenModal, setOpenDeleteKitchenModal] = useState(false);
 	const user = useSelector((state) => state.userReducer);
-	const navigateTo = useNavigate()
+	const navigateTo = useNavigate();
 	const { userID } = useParams();
 
 	const handleDeleteKitchen = async () => {
@@ -75,22 +75,18 @@ const ProfileDesktop = ({
 						</p>
 					)}
 				</div>
-				<div className="flex justify-start items-center gap-5 mb-10">
-					<div className="w-24 h-24">
-						<img
-							src={user.avatarURL ? user.avatarURL : defaultAvatar}
-							alt="user's avatar"
-							className="rounded-full"
-						/>
-					</div>
-					<Link
-						to={`/image-upload/${userID}`}
-						className="bg-gray-50 text-xs rounded-md border border-gray-300 py-2 px-5"
-					>
-						{user.avatarURL ? <p>Update picture</p> : <p>Add picture</p>}
+				<div className="mb-5">
+					<Link to={`/image-upload/${userID}`} className="text-xs">
+						<div className="w-24 h-24">
+							<img
+								src={user.avatarURL ? user.avatarURL : defaultAvatar}
+								alt="user's avatar"
+								className="rounded-full"
+							/>
+						</div>
 					</Link>
 				</div>
-				<div className="flex gap-5 mb-5 w-full h-full">
+				<div className="flex gap-5 mb-3 w-full h-full">
 					<FormInputField
 						htmlFor="firstname"
 						text="firstname"
@@ -108,7 +104,7 @@ const ProfileDesktop = ({
 						changeHandler={(e) => setLastName(e.target.value)}
 					/>
 				</div>
-				<div className="flex gap-5 mb-5 w-full h-full">
+				<div className="flex gap-5 mb-3 w-full h-full">
 					<FormInputField
 						htmlFor="email-address"
 						text="email"
@@ -126,7 +122,7 @@ const ProfileDesktop = ({
 						changeHandler={(e) => setPhone(e.target.value)}
 					/>
 				</div>
-				<div className="flex gap-5 mb-5 w-full h-full">
+				<div className="flex gap-5 mb-3 w-full h-full">
 					<FormInputField
 						htmlFor="address"
 						text="address"
@@ -145,7 +141,7 @@ const ProfileDesktop = ({
 						changeHandler={(e) => setAptNumber(e.target.value)}
 					/>
 				</div>
-				<div className="flex gap-7 mb-5 w-full h-full">
+				<div className="flex gap-7 mb-3 w-full h-full">
 					<FormInputField
 						htmlFor="city"
 						text="city"
@@ -173,30 +169,30 @@ const ProfileDesktop = ({
 				</div>
 				<ButtonProfileDesktop
 					placeholder="Save changes"
-					className="bg-green-400 text-gray-100"
+					className="bg-green-400 text-gray-100 text-sm"
 					clickHandler={handleUpdate}
 				/>
 			</div>
-			{user.isChef && user.kitchenID ? (
-				<div className="bg-gray-200 border border-gray-300 px-16 py-12 text-gray-900 mb-5">
-					<h1 className="font-headers font-bold text-3xl mb-6">Kitchen</h1>
+			{!user.isChef ? null : user.isChef && user.kitchenID ? (
+				<div className="bg-gray-200 border border-gray-300 px-16 py-6 text-gray-900 mb-5">
+					<h1 className="font-headers font-bold text-3xl mb-4">Kitchen</h1>
 					<div className="flex flex-col justify-center items-start mb-5">
-						<label className="block font-body font-bold text-lg mb-5">
+						<label className="block font-body font-bold text-lg mb-3">
 							Want to make changes to your kitchen?
 						</label>
 						<LinkProfileDesktop
 							link={`/edit/kitchen/${user.kitchenID}`}
 							placeholder="Update kitchen"
-							className="text-gray-900 bg-gray-50 border border-gray-300 mb-5"
+							className="text-gray-900 text-sm bg-gray-50 border border-gray-300 mb-5"
 						/>
 						<LinkProfileDesktop
 							link="/create/menu-item"
 							placeholder="Add menu item"
-							className="bg-gray-50 text-blue-600 border border-gray-300 mb-5"
+							className="bg-gray-50 text-sm text-blue-600 border border-gray-300 mb-5"
 						/>
 						<ButtonProfileDesktop
 							placeholder="Delete Kitchen"
-							className="bg-red-600 text-gray-100"
+							className="bg-red-600 text-sm text-gray-100"
 							clickHandler={() => setOpenDeleteKitchenModal(true)}
 						/>
 					</div>
@@ -213,7 +209,7 @@ const ProfileDesktop = ({
 			)}
 			<div>
 				<ButtonProfileDesktop
-					className="bg-gray-200 text-red-600 border border-gray-300"
+					className="bg-gray-200 text-red-600 text-sm border border-gray-300"
 					placeholder="Logout"
 					clickHandler={handleSignOut}
 				/>
