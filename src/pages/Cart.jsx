@@ -15,8 +15,6 @@ const Cart = () => {
 	const [delivery, setDelivery] = useState("");
 	const [cartItems, setCartItems] = useState([]);
 	const [editNumberModal, setEditNumberModal] = useState(false);
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [address, setAddress] = useState("");
@@ -73,8 +71,6 @@ const Cart = () => {
 				} else {
 					const chefApiResponse = await getChef(apiResponse.id);
 					const chefData = chefApiResponse.rows[0];
-					setFirstName(chefData.firstName);
-					setLastName(chefData.lastName);
 					setEmail(chefData.email);
 					setPhone(chefData.phone);
 					const splitAddress = chefData.address.split(", ");
@@ -164,8 +160,8 @@ const Cart = () => {
 		}`;
 
 		const userObject = {
-			firstName,
-			lastName,
+			firstName: user.firstName,
+			lastName: user.lastName,
 			email,
 			address: addressStr.toUpperCase(),
 			phone,
@@ -279,25 +275,13 @@ const Cart = () => {
 							Change
 						</button>
 					</div>
-					<div className="flex flex-col justify-start items-start gap-4 p-10 w-full">
+					<div>
 						{cartItems[0] ? (
-							<div className="flex flex-col gap-5">
+							<div className="flex flex-col gap-5 p-10 w-full">
 								<span className="font-headers font-bold text-xl">Your items : </span>
 								{renderedCartItems}
 							</div>
-						) : (
-							<div>
-								<span className="font-headers font-bold text-xl">
-									Your Dashchef cart is empty :
-								</span>
-								<LinkCartDesktop
-									className="bg-red-600 text-gray-100 mt-5 w-52"
-									link="/kitchens/all"
-									placeholder="Browse kitchens"
-									clickHandler={() => setIsCartOpen(false)}
-								/>
-							</div>
-						)}
+						) : null}
 					</div>
 				</div>
 				<div className="flex border-l border-gray-300 h-screen lg:w-80 xl:w-96">

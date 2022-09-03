@@ -154,6 +154,7 @@ const ProfileDesktop = ({
 					<Dropdown
 						options={USStates}
 						select={geoState}
+						guessValue={geoState}
 						placeholder="State/Province"
 						onSelectedChange={(e) => setGeoState(e.target.value)}
 					/>

@@ -50,10 +50,10 @@ const CreateMenuItem = () => {
 		formData.append("description", description);
 		formData.append("price", price);
 		formData.append("file", selectedFile);
-		// formData.append(
-		// 	"tags",
-		// 	listOfItems.map((item) => item.tag)
-		// );
+		formData.append(
+			"tags",
+			listOfItems.map((item) => item.tag)
+		);
 
 		const apiResponse = await createMenuItem(formData, token);
 		console.log("api reponse", apiResponse);

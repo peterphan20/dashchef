@@ -2,17 +2,6 @@ import React from "react";
 import driverSignupImage from "../assets/driver-signup-image.jpg";
 
 const Driver = () => {
-	const renderCarRequirement = () => {
-		return (
-			<ul className="font-body">
-				<li>Be at least 19 year old</li>
-				<li>Have a 2-door or 4-door car</li>
-				<li>Have a valid driver&apos;s license in your name</li>
-				<li>Submit your Social Security number for us to run a background screening</li>
-			</ul>
-		);
-	};
-
 	return (
 		<div className="bg-gray-100 w-full min-h-screen">
 			<div className="bg-red-600 mb-10 w-full">

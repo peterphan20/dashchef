@@ -58,6 +58,7 @@ const Profile = () => {
 				} else {
 					const chefApiResponse = await getChef(apiResponse.id);
 					const chefData = chefApiResponse.rows[0];
+					console.log(chefData);
 					setFirstName(chefData.firstName);
 					setLastName(chefData.lastName);
 					setEmail(chefData.email);
