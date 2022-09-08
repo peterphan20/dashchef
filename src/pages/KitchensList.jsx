@@ -33,8 +33,8 @@ const KitchensList = () => {
 						alt="kitchen's avatar"
 					/>
 					<div className="flex flex-col justify-center items-start font-body lg:text-sm lg:p-2">
-						<h1 className="font-headers font-bold lg:text-base">{kitchen.name}</h1>
-						<h1 className="text-xs">{kitchen.address}</h1>
+						<h1 className="font-headers font-bold lg:text-base px-2">{kitchen.name}</h1>
+						<h1 className="text-xs px-2">{kitchen.address}</h1>
 					</div>
 				</Link>
 			</div>

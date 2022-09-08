@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { updateUserAvatar, updateChefAvatar } from "../api/usersAPI";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
-import { updateUserAvatar } from "../api/usersAPI";
-import { updateChefAvatar } from "../api/chefsAPI";
 
-const ImageUpload = () => {
+const UserImageUpload = () => {
 	const [selectedFile, setSelectedFile] = useState();
 	const [fileIsSelected, setFileIsSelected] = useState(false);
 	const user = useSelector((state) => state.userReducer);
@@ -23,23 +22,21 @@ const ImageUpload = () => {
 
 	const handleUserAvatarUpdate = async (formData, token) => {
 		const apiResponse = await updateUserAvatar(userID, formData, token);
-		console.log("update user api response here", apiResponse);
-		console.log("user's form data", formData);
-		if (apiResponse.code !== 200) {
-			console.log("user update unsuccessfully");
+		console.log("api response===>", apiResponse);
+		if (apiResponse.status !== 204) {
+			console.log("Failed to update user's avatar");
 		} else {
-			console.log("user update successful");
+			console.log("Chef successfully updated avatar");
 		}
 	};
 
 	const handleChefAvatarUpdate = async (formData, token) => {
 		const apiResponse = await updateChefAvatar(userID, formData, token);
-		console.log("update chef api response", apiResponse);
-		console.log("chef's form data", formData);
-		if (apiResponse.code !== 200) {
-			console.log("user update unsuccessfully");
+		console.log("api response===>", apiResponse);
+		if (apiResponse.status !== 204) {
+			console.log("Failed to update user's avatar");
 		} else {
-			console.log("user update successful");
+			console.log("User successfully updated avatar");
 		}
 	};
 
@@ -49,7 +46,7 @@ const ImageUpload = () => {
 
 		const formData = new FormData();
 		formData.append("file", selectedFile);
-
+		formData.append("hello", "world");
 		if (!user.isChef) {
 			handleUserAvatarUpdate(formData, token);
 			console.log("update user");
@@ -107,4 +104,4 @@ const ImageUpload = () => {
 	);
 };
 
-export default ImageUpload;
+export default UserImageUpload;

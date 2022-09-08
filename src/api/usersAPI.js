@@ -45,21 +45,20 @@ export const updateUser = async (id, userObject, token) => {
 			auth: token,
 		},
 	});
+
 	const data = await res.json();
 	return data;
 };
 
 export const updateUserAvatar = async (id, formData, token) => {
 	const res = await fetch(`${config.API_URL}/users/avatar-update/${id}`, {
-		method: "POST",
+		method: "PUT",
 		body: formData,
 		headers: {
-			"Content-Type": "multipart/form-data",
 			auth: token,
 		},
 	});
-	const data = await res.json();
-	return data;
+	return res;
 };
 
 export const deleteUser = async (id, token) => {

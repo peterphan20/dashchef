@@ -11,6 +11,7 @@ export const createMenuItem = async (formData, token) => {
 		method: "POST",
 		body: formData,
 		headers: {
+			"Content-Type": "multipart/form-data",
 			auth: token,
 		},
 	});

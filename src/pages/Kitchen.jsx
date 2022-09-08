@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getKitchen } from "../api/kitchensAPI";
 import Carousel from "../organisms/Carousel";
 import RenderMenuItems from "../organisms/RenderMenuItems";
@@ -56,7 +56,11 @@ const Kitchen = () => {
 			</div>
 			<div className="relative flex justify-between w-full">
 				<div className="w-full lg:max-w-4xl lg:mx-auto">
-					<Avatar src={!kitchen.avatarURL ? defaultAvatar : kitchen.avatarURL} />
+					<div>
+						<Link to={`/image-upload/kitchen/${kitchenID}`} className="text-xs">
+							<Avatar src={!kitchen.avatarURL ? defaultAvatar : kitchen.avatarURL} />
+						</Link>
+					</div>
 					<div className="font-body pb-10 transform -translate-y-5">
 						<h1 className="text-3xl font-bold lg:text-4xl xl:text-5xl">{kitchen.name}</h1>
 						<h1 className="text-sm pt-1 lg:text-base xl:text-lg">{kitchen.address}</h1>

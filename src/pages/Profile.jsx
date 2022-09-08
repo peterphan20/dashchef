@@ -17,7 +17,7 @@ const Profile = () => {
 	const [address, setAddress] = useState("");
 	const [aptNumber, setAptNumber] = useState("");
 	const [city, setCity] = useState("");
-	const [geoState, setGeoState] = useState(null);
+	const [geoState, setGeoState] = useState("");
 	const [zipcode, setZipCode] = useState("");
 	const [openEditForm, setOpenEditForm] = useState(false);
 	const [openEditAddress, setOpenEditAddress] = useState(false);

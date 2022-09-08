@@ -136,13 +136,12 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 				{cart[0] ? (
 					<div>{renderedCartItems}</div>
 				) : (
-					<div className="flex flex-col justify-center items-center font-body">
+					<div div className="flex flex-col items-center p-5">
 						<i className="fa-solid fa-burger text-3xl text-gray-300 mb-1" />
 						<p className="text-lg font-bold mb-1">Your cart is empty</p>
-						<p className="text-sm mb-5">Add items to get started</p>
+						<p className="text-sm mb-4">Add an item to get started</p>
 						<div>
 							<LinkCartDesktop
-								className="bg-red-600 text-gray-100"
 								link="/kitchens/all"
 								placeholder="Browse kitchens"
 								clickHandler={() => setIsCartOpen(false)}

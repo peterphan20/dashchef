@@ -54,8 +54,6 @@ const Cart = () => {
 				if (isChef === "0") {
 					const userApiResponse = await getUser(apiResponse.id);
 					const userData = userApiResponse.rows[0];
-					setFirstName(userData.firstName);
-					setLastName(userData.lastName);
 					setEmail(userData.email);
 					setPhone(userData.phone);
 					const splitAddress = userData.address.split(", ");

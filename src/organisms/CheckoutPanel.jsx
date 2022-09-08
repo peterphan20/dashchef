@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getKitchen } from "../api/kitchensAPI";
+import { MENU_ITEMS_LOAD, SELECTED_KITCHEN_LOAD } from "../constants";
 import CheckoutFees from "../atoms/CheckoutFees";
 import LinkCartDesktop from "../atoms/LinkCartDesktop";
-import { MENU_ITEMS_LOAD, SELECTED_KITCHEN_LOAD } from "../constants";
 
 const CheckoutPanel = () => {
 	const [displayCartInfo, setDisplayCartInfo] = useState(false);
@@ -52,11 +51,7 @@ const CheckoutPanel = () => {
 					<div className="flex flex-col border-b border-gray-300 p-5">
 						<span className="font-body text-sm">Your cart from:</span>
 						<span className="font-headers font-bold text-lg pb-5">{kitchen.name}</span>
-						<LinkCartDesktop
-							link="/order-confirmation"
-							placeholder="Place Order"
-							className="bg-red-600 text-gray-100 font-bold"
-						/>
+						<LinkCartDesktop link="/order-confirmation" placeholder="Place Order" />
 					</div>
 					<div className="flex flex-col gap-2 px-5 py-5 border-b border-gray-300">
 						<CheckoutFees placeholder="Subtotal" price={`$${subtotal}`} />
@@ -69,13 +64,12 @@ const CheckoutPanel = () => {
 					</div>
 				</div>
 			) : (
-				<div className="flex flex-col justify-center items-center font-body p-5">
+				<div div className="flex flex-col items-center p-5">
 					<i className="fa-solid fa-burger text-3xl text-gray-300 mb-1" />
 					<p className="text-lg font-bold mb-1">Your cart is empty</p>
-					<p className="text-sm mb-5">Add an item to get started</p>
+					<p className="text-sm mb-4">Add an item to get started</p>
 					<div>
 						<LinkCartDesktop
-							className="bg-red-600 text-gray-100"
 							link="/kitchens/all"
 							placeholder="Browse kitchens"
 							clickHandler={() => setIsCartOpen(false)}

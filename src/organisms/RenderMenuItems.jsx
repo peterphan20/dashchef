@@ -30,7 +30,6 @@ const RenderMenuItems = ({ kitchen }) => {
 
 	const addToCart = (itemID) => {
 		if (itemQuantities[itemID] < 1 || !itemQuantities[itemID]) {
-			//TODO: post to user to change quantity
 			return;
 		}
 		const payload = {
@@ -52,7 +51,7 @@ const RenderMenuItems = ({ kitchen }) => {
 						<div className="flex justify-between items-center py-3">
 							<div className="flex flex-col">
 								<p className="text-base font-bold pb-1">{menuItem.itemName}</p>
-								<p className="text-sm text-gray-700 overflow-clip pb-1">
+								<p className="text-sm text-gray-700 overflow-clip pb-1 pr-28">
 									{menuItem.itemDescription}
 								</p>
 								<p className="text-sm pb-2">${menuItem.itemPrice}</p>
