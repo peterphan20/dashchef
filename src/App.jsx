@@ -18,7 +18,8 @@ import Driver from "./pages/Driver";
 import Cart from "./pages/Cart";
 import EditKitchen from "./pages/EditKitchen";
 import CreateMenuItem from "./organisms/CreateMenuItem";
-import UserImageUpload from "./pages/UserImageUpload";
+import ImageUploadUser from "./pages/ImageUploadUser";
+import ImageUploadKitchen from "./pages/ImageUploadKitchen";
 import KitchensList from "./pages/KitchensList";
 import OrderConfirmation from "./pages/OrderConfirmation";
 
@@ -95,7 +96,8 @@ const App = () => {
 				<Route path="/create/kitchen" element={<CreateKitchen />}></Route>
 				<Route path="/edit/kitchen/:kitchenID" element={<EditKitchen />}></Route>
 				<Route path="/create/menu-item" element={<CreateMenuItem />}></Route>
-				<Route path="/image-upload/user/:userID" element={<UserImageUpload />}></Route>
+				<Route path="/image-upload/user/:userID" element={<ImageUploadUser />}></Route>
+				<Route path="/image-upload/kitchen/:kitchenID" element={<ImageUploadKitchen />}></Route>
 				<Route path="/driver" element={<Driver />}></Route>
 				<Route path="/cart" element={<Cart />}></Route>
 				<Route path="/order-confirmation" element={<OrderConfirmation />}></Route>

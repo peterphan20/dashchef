@@ -12,9 +12,9 @@ import KitchenItemsPanel from "../organisms/KitchenItemsPanel";
 
 const Kitchen = () => {
 	const navigateTo = useNavigate();
-	const { kitchenID } = useParams();
 	const dispatch = useDispatch();
 	const kitchen = useSelector((state) => state.selectedKitchenReducer);
+	const { kitchenID } = useParams();
 
 	useEffect(() => {
 		async function fetchKitchen() {
