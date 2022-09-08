@@ -9,6 +9,7 @@ import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
 import { deleteKitchen } from "../api/kitchensAPI";
 import { USStates } from "../helpers/geoState";
 import defaultAvatar from "../assets/default-avatar.jpg";
+import Avatar from "../molecules/Avatar";
 
 const ProfileDesktop = ({
 	firstName,
@@ -42,13 +43,10 @@ const ProfileDesktop = ({
 	const handleDeleteKitchen = async () => {
 		const token = localStorage.getItem("authToken");
 		if (!token) return;
-		console.log("this is the kitchen id", user.kitchenID);
 		const apiResponse = await deleteKitchen(user.kitchenID, token);
 		if (apiResponse.code !== 200) {
-			console.log("delete failed");
 			setAuthResponse(false);
 		} else {
-			console.log("delete passed");
 			navigateTo("/");
 		}
 	};
@@ -64,7 +62,6 @@ const ProfileDesktop = ({
 			) : null}
 			<div className="bg-gray-200 border border-gray-300 px-16 py-12 mb-8">
 				<div className="flex justify-between items-center">
-					<h1 className="font-headers font-bold text-3xl mb-5">Profile</h1>
 					{authResponse === null ? null : authResponse ? (
 						<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">
 							Your profile has been updated
@@ -74,18 +71,13 @@ const ProfileDesktop = ({
 							Something went wrong
 						</p>
 					)}
+					<Avatar
+						link={`/image-upload/user/${userID}`}
+						src={user.avatarURL ? user.avatarURL : defaultAvatar}
+						alt="User's avatar"
+					/>
 				</div>
-				<div className="mb-5">
-					<Link to={`/image-upload/user/${userID}`} className="text-xs">
-						<div className="w-24 h-24">
-							<img
-								src={user.avatarURL ? user.avatarURL : defaultAvatar}
-								alt="user's avatar"
-								className="rounded-full"
-							/>
-						</div>
-					</Link>
-				</div>
+				<h1 className="font-headers font-bold text-3xl mb-5 mt-7">Profile</h1>
 				<div className="flex gap-5 mb-3 w-full h-full">
 					<FormInputField
 						htmlFor="firstname"

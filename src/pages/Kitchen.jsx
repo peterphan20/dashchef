@@ -13,6 +13,7 @@ import KitchenItemsPanel from "../organisms/KitchenItemsPanel";
 const Kitchen = () => {
 	const navigateTo = useNavigate();
 	const dispatch = useDispatch();
+	const user = useSelector((state) => state.userReducer);
 	const kitchen = useSelector((state) => state.selectedKitchenReducer);
 	const { kitchenID } = useParams();
 
@@ -56,11 +57,13 @@ const Kitchen = () => {
 			</div>
 			<div className="relative flex justify-between w-full">
 				<div className="w-full lg:max-w-4xl lg:mx-auto">
-					<div>
-						<Link to={`/image-upload/kitchen/${kitchenID}`} className="text-xs">
-							<Avatar src={!kitchen.avatarURL ? defaultAvatar : kitchen.avatarURL} />
-						</Link>
-					</div>
+					<Avatar
+						src={!kitchen.avatarURL ? defaultAvatar : kitchen.avatarURL}
+						alt="Image of the kitchen"
+						link={`/image-upload/kitchen/${kitchenID}`}
+						className="transform -translate-y-1/2"
+						disable={user.kitchenID !== kitchenID}
+					/>
 					<div className="font-body pb-10 transform -translate-y-5">
 						<h1 className="text-3xl font-bold lg:text-4xl xl:text-5xl">{kitchen.name}</h1>
 						<h1 className="text-sm pt-1 lg:text-base xl:text-lg">{kitchen.address}</h1>

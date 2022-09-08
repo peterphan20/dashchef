@@ -56,12 +56,9 @@ const CreateMenuItem = () => {
 		);
 
 		const apiResponse = await createMenuItem(formData, token);
-		console.log("api reponse", apiResponse);
 		if (apiResponse.code !== 201) {
-			console.log("something went wrong here");
 			setAuthResponse(false);
 		} else {
-			console.log("menu item created");
 			navigateTo(`/profile/${user.id}`);
 		}
 	};
@@ -80,7 +77,6 @@ const CreateMenuItem = () => {
 		const updatedListOfItems = [...listOfItems];
 		updatedListOfItems[itemIndex].isChecked = updatedCheck;
 		setListOfItems(updatedListOfItems);
-		console.log(listOfItems);
 	};
 
 	const renderedListOfItems = listOfItems.map((item, index) => (

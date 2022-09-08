@@ -1,11 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Avatar = ({ src, label }) => {
+const Avatar = ({ src, link, disable, alt, className = "" }) => {
 	return (
-		<div className="flex justify-center items-center bg-gray-200 rounded-full shadow-inner-button p-1 w-24 h-24 z-20 transform -translate-y-1/2 lg:w-32 lg:h-32">
-			<img src={src} aria-label={label} className="w-full h-full rounded-full" />
-		</div>
+		<Link to={link} disable={disable} className={`flex overflow-hidden w-fit ${className}`}>
+			<img src={src} alt={alt} className="object-cover h-32 w-32 rounded-full" />
+		</Link>
 	);
 };
-
 export default Avatar;

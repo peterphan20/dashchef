@@ -68,8 +68,6 @@ const EditKitchen = () => {
 			aptNumber ? ", " + aptNumber : ""
 		}`;
 
-		console.log("address string", addressStr);
-
 		const updatedKitchenObject = {
 			email,
 			address: addressStr,
@@ -77,17 +75,13 @@ const EditKitchen = () => {
 		};
 
 		const apiResponse = await updateKitchen(kitchenID, updatedKitchenObject, token);
-		console.log("api response here", apiResponse);
 		if (apiResponse.code !== 200) {
-			console.log("update failed");
 			setAuthResponse(false);
 		} else {
 			if (isMobile) {
-				console.log("update mobile passed");
 				setOpenEditKitchenForm(false);
 			} else {
 				history.push("/profile");
-				console.log("update desktop passed");
 			}
 		}
 	};
@@ -98,10 +92,8 @@ const EditKitchen = () => {
 
 		const apiResponse = await deleteKitchen(kitchenID, token);
 		if (apiResponse.code !== 200) {
-			console.log("delete failed");
 			setAuthResponse(false);
 		} else {
-			console.log("delete passed");
 			history.push("/");
 		}
 	};

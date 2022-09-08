@@ -38,13 +38,10 @@ const CreateKitchen = () => {
 			phone,
 			id: user.id,
 		};
-		console.log(kitchenObject);
 
 		const apiResponse = await createKitchen(kitchenObject, token);
-		console.log("api response", apiResponse);
 		if (apiResponse.code === 500) {
 			setAuthResponseDuplicate(false);
-			console.log("api did not return code 201");
 		} else if (apiResponse.code === 400) {
 			setAuthResponse(false);
 		} else if (apiResponse.code === 201) {
@@ -54,7 +51,6 @@ const CreateKitchen = () => {
 				address: apiResponse.data.address,
 				phone: apiResponse.data.phone,
 			};
-			console.log("api response passed, payload", payload);
 
 			const updatedChefPayload = {
 				isChef: true,
@@ -68,7 +64,6 @@ const CreateKitchen = () => {
 				avatarURL: user.avatarURL,
 				loggedIn: true,
 			};
-			console.log("updated chef's payload", updatedChefPayload);
 			dispatch({ type: SELECTED_KITCHEN_CREATE, payload });
 			dispatch({ type: USER_LOGIN, payload: updatedChefPayload });
 			setAuthResponse(true);

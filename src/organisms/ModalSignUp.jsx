@@ -27,10 +27,8 @@ const ModalSignUp = () => {
 
 	const handleUserSignup = async (userObject) => {
 		const apiResponse = await createUser(userObject);
-		console.log("api response here ==>", apiResponse);
 		if (apiResponse.code !== 201) {
 			setAuthResponse(false);
-			console.log("There was an error while creating the user", apiResponse);
 			return;
 		} else {
 			dispatch({ type: HIDE_SIGN_UP_MODAL });
@@ -39,11 +37,8 @@ const ModalSignUp = () => {
 
 	const handleChefSignup = async (chefObject) => {
 		const apiResponse = await createChef(chefObject);
-		console.log("chef's object", chefObject);
-		console.log("api response", apiResponse);
 		if (apiResponse.code !== 201) {
 			setAuthResponse(false);
-			console.log("chef's block, Bad request");
 		} else {
 			dispatch({ type: HIDE_SIGN_UP_MODAL });
 		}
@@ -62,13 +57,10 @@ const ModalSignUp = () => {
 			address: addressStr.toUpperCase(),
 			phone,
 		};
-		console.log("user object", userObject);
 
 		if (isChef === "yes") {
-			console.log("is chef", isChef);
 			handleChefSignup(userObject);
 		} else if (isChef === "no") {
-			console.log("is not chef", isChef);
 			handleUserSignup(userObject);
 		}
 	};

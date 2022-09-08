@@ -39,7 +39,6 @@ const ModalLogin = () => {
 		const apiResponse = await loginChef(chefObject);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
-			console.log("api failed");
 		} else {
 			localStorage.setItem("authToken", apiResponse.token);
 			localStorage.setItem("isChef", 1);
