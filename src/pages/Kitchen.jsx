@@ -8,6 +8,7 @@ import Avatar from "../molecules/Avatar";
 import defaultAvatar from "../assets/default-avatar.jpg";
 import mobileHeaderImg from "../assets/mobile-header-image.jpg";
 import { MENU_ITEMS_LOAD, SELECTED_KITCHEN_LOAD } from "../constants";
+import KitchenItemsPanel from "../organisms/KitchenItemsPanel";
 
 const Kitchen = () => {
 	const navigateTo = useNavigate();
@@ -45,7 +46,7 @@ const Kitchen = () => {
 	}, [kitchenID, dispatch, navigateTo]);
 
 	return (
-		<div className="bg-gray-100 pb-10 w-full h-full min-h-screen">
+		<div className="bg-gray-100 w-full h-full min-h-screen">
 			<div>
 				<img
 					src={mobileHeaderImg}
@@ -53,23 +54,27 @@ const Kitchen = () => {
 					className="h-56 w-full object-cover sm:h-72 md:h-96 xl:h-96"
 				/>
 			</div>
-			<div className="px-4 w-full lg:max-w-7xl lg:mx-auto">
-				<Avatar src={!kitchen.avatarURL ? defaultAvatar : kitchen.avatarURL} />
-				<div className="font-body pb-10 transform -translate-y-5">
-					<h1 className="text-3xl font-bold lg:text-4xl xl:text-5xl">{kitchen.name}</h1>
-					<h1 className="text-sm pt-1 lg:text-base xl:text-lg">{kitchen.address}</h1>
+			<div className="relative flex justify-between w-full">
+				<div className="w-full lg:max-w-4xl lg:mx-auto">
+					<Avatar src={!kitchen.avatarURL ? defaultAvatar : kitchen.avatarURL} />
+					<div className="font-body pb-10 transform -translate-y-5">
+						<h1 className="text-3xl font-bold lg:text-4xl xl:text-5xl">{kitchen.name}</h1>
+						<h1 className="text-sm pt-1 lg:text-base xl:text-lg">{kitchen.address}</h1>
+					</div>
+					<div>
+						<h1 className="font-headers text-lg font-bold border-b border-gray-300 pb-3 mb-1 lg:text-2xl">
+							Full Menu
+						</h1>
+						<RenderMenuItems kitchen={kitchen} />
+					</div>
+					<div className="bg-gray-200 border border-gray-300 font-body rounded-md p-4 mt-8 w-full lg:p-7 lg:mb-20 lg:w-96">
+						<h1 className="text-md lg:text-xl">Contact the chef:</h1>
+						<h1 className="text-sm lg:text-base">Email for inquiries: {kitchen.email}</h1>
+						<h1 className="text-sm lg:text-base">tel: {kitchen.phone}</h1>
+					</div>
 				</div>
-				<Carousel />
 				<div>
-					<h1 className="font-headers text-lg font-bold border-b border-gray-300 pb-3 mb-1 lg:text-2xl">
-						Full Menu
-					</h1>
-					<RenderMenuItems />
-				</div>
-				<div className="bg-gray-200 border border-gray-300 font-body rounded-md p-4 mt-8 w-full lg:p-7 lg:mb-20 lg:w-96">
-					<h1 className="text-md lg:text-xl">Contact the chef:</h1>
-					<h1 className="text-sm lg:text-base">Email for inquiries: {kitchen.email}</h1>
-					<h1 className="text-sm lg:text-base">tel: {kitchen.phone}</h1>
+					<KitchenItemsPanel />
 				</div>
 			</div>
 		</div>

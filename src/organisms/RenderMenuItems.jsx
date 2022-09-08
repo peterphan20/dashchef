@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import AspectRatioImg from "../molecules/AspectRatio";
 import { CART_ADD } from "../constants";
 
-const RenderMenuItems = () => {
+const RenderMenuItems = ({ kitchen }) => {
 	const [itemQuantities, setItemQuantities] = useState({});
 	const menuItems = useSelector((state) => state.menuItemsReducer);
 	const user = useSelector((state) => state.userReducer);
-	const kitchen = useSelector((state) => state.selectedKitchenReducer);
+	// const kitchen = useSelector((state) => state.selectedKitchenReducer);
 	const dispatch = useDispatch();
 
 	const incrementQuantity = (itemID) => {
@@ -48,43 +49,45 @@ const RenderMenuItems = () => {
 			>
 				{menuItem.itemID ? (
 					<div>
-						<div className="flex justify-between items-centerp b-3">
+						<div className="flex justify-between items-center py-3">
 							<div className="flex flex-col">
 								<p className="text-base font-bold pb-1">{menuItem.itemName}</p>
 								<p className="text-sm text-gray-700 overflow-clip pb-1">
 									{menuItem.itemDescription}
 								</p>
-								<p className="text-sm">${menuItem.itemPrice}</p>
-							</div>
-							<div className="flex items-center w-28 h-28">
-								<img src={menuItem.itemPhotoPrimaryURL} alt={menuItem.itemName} />
-							</div>
-						</div>
-						<div className="flex justify-between items-center pb-2">
-							<div className="flex justify-center items-center gap-2">
-								<button
-									className="flex justify-center items-center bg-gray-200 text-gray-500 w-7 h-7"
-									onClick={() => decrementQuantity(menuItem.itemID)}
-								>
-									<i className="fa-solid fa-minus" />
-								</button>
-								<div>
-									{!itemQuantities[menuItem.itemID] ? <p>0</p> : itemQuantities[menuItem.itemID]}
+								<p className="text-sm pb-2">${menuItem.itemPrice}</p>
+								<div className="flex justify-start items-center gap-2">
+									<button
+										className="flex justify-center items-center bg-gray-200 text-gray-500 w-5 h-5"
+										onClick={() => decrementQuantity(menuItem.itemID)}
+									>
+										<i className="fa-solid fa-minus" />
+									</button>
+									<div>
+										{!itemQuantities[menuItem.itemID] ? <p>0</p> : itemQuantities[menuItem.itemID]}
+									</div>
+									<button
+										className="flex justify-center items-center bg-gray-400 text-gray-300 w-5 h-5"
+										onClick={() => incrementQuantity(menuItem.itemID)}
+									>
+										<i className="fa-solid fa-plus" />
+									</button>
 								</div>
+							</div>
+							<div className="flex justify-center item-center">
+								<AspectRatioImg
+									outerClassName="w-28 h-28"
+									src={menuItem.itemPhotoPrimaryURL}
+									alt={menuItem.itemName}
+								/>
 								<button
-									className="flex justify-center items-center bg-gray-400 text-gray-300 w-7 h-7"
-									onClick={() => incrementQuantity(menuItem.itemID)}
+									className="bg-red-600 text-gray-100 rounded-r-lg py-2 px-4 disabled:bg-gray-300"
+									onClick={() => addToCart(menuItem.itemID)}
+									disabled={!itemQuantities[menuItem.itemID] || itemQuantities[menuItem.itemID] < 1}
 								>
 									<i className="fa-solid fa-plus" />
 								</button>
 							</div>
-							<button
-								className="flex items-end bg-red-600 text-gray-100 text-sm rounded-md py-2 px-4 disabled:bg-gray-300"
-								onClick={() => addToCart(menuItem.itemID)}
-								disabled={!itemQuantities[menuItem.itemID] || itemQuantities[menuItem.itemID] < 1}
-							>
-								Add to Cart
-							</button>
 						</div>
 					</div>
 				) : user.kitchenID === kitchen.id ? (

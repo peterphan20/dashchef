@@ -69,7 +69,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 		return (
 			<div
 				key={cartItem.id}
-				className="flex items-center gap-10 py-5 border-b-2 border-gray-200 w-full"
+				className="flex items-center gap-10 p-5 border-b-2 border-gray-200 w-full"
 			>
 				<div className="flex flex-col justify-center items-center">
 					<button
@@ -88,7 +88,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 				</div>
 				<div className="flex flex-col justify-start items-start font-body w-full">
 					<span className="text-lg font-header font-bold w-full">{cartItem.name}</span>
-					<span className="text-xs truncate ...">{cartItem.description}</span>
+					<span className="text-xs break-normal">{cartItem.description}</span>
 					<span className="text-xs">{`$${cartItem.price}`}</span>
 				</div>
 				<div>
@@ -108,17 +108,22 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 			onClick={() => setIsCartOpen(false)}
 		>
 			<div
-				className={`flex flex-col fixed top-0 right-0 shadow-md py-7 px-5 w-96 xl:1/5 h-full min-h-screen bg-gray-100 transition duration-300 ease-linear ${
+				className={`flex flex-col fixed top-0 right-0 shadow-md py-7 w-96 xl:1/5 h-full min-h-screen bg-gray-100 transition duration-300 ease-linear ${
 					isCartOpen ? "" : "transform translate-x-full"
 				}`}
 				onClick={(e) => e.stopPropagation()}
 			>
 				{cart[0] ? (
-					<div className="flex justify-between items-center border-b-2 border-gray-200 pb-5">
-						<h1 className="text-2xl font-headers font-bold">Your order</h1>
-						<button className="text-lg text-gray-500" onClick={() => setIsCartOpen(false)}>
-							<i className="fa-solid fa-xmark" />
-						</button>
+					<div className="flex-col">
+						<div className="flex flex-col border-b border-gray-300 p-5">
+							<div className="flex justify-between items-center mb-5">
+								<h1 className="text-2xl font-headers font-bold">Your order</h1>
+								<button className="text-lg text-gray-500" onClick={() => setIsCartOpen(false)}>
+									<i className="fa-solid fa-xmark" />
+								</button>
+							</div>
+							<LinkCartDesktop link="/cart" placeholder="Checkout" />
+						</div>
 					</div>
 				) : (
 					<button
@@ -129,17 +134,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 					</button>
 				)}
 				{cart[0] ? (
-					<div>
-						{renderedCartItems}
-						<div className="mt-5 w-full">
-							<LinkCartDesktop
-								className="text-gray-100 bg-red-600 py-3"
-								link="/cart"
-								placeholder="Proceed to checkout"
-								clickHandler={() => setIsCartOpen(false)}
-							/>
-						</div>
-					</div>
+					<div>{renderedCartItems}</div>
 				) : (
 					<div className="flex flex-col justify-center items-center font-body">
 						<i className="fa-solid fa-burger text-3xl text-gray-300 mb-1" />

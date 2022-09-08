@@ -76,7 +76,7 @@ const ProfileDesktop = ({
 					)}
 				</div>
 				<div className="mb-5">
-					<Link to={`/image-upload/${userID}`} className="text-xs">
+					<Link to={`/image-upload/user/${userID}`} className="text-xs">
 						<div className="w-24 h-24">
 							<img
 								src={user.avatarURL ? user.avatarURL : defaultAvatar}

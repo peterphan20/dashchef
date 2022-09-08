@@ -95,7 +95,7 @@ const App = () => {
 				<Route path="/create/kitchen" element={<CreateKitchen />}></Route>
 				<Route path="/edit/kitchen/:kitchenID" element={<EditKitchen />}></Route>
 				<Route path="/create/menu-item" element={<CreateMenuItem />}></Route>
-				<Route path="/image-upload/:userID" element={<ImageUpload />}></Route>
+				<Route path="/image-upload/user/:userID" element={<ImageUpload />}></Route>
 				<Route path="/driver" element={<Driver />}></Route>
 				<Route path="/cart" element={<Cart />}></Route>
 				<Route path="/order-confirmation" element={<OrderConfirmation />}></Route>

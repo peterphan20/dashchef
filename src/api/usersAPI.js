@@ -54,6 +54,7 @@ export const updateUserAvatar = async (id, formData, token) => {
 		method: "POST",
 		body: formData,
 		headers: {
+			"Content-Type": "multipart/form-data",
 			auth: token,
 		},
 	});
