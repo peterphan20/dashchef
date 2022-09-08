@@ -39,16 +39,14 @@ export const updateKitchen = async (id, kitchenObject, token) => {
 };
 
 export const updateKitchenAvatar = async (id, formData, token) => {
-	const res = await fetch(`${config.API_URL}/kitchen/avatar-update/${id}`, {
+	const res = await fetch(`${config.API_URL}/kitchens/avatar-update/${id}`, {
 		method: "PUT",
 		body: formData,
 		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
 			auth: token,
 		},
 	});
-	const data = await res.json();
-	return data;
+	return res;
 };
 
 export const updateKitchenBanner = async (id, formData, token) => {
