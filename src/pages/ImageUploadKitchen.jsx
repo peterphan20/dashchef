@@ -27,7 +27,6 @@ const ImageUploadKitchen = () => {
 
 		const formData = new FormData();
 		formData.append("file", selectedFile);
-		formData.append("hello", "world");
 
 		const apiResponse = await updateKitchenAvatar(kitchenID, formData, token);
 		console.log("api response===>", apiResponse);

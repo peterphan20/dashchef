@@ -11,12 +11,10 @@ export const createMenuItem = async (formData, token) => {
 		method: "POST",
 		body: formData,
 		headers: {
-			"Content-Type": "multipart/form-data",
 			auth: token,
 		},
 	});
-	const data = await res.json();
-	return data;
+	return res;
 };
 
 export const updateMenuItem = async (id, menuItemObject, token) => {

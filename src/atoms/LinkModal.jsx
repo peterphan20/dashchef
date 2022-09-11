@@ -6,7 +6,7 @@ const LinkModal = ({ link, className, clickHandler, placeholder }) => {
 		<>
 			<Link
 				to={link}
-				className={`${className} text-gray-900 text-base rounded-lg py-1 px-6 lg:text-lg lg:px-8`}
+				className={`${className} text-gray-900 text-sm rounded py-1 px-5`}
 				onClick={clickHandler}
 			>
 				{placeholder}

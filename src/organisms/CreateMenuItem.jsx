@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createMenuItem } from "../api/MenuItemsAPI";
-import ImageUploadSingle from "../organisms/ImageUploadSingle";
+import ImageUploadMenuItem from "./ImageUploadMenuItem";
 import ModalCreateAnotherItem from "../molecules/ModalCreateAnotherItem";
 import FormInputField from "../molecules/FormInputField";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
@@ -40,29 +40,6 @@ const CreateMenuItem = () => {
 	const user = useSelector((state) => state.userReducer);
 	const navigateTo = useNavigate();
 
-	const handleCreateMenuItem = async () => {
-		const token = localStorage.getItem("authToken");
-		if (!token) return;
-
-		const formData = new FormData();
-		formData.append("name", name);
-		formData.append("id", user.kitchenID);
-		formData.append("description", description);
-		formData.append("price", price);
-		formData.append("file", selectedFile);
-		formData.append(
-			"tags",
-			listOfItems.map((item) => item.tag)
-		);
-
-		const apiResponse = await createMenuItem(formData, token);
-		if (apiResponse.code !== 201) {
-			setAuthResponse(false);
-		} else {
-			navigateTo(`/profile/${user.id}`);
-		}
-	};
-
 	const fileInputHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
 		setFileIsSelected(true);
@@ -73,10 +50,44 @@ const CreateMenuItem = () => {
 		setFileIsSelected(false);
 	};
 
+	const handleCreateMenuItem = async () => {
+		const token = localStorage.getItem("authToken");
+		if (!token) return;
+
+		const formData = new FormData();
+		formData.append("name", name);
+		formData.append("id", user.kitchenID);
+		formData.append("description", description);
+		formData.append("price", price);
+		formData.append("file", selectedFile);
+		// formData.append(
+		// 	"tags",
+		// 	listOfItems.map((item) => item.tag)
+		// );
+
+		const apiResponse = await createMenuItem(formData, token);
+		console.log("api response", apiResponse.status);
+		if (apiResponse.status !== 201) {
+			setAuthResponse(false);
+		} else {
+			setShowCreateAnotherItemModal(true);
+		}
+	};
+
 	const updateListOfItems = (itemIndex, updatedCheck) => {
 		const updatedListOfItems = [...listOfItems];
 		updatedListOfItems[itemIndex].isChecked = updatedCheck;
 		setListOfItems(updatedListOfItems);
+	};
+
+	const handleCreateAnotherMenuItem = () => {
+		navigateTo("/create/menu-item");
+		setShowCreateAnotherItemModal(false);
+		setName("");
+		setDescription("");
+		setPrice(0);
+		setSelectedFile();
+		setFileIsSelected(false);
 	};
 
 	const renderedListOfItems = listOfItems.map((item, index) => (
@@ -94,17 +105,23 @@ const CreateMenuItem = () => {
 	));
 
 	return (
-		<div className="flex flex-col justify-start items-center bg-gray-100 py-2 px-4 w-full h-full min-h-screen lg:justify-center lg:py-14">
+		<div className="bg-gray-100 py-2 px-4 w-full h-full min-h-screen lg:justify-center lg:py-14">
 			{showCreateAnotherItemModal ? (
-				<ModalCreateAnotherItem modalHandler={setShowCreateAnotherItemModal} />
+				<ModalCreateAnotherItem
+					modalHandler={setShowCreateAnotherItemModal}
+					handleCreateAnotherMenuItem={handleCreateAnotherMenuItem}
+				/>
 			) : null}
-			<div className="w-full h-full lg:bg-gray-200 lg:border lg:border-gray-300 lg:py-10 lg:px-16 lg:max-w-2xl lg:w-1/4 xl:w-1/3 lg:mx-auto">
-				<h1 className="text-2xl font-headers text-center py-6 lg:text-3xl">Create a menu item</h1>
+			<div className="grid grid-cols-4 w-full h-full lg:bg-gray-200 lg:border lg:border-gray-300 lg:py-10 lg:px-16 lg:max-w-2xl lg:w-1/4 xl:w-1/3 lg:mx-auto">
+				<h1 className="col-span-4 text-2xl font-headers text-center py-6 lg:text-3xl">
+					Create a menu item
+				</h1>
 				<FormInputField
 					htmlFor="name"
 					text="name"
 					type="text"
 					placeholder="Item Name"
+					gridSpan="col-span-4"
 					value={name}
 					changeHandler={(e) => setName(e.target.value)}
 				/>
@@ -113,11 +130,12 @@ const CreateMenuItem = () => {
 					text="price"
 					type="number"
 					placeholder="Price"
+					gridSpan="col-span-1"
 					className="max-w-max"
 					value={price}
 					changeHandler={(e) => setPrice(e.target.value)}
 				/>
-				<div>
+				<div className="col-span-4">
 					<label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
 						Description
 					</label>
@@ -128,27 +146,27 @@ const CreateMenuItem = () => {
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</div>
-				<div className="flex flex-col justify-center items-start mb-5">
+				<div className="col-span-4 mb-5">
 					<h1 className="block text-base font-medium text-gray-900 mb-2">Dietary Restrictions :</h1>
 					{renderedListOfItems}
 				</div>
 				<h1 className="block text-sm font-medium text-gray-700 mb-2">Upload an image</h1>
-				<ImageUploadSingle
+				<ImageUploadMenuItem
 					fileInputHandler={fileInputHandler}
 					fileIsSelected={fileIsSelected}
 					selectedFile={selectedFile}
 					clearSelectedFile={clearSelectedFile}
 				/>
-				{authResponse ? null : (
-					<p className="text-red-600 text-base font-body text-center mt-5">
-						Something has gone wrong, please try again
-					</p>
-				)}
 				<ButtonFormSmall
 					placeholder="Create item"
-					className="bg-green-400 mt-5 mb-10 lg:text-lg lg:py-2 lg:mt-8"
+					className="col-span-2 bg-green-400 text-sm mt-5 py-2 mt-8"
 					clickHandler={handleCreateMenuItem}
 				/>
+				{authResponse ? null : (
+					<p className="col-span-3 text-red-600 text-sm font-body mt-5 mb-10">
+						Something went wrong, please try again.
+					</p>
+				)}
 			</div>
 		</div>
 	);
