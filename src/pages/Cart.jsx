@@ -5,8 +5,7 @@ import { getMenuItem } from "../api/MenuItemsAPI";
 import { getUser, updateUser, validateToken } from "../api/usersAPI";
 import { getChef, updateChef } from "../api/chefsAPI";
 import { CART_UPDATE, CART_REMOVE } from "../constants";
-import RadialInputCart from "../atoms/RadialInputCart";
-import LinkCartDesktop from "../atoms/LinkCartDesktop";
+import RadialInputCart from "../molecules/RadialInputCart";
 import ModalEditNumber from "../molecules/ModalEditNumber";
 import CheckoutPanel from "../organisms/CheckoutPanel";
 

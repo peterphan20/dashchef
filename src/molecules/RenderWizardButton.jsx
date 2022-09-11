@@ -1,8 +1,6 @@
-import React from "react";
 import ButtonUserAuthForm from "../atoms/ButtonUserAuthForm";
 import { useDispatch } from "react-redux";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
-// import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 	const dispatch = useDispatch();
@@ -64,7 +62,11 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 								className="flex flex-row-reverse bg-gray-400"
 								clickHandler={() => setStepNumber(stepNumber - 1)}
 							/>
-							<ButtonUserAuthForm text="Submit" className="bg-green-400" clickHandler={handleSignup} />
+							<ButtonUserAuthForm
+								text="Submit"
+								className="bg-green-400"
+								clickHandler={handleSignup}
+							/>
 						</div>
 					</div>
 				);

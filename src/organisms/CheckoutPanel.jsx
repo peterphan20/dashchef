@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getKitchen } from "../api/kitchensAPI";
 import { MENU_ITEMS_LOAD, SELECTED_KITCHEN_LOAD } from "../constants";
-import CheckoutFees from "../atoms/CheckoutFees";
+import CheckoutFees from "../molecules/CheckoutFees";
 import LinkCartDesktop from "../atoms/LinkCartDesktop";
 
 const CheckoutPanel = () => {

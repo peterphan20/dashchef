@@ -1,6 +1,6 @@
 import React from "react";
-import FormInputField from "../atoms/FormInputField";
-import Dropdown from "../atoms/Dropdown";
+import FormInputField from "../molecules/FormInputField";
+import Dropdown from "../molecules/Dropdown";
 import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
 import { USStates } from "../helpers/geoState";
 

@@ -1,6 +1,5 @@
-import React from "react";
+import FormInputField from "../molecules/FormInputField";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
-import FormInputField from "../atoms/FormInputField";
 
 const UpdateUserForm = ({
 	firstName,

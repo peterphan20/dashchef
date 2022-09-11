@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../api/usersAPI";
-import { USER_LOGIN, DISPLAY_SIGN_UP_MODAL, HIDE_LOGIN_MODAL } from "../constants";
 import { loginChef } from "../api/chefsAPI";
-import FormInputField from "../atoms/FormInputField";
+import { USER_LOGIN, DISPLAY_SIGN_UP_MODAL, HIDE_LOGIN_MODAL } from "../constants";
+import FormInputField from "../molecules/FormInputField";
 
 const ModalLogin = () => {
 	const [authResponse, setAuthResponse] = useState(true);

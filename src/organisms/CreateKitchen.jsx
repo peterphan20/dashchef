@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createKitchen } from "../api/kitchensAPI";
-import Dropdown from "../atoms/Dropdown";
-import FormInputField from "../atoms/FormInputField";
+import Dropdown from "../molecules/Dropdown";
+import FormInputField from "../molecules/FormInputField";
 import { SELECTED_KITCHEN_CREATE, USER_LOGIN } from "../constants";
 import { USStates } from "../helpers/geoState";
 

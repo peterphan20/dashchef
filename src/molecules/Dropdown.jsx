@@ -1,14 +1,6 @@
 import React from "react";
 
-const Dropdown = ({
-	options,
-	placeholder,
-	htmlFor,
-	select,
-	onSelectedChange,
-	guessValue,
-	className = "",
-}) => {
+const Dropdown = ({ options, placeholder, htmlFor, select, onSelectedChange, className = "" }) => {
 	const renderedOptions = options.map((option) => {
 		return (
 			<option key={option.value} value={option.value}>

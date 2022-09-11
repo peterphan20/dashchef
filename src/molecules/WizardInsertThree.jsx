@@ -1,7 +1,6 @@
-import React from "react";
 import { useDispatch } from "react-redux";
-import FormInputField from "../atoms/FormInputField";
-import Dropdown from "../atoms/Dropdown";
+import FormInputField from "../molecules/FormInputField";
+import Dropdown from "../molecules/Dropdown";
 import { USStates } from "../helpers/geoState";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
 

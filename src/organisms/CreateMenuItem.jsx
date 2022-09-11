@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createMenuItem } from "../api/MenuItemsAPI";
-import ImageUploadSingle from "../molecules/ImageUploadSingle";
+import ImageUploadSingle from "../organisms/ImageUploadSingle";
 import ModalCreateAnotherItem from "../molecules/ModalCreateAnotherItem";
+import FormInputField from "../molecules/FormInputField";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
-import FormInputField from "../atoms/FormInputField";
 
 const CreateMenuItem = () => {
 	const [name, setName] = useState("");

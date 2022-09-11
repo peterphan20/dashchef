@@ -1,7 +1,6 @@
-import React from "react";
 import { useDispatch } from "react-redux";
-import FormInputField from "../atoms/FormInputField";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
+import FormInputField from "../molecules/FormInputField";
 
 const WizardInsertTwo = ({ firstName, setFirstName, lastName, setLastName, setIsChef }) => {
 	const dispatch = useDispatch();

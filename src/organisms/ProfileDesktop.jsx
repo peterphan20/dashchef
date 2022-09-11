@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import ModalDelete from "../molecules/ModalDelete";
-import FormInputField from "../atoms/FormInputField";
-import Dropdown from "../atoms/Dropdown";
-import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
-import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
+import { useParams, useNavigate } from "react-router-dom";
 import { deleteKitchen } from "../api/kitchensAPI";
 import { USStates } from "../helpers/geoState";
+import ModalDelete from "../molecules/ModalDelete";
+import FormInputField from "../molecules/FormInputField";
+import Dropdown from "../molecules/Dropdown";
+import LinkProfileDesktop from "../atoms/LinkProfileDesktop";
+import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
 import defaultAvatar from "../assets/default-avatar.jpg";
 import Avatar from "../molecules/Avatar";
 

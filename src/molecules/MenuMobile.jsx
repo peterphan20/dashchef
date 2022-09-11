@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
@@ -9,13 +8,6 @@ const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 	const user = useSelector((state) => state.userReducer);
 	const dispatch = useDispatch();
 	const navigateTo = useNavigate();
-
-	// const handleClick = (id) => {
-	// 	setOpen(false);
-	// 	setTimeout(() => {
-	// 		document.getElementById(id).scrollIntoView();
-	// 	}, 300);
-	// };
 
 	const handlePageChangeClick = () => {
 		setOpen(false);

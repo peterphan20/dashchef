@@ -1,5 +1,4 @@
-import React from "react";
-import FormInputField from "../atoms/FormInputField";
+import FormInputField from "./FormInputField";
 
 const ModalEditNumber = ({ setEditNumberModal, phone, setPhone, updatePhoneNumber }) => {
 	return (

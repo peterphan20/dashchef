@@ -1,7 +1,6 @@
-import React from "react";
 import { useDispatch } from "react-redux";
-import FormInputField from "../atoms/FormInputField";
 import { HIDE_SIGN_UP_MODAL } from "../constants";
+import FormInputField from "../molecules/FormInputField";
 
 const WizardInsertOne = ({ email, setEmail, password, setPassword }) => {
 	const dispatch = useDispatch();
