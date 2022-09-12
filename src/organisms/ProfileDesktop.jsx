@@ -52,7 +52,7 @@ const ProfileDesktop = ({
 	};
 
 	return (
-		<div className="flex flex-col py-10 w-full h-full min-h-screen lg:max-w-4xl lg:mx-auto">
+		<div className="flex flex-col py-10 w-full h-full min-h-screen lg:max-w-3xl lg:mx-auto">
 			{openDeleteKitchenModal ? (
 				<ModalDelete
 					modalHandler={setOpenDeleteKitchenModal}
@@ -60,30 +60,29 @@ const ProfileDesktop = ({
 					clickHandler={() => handleDeleteKitchen(user.kitchenID)}
 				/>
 			) : null}
-			<div className="bg-gray-200 border border-gray-300 px-16 py-12 mb-8">
-				<div className="flex justify-between items-center">
-					{authResponse === null ? null : authResponse ? (
-						<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">
-							Your profile has been updated
-						</p>
-					) : (
-						<p className="bg-red-400 py-1 px-4 rounded-md transform translate-y-full transition duration-300 ease-in">
-							Something went wrong
-						</p>
-					)}
-					<Avatar
-						link={`/image-upload/user/${userID}`}
-						src={user.avatarURL ? user.avatarURL : defaultAvatar}
-						alt="User's avatar"
-					/>
-				</div>
-				<h1 className="font-headers font-bold text-3xl mb-5 mt-7">Profile</h1>
-				<div className="flex gap-5 mb-3 w-full h-full">
+			<div className="border border-gray-300 px-16 py-12 mb-8">
+				{/* {authResponse === null ? null : authResponse ? (
+					<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">
+						Your profile has been updated
+					</p>
+				) : (
+					<p className="bg-red-400 py-1 px-4 rounded-md transform translate-y-full transition duration-300 ease-in">
+						Something went wrong
+					</p>
+				)} */}
+				<Avatar
+					link={`/image-upload/user/${userID}`}
+					src={user.avatarURL ? user.avatarURL : defaultAvatar}
+					alt="User's avatar"
+				/>
+				<div className="grid grid-cols-6 gap-x-2">
+					<h1 className="col-span-6 font-headers font-bold text-3xl mb-5 mt-7">Profile</h1>
 					<FormInputField
 						htmlFor="firstname"
 						text="firstname"
 						type="text"
 						placeholder="First Name"
+						gridSpan="col-span-3"
 						value={firstName}
 						changeHandler={(e) => setFirstName(e.target.value)}
 					/>
@@ -92,16 +91,16 @@ const ProfileDesktop = ({
 						text="lastname"
 						type="text"
 						placeholder="Last Name"
+						gridSpan="col-span-3"
 						value={lastName}
 						changeHandler={(e) => setLastName(e.target.value)}
 					/>
-				</div>
-				<div className="flex gap-5 mb-3 w-full h-full">
 					<FormInputField
 						htmlFor="email-address"
 						text="email"
 						type="email"
 						placeholder="Email Address"
+						gridSpan="col-span-4"
 						value={email}
 						changeHandler={(e) => setEmail(e.target.value)}
 					/>
@@ -110,17 +109,17 @@ const ProfileDesktop = ({
 						text="phone"
 						type="text"
 						placeholder="Phone Number"
+						gridSpan="col-span-3"
 						value={phone}
 						changeHandler={(e) => setPhone(e.target.value)}
 					/>
-				</div>
-				<div className="flex gap-5 mb-3 w-full h-full">
 					<FormInputField
 						htmlFor="address"
 						text="address"
 						type="text"
 						placeholder="Street Address"
 						autoComplete="street-address"
+						gridSpan="col-span-5"
 						value={address}
 						changeHandler={(e) => setAddress(e.target.value)}
 					/>
@@ -129,17 +128,17 @@ const ProfileDesktop = ({
 						text="aptNumber"
 						type="text"
 						placeholder="Apt, suite, etc."
+						gridSpan="col-span-1"
 						value={aptNumber}
 						changeHandler={(e) => setAptNumber(e.target.value)}
 					/>
-				</div>
-				<div className="flex gap-7 mb-3 w-full h-full">
 					<FormInputField
 						htmlFor="city"
 						text="city"
 						type="text"
 						placeholder="City"
 						autoComplete="address-level2"
+						gridSpan="col-span-3"
 						value={city}
 						changeHandler={(e) => setCity(e.target.value)}
 					/>
@@ -156,36 +155,37 @@ const ProfileDesktop = ({
 						type="text"
 						placeholder="Zip/Postal Code"
 						autoComplete="postal-code"
+						gridSpan="col-span-2"
 						value={zipcode}
 						changeHandler={(e) => setZipCode(e.target.value)}
 					/>
+					<ButtonProfileDesktop
+						placeholder="Save changes"
+						className="col-span-2 bg-green-400 text-gray-100"
+						clickHandler={handleUpdate}
+					/>
 				</div>
-				<ButtonProfileDesktop
-					placeholder="Save changes"
-					className="bg-green-400 text-gray-100 text-sm"
-					clickHandler={handleUpdate}
-				/>
 			</div>
 			{!user.isChef ? null : user.isChef && user.kitchenID ? (
-				<div className="bg-gray-200 border border-gray-300 px-16 py-6 text-gray-900 mb-5">
-					<h1 className="font-headers font-bold text-3xl mb-4">Kitchen</h1>
+				<div className="border border-gray-300 px-16 py-6 text-gray-900 mb-5">
+					<h1 className="font-headers font-bold text-3xl mb-2">Kitchen</h1>
 					<div className="flex flex-col justify-center items-start mb-5">
-						<label className="block font-body font-bold text-lg mb-3">
+						<span className="block font-body text-lg mb-3">
 							Want to make changes to your kitchen?
-						</label>
+						</span>
 						<LinkProfileDesktop
 							link={`/edit/kitchen/${user.kitchenID}`}
 							placeholder="Update kitchen"
-							className="text-gray-900 text-sm bg-gray-50 border border-gray-300 mb-5"
+							className="text-gray-900 bg-gray-50 border border-gray-300 mb-5"
 						/>
 						<LinkProfileDesktop
 							link="/create/menu-item"
 							placeholder="Add menu item"
-							className="bg-gray-50 text-sm text-blue-600 border border-gray-300 mb-5"
+							className="bg-gray-50 text-blue-600 border border-gray-300 mb-5"
 						/>
 						<ButtonProfileDesktop
 							placeholder="Delete Kitchen"
-							className="bg-red-600 text-sm text-gray-100"
+							className="bg-red-600 text-gray-100"
 							clickHandler={() => setOpenDeleteKitchenModal(true)}
 						/>
 					</div>
