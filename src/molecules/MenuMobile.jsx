@@ -2,9 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MenuAnchorMobile from "../atoms/MenuAnchorMobile";
 import MenuButtonMobile from "../atoms/MenuButtonMobile";
-import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
+import { USER_LOGOUT } from "../constants";
 
-const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
+const MenuMobile = ({ setOpen, isOpen, setIsLoginOpen, setIsSignupOpen, setIsCartOpen }) => {
 	const user = useSelector((state) => state.userReducer);
 	const dispatch = useDispatch();
 	const navigateTo = useNavigate();
@@ -17,13 +17,13 @@ const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 	const handleLoginClick = () => {
 		setOpen(false);
 		window.scrollTo(0, 0);
-		dispatch({ type: DISPLAY_LOGIN_MODAL });
+		setIsLoginOpen(true);
 	};
 
 	const handleSignupClick = () => {
 		setOpen(false);
 		window.scrollTo(0, 0);
-		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
+		setIsSignupOpen(true);
 	};
 
 	const handleCartClick = () => {
@@ -49,14 +49,8 @@ const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 			<MenuAnchorMobile link="/kitchens/all" placeholder="Browse kitchens" />
 			{!user.loggedIn ? (
 				<>
-					<MenuButtonMobile
-						clickHandler={handleLoginClick}
-						placeholder="Login"
-					/>
-					<MenuButtonMobile
-						clickHandler={handleSignupClick}
-						placeholder="Sign up"
-					/>
+					<MenuButtonMobile clickHandler={handleLoginClick} placeholder="Login" />
+					<MenuButtonMobile clickHandler={handleSignupClick} placeholder="Sign up" />
 				</>
 			) : (
 				<>
@@ -81,10 +75,7 @@ const MenuMobile = ({ setOpen, isOpen, setIsCartOpen }) => {
 					clickHandler={handlePageChangeClick}
 				/>
 			)}
-			<MenuButtonMobile
-				placeholder="Cart"
-				clickHandler={handleCartClick}
-			/>
+			<MenuButtonMobile placeholder="Cart" clickHandler={handleCartClick} />
 		</nav>
 	);
 };

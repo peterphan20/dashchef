@@ -1,10 +1,9 @@
-import { useDispatch } from "react-redux";
 import FormInputField from "../molecules/FormInputField";
 import Dropdown from "../molecules/Dropdown";
 import { USStates } from "../helpers/geoState";
-import { HIDE_SIGN_UP_MODAL } from "../constants";
 
 const WizardInsertThree = ({
+	setIsSignupOpen,
 	phone,
 	setPhone,
 	address,
@@ -19,13 +18,11 @@ const WizardInsertThree = ({
 	setZipCode,
 	authResponse,
 }) => {
-	const dispatch = useDispatch();
-
 	return (
 		<>
 			<button
 				className="flex self-end text-sm text-gray-400"
-				onMouseDown={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+				onMouseDown={() => setIsSignupOpen(false)}
 			>
 				<i className="fa-solid fa-xmark" />
 			</button>

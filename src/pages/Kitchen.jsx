@@ -62,7 +62,7 @@ const Kitchen = () => {
 						alt="Image of the kitchen"
 						link={`/image-upload/kitchen/${kitchenID}`}
 						className="transform -translate-y-1/2"
-						disable={user.kitchenID !== kitchenID}
+						disabled={user.kitchenID !== kitchenID}
 					/>
 					<div className="font-body pb-10 transform -translate-y-5">
 						<h1 className="text-3xl font-bold lg:text-4xl xl:text-5xl">{kitchen.name}</h1>

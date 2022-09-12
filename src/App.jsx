@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Headers from "./organisms/Header";
 import Footer from "./organisms/Footer";
 import ModalLogin from "./organisms/ModalLogin";
 import ModalSignUp from "./organisms/ModalSignUp";
 import { getUser, validateToken } from "./api/usersAPI";
 import { getChef } from "./api/chefsAPI";
-import { USER_LOGIN, HIDE_SIGN_UP_MODAL } from "./constants";
+import { USER_LOGIN } from "./constants";
 import ModalCart from "./organisms/ModalCart";
 
 import Home from "./pages/Home";
@@ -25,7 +25,8 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 
 const App = () => {
 	const [isCartOpen, setIsCartOpen] = useState(false);
-	const modal = useSelector((state) => state.modalReducer);
+	const [isLoginOpen, setIsLoginOpen] = useState(false);
+	const [isSignupOpen, setIsSignupOpen] = useState(false);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -72,22 +73,28 @@ const App = () => {
 	}, [dispatch]);
 
 	const renderSignUp = () => {
-		return modal.showSignUpModal ? (
+		return isSignupOpen ? (
 			<div
 				className="grid place-items-center fixed bg-backdrop top-0 left-0 w-full h-screen z-20"
-				onMouseDown={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+				onMouseDown={() => setIsSignupOpen(false)}
 			>
-				<ModalSignUp />
+				<ModalSignUp setIsSignupOpen={setIsSignupOpen} />
 			</div>
 		) : null;
 	};
 
 	return (
 		<Router>
-			<Headers setIsCartOpen={setIsCartOpen} />
-			{modal.showLoginModal ? <ModalLogin /> : null}
+			<Headers
+				setIsLoginOpen={setIsLoginOpen}
+				setIsSignupOpen={setIsSignupOpen}
+				setIsCartOpen={setIsCartOpen}
+			/>
+			{isLoginOpen ? (
+				<ModalLogin setIsLoginOpen={setIsLoginOpen} setIsSignupOpen={setIsSignupOpen} />
+			) : null}
 			{renderSignUp()}
-			<ModalCart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
+			{isCartOpen ? <ModalCart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} /> : null}
 			<Routes>
 				<Route path="/" element={<Home />}></Route>
 				<Route path="/profile/:userID" element={<Profile />}></Route>

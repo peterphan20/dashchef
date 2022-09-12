@@ -1,9 +1,6 @@
 import ButtonUserAuthForm from "../atoms/ButtonUserAuthForm";
-import { useDispatch } from "react-redux";
-import { HIDE_SIGN_UP_MODAL } from "../constants";
 
 const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
-	const dispatch = useDispatch();
 
 	const renderButtons = () => {
 		switch (true) {
@@ -13,7 +10,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<ButtonUserAuthForm
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
-							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+							clickHandler={() => setIsSignupOpen(false)}
 						/>
 						<ButtonUserAuthForm
 							text="Next"
@@ -29,7 +26,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<ButtonUserAuthForm
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
-							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+							clickHandler={() => setIsSignupOpen(false)}
 						/>
 						<div className="flex justify-center items-center gap-2">
 							<ButtonUserAuthForm
@@ -53,7 +50,7 @@ const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
 						<ButtonUserAuthForm
 							text="Cancel"
 							className="text-gray-900 bg-gray-200"
-							clickHandler={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
+							clickHandler={() => setIsSignupOpen(false)}
 						/>
 						<div className="flex justify-center items-center gap-2">
 							<ButtonUserAuthForm

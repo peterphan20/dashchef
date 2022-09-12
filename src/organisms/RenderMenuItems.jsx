@@ -8,7 +8,6 @@ const RenderMenuItems = ({ kitchen }) => {
 	const [itemQuantities, setItemQuantities] = useState({});
 	const menuItems = useSelector((state) => state.menuItemsReducer);
 	const user = useSelector((state) => state.userReducer);
-	// const kitchen = useSelector((state) => state.selectedKitchenReducer);
 	const dispatch = useDispatch();
 
 	const incrementQuantity = (itemID) => {

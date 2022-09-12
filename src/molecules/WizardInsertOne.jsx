@@ -1,16 +1,9 @@
-import { useDispatch } from "react-redux";
-import { HIDE_SIGN_UP_MODAL } from "../constants";
 import FormInputField from "../molecules/FormInputField";
 
-const WizardInsertOne = ({ email, setEmail, password, setPassword }) => {
-	const dispatch = useDispatch();
-
+const WizardInsertOne = ({ setIsSignupOpen, email, setEmail, password, setPassword }) => {
 	return (
 		<>
-			<button
-				className="flex self-end text-gray-400"
-				onMouseDown={() => dispatch({ type: HIDE_SIGN_UP_MODAL })}
-			>
+			<button className="flex self-end text-gray-400" onMouseDown={() => setIsSignupOpen(false)}>
 				<i className="fa-solid fa-xmark" />
 			</button>
 			<h1 className="text-left text-3xl font-accent font-extrabold text-gray-900 mt-5 mb-8">

@@ -14,14 +14,6 @@ export const SELECTED_KITCHEN_UPDATE = "SELECTED_KITCHEN_UPDATE";
 export const SELECTED_KITCHEN_DELETE = "SELECTED_KITCHEN_DELETE";
 
 /**
- * modalReducer constants
- */
-export const DISPLAY_LOGIN_MODAL = "DISPLAY_LOGIN_MODAL";
-export const HIDE_LOGIN_MODAL = "HIDE_LOGIN_MODAL";
-export const DISPLAY_SIGN_UP_MODAL = "DISPLAY_SIGN_UP_MODAL";
-export const HIDE_SIGN_UP_MODAL = "HIDE_SIGN_UP_MODAL";
-
-/**
  * kitchensReducer constants
  */
 export const KITCHENS_LOAD = "KITCHENS_LOAD";

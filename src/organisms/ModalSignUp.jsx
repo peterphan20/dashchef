@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import WizardInsertOne from "../molecules/WizardInsertOne";
 import WizardInsertTwo from "../molecules/WizardInsertTwo";
 import WizardInsertThree from "../molecules/WizardInsertThree";
 import RenderWizardButton from "../molecules/RenderWizardButton";
 import { createUser } from "../api/usersAPI";
 import { createChef } from "../api/chefsAPI";
-import { HIDE_SIGN_UP_MODAL } from "../constants";
 
-const ModalSignUp = () => {
+const ModalSignUp = ({ setIsSignupOpen }) => {
 	const [stepNumber, setStepNumber] = useState(1);
 	const [authResponse, setAuthResponse] = useState(true);
 	const [email, setEmail] = useState("");
@@ -23,15 +21,13 @@ const ModalSignUp = () => {
 	const [geoState, setGeoState] = useState(null);
 	const [zipcode, setZipCode] = useState("");
 
-	const dispatch = useDispatch();
-
 	const handleUserSignup = async (userObject) => {
 		const apiResponse = await createUser(userObject);
 		if (apiResponse.code !== 201) {
 			setAuthResponse(false);
 			return;
 		} else {
-			dispatch({ type: HIDE_SIGN_UP_MODAL });
+			setIsSignupOpen(false);
 		}
 	};
 
@@ -40,7 +36,7 @@ const ModalSignUp = () => {
 		if (apiResponse.code !== 201) {
 			setAuthResponse(false);
 		} else {
-			dispatch({ type: HIDE_SIGN_UP_MODAL });
+			setIsSignupOpen(false);
 		}
 	};
 
@@ -70,6 +66,7 @@ const ModalSignUp = () => {
 			case stepNumber === 2:
 				return (
 					<WizardInsertTwo
+						setIsSignupOpen={setIsSignupOpen}
 						firstName={firstName}
 						setFirstName={setFirstName}
 						lastName={lastName}
@@ -80,6 +77,7 @@ const ModalSignUp = () => {
 			case stepNumber === 3:
 				return (
 					<WizardInsertThree
+						setIsSignupOpen={setIsSignupOpen}
 						phone={phone}
 						setPhone={setPhone}
 						address={address}
@@ -98,6 +96,7 @@ const ModalSignUp = () => {
 			default:
 				return (
 					<WizardInsertOne
+						setIsSignupOpen={setIsSignupOpen}
 						email={email}
 						setEmail={setEmail}
 						password={password}

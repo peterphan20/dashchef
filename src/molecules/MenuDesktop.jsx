@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MenuButtonDesktop from "../atoms/MenuButtonDesktop";
 import MenuAnchorDesktop from "../atoms/MenuAnchorDesktop";
-import { DISPLAY_LOGIN_MODAL, DISPLAY_SIGN_UP_MODAL, USER_LOGOUT } from "../constants";
+import { USER_LOGOUT } from "../constants";
 
-const MenuDesktop = ({ setIsCartOpen }) => {
+const MenuDesktop = ({ setIsLoginOpen, setIsSignupOpen, setIsCartOpen }) => {
 	const user = useSelector((state) => state.userReducer);
 	const dispatch = useDispatch();
 	const navigateTo = useNavigate();
@@ -15,12 +15,12 @@ const MenuDesktop = ({ setIsCartOpen }) => {
 
 	const handleLoginClick = () => {
 		window.scrollTo(0, 0);
-		dispatch({ type: DISPLAY_LOGIN_MODAL });
+		setIsLoginOpen(true);
 	};
 
 	const handleSignupClick = () => {
 		window.scrollTo(0, 0);
-		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
+		setIsSignupOpen(true);
 	};
 
 	const handleLogout = () => {

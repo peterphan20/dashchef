@@ -5,7 +5,7 @@ import { Cross as Hamburger } from "hamburger-react";
 import MenuMobile from "../molecules/MenuMobile";
 import MenuDesktop from "../molecules/MenuDesktop";
 
-const Header = ({ setIsCartOpen }) => {
+const Header = ({ setIsLoginOpen, setIsSignupOpen, setIsCartOpen }) => {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 	const [isOpen, setOpen] = useState(false);
 
@@ -31,7 +31,11 @@ const Header = ({ setIsCartOpen }) => {
 	const showMenu = () => {
 		return windowWidth > 864 ? (
 			<div>
-				<MenuDesktop setIsCartOpen={setIsCartOpen} />
+				<MenuDesktop
+					setIsLoginOpen={setIsLoginOpen}
+					setIsSignupOpen={setIsSignupOpen}
+					setIsCartOpen={setIsCartOpen}
+				/>
 			</div>
 		) : (
 			<span className="z-30">
@@ -52,7 +56,13 @@ const Header = ({ setIsCartOpen }) => {
 					Dashchef
 				</Link>
 				{showMenu()}
-				<MenuMobile setOpen={setOpen} isOpen={isOpen} setIsCartOpen={setIsCartOpen} />
+				<MenuMobile
+					setOpen={setOpen}
+					isOpen={isOpen}
+					setIsLoginOpen={setIsLoginOpen}
+					setIsSignupOpen={setIsSignupOpen}
+					setIsCartOpen={setIsCartOpen}
+				/>
 			</header>
 		</div>
 	);

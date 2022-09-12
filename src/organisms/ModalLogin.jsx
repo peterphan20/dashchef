@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../api/usersAPI";
 import { loginChef } from "../api/chefsAPI";
-import { USER_LOGIN, DISPLAY_SIGN_UP_MODAL, HIDE_LOGIN_MODAL } from "../constants";
+import { USER_LOGIN } from "../constants";
 import FormInputField from "../molecules/FormInputField";
 
-const ModalLogin = () => {
+const ModalLogin = ({ setIsLoginOpen, setIsSignupOpen }) => {
 	const [authResponse, setAuthResponse] = useState(true);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -31,7 +31,7 @@ const ModalLogin = () => {
 				loggedIn: true,
 			};
 			dispatch({ type: USER_LOGIN, payload });
-			dispatch({ type: HIDE_LOGIN_MODAL });
+			setIsLoginOpen(false);
 		}
 	};
 
@@ -55,7 +55,7 @@ const ModalLogin = () => {
 				loggedIn: true,
 			};
 			dispatch({ type: USER_LOGIN, payload });
-			dispatch({ type: HIDE_LOGIN_MODAL });
+			setIsLoginOpen(false);
 		}
 	};
 
@@ -72,8 +72,8 @@ const ModalLogin = () => {
 	};
 
 	const handleShowSignUpModal = () => {
-		dispatch({ type: HIDE_LOGIN_MODAL });
-		dispatch({ type: DISPLAY_SIGN_UP_MODAL });
+		setIsLoginOpen(false);
+		setIsSignupOpen(true);
 	};
 
 	const handleTestChef = () => {
@@ -91,7 +91,7 @@ const ModalLogin = () => {
 	return (
 		<div
 			className="grid place-items-center fixed bg-backdrop top-0 left-0 w-full h-screen z-20"
-			onMouseDown={() => dispatch({ type: HIDE_LOGIN_MODAL })}
+			onMouseDown={() => setIsLoginOpen(false)}
 		>
 			<div
 				onMouseDown={(e) => e.stopPropagation()}
@@ -99,7 +99,7 @@ const ModalLogin = () => {
 			>
 				<button
 					className="flex self-end text-sm text-gray-400 lg:text-base"
-					onClick={() => dispatch({ type: HIDE_LOGIN_MODAL })}
+					onClick={() => setIsLoginOpen(false)}
 				>
 					<i className="fa-solid fa-xmark" />
 				</button>
