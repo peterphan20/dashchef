@@ -12,7 +12,7 @@ const EditKitchen = () => {
 	const [address, setAddress] = useState("");
 	const [aptNumber, setAptNumber] = useState("");
 	const [city, setCity] = useState("");
-	const [geoState, setGeoState] = useState(null);
+	const [geoState, setGeoState] = useState("");
 	const [zipcode, setZipCode] = useState("");
 	const [openEditKitchenForm, setOpenEditKitchenForm] = useState(false);
 	const [authResponse, setAuthResponse] = useState(true);
@@ -75,6 +75,7 @@ const EditKitchen = () => {
 		};
 
 		const apiResponse = await updateKitchen(kitchenID, updatedKitchenObject, token);
+		console.log(apiResponse);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 		} else {

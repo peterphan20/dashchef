@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getKitchen } from "../api/kitchensAPI";
 import Carousel from "../organisms/Carousel";
 import RenderMenuItems from "../organisms/RenderMenuItems";

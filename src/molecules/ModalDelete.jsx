@@ -4,25 +4,23 @@ const ModalDelete = ({ modalHandler, placeholder, clickHandler }) => {
 	return (
 		<div
 			className="grid place-items-center fixed bg-backdrop top-0 left-0 px-4 w-full h-screen z-20"
-			onClick={() => modalHandler(false)}
+			onMouseDown={() => modalHandler(false)}
 		>
 			<div
-				onClick={(e) => e.stopPropagation()}
-				className="relative bg-gray-200 text-gray-900 rounded shadow p-8 mb-40 z-20 lg:p-14"
+				onMouseDown={(e) => e.stopPropagation()}
+				className="relative flex flex-col justify-center items-start gap-1 bg-gray-50 text-gray-900 rounded-sm rounded shadow p-14 mb-40 z-20"
 			>
-				<h1 className="font-text font-bold border-b border-gray-200 pb-2 mb-3 w-full lg:text-3xl">
-					Confirmation
-				</h1>
-				<h1 className="font-text pb-3 lg:text-lg">{`Are you sure you want to delete this ${placeholder}?`}</h1>
+				<h1 className="font-bold text-2xl w-full">Confirmation</h1>
+				<h1 className="mb-2">{`Are you sure you want to delete this ${placeholder}?`}</h1>
 				<div className="flex gap-3 pb-3">
 					<button
-						className="bg-gray-300 text-gray-900 text-base rounded-lg py-1 px-3 lg:py-2 lg:px-6"
+						className="bg-gray-300 text-gray-900 text-xs rounded py-2 px-5"
 						onClick={() => modalHandler(false)}
 					>
 						Cancel
 					</button>
 					<button
-						className="bg-red-600 text-gray-200 text-base rounded-lg py-1 px-3 lg:py-2 lg:px-6"
+						className="bg-red-600 text-gray-200 text-xs rounded py-2 px-5"
 						onClick={clickHandler}
 					>
 						Delete

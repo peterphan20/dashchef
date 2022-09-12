@@ -18,7 +18,7 @@ const ModalSignUp = ({ setIsSignupOpen }) => {
 	const [address, setAddress] = useState("");
 	const [aptNumber, setAptNumber] = useState("");
 	const [city, setCity] = useState("");
-	const [geoState, setGeoState] = useState(null);
+	const [geoState, setGeoState] = useState("");
 	const [zipcode, setZipCode] = useState("");
 
 	const handleUserSignup = async (userObject) => {
@@ -31,8 +31,8 @@ const ModalSignUp = ({ setIsSignupOpen }) => {
 		}
 	};
 
-	const handleChefSignup = async (chefObject) => {
-		const apiResponse = await createChef(chefObject);
+	const handleChefSignup = async (userObject) => {
+		const apiResponse = await createChef(userObject);
 		if (apiResponse.code !== 201) {
 			setAuthResponse(false);
 		} else {

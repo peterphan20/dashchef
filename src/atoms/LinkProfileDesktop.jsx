@@ -6,7 +6,7 @@ const LinkProfileDesktop = ({ link, className, clickHandler, placeholder }) => {
 		<>
 			<Link
 				to={link}
-				className={`text-sm rounded-md py-2 px-10 ${className}`}
+				className={`flex justify-center items-center text-sm rounded py-2 px-10 ${className}`}
 				onClick={clickHandler}
 			>
 				{placeholder}
