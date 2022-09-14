@@ -22,7 +22,7 @@ export const updateMenuItem = async (id, menuItemObject, token) => {
 		method: "PUT",
 		body: JSON.stringify(menuItemObject),
 		headers: {
-			"Content-Type": "multipart/form-data",
+			"Content-Type": "application/json; charset=UTF-8",
 			auth: token,
 		},
 	});

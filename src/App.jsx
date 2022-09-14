@@ -13,15 +13,16 @@ import ModalCart from "./organisms/ModalCart";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Kitchen from "./pages/Kitchen";
-import CreateKitchen from "./organisms/CreateKitchen";
+import CreateKitchen from "./pages/CreateKitchen";
 import Driver from "./pages/Driver";
 import Cart from "./pages/Cart";
 import EditKitchen from "./pages/EditKitchen";
-import CreateMenuItem from "./organisms/CreateMenuItem";
+import CreateMenuItem from "./pages/CreateMenuItem";
 import ImageUploadUser from "./pages/ImageUploadUser";
 import ImageUploadKitchen from "./pages/ImageUploadKitchen";
 import KitchensList from "./pages/KitchensList";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import EditMenuItem from "./pages/EditMenuItem";
 
 const App = () => {
 	const [isCartOpen, setIsCartOpen] = useState(false);
@@ -101,8 +102,9 @@ const App = () => {
 				<Route path="/kitchens/all" element={<KitchensList />}></Route>
 				<Route path="/kitchen/id/:kitchenID" element={<Kitchen />}></Route>
 				<Route path="/create/kitchen" element={<CreateKitchen />}></Route>
-				<Route path="/edit/kitchen/:kitchenID" element={<EditKitchen />}></Route>
 				<Route path="/create/menu-item" element={<CreateMenuItem />}></Route>
+				<Route path="/edit/kitchen/:kitchenID" element={<EditKitchen />}></Route>
+				<Route path="/edit/menu-item/:menuItemID" element={<EditMenuItem />}></Route>
 				<Route path="/image-upload/user/:userID" element={<ImageUploadUser />}></Route>
 				<Route path="/image-upload/kitchen/:kitchenID" element={<ImageUploadKitchen />}></Route>
 				<Route path="/driver" element={<Driver />}></Route>

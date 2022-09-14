@@ -49,8 +49,8 @@ const RenderMenuItems = ({ kitchen }) => {
 					<div>
 						<div className="flex justify-between items-center py-3">
 							<div className="flex flex-col">
-								<p className="text-base font-bold pb-1">{menuItem.itemName}</p>
-								<p className="text-sm text-gray-700 overflow-clip pb-1 pr-28">
+								<p className="text-base font-bold mb-1">{menuItem.itemName}</p>
+								<p className="text-sm text-gray-700 overflow-clip mb-1 pr-28">
 									{menuItem.itemDescription}
 								</p>
 								<p className="text-sm pb-2">${menuItem.itemPrice}</p>
@@ -86,6 +86,11 @@ const RenderMenuItems = ({ kitchen }) => {
 									<i className="fa-solid fa-plus" />
 								</button>
 							</div>
+						</div>
+						<div>
+							<Link to={`/edit/menu-item/${menuItem.itemID}`} className="text-blue-500 underline">
+								Edit item
+							</Link>
 						</div>
 					</div>
 				) : user.kitchenID === kitchen.id ? (

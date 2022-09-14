@@ -1,5 +1,4 @@
-import { useState } from "react";
-
+import React from "react";
 const ImageUploadMenuItem = ({
 	fileInputHandler,
 	fileIsSelected,
@@ -8,7 +7,7 @@ const ImageUploadMenuItem = ({
 }) => {
 	return (
 		<div
-			className={`col-span-4 bg-gray-50 text-gray-900 rounded-md mt-1 px-6 pb-6 border-2 border-dashed ${
+			className={`col-span-4 bg-gray-50 text-gray-900 rounded mt-1 px-6 pb-6 border-2 border-dashed ${
 				!fileIsSelected ? "border-gray-300 pt-5" : "border-green-400 pt-3"
 			}`}
 		>
@@ -22,7 +21,7 @@ const ImageUploadMenuItem = ({
 				<div className="text-sm text-gray-600">
 					<label
 						htmlFor="file-upload"
-						className="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-1 focus-within:ring-offset-2 focus-within:ring-blue-500"
+						className="relative cursor-pointer rounded font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-1 focus-within:ring-offset-2 focus-within:ring-blue-500"
 					>
 						<span>Upload a file</span>
 						<input

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createMenuItem } from "../api/MenuItemsAPI";
-import ImageUploadMenuItem from "./ImageUploadMenuItem";
+import ImageUploadMenuItem from "../organisms/ImageUploadMenuItem";
 import ModalCreateAnotherItem from "../molecules/ModalCreateAnotherItem";
 import FormInputField from "../molecules/FormInputField";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
@@ -141,7 +141,7 @@ const CreateMenuItem = () => {
 					</label>
 					<textarea
 						id="description"
-						className="relative block appearance-none text-gray-900 bg-gray-50 rounded-md rounded-none border border-gray-300 resize-none placeholder-gray-500 px-3 py-2 mb-5 w-full max-w-9xl h-28 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+						className="relative block appearance-none text-gray-900 bg-gray-50 rounded border border-gray-300 resize-none px-3 py-2 mb-5 w-full max-w-9xl h-28 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 					/>

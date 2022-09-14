@@ -1,8 +1,8 @@
-import { useState } from "react";
+import React from "react";
 
 const ImageUploadMultiple = ({ value, changeHandler }) => {
 	return (
-		<div className="flex justify-center text-gray-900 border-2 border-gray-300 border-dashed rounded-md mt-1 px-6 pt-5 pb-6">
+		<div className="flex justify-center text-gray-900 border-2 border-gray-300 border-dashed rounded mt-1 px-6 pt-5 pb-6">
 			<div className="space-y-1 text-center">
 				<i className="fa-solid fa-image text-4xl text-gray-400" />
 				<div className="flex text-sm text-gray-600">

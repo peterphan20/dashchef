@@ -1,10 +1,10 @@
 import FormInputField from "./FormInputField";
 
-const ModalEditNumber = ({ setEditNumberModal, phone, setPhone, updatePhoneNumber }) => {
+const ModalEditNumber = ({ setIsEditNumberOpen, phone, setPhone, updatePhoneNumber }) => {
 	return (
 		<div
 			className="grid place-items-center fixed bg-backdrop top-0 left-0 px-4 w-full h-screen z-20"
-			onMouseDown={() => setEditNumberModal(false)}
+			onMouseDown={() => setIsEditNumberOpen(false)}
 		>
 			<div
 				onMouseDown={(e) => e.stopPropagation()}
@@ -26,7 +26,7 @@ const ModalEditNumber = ({ setEditNumberModal, phone, setPhone, updatePhoneNumbe
 				<div className="flex gap-3 pb-3">
 					<button
 						className="bg-gray-300 text-gray-900 text-base rounded-lg py-1 px-3 lg:py-2 lg:px-6"
-						onClick={() => setEditNumberModal(false)}
+						onClick={() => setIsEditNumberOpen(false)}
 					>
 						Cancel
 					</button>

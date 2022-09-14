@@ -67,6 +67,7 @@ const ProfileDesktop = ({
 			};
 			dispatch({ type: USER_UPDATE, payload: payload });
 			dispatch({ type: SELECTED_KITCHEN_DELETE });
+			dispatch({ type: SELECTED_MENU_ITEM_DELETE });
 		}
 	};
 
@@ -107,6 +108,15 @@ const ProfileDesktop = ({
 				/>
 			) : null}
 			<div className="border border-gray-300 px-16 py-12 mb-8">
+				{/* {authResponse === null ? null : authResponse ? (
+					<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">
+						Your profile has been updated
+					</p>
+				) : (
+					<p className="bg-red-400 py-1 px-4 rounded-md transform translate-y-full transition duration-300 ease-in">
+						Something went wrong
+					</p>
+				)} */}
 				<Avatar
 					link={`/image-upload/user/${userID}`}
 					src={user.avatarURL ? user.avatarURL : defaultAvatar}

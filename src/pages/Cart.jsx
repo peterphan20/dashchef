@@ -13,7 +13,7 @@ const Cart = () => {
 	const [method, setMethod] = useState("");
 	const [delivery, setDelivery] = useState("");
 	const [cartItems, setCartItems] = useState([]);
-	const [editNumberModal, setEditNumberModal] = useState(false);
+	const [isEditNumberOpen, setIsEditNumberOpen] = useState(false);
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [address, setAddress] = useState("");
@@ -134,7 +134,7 @@ const Cart = () => {
 			setAuthResponse(false);
 		} else {
 			setAuthResponse(true);
-			setEditNumberModal(false);
+			setIsEditNumberOpen(false);
 		}
 	};
 
@@ -144,7 +144,7 @@ const Cart = () => {
 			setAuthResponse(false);
 		} else {
 			setAuthResponse(true);
-			setEditNumberModal(false);
+			setIsEditNumberOpen(false);
 		}
 	};
 
@@ -202,9 +202,9 @@ const Cart = () => {
 
 	return (
 		<div className="bg-gray-100 w-full h-full min-h-screen">
-			{editNumberModal ? (
+			{isEditNumberOpen ? (
 				<ModalEditNumber
-					setEditNumberModal={setEditNumberModal}
+					setIsEditNumberOpen={setIsEditNumberOpen}
 					phone={phone}
 					setPhone={setPhone}
 					updatePhoneNumber={updatePhoneNumber}
@@ -267,7 +267,7 @@ const Cart = () => {
 						</div>
 						<button
 							className="text-red-600 text-sm font-body font-bold"
-							onClick={() => setEditNumberModal(true)}
+							onClick={() => setIsEditNumberOpen(true)}
 						>
 							Change
 						</button>

@@ -29,6 +29,7 @@ export const CART_UPDATE = "CART_UPDATE";
  * menuItemsReducer constants
  */
 export const MENU_ITEMS_LOAD = "MENU_ITEMS_LOAD";
+export const MENU_ITEMS_DELETE = "MENU_ITEMS_DELETE";
 
 /**
  * menuItemReducer constants
