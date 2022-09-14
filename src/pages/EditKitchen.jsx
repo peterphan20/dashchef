@@ -37,6 +37,7 @@ const EditKitchen = () => {
 	}, [windowWidth]);
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		async function fetchKitchen() {
 			const data = await getKitchen(kitchenID);
 			if (!data || !data.rows) {

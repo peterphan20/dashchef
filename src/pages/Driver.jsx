@@ -1,7 +1,11 @@
-import React from "react";
+import { useEffect } from "react";
 import driverSignupImage from "../assets/driver-signup-image.jpg";
 
 const Driver = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<div className="bg-gray-100 w-full min-h-screen">
 			<div className="bg-red-600 mb-10 w-full">

@@ -112,8 +112,8 @@ const CreateMenuItem = () => {
 					handleCreateAnotherMenuItem={handleCreateAnotherMenuItem}
 				/>
 			) : null}
-			<div className="grid grid-cols-4 w-full h-full lg:bg-gray-200 lg:border lg:border-gray-300 lg:py-10 lg:px-16 lg:max-w-2xl lg:w-1/4 xl:w-1/3 lg:mx-auto">
-				<h1 className="col-span-4 text-2xl font-headers text-center py-6 lg:text-3xl">
+			<div className="grid grid-cols-6 w-full h-full lg:bg-gray-200 lg:border lg:border-gray-300 lg:py-10 lg:px-16 lg:max-w-2xl lg:w-1/4 xl:w-1/3 lg:mx-auto">
+				<h1 className="col-span-6 text-2xl font-headers text-center py-6 lg:text-3xl">
 					Create a menu item
 				</h1>
 				<FormInputField
@@ -121,7 +121,7 @@ const CreateMenuItem = () => {
 					text="name"
 					type="text"
 					placeholder="Item Name"
-					gridSpan="col-span-4"
+					gridSpan="col-span-6"
 					value={name}
 					changeHandler={(e) => setName(e.target.value)}
 				/>
@@ -135,7 +135,7 @@ const CreateMenuItem = () => {
 					value={price}
 					changeHandler={(e) => setPrice(e.target.value)}
 				/>
-				<div className="col-span-4">
+				<div className="col-span-6">
 					<label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
 						Description
 					</label>
@@ -146,11 +146,11 @@ const CreateMenuItem = () => {
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</div>
-				<div className="col-span-4 mb-5">
+				<div className="col-span-6 mb-5">
 					<h1 className="block text-base font-medium text-gray-900 mb-2">Dietary Restrictions :</h1>
 					{renderedListOfItems}
 				</div>
-				<h1 className="block text-sm font-medium text-gray-700 mb-2">Upload an image</h1>
+				<h1 className="col-span-6 block font-medium text-gray-700 mb-2">Upload an image</h1>
 				<ImageUploadMenuItem
 					fileInputHandler={fileInputHandler}
 					fileIsSelected={fileIsSelected}

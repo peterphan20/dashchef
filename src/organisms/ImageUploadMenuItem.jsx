@@ -7,7 +7,7 @@ const ImageUploadMenuItem = ({
 }) => {
 	return (
 		<div
-			className={`col-span-4 bg-gray-50 text-gray-900 rounded mt-1 px-6 pb-6 border-2 border-dashed ${
+			className={`col-span-6 bg-gray-50 text-gray-900 rounded mt-1 px-6 pb-6 border-2 border-dashed ${
 				!fileIsSelected ? "border-gray-300 pt-5" : "border-green-400 pt-3"
 			}`}
 		>
