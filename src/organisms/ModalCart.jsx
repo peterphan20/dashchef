@@ -142,7 +142,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 						<p className="text-sm mb-4">Add an item to get started</p>
 						<div>
 							<LinkCartDesktop
-								link="/kitchens/all"
+								link="/kitchens-list"
 								placeholder="Browse kitchens"
 								clickHandler={() => setIsCartOpen(false)}
 							/>

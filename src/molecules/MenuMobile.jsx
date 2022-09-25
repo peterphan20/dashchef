@@ -46,7 +46,7 @@ const MenuMobile = ({ setOpen, isOpen, setIsLoginOpen, setIsSignupOpen, setIsCar
 				isOpen ? "opacity-100 translate-y-0 top-20" : "opacity-0 -translate-y-full top-0"
 			}`}
 		>
-			<MenuAnchorMobile link="/kitchens/all" placeholder="Browse kitchens" />
+			<MenuAnchorMobile link="/kitchens-list" placeholder="Browse kitchens" />
 			{!user.loggedIn ? (
 				<>
 					<MenuButtonMobile clickHandler={handleLoginClick} placeholder="Login" />
@@ -64,7 +64,7 @@ const MenuMobile = ({ setOpen, isOpen, setIsLoginOpen, setIsSignupOpen, setIsCar
 			)}
 			{!user.isChef ? null : user.isChef && user.kitchenID ? (
 				<MenuAnchorMobile
-					link={`/kitchen/id/${user.kitchenID}`}
+					link={`/kitchen/${user.kitchenID}`}
 					placeholder="Kitchen"
 					clickHandler={handlePageChangeClick}
 				/>

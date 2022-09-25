@@ -99,8 +99,8 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<Home />}></Route>
 				<Route path="/profile/:userID" element={<Profile />}></Route>
-				<Route path="/kitchens/all" element={<KitchensList />}></Route>
-				<Route path="/kitchen/id/:kitchenID" element={<Kitchen />}></Route>
+				<Route path="/kitchens-list" element={<KitchensList />}></Route>
+				<Route path="/kitchen/:kitchenID" element={<Kitchen />}></Route>
 				<Route path="/create/kitchen" element={<CreateKitchen />}></Route>
 				<Route path="/create/menu-item" element={<CreateMenuItem />}></Route>
 				<Route path="/edit/kitchen/:kitchenID" element={<EditKitchen />}></Route>
@@ -109,7 +109,7 @@ const App = () => {
 				<Route path="/image-upload/kitchen/:kitchenID" element={<ImageUploadKitchen />}></Route>
 				<Route path="/driver" element={<Driver />}></Route>
 				<Route path="/cart" element={<Cart />}></Route>
-				<Route path="/order-confirmation" element={<OrderConfirmation />}></Route>
+				<Route path="/order-confirmation/:orderID" element={<OrderConfirmation />}></Route>
 			</Routes>
 			<Footer />
 		</Router>

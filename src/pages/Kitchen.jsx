@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getKitchen } from "../api/kitchensAPI";
-import Carousel from "../organisms/Carousel";
 import RenderMenuItems from "../organisms/RenderMenuItems";
 import Avatar from "../molecules/Avatar";
 import defaultAvatar from "../assets/default-avatar.jpg";

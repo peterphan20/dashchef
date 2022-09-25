@@ -32,7 +32,7 @@ const ImageUploadKitchen = () => {
 			console.log("Failed to update kitchen's avatar");
 		} else {
 			console.log("Kitchen's avatar successfully updated");
-			navigateTo(`/kitchen/id/${kitchenID}`);
+			navigateTo(`/kitchen/${kitchenID}`);
 		}
 	};
 	return (

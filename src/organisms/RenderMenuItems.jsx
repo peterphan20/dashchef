@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import AspectRatioImg from "../molecules/AspectRatio";
+import AspectRatioImg from "../molecules/AspectRatioImg";
 import { CART_ADD } from "../constants";
 
 const RenderMenuItems = ({ kitchen }) => {
@@ -88,13 +88,18 @@ const RenderMenuItems = ({ kitchen }) => {
 							</div>
 						</div>
 						<div>
-							<Link to={`/edit/menu-item/${menuItem.itemID}`} className="text-blue-500 underline">
-								Edit item
-							</Link>
+							{user.kitchenID === kitchen.id ? (
+								<Link to={`/edit/menu-item/${menuItem.itemID}`} className="text-blue-500 underline">
+									Edit item
+								</Link>
+							) : null}
 						</div>
 					</div>
 				) : user.kitchenID === kitchen.id ? (
-					<Link to="/create/menu-item" className="text-blue-700 font-body text-sm py-2 mt-2 mb-6">
+					<Link
+						to="/create/menu-item"
+						className="text-blue-700 font-body text-sm py-2 mt-2 mb-6 w-fit"
+					>
 						Create Menu Item
 					</Link>
 				) : (

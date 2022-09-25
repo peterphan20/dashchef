@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAllKitchen } from "../api/kitchensAPI";
 import { KITCHENS_LOAD } from "../constants";
 import defaultAvatar from "../assets/default-avatar.jpg";
-import AspectRatioImg from "../molecules/AspectRatio";
+import AspectRatioImg from "../molecules/AspectRatioImg";
 
 const KitchensList = () => {
 	const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const KitchensList = () => {
 	const renderedKitchenCards = kitchens.map((kitchen) => {
 		return (
 			<div key={kitchen.id} className="bg-gray-50 border border-gray-200 h-64 lg:w-80 lg:max-h-96">
-				<Link to={`/kitchen/id/${kitchen.id}`}>
+				<Link to={`/kitchen/${kitchen.id}`}>
 					<AspectRatioImg
 						src={kitchen.avatarURL ? kitchen.avatarURL : defaultAvatar}
 						alt="kitchen's avatar"

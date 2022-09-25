@@ -8,6 +8,8 @@ import { CART_UPDATE, CART_REMOVE } from "../constants";
 import RadialInputCart from "../molecules/RadialInputCart";
 import ModalEditNumber from "../molecules/ModalEditNumber";
 import CheckoutPanel from "../organisms/CheckoutPanel";
+import AspectRatioImg from "../molecules/AspectRatioImg";
+import { createOrder } from "../api/ordersAPI";
 
 const Cart = () => {
 	const [method, setMethod] = useState("");
@@ -171,31 +173,52 @@ const Cart = () => {
 		}
 	};
 
+	const handleOrderSubmit = async () => {
+		const token = localStorage.getItem("authToken");
+		if (!token) return;
+
+		const itemID = cartItems.map((item) => item.id);
+		const orderObject = {
+			menuItemID: itemID,
+			kitchenID: cart[0].kitchenID,
+			userID: user.id,
+		};
+
+		const apiResponse = await createOrder(token, orderObject);
+		console.log(apiResponse);
+	};
+
 	const renderedCartItems = cartItems.map((cartItem) => {
 		return (
-			<div key={cartItem.id} className="flex justify-start items-center gap-10 font-body">
-				<div className="flex flex-col gap-1">
+			<div key={cartItem.id} className="grid grid-cols-6 gap-3 font-body my-5">
+				<AspectRatioImg
+					src={cartItem.photoPrimaryURL}
+					alt={cartItem.name}
+					outerClassName="col-span-1 h-28"
+					className="rounded"
+				/>
+				<div className="col-span-2 flex flex-col justify-center gap-1">
 					<span>{cartItem.name}</span>
 					<span>{`$${cartItem.price}`}</span>
 				</div>
-				<div className="flex justify-center items-center gap-2">
+				<div className="col-span-1 flex items-center gap-2">
 					<button
-						className="flex justify-center items-center bg-gray-200 text-gray-500 w-5 h-5"
+						className="flex justify-center items-center bg-gray-200 text-gray-500 p-1 w-5 h-5"
 						onClick={() => decrementQuantity(cartItem.id)}
 					>
 						<i className="fa-solid fa-minus" />
 					</button>
 					<span className="text-base">{cartItem.quantity}</span>
 					<button
-						className="flex justify-center items-center bg-red-600 text-gray-100 w-5 h-5"
+						className="flex justify-center items-center bg-red-600 text-gray-100 p-1 w-5 h-5"
 						onClick={() => incrementQuantity(cartItem.id)}
 					>
 						<i className="fa-solid fa-plus" />
 					</button>
+					<button onClick={() => removeCartItem(cartItem.id)}>
+						<i className="fa-solid fa-trash text-gray-500" />
+					</button>
 				</div>
-				<button onClick={() => removeCartItem(cartItem.id)}>
-					<i className="fa-solid fa-trash text-gray-500" />
-				</button>
 			</div>
 		);
 	});
@@ -211,7 +234,7 @@ const Cart = () => {
 				/>
 			) : null}
 			<div className="flex justify-between items-start mx-auto">
-				<div className="flex flex-col justify-center items-start border border-gray-300 rounded mt-10 w-full lg:mx-auto lg:max-w-3xl">
+				<div className="flex flex-col justify-center items-start border border-gray-300 rounded my-10 w-full lg:mx-auto lg:max-w-3xl">
 					<span className="font-headers font-bold pt-10 px-10 lg:text-3xl">Checkout:</span>
 					<div className="flex flex-col justify-start items-start gap-4 border-b border-gray-300 p-10 w-full">
 						<span className="font-headers font-bold text-xl">Method :</span>
@@ -272,17 +295,17 @@ const Cart = () => {
 							Change
 						</button>
 					</div>
-					<div>
+					<div className="w-full">
 						{cartItems[0] ? (
-							<div className="flex flex-col gap-5 p-10 w-full">
-								<span className="font-headers font-bold text-xl">Your items : </span>
+							<div className="p-10 w-full">
+								<span className="col-span-6 font-headers font-bold text-xl">Your items : </span>
 								{renderedCartItems}
 							</div>
 						) : null}
 					</div>
 				</div>
 				<div className="flex border-l border-gray-300 h-screen lg:w-80 xl:w-96">
-					<CheckoutPanel />
+					<CheckoutPanel cartItems={cartItems} handleOrderSubmit={handleOrderSubmit} />
 				</div>
 			</div>
 		</div>

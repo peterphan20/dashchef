@@ -21,7 +21,7 @@ const TopRatedHero = () => {
 				</p>
 				<div className="lg:w-1/3">
 					<Link
-						to="/kitchen/id/2"
+						to="/kitchen/2"
 						className="flex justify-center items-center bg-red-600 text-gray-100 text-base font-body border border-transparent rounded-md outline-none shadow py-2 px-5 my-5 w-full h-full"
 					>
 						Order here

@@ -51,7 +51,7 @@ const EditMenuItem = () => {
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 		} else {
-			navigateTo(`/kitchen/id/${user.kitchenID}`);
+			navigateTo(`/kitchen/${user.kitchenID}`);
 		}
 	};
 
@@ -62,7 +62,7 @@ const EditMenuItem = () => {
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 		} else {
-			navigateTo(`/kitchen/id/${user.kitchenID}`);
+			navigateTo(`/kitchen/${user.kitchenID}`);
 		}
 	};
 
@@ -70,7 +70,7 @@ const EditMenuItem = () => {
 		<div className="bg-gray-100 py-10 w-full h-full min-h-screen">
 			{isDeleteItemOpen ? (
 				<ModalDelete
-					setIsDeleteItemOpen={setIsDeleteItemOpen}
+					modalHandler={setIsDeleteItemOpen}
 					placeholder="menu item"
 					clickHandler={handleDeleteItem}
 				/>

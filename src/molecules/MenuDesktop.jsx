@@ -32,7 +32,7 @@ const MenuDesktop = ({ setIsLoginOpen, setIsSignupOpen, setIsCartOpen }) => {
 
 	return (
 		<nav className="flex justify-center items-center gap-10">
-			<MenuAnchorDesktop link="/kitchens/all" placeholder="Browse kitchens" />
+			<MenuAnchorDesktop link="/kitchens-list" placeholder="Browse kitchens" />
 			{!user.loggedIn ? (
 				<>
 					<MenuButtonDesktop clickHandler={handleLoginClick} placeholder="Login" />
@@ -47,7 +47,7 @@ const MenuDesktop = ({ setIsLoginOpen, setIsSignupOpen, setIsCartOpen }) => {
 			)}
 			{!user.isChef ? null : user.isChef && user.kitchenID ? (
 				<MenuAnchorDesktop
-					link={`/kitchen/id/${user.kitchenID}`}
+					link={`/kitchen/${user.kitchenID}`}
 					placeholder="Kitchen"
 					clickHandler={handlePageChangeClick}
 				/>

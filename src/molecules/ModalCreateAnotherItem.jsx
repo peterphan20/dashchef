@@ -18,7 +18,7 @@ const ModalCreateAnotherItem = ({ modalHandler, handleCreateAnotherMenuItem }) =
 				</h1>
 				<div className="flex gap-3">
 					<LinkModal
-						link={`/kitchen/id/${user.kitchenID}`}
+						link={`/kitchen/${user.kitchenID}`}
 						className="bg-gray-300"
 						placeholder="No"
 						clickHandler={() => modalHandler(false)}
