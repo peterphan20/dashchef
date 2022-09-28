@@ -175,13 +175,7 @@ const Cart = () => {
 	const renderedCartItems = cartItems.map((cartItem) => {
 		return (
 			<div key={cartItem.id} className="grid grid-cols-6 gap-3 font-body my-5">
-				<AspectRatioImg
-					src={cartItem.photoPrimaryURL}
-					alt={cartItem.name}
-					outerClassName="col-span-1 h-28"
-					className="rounded"
-				/>
-				<div className="col-span-2 flex flex-col justify-center gap-1">
+				<div className="col-span-2 flex flex-col justify-center gap-2">
 					<span>{cartItem.name}</span>
 					<span>{`$${cartItem.price}`}</span>
 				</div>

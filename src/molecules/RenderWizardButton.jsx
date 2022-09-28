@@ -1,7 +1,6 @@
 import ButtonUserAuthForm from "../atoms/ButtonUserAuthForm";
 
-const RenderWizardButton = ({ stepNumber, setStepNumber, handleSignup }) => {
-
+const RenderWizardButton = ({ setIsSignupOpen, stepNumber, setStepNumber, handleSignup }) => {
 	const renderButtons = () => {
 		switch (true) {
 			case stepNumber === 1:

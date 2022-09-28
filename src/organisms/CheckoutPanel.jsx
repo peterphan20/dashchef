@@ -4,8 +4,6 @@ import CheckoutFees from "../molecules/CheckoutFees";
 import LinkCartDesktop from "../atoms/LinkCartDesktop";
 
 const CheckoutPanel = ({ cartItems }) => {
-	const [subtotal, setSubtotal] = useState(0);
-	const [total, setTotoal] = useState(0);
 	const kitchen = useSelector((state) => state.selectedKitchenReducer);
 
 	return (
@@ -18,13 +16,13 @@ const CheckoutPanel = ({ cartItems }) => {
 						<LinkCartDesktop link="/order-confirmation" placeholder="Place Order" />
 					</div>
 					<div className="flex flex-col gap-2 px-5 py-5 border-b border-gray-300">
-						<CheckoutFees placeholder="Subtotal" price={`$${subtotal}`} />
+						<CheckoutFees placeholder="Subtotal" price="$35.97" />
 						<CheckoutFees placeholder="Regulatory Recovery Fee" price="$0.40" />
 						<CheckoutFees placeholder="Delivery Fee" price="$3.50" />
-						<CheckoutFees placeholder="Fees & Estimated Tax" price="$3.00" />
+						<CheckoutFees placeholder="Fees & Estimated Tax" price="$2.34" />
 					</div>
 					<div className="px-5 py-5 font-bold">
-						<CheckoutFees placeholder="Total" price={`$${total}`} />
+						<CheckoutFees placeholder="Total" price="$42.21" />
 					</div>
 				</div>
 			) : (

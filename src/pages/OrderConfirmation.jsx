@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getMenuItem } from "../api/MenuItemsAPI";
-import AspectRatioImg from "../molecules/AspectRatioImg";
 import MockupOrderConfirmationItem from "../molecules/MockupOrderConfirmationItem";
 
 const OrderConfirmation = () => {
@@ -50,8 +47,9 @@ const OrderConfirmation = () => {
 						<span>Subtotal: $35.97</span>
 						<span>Taxes: $2.34</span>
 						<span>Deliver Fee: $3.50</span>
+						<span>Regulatory Recovery Fee: $0.40</span>
 					</div>
-					<span className="flex self-end">Total: $41.81</span>
+					<span className="flex self-end">Total: $42.21</span>
 				</div>
 			</div>
 		</div>

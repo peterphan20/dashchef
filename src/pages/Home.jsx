@@ -9,7 +9,7 @@ const Home = () => {
 			<div className="mt-10 mx-auto max-w-7xl px-4 md:mt-16 lg:flex lg:justify-center lg:items-center lg:gap-14 lg:mb-8 lg:px-0 lg:mt-14 xl:mt-16">
 				<div className="w-2/5 h-72">
 					<img
-						className="rounded w-full object-cover lg:w-full lg:h-full"
+						className="rounded w-full object-cover lg:h-full"
 						src={topKitchenImg}
 						alt="ingredients used for cooking delicious meals"
 					/>

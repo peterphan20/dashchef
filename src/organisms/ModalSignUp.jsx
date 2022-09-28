@@ -113,6 +113,7 @@ const ModalSignUp = ({ setIsSignupOpen }) => {
 		>
 			{renderWizardInserts()}
 			<RenderWizardButton
+				setIsSignupOpen={setIsSignupOpen}
 				stepNumber={stepNumber}
 				setStepNumber={setStepNumber}
 				handleSignup={handleSignup}

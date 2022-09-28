@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { updateUserAvatar } from "../api/usersAPI";
 import { updateChefAvatar } from "../api/chefsAPI";
 import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
@@ -7,7 +8,9 @@ import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
 const ImageUploadUser = () => {
 	const [selectedFile, setSelectedFile] = useState();
 	const [fileIsSelected, setFileIsSelected] = useState(false);
+	const user = useSelector((state) => state.userReducer);
 	const { userID } = useParams();
+	const navigateTo = useNavigate();
 
 	const fileInputHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
@@ -24,7 +27,7 @@ const ImageUploadUser = () => {
 		if (apiResponse.status !== 204) {
 			console.log("Failed to update user's avatar");
 		} else {
-			console.log("Chef successfully updated avatar");
+			navigateTo(`/profile/${userID}`);
 		}
 	};
 
@@ -33,7 +36,7 @@ const ImageUploadUser = () => {
 		if (apiResponse.status !== 204) {
 			console.log("Failed to update user's avatar");
 		} else {
-			console.log("User successfully updated avatar");
+			navigateTo(`/profile/${userID}`);
 		}
 	};
 

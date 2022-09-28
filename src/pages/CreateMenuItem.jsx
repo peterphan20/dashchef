@@ -87,6 +87,28 @@ const CreateMenuItem = () => {
 		setPrice(0);
 		setSelectedFile();
 		setFileIsSelected(false);
+		setListOfItems([
+			{
+				tag: "Lactose Free",
+				isChecked: false,
+			},
+			{
+				tag: "Gluten Free",
+				isChecked: false,
+			},
+			{
+				tag: "Vegetarian",
+				isChecked: false,
+			},
+			{
+				tag: "Vegan",
+				isChecked: false,
+			},
+			{
+				tag: "Food Allergy",
+				isChecked: false,
+			},
+		]);
 	};
 
 	const renderedListOfItems = listOfItems.map((item, index) => (
