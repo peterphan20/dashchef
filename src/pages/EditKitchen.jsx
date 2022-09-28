@@ -76,7 +76,6 @@ const EditKitchen = () => {
 		};
 
 		const apiResponse = await updateKitchen(kitchenID, updatedKitchenObject, token);
-		console.log(apiResponse);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 		} else {

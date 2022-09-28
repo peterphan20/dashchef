@@ -73,14 +73,14 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 			>
 				<div className="flex flex-col justify-center items-center">
 					<button
-						className="flex justify-center items-center bg-red-600 text-gray-100 w-5 h-5"
+						className="flex justify-center items-center bg-red-600 text-gray-100 p-2 w-5 h-5"
 						onClick={() => incrementQuantity(cartItem.id)}
 					>
 						<i className="fa-solid fa-plus" />
 					</button>
 					<span className="text-base">{cartItem.quantity}</span>
 					<button
-						className="flex justify-center items-center bg-gray-200 text-gray-500 w-5 h-5"
+						className="flex justify-center items-center bg-gray-200 text-gray-500 p-2 w-5 h-5"
 						onClick={() => decrementQuantity(cartItem.id)}
 					>
 						<i className="fa-solid fa-minus" />
@@ -93,7 +93,7 @@ const ModalCart = ({ isCartOpen, setIsCartOpen }) => {
 				</div>
 				<div>
 					<button onClick={() => removeCartItem(cartItem.id)}>
-						<i className="fa-solid fa-trash text-gray-500" />
+						<i className="fa-solid fa-trash text-gray-500 hover:bg-gray-400" />
 					</button>
 				</div>
 			</div>

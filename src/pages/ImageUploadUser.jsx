@@ -21,7 +21,6 @@ const ImageUploadUser = () => {
 
 	const handleUserAvatarUpdate = async (formData, token) => {
 		const apiResponse = await updateUserAvatar(userID, formData, token);
-		console.log("api response===>", apiResponse);
 		if (apiResponse.status !== 204) {
 			console.log("Failed to update user's avatar");
 		} else {
@@ -31,7 +30,6 @@ const ImageUploadUser = () => {
 
 	const handleChefAvatarUpdate = async (formData, token) => {
 		const apiResponse = await updateChefAvatar(userID, formData, token);
-		console.log("api response===>", apiResponse);
 		if (apiResponse.status !== 204) {
 			console.log("Failed to update user's avatar");
 		} else {
@@ -48,10 +46,8 @@ const ImageUploadUser = () => {
 
 		if (!user.isChef) {
 			handleUserAvatarUpdate(formData, token);
-			console.log("update user");
 		} else {
 			handleChefAvatarUpdate(formData, token);
-			console.log("update chef");
 		}
 	};
 

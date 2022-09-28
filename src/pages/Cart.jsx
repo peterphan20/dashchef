@@ -9,7 +9,6 @@ import RadialInputCart from "../molecules/RadialInputCart";
 import ModalEditNumber from "../molecules/ModalEditNumber";
 import CheckoutPanel from "../organisms/CheckoutPanel";
 import AspectRatioImg from "../molecules/AspectRatioImg";
-import { createOrder } from "../api/ordersAPI";
 
 const Cart = () => {
 	const [method, setMethod] = useState("");
@@ -173,21 +172,6 @@ const Cart = () => {
 		}
 	};
 
-	const handleOrderSubmit = async () => {
-		const token = localStorage.getItem("authToken");
-		if (!token) return;
-
-		const itemID = cartItems.map((item) => item.id);
-		const orderObject = {
-			menuItemID: itemID,
-			kitchenID: cart[0].kitchenID,
-			userID: user.id,
-		};
-
-		const apiResponse = await createOrder(token, orderObject);
-		console.log(apiResponse);
-	};
-
 	const renderedCartItems = cartItems.map((cartItem) => {
 		return (
 			<div key={cartItem.id} className="grid grid-cols-6 gap-3 font-body my-5">
@@ -201,22 +185,22 @@ const Cart = () => {
 					<span>{cartItem.name}</span>
 					<span>{`$${cartItem.price}`}</span>
 				</div>
-				<div className="col-span-1 flex items-center gap-2">
+				<div className="col-span-1 flex items-center gap-4">
 					<button
-						className="flex justify-center items-center bg-gray-200 text-gray-500 p-1 w-5 h-5"
+						className="flex justify-center items-center bg-gray-200 text-gray-500 p-2 w-5 h-5"
 						onClick={() => decrementQuantity(cartItem.id)}
 					>
 						<i className="fa-solid fa-minus" />
 					</button>
 					<span className="text-base">{cartItem.quantity}</span>
 					<button
-						className="flex justify-center items-center bg-red-600 text-gray-100 p-1 w-5 h-5"
+						className="flex justify-center items-center bg-red-600 text-gray-100 p-2 w-5 h-5"
 						onClick={() => incrementQuantity(cartItem.id)}
 					>
 						<i className="fa-solid fa-plus" />
 					</button>
 					<button onClick={() => removeCartItem(cartItem.id)}>
-						<i className="fa-solid fa-trash text-gray-500" />
+						<i className="fa-solid fa-trash text-gray-500 ml-5 hover:text-gray-400" />
 					</button>
 				</div>
 			</div>
@@ -242,16 +226,18 @@ const Cart = () => {
 							<RadialInputCart
 								htmlFor="delivery-option"
 								placeholder="Delivery"
+								radialName="deliveryOption"
 								value="deliveryOption"
 								checked={method === "deliveryOption"}
-								onChange={(e) => setMethod(e.target.value)}
+								changeHandler={(e) => setMethod(e.target.value)}
 							/>
 							<RadialInputCart
 								htmlFor="pickup-option"
 								placeholder="Pickup"
+								radialName="deliveryOption"
 								value="pickupOption"
 								checked={method === "pickupOption"}
-								onChange={(e) => setMethod(e.target.value)}
+								changeHandler={(e) => setMethod(e.target.value)}
 							/>
 						</div>
 					</div>
@@ -264,16 +250,18 @@ const Cart = () => {
 							<RadialInputCart
 								htmlFor="standard-option"
 								placeholder="Standard"
+								radialName="scheduleOption"
 								value="standardOption"
 								checked={delivery === "standardOption"}
-								onChange={() => setDelivery(e.target.value)}
+								changeHandler={(e) => setDelivery(e.target.value)}
 							/>
 							<RadialInputCart
 								htmlFor="later-option"
 								placeholder="Schedule for later"
+								radialName="scheduleOption"
 								value="laterOption"
 								checked={delivery === "laterOption"}
-								onChange={() => setDelivery(e.target.value)}
+								changeHandler={(e) => setDelivery(e.target.value)}
 							/>
 						</div>
 					</div>
@@ -305,7 +293,7 @@ const Cart = () => {
 					</div>
 				</div>
 				<div className="flex border-l border-gray-300 h-screen lg:w-80 xl:w-96">
-					<CheckoutPanel cartItems={cartItems} handleOrderSubmit={handleOrderSubmit} />
+					<CheckoutPanel cartItems={cartItems} />
 				</div>
 			</div>
 		</div>

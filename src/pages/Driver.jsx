@@ -33,7 +33,7 @@ const Driver = () => {
 					</div>
 					<div className="lg:w-2/5">
 						<img
-							className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
+							className="rounded h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
 							src={driverSignupImage}
 							alt="food delivery on a bike"
 						/>
@@ -44,7 +44,7 @@ const Driver = () => {
 				<h1 className="font-headers font-bold text-3xl mb-5">Get paid to deliver</h1>
 				<div className="grid grid-cols-3">
 					<div className="cols-span-1 w-80">
-						<i className="fa-solid fa-key text-red-600 text-2xl mb-3"></i>
+						<i className="fa-solid fa-key text-red-600 text-xl mb-3"></i>
 						<h1 className="font-headers font-bold text-xl mb-3">Deliver with your own vehicle</h1>
 						<span className="font-body leading-relaxed break-words">
 							Grab your car, bike, or scooter and deliver whenever you want-for an hour, a day, or
@@ -61,8 +61,8 @@ const Driver = () => {
 						</span>
 					</div>
 					<div className="cols-span-3 w-80">
-						<i className="fa-solid fa-calendar-days text-red-600 text-xl"></i>
-						<h1 className="font-headers font-bold text-xl">Plan your own course</h1>
+						<i className="fa-solid fa-calendar-days text-red-600 text-xl mb-3"></i>
+						<h1 className="font-headers font-bold text-xl mb-3">Plan your own course</h1>
 						<span className="font-body leading-relaxed break-words">
 							You decide whether or not you want to accept or decline the delivery. Drivers have the
 							freedom to choose the location for delivery.
@@ -77,7 +77,7 @@ const Driver = () => {
 					</h1>
 					<div className="grid grid-cols-3">
 						<div className="cols-span-1 w-80">
-							<i className="fa-solid fa-car text-red-600 text-2xl mb-3"></i>
+							<i className="fa-solid fa-car text-red-600 text-xl mb-3"></i>
 							<h1 className="font-headers font-bold text-xl mb-3">Deliver by car</h1>
 							<ul className="font-body list-disc list-outside leading-relaxed">
 								<li>Be at least 19 year old</li>
@@ -87,11 +87,10 @@ const Driver = () => {
 							</ul>
 						</div>
 						<div className="cols-span-2 w-80">
-							<i className="fa-solid fa-bicycle text-red-600 text-2xl mb-3"></i>
+							<i className="fa-solid fa-bicycle text-red-600 text-xl mb-3"></i>
 							<h1 className="font-headers font-bold text-xl mb-3">Deliver by bicycle or foot</h1>
 							<ul className="font-body list-disc list-outside leading-relaxed">
 								<li>Be at least 18 years old</li>
-								<li>Have a government-issued ID</li>
 								<li>Have a government-issued ID</li>
 								<li>
 									When signing up, be sure to choose <b>Delivery by bicycle</b> (and in certain
@@ -100,7 +99,7 @@ const Driver = () => {
 							</ul>
 						</div>
 						<div className="cols-span-3 w-80">
-							<i className="fa-solid fa-motorcycle text-red-600 text-2xl mb-3"></i>
+							<i className="fa-solid fa-motorcycle text-red-600 text-xl mb-3"></i>
 							<h1 className="font-headers font-bold text-xl mb-3">Deliver by scooter</h1>
 							<ul className="font-body list-disc list-outside leading-relaxed">
 								<li>Be at least 19 years old</li>

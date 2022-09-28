@@ -109,7 +109,7 @@ const App = () => {
 				<Route path="/image-upload/kitchen/:kitchenID" element={<ImageUploadKitchen />}></Route>
 				<Route path="/driver" element={<Driver />}></Route>
 				<Route path="/cart" element={<Cart />}></Route>
-				<Route path="/order-confirmation/:orderID" element={<OrderConfirmation />}></Route>
+				<Route path="/order-confirmation" element={<OrderConfirmation />}></Route>
 			</Routes>
 			<Footer />
 		</Router>

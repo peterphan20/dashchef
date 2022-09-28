@@ -97,7 +97,7 @@ const Profile = () => {
 	const handleSignOut = async () => {
 		localStorage.removeItem("authToken");
 		dispatch({ type: USER_LOGOUT });
-		history.push("/");
+		navigateTo("/");
 	};
 
 	const handleUserUpdate = async (userObject, token) => {

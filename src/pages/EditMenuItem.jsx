@@ -47,7 +47,6 @@ const EditMenuItem = () => {
 			price,
 		};
 		const apiResponse = await updateMenuItem(menuItemID, menuItemObject, token);
-		console.log(apiResponse);
 		if (apiResponse.code !== 200) {
 			setAuthResponse(false);
 		} else {
@@ -116,7 +115,7 @@ const EditMenuItem = () => {
 					clickHandler={handleEditMenuItem}
 				/>
 				<button className="col-span-4 place-self-end" onClick={() => setIsDeleteItemOpen(true)}>
-					<i className="fa-solid fa-trash text-gray-500" />
+					<i className="fa-solid fa-trash text-gray-500 hover:bg-gray-400" />
 				</button>
 			</div>
 		</div>

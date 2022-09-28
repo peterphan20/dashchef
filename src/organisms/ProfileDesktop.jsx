@@ -108,7 +108,7 @@ const ProfileDesktop = ({
 				/>
 			) : null}
 			<div className="border border-gray-300 px-16 py-12 mb-8">
-				{/* {authResponse === null ? null : authResponse ? (
+				{authResponse === null ? null : authResponse ? (
 					<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">
 						Your profile has been updated
 					</p>
@@ -116,7 +116,7 @@ const ProfileDesktop = ({
 					<p className="bg-red-400 py-1 px-4 rounded-md transform translate-y-full transition duration-300 ease-in">
 						Something went wrong
 					</p>
-				)} */}
+				)}
 				<Avatar
 					link={`/image-upload/user/${userID}`}
 					src={user.avatarURL ? user.avatarURL : defaultAvatar}
@@ -253,9 +253,15 @@ const ProfileDesktop = ({
 				<span className="col-span-4 block font-body font-bold text-red-600 text-xl">
 					Delete account
 				</span>
-				<span className="col-span-4 text-gray-900 text-sm mb-4">
-					You must delete your kitchen before you can delete this account
-				</span>
+				{user.isChef ? (
+					<span className="col-span-4 text-gray-900 text-sm mb-4">
+						You must delete your kitchen before you can delete this account
+					</span>
+				) : (
+					<span className="col-span-4 text-gray-900 text-sm mb-4">
+						There is no going back once you delete your account.
+					</span>
+				)}
 				<ButtonProfileDesktop
 					className="col-span-1 bg-gray-50 text-red-600 border border-gray-300 px-0 disabled:bg-gray-300 disabled:text-red-700"
 					placeholder="Delete your account"

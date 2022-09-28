@@ -27,11 +27,9 @@ const ImageUploadKitchen = () => {
 		formData.append("file", selectedFile);
 
 		const apiResponse = await updateKitchenAvatar(kitchenID, formData, token);
-		console.log("api response===>", apiResponse);
 		if (apiResponse.status !== 204) {
 			console.log("Failed to update kitchen's avatar");
 		} else {
-			console.log("Kitchen's avatar successfully updated");
 			navigateTo(`/kitchen/${kitchenID}`);
 		}
 	};

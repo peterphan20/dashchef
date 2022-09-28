@@ -3,11 +3,9 @@ import { useSelector } from "react-redux";
 import CheckoutFees from "../molecules/CheckoutFees";
 import LinkCartDesktop from "../atoms/LinkCartDesktop";
 
-const CheckoutPanel = ({ cartItems, handleOrderSubmit }) => {
-	const [displayCartInfo, setDisplayCartInfo] = useState(false);
+const CheckoutPanel = ({ cartItems }) => {
 	const [subtotal, setSubtotal] = useState(0);
 	const [total, setTotoal] = useState(0);
-	const [tip, setTip] = useState(0);
 	const kitchen = useSelector((state) => state.selectedKitchenReducer);
 
 	return (
@@ -17,7 +15,7 @@ const CheckoutPanel = ({ cartItems, handleOrderSubmit }) => {
 					<div className="flex flex-col border-b border-gray-300 p-5">
 						<span className="font-body text-sm">Your cart from:</span>
 						<span className="font-headers font-bold text-lg pb-5">{kitchen.name}</span>
-						<span>Order confirmation page coming soon</span>
+						<LinkCartDesktop link="/order-confirmation" placeholder="Place Order" />
 					</div>
 					<div className="flex flex-col gap-2 px-5 py-5 border-b border-gray-300">
 						<CheckoutFees placeholder="Subtotal" price={`$${subtotal}`} />

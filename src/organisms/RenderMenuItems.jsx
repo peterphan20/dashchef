@@ -48,15 +48,15 @@ const RenderMenuItems = ({ kitchen }) => {
 				{menuItem.itemID ? (
 					<div>
 						<div className="flex justify-between items-center py-3">
-							<div className="flex flex-col">
+							<div className="flex flex-col gap-4">
 								<p className="text-base font-bold mb-1">{menuItem.itemName}</p>
 								<p className="text-sm text-gray-700 overflow-clip mb-1 pr-28">
 									{menuItem.itemDescription}
 								</p>
-								<p className="text-sm pb-2">${menuItem.itemPrice}</p>
+								<p className="text-sm pb-3">${menuItem.itemPrice}</p>
 								<div className="flex justify-start items-center gap-2">
 									<button
-										className="flex justify-center items-center bg-gray-200 text-gray-500 w-5 h-5"
+										className="flex justify-center items-center bg-gray-200 text-gray-500 p-2 w-5 h-5"
 										onClick={() => decrementQuantity(menuItem.itemID)}
 									>
 										<i className="fa-solid fa-minus" />
@@ -65,7 +65,7 @@ const RenderMenuItems = ({ kitchen }) => {
 										{!itemQuantities[menuItem.itemID] ? <p>0</p> : itemQuantities[menuItem.itemID]}
 									</div>
 									<button
-										className="flex justify-center items-center bg-gray-400 text-gray-300 w-5 h-5"
+										className="flex justify-center items-center bg-gray-400 text-gray-300 p-2 w-5 h-5"
 										onClick={() => incrementQuantity(menuItem.itemID)}
 									>
 										<i className="fa-solid fa-plus" />
@@ -74,7 +74,7 @@ const RenderMenuItems = ({ kitchen }) => {
 							</div>
 							<div className="flex justify-center item-center">
 								<AspectRatioImg
-									outerClassName="w-28 h-28"
+									outerClassName="w-36 h-36"
 									src={menuItem.itemPhotoPrimaryURL}
 									alt={menuItem.itemName}
 								/>

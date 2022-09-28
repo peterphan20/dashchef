@@ -60,13 +60,12 @@ const CreateMenuItem = () => {
 		formData.append("description", description);
 		formData.append("price", price);
 		formData.append("file", selectedFile);
-		// formData.append(
-		// 	"tags",
-		// 	listOfItems.map((item) => item.tag)
-		// );
+		formData.append(
+			"tags",
+			listOfItems.filter((item) => item.isChecked).map((item) => item.tag)
+		);
 
 		const apiResponse = await createMenuItem(formData, token);
-		console.log("api response", apiResponse.status);
 		if (apiResponse.status !== 201) {
 			setAuthResponse(false);
 		} else {
@@ -163,7 +162,7 @@ const CreateMenuItem = () => {
 					clickHandler={handleCreateMenuItem}
 				/>
 				{authResponse ? null : (
-					<p className="col-span-3 text-red-600 text-sm font-body mt-5 mb-10">
+					<p className="col-span-6 text-red-600 text-sm font-body mt-5 mb-10">
 						Something went wrong, please try again.
 					</p>
 				)}
