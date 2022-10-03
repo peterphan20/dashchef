@@ -30,6 +30,17 @@ export const updateMenuItem = async (id, menuItemObject, token) => {
 	return data;
 };
 
+export const updateMenuItemImage = async (id, formData, token) => {
+	const res = await fetch(`${config.API_URL}/kitchen/item-image-update/${id}`, {
+		method: "PUT",
+		body: formData,
+		headers: {
+			auth: token,
+		},
+	});
+	return res;
+};
+
 export const deleteMenuItem = async (id, token) => {
 	const res = await fetch(`${config.API_URL}/kitchen/item-delete/${id}`, {
 		method: "DELETE",

@@ -20,6 +20,7 @@ import EditKitchen from "./pages/EditKitchen";
 import CreateMenuItem from "./pages/CreateMenuItem";
 import ImageUploadUser from "./pages/ImageUploadUser";
 import ImageUploadKitchen from "./pages/ImageUploadKitchen";
+import ImageUploadMenuItem from "./pages/ImageUploadMenuItem";
 import KitchensList from "./pages/KitchensList";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import EditMenuItem from "./pages/EditMenuItem";
@@ -105,6 +106,7 @@ const App = () => {
 				<Route path="/create/menu-item" element={<CreateMenuItem />}></Route>
 				<Route path="/edit/kitchen/:kitchenID" element={<EditKitchen />}></Route>
 				<Route path="/edit/menu-item/:menuItemID" element={<EditMenuItem />}></Route>
+				<Route path="/edit/menu-item-image/:menuItemID" element={<ImageUploadMenuItem />}></Route>
 				<Route path="/image-upload/user/:userID" element={<ImageUploadUser />}></Route>
 				<Route path="/image-upload/kitchen/:kitchenID" element={<ImageUploadKitchen />}></Route>
 				<Route path="/driver" element={<Driver />}></Route>

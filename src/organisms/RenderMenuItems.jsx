@@ -75,6 +75,7 @@ const RenderMenuItems = ({ kitchen }) => {
 							<div className="flex justify-center item-center">
 								<AspectRatioImg
 									outerClassName="w-36 h-36"
+									className="rounded-l"
 									src={menuItem.itemPhotoPrimaryURL}
 									alt={menuItem.itemName}
 								/>

@@ -14,13 +14,13 @@ const ModalDelete = ({ modalHandler, placeholder, clickHandler }) => {
 				<h1 className="mb-2">{`Are you sure you want to delete this ${placeholder}?`}</h1>
 				<div className="flex gap-3 pb-3">
 					<button
-						className="bg-gray-300 text-gray-900 text-xs rounded py-2 px-5"
+						className="bg-gray-300 text-gray-900 text-sm rounded py-1 px-5"
 						onClick={() => modalHandler(false)}
 					>
 						Cancel
 					</button>
 					<button
-						className="bg-red-600 text-gray-200 text-xs rounded py-2 px-5"
+						className="bg-red-600 text-gray-200 text-sm rounded py-1 px-5"
 						onClick={clickHandler}
 					>
 						Delete

@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteMenuItem, getMenuItem, updateMenuItem } from "../api/MenuItemsAPI";
 import FormInputField from "../molecules/FormInputField";
 import { SELECTED_MENU_ITEM_LOAD } from "../constants";
 import ButtonFormSmall from "../atoms/ButtonFormSmall";
 import ModalDelete from "../molecules/ModalDelete";
+import AspectRatioImg from "../molecules/AspectRatioImg";
 
 const EditMenuItem = () => {
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState("");
+	const [image, setImage] = useState("");
 	const [isDeleteItemOpen, setIsDeleteItemOpen] = useState(false);
 	const [authResponse, setAuthResponse] = useState(true);
-
 	const user = useSelector((state) => state.userReducer);
+	const menuItem = useSelector((state) => state.selectedMenuItemReducer);
 	const { menuItemID } = useParams();
 	const dispatch = useDispatch();
 	const navigateTo = useNavigate();
@@ -79,6 +81,14 @@ const EditMenuItem = () => {
 				<h1 className="col-span-6 text-2xl font-headers text-center py-6 lg:text-3xl">
 					Edit this menu item?
 				</h1>
+				<Link to={`/edit/menu-item-image/${menuItem.id}`}>
+					<AspectRatioImg
+						outerClassName="w-32 h-32 mb-5"
+						className="rounded-full"
+						src={menuItem.photoPrimaryURL}
+						alt={name}
+					/>
+				</Link>
 				<FormInputField
 					htmlFor="name"
 					text="name"

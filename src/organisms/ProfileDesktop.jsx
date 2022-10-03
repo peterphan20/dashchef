@@ -108,20 +108,22 @@ const ProfileDesktop = ({
 				/>
 			) : null}
 			<div className="border border-gray-300 px-16 py-12 mb-8">
-				{authResponse === null ? null : authResponse ? (
-					<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">
-						Your profile has been updated
-					</p>
-				) : (
-					<p className="bg-red-400 py-1 px-4 rounded-md transform translate-y-full transition duration-300 ease-in">
-						Something went wrong
-					</p>
-				)}
-				<Avatar
-					link={`/image-upload/user/${userID}`}
-					src={user.avatarURL ? user.avatarURL : defaultAvatar}
-					alt="User's avatar"
-				/>
+				<div className="flex flex-row-reverse justify-between items-start">
+					{authResponse === null ? null : authResponse ? (
+						<p className="bg-green-400 text-gray-100 rounded-md py-1 px-4 transform translate-y-full transition duration-300 ease-in">
+							Your profile has been updated
+						</p>
+					) : (
+						<p className="bg-red-400 py-1 px-4 rounded-md transform translate-y-full transition duration-300 ease-in">
+							Something went wrong
+						</p>
+					)}
+					<Avatar
+						link={`/image-upload/user/${userID}`}
+						src={user.avatarURL ? user.avatarURL : defaultAvatar}
+						alt="User's avatar"
+					/>
+				</div>
 				<div className="grid grid-cols-6 gap-x-2">
 					<h1 className="col-span-6 font-headers font-bold text-3xl mb-5 mt-7">Profile</h1>
 					<FormInputField
