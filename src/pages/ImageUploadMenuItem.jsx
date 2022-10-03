@@ -7,7 +7,7 @@ import ButtonProfileDesktop from "../atoms/ButtonProfileDesktop";
 const ImageUploadMenuItem = () => {
 	const [selectedFile, setSelectedFile] = useState();
 	const [fileIsSelected, setFileIsSelected] = useState(false);
-	const [authResponse, setAuthResponse] = useState(null);
+	const [authResponse, setAuthResponse] = useState(true);
 	const user = useSelector((state) => state.userReducer);
 	const { menuItemID } = useParams();
 	const navigateTo = useNavigate();
@@ -78,7 +78,7 @@ const ImageUploadMenuItem = () => {
 					className="col-span-2 place-self-start bg-green-400 "
 					clickHandler={handleItemImageUpdate}
 				/>
-				{!authResponse ? (
+				{authResponse === false ? (
 					<span className="col-span-6 place-self-start text-red-600 mt-5">
 						Something went wrong, please try again!
 					</span>
